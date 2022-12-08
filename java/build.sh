@@ -32,12 +32,24 @@ cd ..
 echo "✅ tf version"
 
 echo "🔊compile proto files"
+protoc -I=serving -I=tensorflow --plugin=/usr/local/protoc/bin/protoc-gen-grpc-java --grpc-java_out=java --java_out=java tensorflow/tensorflow/compiler/xla/*.proto
+protoc -I=serving -I=tensorflow --plugin=/usr/local/protoc/bin/protoc-gen-grpc-java --grpc-java_out=java --java_out=java tensorflow/tensorflow/compiler/xla/*/*.proto
+protoc -I=serving -I=tensorflow --plugin=/usr/local/protoc/bin/protoc-gen-grpc-java --grpc-java_out=java --java_out=java tensorflow/tensorflow/stream_executor/*.proto
+protoc -I=serving -I=tensorflow --plugin=/usr/local/protoc/bin/protoc-gen-grpc-java --grpc-java_out=java --java_out=java tensorflow/tensorflow/core/*/*.proto
+protoc -I=serving -I=tensorflow --plugin=/usr/local/protoc/bin/protoc-gen-grpc-java --grpc-java_out=java --java_out=java tensorflow/tensorflow/core/protobuf/tpu/*.proto
 protoc -I=serving -I=tensorflow --plugin=/usr/local/protoc/bin/protoc-gen-grpc-java --grpc-java_out=java --java_out=java serving/tensorflow_serving/*/*.proto
 protoc -I=serving -I=tensorflow --plugin=/usr/local/protoc/bin/protoc-gen-grpc-java --grpc-java_out=java --java_out=java serving/tensorflow_serving/sources/storage_path/*.proto
 echo "✅ proto compile"
 
+sleep 3
+
+echo "java dir:"$cwd
 cd $cwd;
-rm -rf src/main/java/tensorflow
+rm -rf src/main/java/tensorflow src/main/java/org src/main/java/xla src/main/java/stream_executor src/main/java/third_party
 mv tensorflow src/main/java
+mv org src/main/java
+mv xla src/main/java
+mv stream_executor src/main/java
+mv third_party src/main/java
 
 gradle build
