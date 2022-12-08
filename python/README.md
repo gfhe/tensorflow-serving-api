@@ -9,7 +9,7 @@
 2. Run the following command to install python package.
 
    ```shell
-   pip install tensorflow-serving-api==2.2.0
+   pip install tensorflow-serving-api==2.11.0
    ```
 
 3. Run the code in main.py for sending a grpc request to tensorflow serving.
