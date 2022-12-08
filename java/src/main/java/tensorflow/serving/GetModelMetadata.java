@@ -41,14 +41,14 @@ public final class GetModelMetadata {
     /**
      * <code>map&lt;string, .tensorflow.SignatureDef&gt; signature_def = 1;</code>
      */
-
-    org.tensorflow.framework.SignatureDef getSignatureDefOrDefault(
+    /* nullable */
+org.tensorflow.framework.SignatureDef getSignatureDefOrDefault(
         java.lang.String key,
-        org.tensorflow.framework.SignatureDef defaultValue);
+        /* nullable */
+org.tensorflow.framework.SignatureDef defaultValue);
     /**
      * <code>map&lt;string, .tensorflow.SignatureDef&gt; signature_def = 1;</code>
      */
-
     org.tensorflow.framework.SignatureDef getSignatureDefOrThrow(
         java.lang.String key);
   }
@@ -82,57 +82,6 @@ public final class GetModelMetadata {
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
-    }
-    private SignatureDefMap(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
-                signatureDef_ = com.google.protobuf.MapField.newMapField(
-                    SignatureDefDefaultEntryHolder.defaultEntry);
-                mutable_bitField0_ |= 0x00000001;
-              }
-              com.google.protobuf.MapEntry<java.lang.String, org.tensorflow.framework.SignatureDef>
-              signatureDef__ = input.readMessage(
-                  SignatureDefDefaultEntryHolder.defaultEntry.getParserForType(), extensionRegistry);
-              signatureDef_.getMutableMap().put(
-                  signatureDef__.getKey(), signatureDef__.getValue());
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
@@ -171,6 +120,7 @@ public final class GetModelMetadata {
                   com.google.protobuf.WireFormat.FieldType.MESSAGE,
                   org.tensorflow.framework.SignatureDef.getDefaultInstance());
     }
+    @SuppressWarnings("serial")
     private com.google.protobuf.MapField<
         java.lang.String, org.tensorflow.framework.SignatureDef> signatureDef_;
     private com.google.protobuf.MapField<java.lang.String, org.tensorflow.framework.SignatureDef>
@@ -181,18 +131,16 @@ public final class GetModelMetadata {
       }
       return signatureDef_;
     }
-
     public int getSignatureDefCount() {
       return internalGetSignatureDef().getMap().size();
     }
     /**
      * <code>map&lt;string, .tensorflow.SignatureDef&gt; signature_def = 1;</code>
      */
-
     @java.lang.Override
     public boolean containsSignatureDef(
         java.lang.String key) {
-      if (key == null) { throw new java.lang.NullPointerException(); }
+      if (key == null) { throw new NullPointerException("map key"); }
       return internalGetSignatureDef().getMap().containsKey(key);
     }
     /**
@@ -207,7 +155,6 @@ public final class GetModelMetadata {
      * <code>map&lt;string, .tensorflow.SignatureDef&gt; signature_def = 1;</code>
      */
     @java.lang.Override
-
     public java.util.Map<java.lang.String, org.tensorflow.framework.SignatureDef> getSignatureDefMap() {
       return internalGetSignatureDef().getMap();
     }
@@ -215,11 +162,12 @@ public final class GetModelMetadata {
      * <code>map&lt;string, .tensorflow.SignatureDef&gt; signature_def = 1;</code>
      */
     @java.lang.Override
-
-    public org.tensorflow.framework.SignatureDef getSignatureDefOrDefault(
+    public /* nullable */
+org.tensorflow.framework.SignatureDef getSignatureDefOrDefault(
         java.lang.String key,
-        org.tensorflow.framework.SignatureDef defaultValue) {
-      if (key == null) { throw new java.lang.NullPointerException(); }
+        /* nullable */
+org.tensorflow.framework.SignatureDef defaultValue) {
+      if (key == null) { throw new NullPointerException("map key"); }
       java.util.Map<java.lang.String, org.tensorflow.framework.SignatureDef> map =
           internalGetSignatureDef().getMap();
       return map.containsKey(key) ? map.get(key) : defaultValue;
@@ -228,10 +176,9 @@ public final class GetModelMetadata {
      * <code>map&lt;string, .tensorflow.SignatureDef&gt; signature_def = 1;</code>
      */
     @java.lang.Override
-
     public org.tensorflow.framework.SignatureDef getSignatureDefOrThrow(
         java.lang.String key) {
-      if (key == null) { throw new java.lang.NullPointerException(); }
+      if (key == null) { throw new NullPointerException("map key"); }
       java.util.Map<java.lang.String, org.tensorflow.framework.SignatureDef> map =
           internalGetSignatureDef().getMap();
       if (!map.containsKey(key)) {
@@ -260,7 +207,7 @@ public final class GetModelMetadata {
           internalGetSignatureDef(),
           SignatureDefDefaultEntryHolder.defaultEntry,
           1);
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -279,7 +226,7 @@ public final class GetModelMetadata {
         size += com.google.protobuf.CodedOutputStream
             .computeMessageSize(1, signatureDef__);
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -296,7 +243,7 @@ public final class GetModelMetadata {
 
       if (!internalGetSignatureDef().equals(
           other.internalGetSignatureDef())) return false;
-      if (!unknownFields.equals(other.unknownFields)) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
 
@@ -311,7 +258,7 @@ public final class GetModelMetadata {
         hash = (37 * hash) + SIGNATURE_DEF_FIELD_NUMBER;
         hash = (53 * hash) + internalGetSignatureDef().hashCode();
       }
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -454,22 +401,18 @@ public final class GetModelMetadata {
 
       // Construct using tensorflow.serving.GetModelMetadata.SignatureDefMap.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         internalGetMutableSignatureDef().clear();
         return this;
       }
@@ -497,11 +440,17 @@ public final class GetModelMetadata {
       @java.lang.Override
       public tensorflow.serving.GetModelMetadata.SignatureDefMap buildPartial() {
         tensorflow.serving.GetModelMetadata.SignatureDefMap result = new tensorflow.serving.GetModelMetadata.SignatureDefMap(this);
-        int from_bitField0_ = bitField0_;
-        result.signatureDef_ = internalGetSignatureDef();
-        result.signatureDef_.makeImmutable();
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
+      }
+
+      private void buildPartial0(tensorflow.serving.GetModelMetadata.SignatureDefMap result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.signatureDef_ = internalGetSignatureDef();
+          result.signatureDef_.makeImmutable();
+        }
       }
 
       @java.lang.Override
@@ -550,7 +499,8 @@ public final class GetModelMetadata {
         if (other == tensorflow.serving.GetModelMetadata.SignatureDefMap.getDefaultInstance()) return this;
         internalGetMutableSignatureDef().mergeFrom(
             other.internalGetSignatureDef());
-        this.mergeUnknownFields(other.unknownFields);
+        bitField0_ |= 0x00000001;
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
@@ -565,17 +515,39 @@ public final class GetModelMetadata {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        tensorflow.serving.GetModelMetadata.SignatureDefMap parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                com.google.protobuf.MapEntry<java.lang.String, org.tensorflow.framework.SignatureDef>
+                signatureDef__ = input.readMessage(
+                    SignatureDefDefaultEntryHolder.defaultEntry.getParserForType(), extensionRegistry);
+                internalGetMutableSignatureDef().getMutableMap().put(
+                    signatureDef__.getKey(), signatureDef__.getValue());
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 10
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (tensorflow.serving.GetModelMetadata.SignatureDefMap) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
       private int bitField0_;
@@ -583,7 +555,7 @@ public final class GetModelMetadata {
       private com.google.protobuf.MapField<
           java.lang.String, org.tensorflow.framework.SignatureDef> signatureDef_;
       private com.google.protobuf.MapField<java.lang.String, org.tensorflow.framework.SignatureDef>
-      internalGetSignatureDef() {
+          internalGetSignatureDef() {
         if (signatureDef_ == null) {
           return com.google.protobuf.MapField.emptyMapField(
               SignatureDefDefaultEntryHolder.defaultEntry);
@@ -591,8 +563,7 @@ public final class GetModelMetadata {
         return signatureDef_;
       }
       private com.google.protobuf.MapField<java.lang.String, org.tensorflow.framework.SignatureDef>
-      internalGetMutableSignatureDef() {
-        onChanged();;
+          internalGetMutableSignatureDef() {
         if (signatureDef_ == null) {
           signatureDef_ = com.google.protobuf.MapField.newMapField(
               SignatureDefDefaultEntryHolder.defaultEntry);
@@ -600,20 +571,20 @@ public final class GetModelMetadata {
         if (!signatureDef_.isMutable()) {
           signatureDef_ = signatureDef_.copy();
         }
+        bitField0_ |= 0x00000001;
+        onChanged();
         return signatureDef_;
       }
-
       public int getSignatureDefCount() {
         return internalGetSignatureDef().getMap().size();
       }
       /**
        * <code>map&lt;string, .tensorflow.SignatureDef&gt; signature_def = 1;</code>
        */
-
       @java.lang.Override
       public boolean containsSignatureDef(
           java.lang.String key) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
+        if (key == null) { throw new NullPointerException("map key"); }
         return internalGetSignatureDef().getMap().containsKey(key);
       }
       /**
@@ -628,7 +599,6 @@ public final class GetModelMetadata {
        * <code>map&lt;string, .tensorflow.SignatureDef&gt; signature_def = 1;</code>
        */
       @java.lang.Override
-
       public java.util.Map<java.lang.String, org.tensorflow.framework.SignatureDef> getSignatureDefMap() {
         return internalGetSignatureDef().getMap();
       }
@@ -636,11 +606,12 @@ public final class GetModelMetadata {
        * <code>map&lt;string, .tensorflow.SignatureDef&gt; signature_def = 1;</code>
        */
       @java.lang.Override
-
-      public org.tensorflow.framework.SignatureDef getSignatureDefOrDefault(
+      public /* nullable */
+org.tensorflow.framework.SignatureDef getSignatureDefOrDefault(
           java.lang.String key,
-          org.tensorflow.framework.SignatureDef defaultValue) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
+          /* nullable */
+org.tensorflow.framework.SignatureDef defaultValue) {
+        if (key == null) { throw new NullPointerException("map key"); }
         java.util.Map<java.lang.String, org.tensorflow.framework.SignatureDef> map =
             internalGetSignatureDef().getMap();
         return map.containsKey(key) ? map.get(key) : defaultValue;
@@ -649,10 +620,9 @@ public final class GetModelMetadata {
        * <code>map&lt;string, .tensorflow.SignatureDef&gt; signature_def = 1;</code>
        */
       @java.lang.Override
-
       public org.tensorflow.framework.SignatureDef getSignatureDefOrThrow(
           java.lang.String key) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
+        if (key == null) { throw new NullPointerException("map key"); }
         java.util.Map<java.lang.String, org.tensorflow.framework.SignatureDef> map =
             internalGetSignatureDef().getMap();
         if (!map.containsKey(key)) {
@@ -660,8 +630,8 @@ public final class GetModelMetadata {
         }
         return map.get(key);
       }
-
       public Builder clearSignatureDef() {
+        bitField0_ = (bitField0_ & ~0x00000001);
         internalGetMutableSignatureDef().getMutableMap()
             .clear();
         return this;
@@ -669,10 +639,9 @@ public final class GetModelMetadata {
       /**
        * <code>map&lt;string, .tensorflow.SignatureDef&gt; signature_def = 1;</code>
        */
-
       public Builder removeSignatureDef(
           java.lang.String key) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
+        if (key == null) { throw new NullPointerException("map key"); }
         internalGetMutableSignatureDef().getMutableMap()
             .remove(key);
         return this;
@@ -682,7 +651,8 @@ public final class GetModelMetadata {
        */
       @java.lang.Deprecated
       public java.util.Map<java.lang.String, org.tensorflow.framework.SignatureDef>
-      getMutableSignatureDef() {
+          getMutableSignatureDef() {
+        bitField0_ |= 0x00000001;
         return internalGetMutableSignatureDef().getMutableMap();
       }
       /**
@@ -691,20 +661,21 @@ public final class GetModelMetadata {
       public Builder putSignatureDef(
           java.lang.String key,
           org.tensorflow.framework.SignatureDef value) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
-        if (value == null) { throw new java.lang.NullPointerException(); }
+        if (key == null) { throw new NullPointerException("map key"); }
+        if (value == null) { throw new NullPointerException("map value"); }
         internalGetMutableSignatureDef().getMutableMap()
             .put(key, value);
+        bitField0_ |= 0x00000001;
         return this;
       }
       /**
        * <code>map&lt;string, .tensorflow.SignatureDef&gt; signature_def = 1;</code>
        */
-
       public Builder putAllSignatureDef(
           java.util.Map<java.lang.String, org.tensorflow.framework.SignatureDef> values) {
         internalGetMutableSignatureDef().getMutableMap()
             .putAll(values);
+        bitField0_ |= 0x00000001;
         return this;
       }
       @java.lang.Override
@@ -740,7 +711,18 @@ public final class GetModelMetadata {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new SignatureDefMap(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -863,69 +845,6 @@ public final class GetModelMetadata {
     getUnknownFields() {
       return this.unknownFields;
     }
-    private GetModelMetadataRequest(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              tensorflow.serving.Model.ModelSpec.Builder subBuilder = null;
-              if (modelSpec_ != null) {
-                subBuilder = modelSpec_.toBuilder();
-              }
-              modelSpec_ = input.readMessage(tensorflow.serving.Model.ModelSpec.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(modelSpec_);
-                modelSpec_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            case 18: {
-              java.lang.String s = input.readStringRequireUtf8();
-              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
-                metadataField_ = new com.google.protobuf.LazyStringArrayList();
-                mutable_bitField0_ |= 0x00000001;
-              }
-              metadataField_.add(s);
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        if (((mutable_bitField0_ & 0x00000001) != 0)) {
-          metadataField_ = metadataField_.getUnmodifiableView();
-        }
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return tensorflow.serving.GetModelMetadata.internal_static_tensorflow_serving_GetModelMetadataRequest_descriptor;
@@ -977,10 +896,11 @@ public final class GetModelMetadata {
      */
     @java.lang.Override
     public tensorflow.serving.Model.ModelSpecOrBuilder getModelSpecOrBuilder() {
-      return getModelSpec();
+      return modelSpec_ == null ? tensorflow.serving.Model.ModelSpec.getDefaultInstance() : modelSpec_;
     }
 
     public static final int METADATA_FIELD_FIELD_NUMBER = 2;
+    @SuppressWarnings("serial")
     private com.google.protobuf.LazyStringList metadataField_;
     /**
      * <pre>
@@ -1051,7 +971,7 @@ public final class GetModelMetadata {
       for (int i = 0; i < metadataField_.size(); i++) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, metadataField_.getRaw(i));
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -1072,7 +992,7 @@ public final class GetModelMetadata {
         size += dataSize;
         size += 1 * getMetadataFieldList().size();
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -1094,7 +1014,7 @@ public final class GetModelMetadata {
       }
       if (!getMetadataFieldList()
           .equals(other.getMetadataFieldList())) return false;
-      if (!unknownFields.equals(other.unknownFields)) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
 
@@ -1113,7 +1033,7 @@ public final class GetModelMetadata {
         hash = (37 * hash) + METADATA_FIELD_FIELD_NUMBER;
         hash = (53 * hash) + getMetadataFieldList().hashCode();
       }
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -1230,30 +1150,25 @@ public final class GetModelMetadata {
 
       // Construct using tensorflow.serving.GetModelMetadata.GetModelMetadataRequest.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        if (modelSpecBuilder_ == null) {
-          modelSpec_ = null;
-        } else {
-          modelSpec_ = null;
+        bitField0_ = 0;
+        modelSpec_ = null;
+        if (modelSpecBuilder_ != null) {
+          modelSpecBuilder_.dispose();
           modelSpecBuilder_ = null;
         }
         metadataField_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000001);
+        bitField0_ = (bitField0_ & ~0x00000002);
         return this;
       }
 
@@ -1280,19 +1195,27 @@ public final class GetModelMetadata {
       @java.lang.Override
       public tensorflow.serving.GetModelMetadata.GetModelMetadataRequest buildPartial() {
         tensorflow.serving.GetModelMetadata.GetModelMetadataRequest result = new tensorflow.serving.GetModelMetadata.GetModelMetadataRequest(this);
-        int from_bitField0_ = bitField0_;
-        if (modelSpecBuilder_ == null) {
-          result.modelSpec_ = modelSpec_;
-        } else {
-          result.modelSpec_ = modelSpecBuilder_.build();
-        }
-        if (((bitField0_ & 0x00000001) != 0)) {
-          metadataField_ = metadataField_.getUnmodifiableView();
-          bitField0_ = (bitField0_ & ~0x00000001);
-        }
-        result.metadataField_ = metadataField_;
+        buildPartialRepeatedFields(result);
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
+      }
+
+      private void buildPartialRepeatedFields(tensorflow.serving.GetModelMetadata.GetModelMetadataRequest result) {
+        if (((bitField0_ & 0x00000002) != 0)) {
+          metadataField_ = metadataField_.getUnmodifiableView();
+          bitField0_ = (bitField0_ & ~0x00000002);
+        }
+        result.metadataField_ = metadataField_;
+      }
+
+      private void buildPartial0(tensorflow.serving.GetModelMetadata.GetModelMetadataRequest result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.modelSpec_ = modelSpecBuilder_ == null
+              ? modelSpec_
+              : modelSpecBuilder_.build();
+        }
       }
 
       @java.lang.Override
@@ -1345,14 +1268,14 @@ public final class GetModelMetadata {
         if (!other.metadataField_.isEmpty()) {
           if (metadataField_.isEmpty()) {
             metadataField_ = other.metadataField_;
-            bitField0_ = (bitField0_ & ~0x00000001);
+            bitField0_ = (bitField0_ & ~0x00000002);
           } else {
             ensureMetadataFieldIsMutable();
             metadataField_.addAll(other.metadataField_);
           }
           onChanged();
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
@@ -1367,17 +1290,43 @@ public final class GetModelMetadata {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        tensorflow.serving.GetModelMetadata.GetModelMetadataRequest parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                input.readMessage(
+                    getModelSpecFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 10
+              case 18: {
+                java.lang.String s = input.readStringRequireUtf8();
+                ensureMetadataFieldIsMutable();
+                metadataField_.add(s);
+                break;
+              } // case 18
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (tensorflow.serving.GetModelMetadata.GetModelMetadataRequest) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
       private int bitField0_;
@@ -1395,7 +1344,7 @@ public final class GetModelMetadata {
        * @return Whether the modelSpec field is set.
        */
       public boolean hasModelSpec() {
-        return modelSpecBuilder_ != null || modelSpec_ != null;
+        return ((bitField0_ & 0x00000001) != 0);
       }
       /**
        * <pre>
@@ -1427,11 +1376,11 @@ public final class GetModelMetadata {
             throw new NullPointerException();
           }
           modelSpec_ = value;
-          onChanged();
         } else {
           modelSpecBuilder_.setMessage(value);
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -1446,11 +1395,11 @@ public final class GetModelMetadata {
           tensorflow.serving.Model.ModelSpec.Builder builderForValue) {
         if (modelSpecBuilder_ == null) {
           modelSpec_ = builderForValue.build();
-          onChanged();
         } else {
           modelSpecBuilder_.setMessage(builderForValue.build());
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -1463,17 +1412,18 @@ public final class GetModelMetadata {
        */
       public Builder mergeModelSpec(tensorflow.serving.Model.ModelSpec value) {
         if (modelSpecBuilder_ == null) {
-          if (modelSpec_ != null) {
-            modelSpec_ =
-              tensorflow.serving.Model.ModelSpec.newBuilder(modelSpec_).mergeFrom(value).buildPartial();
+          if (((bitField0_ & 0x00000001) != 0) &&
+            modelSpec_ != null &&
+            modelSpec_ != tensorflow.serving.Model.ModelSpec.getDefaultInstance()) {
+            getModelSpecBuilder().mergeFrom(value);
           } else {
             modelSpec_ = value;
           }
-          onChanged();
         } else {
           modelSpecBuilder_.mergeFrom(value);
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -1485,14 +1435,13 @@ public final class GetModelMetadata {
        * <code>.tensorflow.serving.ModelSpec model_spec = 1;</code>
        */
       public Builder clearModelSpec() {
-        if (modelSpecBuilder_ == null) {
-          modelSpec_ = null;
-          onChanged();
-        } else {
-          modelSpec_ = null;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        modelSpec_ = null;
+        if (modelSpecBuilder_ != null) {
+          modelSpecBuilder_.dispose();
           modelSpecBuilder_ = null;
         }
-
+        onChanged();
         return this;
       }
       /**
@@ -1504,7 +1453,7 @@ public final class GetModelMetadata {
        * <code>.tensorflow.serving.ModelSpec model_spec = 1;</code>
        */
       public tensorflow.serving.Model.ModelSpec.Builder getModelSpecBuilder() {
-        
+        bitField0_ |= 0x00000001;
         onChanged();
         return getModelSpecFieldBuilder().getBuilder();
       }
@@ -1548,9 +1497,9 @@ public final class GetModelMetadata {
 
       private com.google.protobuf.LazyStringList metadataField_ = com.google.protobuf.LazyStringArrayList.EMPTY;
       private void ensureMetadataFieldIsMutable() {
-        if (!((bitField0_ & 0x00000001) != 0)) {
+        if (!((bitField0_ & 0x00000002) != 0)) {
           metadataField_ = new com.google.protobuf.LazyStringArrayList(metadataField_);
-          bitField0_ |= 0x00000001;
+          bitField0_ |= 0x00000002;
          }
       }
       /**
@@ -1613,10 +1562,8 @@ public final class GetModelMetadata {
        */
       public Builder setMetadataField(
           int index, java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureMetadataFieldIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureMetadataFieldIsMutable();
         metadataField_.set(index, value);
         onChanged();
         return this;
@@ -1632,10 +1579,8 @@ public final class GetModelMetadata {
        */
       public Builder addMetadataField(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureMetadataFieldIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureMetadataFieldIsMutable();
         metadataField_.add(value);
         onChanged();
         return this;
@@ -1667,7 +1612,7 @@ public final class GetModelMetadata {
        */
       public Builder clearMetadataField() {
         metadataField_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000001);
+        bitField0_ = (bitField0_ & ~0x00000002);
         onChanged();
         return this;
       }
@@ -1682,10 +1627,8 @@ public final class GetModelMetadata {
        */
       public Builder addMetadataFieldBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         ensureMetadataFieldIsMutable();
         metadataField_.add(value);
         onChanged();
@@ -1724,7 +1667,18 @@ public final class GetModelMetadata {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new GetModelMetadataRequest(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -1822,10 +1776,11 @@ public final class GetModelMetadata {
      *
      * <code>map&lt;string, .google.protobuf.Any&gt; metadata = 2;</code>
      */
-
-    com.google.protobuf.Any getMetadataOrDefault(
+    /* nullable */
+com.google.protobuf.Any getMetadataOrDefault(
         java.lang.String key,
-        com.google.protobuf.Any defaultValue);
+        /* nullable */
+com.google.protobuf.Any defaultValue);
     /**
      * <pre>
      * Map of metadata field name to metadata field. The options for metadata
@@ -1835,7 +1790,6 @@ public final class GetModelMetadata {
      *
      * <code>map&lt;string, .google.protobuf.Any&gt; metadata = 2;</code>
      */
-
     com.google.protobuf.Any getMetadataOrThrow(
         java.lang.String key);
   }
@@ -1865,70 +1819,6 @@ public final class GetModelMetadata {
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
-    }
-    private GetModelMetadataResponse(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              tensorflow.serving.Model.ModelSpec.Builder subBuilder = null;
-              if (modelSpec_ != null) {
-                subBuilder = modelSpec_.toBuilder();
-              }
-              modelSpec_ = input.readMessage(tensorflow.serving.Model.ModelSpec.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(modelSpec_);
-                modelSpec_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            case 18: {
-              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
-                metadata_ = com.google.protobuf.MapField.newMapField(
-                    MetadataDefaultEntryHolder.defaultEntry);
-                mutable_bitField0_ |= 0x00000001;
-              }
-              com.google.protobuf.MapEntry<java.lang.String, com.google.protobuf.Any>
-              metadata__ = input.readMessage(
-                  MetadataDefaultEntryHolder.defaultEntry.getParserForType(), extensionRegistry);
-              metadata_.getMutableMap().put(
-                  metadata__.getKey(), metadata__.getValue());
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
@@ -1990,7 +1880,7 @@ public final class GetModelMetadata {
      */
     @java.lang.Override
     public tensorflow.serving.Model.ModelSpecOrBuilder getModelSpecOrBuilder() {
-      return getModelSpec();
+      return modelSpec_ == null ? tensorflow.serving.Model.ModelSpec.getDefaultInstance() : modelSpec_;
     }
 
     public static final int METADATA_FIELD_NUMBER = 2;
@@ -2005,6 +1895,7 @@ public final class GetModelMetadata {
                   com.google.protobuf.WireFormat.FieldType.MESSAGE,
                   com.google.protobuf.Any.getDefaultInstance());
     }
+    @SuppressWarnings("serial")
     private com.google.protobuf.MapField<
         java.lang.String, com.google.protobuf.Any> metadata_;
     private com.google.protobuf.MapField<java.lang.String, com.google.protobuf.Any>
@@ -2015,7 +1906,6 @@ public final class GetModelMetadata {
       }
       return metadata_;
     }
-
     public int getMetadataCount() {
       return internalGetMetadata().getMap().size();
     }
@@ -2028,11 +1918,10 @@ public final class GetModelMetadata {
      *
      * <code>map&lt;string, .google.protobuf.Any&gt; metadata = 2;</code>
      */
-
     @java.lang.Override
     public boolean containsMetadata(
         java.lang.String key) {
-      if (key == null) { throw new java.lang.NullPointerException(); }
+      if (key == null) { throw new NullPointerException("map key"); }
       return internalGetMetadata().getMap().containsKey(key);
     }
     /**
@@ -2053,7 +1942,6 @@ public final class GetModelMetadata {
      * <code>map&lt;string, .google.protobuf.Any&gt; metadata = 2;</code>
      */
     @java.lang.Override
-
     public java.util.Map<java.lang.String, com.google.protobuf.Any> getMetadataMap() {
       return internalGetMetadata().getMap();
     }
@@ -2067,11 +1955,12 @@ public final class GetModelMetadata {
      * <code>map&lt;string, .google.protobuf.Any&gt; metadata = 2;</code>
      */
     @java.lang.Override
-
-    public com.google.protobuf.Any getMetadataOrDefault(
+    public /* nullable */
+com.google.protobuf.Any getMetadataOrDefault(
         java.lang.String key,
-        com.google.protobuf.Any defaultValue) {
-      if (key == null) { throw new java.lang.NullPointerException(); }
+        /* nullable */
+com.google.protobuf.Any defaultValue) {
+      if (key == null) { throw new NullPointerException("map key"); }
       java.util.Map<java.lang.String, com.google.protobuf.Any> map =
           internalGetMetadata().getMap();
       return map.containsKey(key) ? map.get(key) : defaultValue;
@@ -2086,10 +1975,9 @@ public final class GetModelMetadata {
      * <code>map&lt;string, .google.protobuf.Any&gt; metadata = 2;</code>
      */
     @java.lang.Override
-
     public com.google.protobuf.Any getMetadataOrThrow(
         java.lang.String key) {
-      if (key == null) { throw new java.lang.NullPointerException(); }
+      if (key == null) { throw new NullPointerException("map key"); }
       java.util.Map<java.lang.String, com.google.protobuf.Any> map =
           internalGetMetadata().getMap();
       if (!map.containsKey(key)) {
@@ -2121,7 +2009,7 @@ public final class GetModelMetadata {
           internalGetMetadata(),
           MetadataDefaultEntryHolder.defaultEntry,
           2);
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -2144,7 +2032,7 @@ public final class GetModelMetadata {
         size += com.google.protobuf.CodedOutputStream
             .computeMessageSize(2, metadata__);
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -2166,7 +2054,7 @@ public final class GetModelMetadata {
       }
       if (!internalGetMetadata().equals(
           other.internalGetMetadata())) return false;
-      if (!unknownFields.equals(other.unknownFields)) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
 
@@ -2185,7 +2073,7 @@ public final class GetModelMetadata {
         hash = (37 * hash) + METADATA_FIELD_NUMBER;
         hash = (53 * hash) + internalGetMetadata().hashCode();
       }
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -2324,26 +2212,21 @@ public final class GetModelMetadata {
 
       // Construct using tensorflow.serving.GetModelMetadata.GetModelMetadataResponse.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        if (modelSpecBuilder_ == null) {
-          modelSpec_ = null;
-        } else {
-          modelSpec_ = null;
+        bitField0_ = 0;
+        modelSpec_ = null;
+        if (modelSpecBuilder_ != null) {
+          modelSpecBuilder_.dispose();
           modelSpecBuilder_ = null;
         }
         internalGetMutableMetadata().clear();
@@ -2373,16 +2256,22 @@ public final class GetModelMetadata {
       @java.lang.Override
       public tensorflow.serving.GetModelMetadata.GetModelMetadataResponse buildPartial() {
         tensorflow.serving.GetModelMetadata.GetModelMetadataResponse result = new tensorflow.serving.GetModelMetadata.GetModelMetadataResponse(this);
-        int from_bitField0_ = bitField0_;
-        if (modelSpecBuilder_ == null) {
-          result.modelSpec_ = modelSpec_;
-        } else {
-          result.modelSpec_ = modelSpecBuilder_.build();
-        }
-        result.metadata_ = internalGetMetadata();
-        result.metadata_.makeImmutable();
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
+      }
+
+      private void buildPartial0(tensorflow.serving.GetModelMetadata.GetModelMetadataResponse result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.modelSpec_ = modelSpecBuilder_ == null
+              ? modelSpec_
+              : modelSpecBuilder_.build();
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.metadata_ = internalGetMetadata();
+          result.metadata_.makeImmutable();
+        }
       }
 
       @java.lang.Override
@@ -2434,7 +2323,8 @@ public final class GetModelMetadata {
         }
         internalGetMutableMetadata().mergeFrom(
             other.internalGetMetadata());
-        this.mergeUnknownFields(other.unknownFields);
+        bitField0_ |= 0x00000002;
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
@@ -2449,17 +2339,46 @@ public final class GetModelMetadata {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        tensorflow.serving.GetModelMetadata.GetModelMetadataResponse parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                input.readMessage(
+                    getModelSpecFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 10
+              case 18: {
+                com.google.protobuf.MapEntry<java.lang.String, com.google.protobuf.Any>
+                metadata__ = input.readMessage(
+                    MetadataDefaultEntryHolder.defaultEntry.getParserForType(), extensionRegistry);
+                internalGetMutableMetadata().getMutableMap().put(
+                    metadata__.getKey(), metadata__.getValue());
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 18
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (tensorflow.serving.GetModelMetadata.GetModelMetadataResponse) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
       private int bitField0_;
@@ -2476,7 +2395,7 @@ public final class GetModelMetadata {
        * @return Whether the modelSpec field is set.
        */
       public boolean hasModelSpec() {
-        return modelSpecBuilder_ != null || modelSpec_ != null;
+        return ((bitField0_ & 0x00000001) != 0);
       }
       /**
        * <pre>
@@ -2506,11 +2425,11 @@ public final class GetModelMetadata {
             throw new NullPointerException();
           }
           modelSpec_ = value;
-          onChanged();
         } else {
           modelSpecBuilder_.setMessage(value);
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -2524,11 +2443,11 @@ public final class GetModelMetadata {
           tensorflow.serving.Model.ModelSpec.Builder builderForValue) {
         if (modelSpecBuilder_ == null) {
           modelSpec_ = builderForValue.build();
-          onChanged();
         } else {
           modelSpecBuilder_.setMessage(builderForValue.build());
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -2540,17 +2459,18 @@ public final class GetModelMetadata {
        */
       public Builder mergeModelSpec(tensorflow.serving.Model.ModelSpec value) {
         if (modelSpecBuilder_ == null) {
-          if (modelSpec_ != null) {
-            modelSpec_ =
-              tensorflow.serving.Model.ModelSpec.newBuilder(modelSpec_).mergeFrom(value).buildPartial();
+          if (((bitField0_ & 0x00000001) != 0) &&
+            modelSpec_ != null &&
+            modelSpec_ != tensorflow.serving.Model.ModelSpec.getDefaultInstance()) {
+            getModelSpecBuilder().mergeFrom(value);
           } else {
             modelSpec_ = value;
           }
-          onChanged();
         } else {
           modelSpecBuilder_.mergeFrom(value);
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -2561,14 +2481,13 @@ public final class GetModelMetadata {
        * <code>.tensorflow.serving.ModelSpec model_spec = 1;</code>
        */
       public Builder clearModelSpec() {
-        if (modelSpecBuilder_ == null) {
-          modelSpec_ = null;
-          onChanged();
-        } else {
-          modelSpec_ = null;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        modelSpec_ = null;
+        if (modelSpecBuilder_ != null) {
+          modelSpecBuilder_.dispose();
           modelSpecBuilder_ = null;
         }
-
+        onChanged();
         return this;
       }
       /**
@@ -2579,7 +2498,7 @@ public final class GetModelMetadata {
        * <code>.tensorflow.serving.ModelSpec model_spec = 1;</code>
        */
       public tensorflow.serving.Model.ModelSpec.Builder getModelSpecBuilder() {
-        
+        bitField0_ |= 0x00000001;
         onChanged();
         return getModelSpecFieldBuilder().getBuilder();
       }
@@ -2622,7 +2541,7 @@ public final class GetModelMetadata {
       private com.google.protobuf.MapField<
           java.lang.String, com.google.protobuf.Any> metadata_;
       private com.google.protobuf.MapField<java.lang.String, com.google.protobuf.Any>
-      internalGetMetadata() {
+          internalGetMetadata() {
         if (metadata_ == null) {
           return com.google.protobuf.MapField.emptyMapField(
               MetadataDefaultEntryHolder.defaultEntry);
@@ -2630,8 +2549,7 @@ public final class GetModelMetadata {
         return metadata_;
       }
       private com.google.protobuf.MapField<java.lang.String, com.google.protobuf.Any>
-      internalGetMutableMetadata() {
-        onChanged();;
+          internalGetMutableMetadata() {
         if (metadata_ == null) {
           metadata_ = com.google.protobuf.MapField.newMapField(
               MetadataDefaultEntryHolder.defaultEntry);
@@ -2639,9 +2557,10 @@ public final class GetModelMetadata {
         if (!metadata_.isMutable()) {
           metadata_ = metadata_.copy();
         }
+        bitField0_ |= 0x00000002;
+        onChanged();
         return metadata_;
       }
-
       public int getMetadataCount() {
         return internalGetMetadata().getMap().size();
       }
@@ -2654,11 +2573,10 @@ public final class GetModelMetadata {
        *
        * <code>map&lt;string, .google.protobuf.Any&gt; metadata = 2;</code>
        */
-
       @java.lang.Override
       public boolean containsMetadata(
           java.lang.String key) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
+        if (key == null) { throw new NullPointerException("map key"); }
         return internalGetMetadata().getMap().containsKey(key);
       }
       /**
@@ -2679,7 +2597,6 @@ public final class GetModelMetadata {
        * <code>map&lt;string, .google.protobuf.Any&gt; metadata = 2;</code>
        */
       @java.lang.Override
-
       public java.util.Map<java.lang.String, com.google.protobuf.Any> getMetadataMap() {
         return internalGetMetadata().getMap();
       }
@@ -2693,11 +2610,12 @@ public final class GetModelMetadata {
        * <code>map&lt;string, .google.protobuf.Any&gt; metadata = 2;</code>
        */
       @java.lang.Override
-
-      public com.google.protobuf.Any getMetadataOrDefault(
+      public /* nullable */
+com.google.protobuf.Any getMetadataOrDefault(
           java.lang.String key,
-          com.google.protobuf.Any defaultValue) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
+          /* nullable */
+com.google.protobuf.Any defaultValue) {
+        if (key == null) { throw new NullPointerException("map key"); }
         java.util.Map<java.lang.String, com.google.protobuf.Any> map =
             internalGetMetadata().getMap();
         return map.containsKey(key) ? map.get(key) : defaultValue;
@@ -2712,10 +2630,9 @@ public final class GetModelMetadata {
        * <code>map&lt;string, .google.protobuf.Any&gt; metadata = 2;</code>
        */
       @java.lang.Override
-
       public com.google.protobuf.Any getMetadataOrThrow(
           java.lang.String key) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
+        if (key == null) { throw new NullPointerException("map key"); }
         java.util.Map<java.lang.String, com.google.protobuf.Any> map =
             internalGetMetadata().getMap();
         if (!map.containsKey(key)) {
@@ -2723,8 +2640,8 @@ public final class GetModelMetadata {
         }
         return map.get(key);
       }
-
       public Builder clearMetadata() {
+        bitField0_ = (bitField0_ & ~0x00000002);
         internalGetMutableMetadata().getMutableMap()
             .clear();
         return this;
@@ -2738,10 +2655,9 @@ public final class GetModelMetadata {
        *
        * <code>map&lt;string, .google.protobuf.Any&gt; metadata = 2;</code>
        */
-
       public Builder removeMetadata(
           java.lang.String key) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
+        if (key == null) { throw new NullPointerException("map key"); }
         internalGetMutableMetadata().getMutableMap()
             .remove(key);
         return this;
@@ -2751,7 +2667,8 @@ public final class GetModelMetadata {
        */
       @java.lang.Deprecated
       public java.util.Map<java.lang.String, com.google.protobuf.Any>
-      getMutableMetadata() {
+          getMutableMetadata() {
+        bitField0_ |= 0x00000002;
         return internalGetMutableMetadata().getMutableMap();
       }
       /**
@@ -2766,10 +2683,11 @@ public final class GetModelMetadata {
       public Builder putMetadata(
           java.lang.String key,
           com.google.protobuf.Any value) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
-        if (value == null) { throw new java.lang.NullPointerException(); }
+        if (key == null) { throw new NullPointerException("map key"); }
+        if (value == null) { throw new NullPointerException("map value"); }
         internalGetMutableMetadata().getMutableMap()
             .put(key, value);
+        bitField0_ |= 0x00000002;
         return this;
       }
       /**
@@ -2781,11 +2699,11 @@ public final class GetModelMetadata {
        *
        * <code>map&lt;string, .google.protobuf.Any&gt; metadata = 2;</code>
        */
-
       public Builder putAllMetadata(
           java.util.Map<java.lang.String, com.google.protobuf.Any> values) {
         internalGetMutableMetadata().getMutableMap()
             .putAll(values);
+        bitField0_ |= 0x00000002;
         return this;
       }
       @java.lang.Override
@@ -2821,7 +2739,18 @@ public final class GetModelMetadata {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new GetModelMetadataResponse(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 

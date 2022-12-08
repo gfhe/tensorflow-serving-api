@@ -87,55 +87,6 @@ public final class LogCollectorConfigOuterClass {
     getUnknownFields() {
       return this.unknownFields;
     }
-    private LogCollectorConfig(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              type_ = s;
-              break;
-            }
-            case 18: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              filenamePrefix_ = s;
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return tensorflow.serving.LogCollectorConfigOuterClass.internal_static_tensorflow_serving_LogCollectorConfig_descriptor;
@@ -150,7 +101,8 @@ public final class LogCollectorConfigOuterClass {
     }
 
     public static final int TYPE_FIELD_NUMBER = 1;
-    private volatile java.lang.Object type_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object type_ = "";
     /**
      * <pre>
      * Identifies the type of the LogCollector we will use to collect these logs.
@@ -196,7 +148,8 @@ public final class LogCollectorConfigOuterClass {
     }
 
     public static final int FILENAME_PREFIX_FIELD_NUMBER = 2;
-    private volatile java.lang.Object filenamePrefix_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object filenamePrefix_ = "";
     /**
      * <pre>
      * The prefix to use for the filenames of the logs.
@@ -255,13 +208,13 @@ public final class LogCollectorConfigOuterClass {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getTypeBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(type_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, type_);
       }
-      if (!getFilenamePrefixBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(filenamePrefix_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, filenamePrefix_);
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -270,13 +223,13 @@ public final class LogCollectorConfigOuterClass {
       if (size != -1) return size;
 
       size = 0;
-      if (!getTypeBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(type_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, type_);
       }
-      if (!getFilenamePrefixBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(filenamePrefix_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, filenamePrefix_);
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -295,7 +248,7 @@ public final class LogCollectorConfigOuterClass {
           .equals(other.getType())) return false;
       if (!getFilenamePrefix()
           .equals(other.getFilenamePrefix())) return false;
-      if (!unknownFields.equals(other.unknownFields)) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
 
@@ -310,7 +263,7 @@ public final class LogCollectorConfigOuterClass {
       hash = (53 * hash) + getType().hashCode();
       hash = (37 * hash) + FILENAME_PREFIX_FIELD_NUMBER;
       hash = (53 * hash) + getFilenamePrefix().hashCode();
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -427,26 +380,20 @@ public final class LogCollectorConfigOuterClass {
 
       // Construct using tensorflow.serving.LogCollectorConfigOuterClass.LogCollectorConfig.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         type_ = "";
-
         filenamePrefix_ = "";
-
         return this;
       }
 
@@ -473,10 +420,19 @@ public final class LogCollectorConfigOuterClass {
       @java.lang.Override
       public tensorflow.serving.LogCollectorConfigOuterClass.LogCollectorConfig buildPartial() {
         tensorflow.serving.LogCollectorConfigOuterClass.LogCollectorConfig result = new tensorflow.serving.LogCollectorConfigOuterClass.LogCollectorConfig(this);
-        result.type_ = type_;
-        result.filenamePrefix_ = filenamePrefix_;
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
+      }
+
+      private void buildPartial0(tensorflow.serving.LogCollectorConfigOuterClass.LogCollectorConfig result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.type_ = type_;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.filenamePrefix_ = filenamePrefix_;
+        }
       }
 
       @java.lang.Override
@@ -525,13 +481,15 @@ public final class LogCollectorConfigOuterClass {
         if (other == tensorflow.serving.LogCollectorConfigOuterClass.LogCollectorConfig.getDefaultInstance()) return this;
         if (!other.getType().isEmpty()) {
           type_ = other.type_;
+          bitField0_ |= 0x00000001;
           onChanged();
         }
         if (!other.getFilenamePrefix().isEmpty()) {
           filenamePrefix_ = other.filenamePrefix_;
+          bitField0_ |= 0x00000002;
           onChanged();
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
@@ -546,19 +504,43 @@ public final class LogCollectorConfigOuterClass {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        tensorflow.serving.LogCollectorConfigOuterClass.LogCollectorConfig parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                type_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 10
+              case 18: {
+                filenamePrefix_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 18
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (tensorflow.serving.LogCollectorConfigOuterClass.LogCollectorConfig) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
+      private int bitField0_;
 
       private java.lang.Object type_ = "";
       /**
@@ -613,11 +595,9 @@ public final class LogCollectorConfigOuterClass {
        */
       public Builder setType(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         type_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -630,8 +610,8 @@ public final class LogCollectorConfigOuterClass {
        * @return This builder for chaining.
        */
       public Builder clearType() {
-        
         type_ = getDefaultInstance().getType();
+        bitField0_ = (bitField0_ & ~0x00000001);
         onChanged();
         return this;
       }
@@ -646,12 +626,10 @@ public final class LogCollectorConfigOuterClass {
        */
       public Builder setTypeBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         type_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -709,11 +687,9 @@ public final class LogCollectorConfigOuterClass {
        */
       public Builder setFilenamePrefix(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         filenamePrefix_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -726,8 +702,8 @@ public final class LogCollectorConfigOuterClass {
        * @return This builder for chaining.
        */
       public Builder clearFilenamePrefix() {
-        
         filenamePrefix_ = getDefaultInstance().getFilenamePrefix();
+        bitField0_ = (bitField0_ & ~0x00000002);
         onChanged();
         return this;
       }
@@ -742,12 +718,10 @@ public final class LogCollectorConfigOuterClass {
        */
       public Builder setFilenamePrefixBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         filenamePrefix_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -784,7 +758,18 @@ public final class LogCollectorConfigOuterClass {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new LogCollectorConfig(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 

@@ -188,6 +188,18 @@ public final class SessionServiceOuterClass {
 
     /**
      * <pre>
+     * If true, treat names in feed/fetch/target as alias names than actual tensor
+     * names (that appear in the TF graph). Alias names are resolved to actual
+     * names using `SignatureDef` in SavedModel associated with the model.
+     * </pre>
+     *
+     * <code>bool tensor_name_is_alias = 6;</code>
+     * @return The tensorNameIsAlias.
+     */
+    boolean getTensorNameIsAlias();
+
+    /**
+     * <pre>
      * Options for the run call. **Currently ignored.**
      * </pre>
      *
@@ -243,106 +255,6 @@ public final class SessionServiceOuterClass {
     getUnknownFields() {
       return this.unknownFields;
     }
-    private SessionRunRequest(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              tensorflow.serving.Model.ModelSpec.Builder subBuilder = null;
-              if (modelSpec_ != null) {
-                subBuilder = modelSpec_.toBuilder();
-              }
-              modelSpec_ = input.readMessage(tensorflow.serving.Model.ModelSpec.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(modelSpec_);
-                modelSpec_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            case 18: {
-              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
-                feed_ = new java.util.ArrayList<org.tensorflow.framework.NamedTensorProto>();
-                mutable_bitField0_ |= 0x00000001;
-              }
-              feed_.add(
-                  input.readMessage(org.tensorflow.framework.NamedTensorProto.parser(), extensionRegistry));
-              break;
-            }
-            case 26: {
-              java.lang.String s = input.readStringRequireUtf8();
-              if (!((mutable_bitField0_ & 0x00000002) != 0)) {
-                fetch_ = new com.google.protobuf.LazyStringArrayList();
-                mutable_bitField0_ |= 0x00000002;
-              }
-              fetch_.add(s);
-              break;
-            }
-            case 34: {
-              java.lang.String s = input.readStringRequireUtf8();
-              if (!((mutable_bitField0_ & 0x00000004) != 0)) {
-                target_ = new com.google.protobuf.LazyStringArrayList();
-                mutable_bitField0_ |= 0x00000004;
-              }
-              target_.add(s);
-              break;
-            }
-            case 42: {
-              org.tensorflow.framework.RunOptions.Builder subBuilder = null;
-              if (options_ != null) {
-                subBuilder = options_.toBuilder();
-              }
-              options_ = input.readMessage(org.tensorflow.framework.RunOptions.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(options_);
-                options_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        if (((mutable_bitField0_ & 0x00000001) != 0)) {
-          feed_ = java.util.Collections.unmodifiableList(feed_);
-        }
-        if (((mutable_bitField0_ & 0x00000002) != 0)) {
-          fetch_ = fetch_.getUnmodifiableView();
-        }
-        if (((mutable_bitField0_ & 0x00000004) != 0)) {
-          target_ = target_.getUnmodifiableView();
-        }
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return tensorflow.serving.SessionServiceOuterClass.internal_static_tensorflow_serving_SessionRunRequest_descriptor;
@@ -394,10 +306,11 @@ public final class SessionServiceOuterClass {
      */
     @java.lang.Override
     public tensorflow.serving.Model.ModelSpecOrBuilder getModelSpecOrBuilder() {
-      return getModelSpec();
+      return modelSpec_ == null ? tensorflow.serving.Model.ModelSpec.getDefaultInstance() : modelSpec_;
     }
 
     public static final int FEED_FIELD_NUMBER = 2;
+    @SuppressWarnings("serial")
     private java.util.List<org.tensorflow.framework.NamedTensorProto> feed_;
     /**
      * <pre>
@@ -458,6 +371,7 @@ public final class SessionServiceOuterClass {
     }
 
     public static final int FETCH_FIELD_NUMBER = 3;
+    @SuppressWarnings("serial")
     private com.google.protobuf.LazyStringList fetch_;
     /**
      * <pre>
@@ -517,6 +431,7 @@ public final class SessionServiceOuterClass {
     }
 
     public static final int TARGET_FIELD_NUMBER = 4;
+    @SuppressWarnings("serial")
     private com.google.protobuf.LazyStringList target_;
     /**
      * <pre>
@@ -571,6 +486,23 @@ public final class SessionServiceOuterClass {
       return target_.getByteString(index);
     }
 
+    public static final int TENSOR_NAME_IS_ALIAS_FIELD_NUMBER = 6;
+    private boolean tensorNameIsAlias_ = false;
+    /**
+     * <pre>
+     * If true, treat names in feed/fetch/target as alias names than actual tensor
+     * names (that appear in the TF graph). Alias names are resolved to actual
+     * names using `SignatureDef` in SavedModel associated with the model.
+     * </pre>
+     *
+     * <code>bool tensor_name_is_alias = 6;</code>
+     * @return The tensorNameIsAlias.
+     */
+    @java.lang.Override
+    public boolean getTensorNameIsAlias() {
+      return tensorNameIsAlias_;
+    }
+
     public static final int OPTIONS_FIELD_NUMBER = 5;
     private org.tensorflow.framework.RunOptions options_;
     /**
@@ -606,7 +538,7 @@ public final class SessionServiceOuterClass {
      */
     @java.lang.Override
     public org.tensorflow.framework.RunOptionsOrBuilder getOptionsOrBuilder() {
-      return getOptions();
+      return options_ == null ? org.tensorflow.framework.RunOptions.getDefaultInstance() : options_;
     }
 
     private byte memoizedIsInitialized = -1;
@@ -638,7 +570,10 @@ public final class SessionServiceOuterClass {
       if (options_ != null) {
         output.writeMessage(5, getOptions());
       }
-      unknownFields.writeTo(output);
+      if (tensorNameIsAlias_ != false) {
+        output.writeBool(6, tensorNameIsAlias_);
+      }
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -675,7 +610,11 @@ public final class SessionServiceOuterClass {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(5, getOptions());
       }
-      size += unknownFields.getSerializedSize();
+      if (tensorNameIsAlias_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(6, tensorNameIsAlias_);
+      }
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -701,12 +640,14 @@ public final class SessionServiceOuterClass {
           .equals(other.getFetchList())) return false;
       if (!getTargetList()
           .equals(other.getTargetList())) return false;
+      if (getTensorNameIsAlias()
+          != other.getTensorNameIsAlias()) return false;
       if (hasOptions() != other.hasOptions()) return false;
       if (hasOptions()) {
         if (!getOptions()
             .equals(other.getOptions())) return false;
       }
-      if (!unknownFields.equals(other.unknownFields)) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
 
@@ -733,11 +674,14 @@ public final class SessionServiceOuterClass {
         hash = (37 * hash) + TARGET_FIELD_NUMBER;
         hash = (53 * hash) + getTargetList().hashCode();
       }
+      hash = (37 * hash) + TENSOR_NAME_IS_ALIAS_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+          getTensorNameIsAlias());
       if (hasOptions()) {
         hash = (37 * hash) + OPTIONS_FIELD_NUMBER;
         hash = (53 * hash) + getOptions().hashCode();
       }
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -854,43 +798,38 @@ public final class SessionServiceOuterClass {
 
       // Construct using tensorflow.serving.SessionServiceOuterClass.SessionRunRequest.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-          getFeedFieldBuilder();
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        if (modelSpecBuilder_ == null) {
-          modelSpec_ = null;
-        } else {
-          modelSpec_ = null;
+        bitField0_ = 0;
+        modelSpec_ = null;
+        if (modelSpecBuilder_ != null) {
+          modelSpecBuilder_.dispose();
           modelSpecBuilder_ = null;
         }
         if (feedBuilder_ == null) {
           feed_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000001);
         } else {
+          feed_ = null;
           feedBuilder_.clear();
         }
-        fetch_ = com.google.protobuf.LazyStringArrayList.EMPTY;
         bitField0_ = (bitField0_ & ~0x00000002);
-        target_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+        fetch_ = com.google.protobuf.LazyStringArrayList.EMPTY;
         bitField0_ = (bitField0_ & ~0x00000004);
-        if (optionsBuilder_ == null) {
-          options_ = null;
-        } else {
-          options_ = null;
+        target_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+        bitField0_ = (bitField0_ & ~0x00000008);
+        tensorNameIsAlias_ = false;
+        options_ = null;
+        if (optionsBuilder_ != null) {
+          optionsBuilder_.dispose();
           optionsBuilder_ = null;
         }
         return this;
@@ -919,38 +858,49 @@ public final class SessionServiceOuterClass {
       @java.lang.Override
       public tensorflow.serving.SessionServiceOuterClass.SessionRunRequest buildPartial() {
         tensorflow.serving.SessionServiceOuterClass.SessionRunRequest result = new tensorflow.serving.SessionServiceOuterClass.SessionRunRequest(this);
-        int from_bitField0_ = bitField0_;
-        if (modelSpecBuilder_ == null) {
-          result.modelSpec_ = modelSpec_;
-        } else {
-          result.modelSpec_ = modelSpecBuilder_.build();
-        }
+        buildPartialRepeatedFields(result);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartialRepeatedFields(tensorflow.serving.SessionServiceOuterClass.SessionRunRequest result) {
         if (feedBuilder_ == null) {
-          if (((bitField0_ & 0x00000001) != 0)) {
+          if (((bitField0_ & 0x00000002) != 0)) {
             feed_ = java.util.Collections.unmodifiableList(feed_);
-            bitField0_ = (bitField0_ & ~0x00000001);
+            bitField0_ = (bitField0_ & ~0x00000002);
           }
           result.feed_ = feed_;
         } else {
           result.feed_ = feedBuilder_.build();
         }
-        if (((bitField0_ & 0x00000002) != 0)) {
-          fetch_ = fetch_.getUnmodifiableView();
-          bitField0_ = (bitField0_ & ~0x00000002);
-        }
-        result.fetch_ = fetch_;
         if (((bitField0_ & 0x00000004) != 0)) {
-          target_ = target_.getUnmodifiableView();
+          fetch_ = fetch_.getUnmodifiableView();
           bitField0_ = (bitField0_ & ~0x00000004);
         }
-        result.target_ = target_;
-        if (optionsBuilder_ == null) {
-          result.options_ = options_;
-        } else {
-          result.options_ = optionsBuilder_.build();
+        result.fetch_ = fetch_;
+        if (((bitField0_ & 0x00000008) != 0)) {
+          target_ = target_.getUnmodifiableView();
+          bitField0_ = (bitField0_ & ~0x00000008);
         }
-        onBuilt();
-        return result;
+        result.target_ = target_;
+      }
+
+      private void buildPartial0(tensorflow.serving.SessionServiceOuterClass.SessionRunRequest result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.modelSpec_ = modelSpecBuilder_ == null
+              ? modelSpec_
+              : modelSpecBuilder_.build();
+        }
+        if (((from_bitField0_ & 0x00000010) != 0)) {
+          result.tensorNameIsAlias_ = tensorNameIsAlias_;
+        }
+        if (((from_bitField0_ & 0x00000020) != 0)) {
+          result.options_ = optionsBuilder_ == null
+              ? options_
+              : optionsBuilder_.build();
+        }
       }
 
       @java.lang.Override
@@ -1004,7 +954,7 @@ public final class SessionServiceOuterClass {
           if (!other.feed_.isEmpty()) {
             if (feed_.isEmpty()) {
               feed_ = other.feed_;
-              bitField0_ = (bitField0_ & ~0x00000001);
+              bitField0_ = (bitField0_ & ~0x00000002);
             } else {
               ensureFeedIsMutable();
               feed_.addAll(other.feed_);
@@ -1017,7 +967,7 @@ public final class SessionServiceOuterClass {
               feedBuilder_.dispose();
               feedBuilder_ = null;
               feed_ = other.feed_;
-              bitField0_ = (bitField0_ & ~0x00000001);
+              bitField0_ = (bitField0_ & ~0x00000002);
               feedBuilder_ = 
                 com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
                    getFeedFieldBuilder() : null;
@@ -1029,7 +979,7 @@ public final class SessionServiceOuterClass {
         if (!other.fetch_.isEmpty()) {
           if (fetch_.isEmpty()) {
             fetch_ = other.fetch_;
-            bitField0_ = (bitField0_ & ~0x00000002);
+            bitField0_ = (bitField0_ & ~0x00000004);
           } else {
             ensureFetchIsMutable();
             fetch_.addAll(other.fetch_);
@@ -1039,17 +989,20 @@ public final class SessionServiceOuterClass {
         if (!other.target_.isEmpty()) {
           if (target_.isEmpty()) {
             target_ = other.target_;
-            bitField0_ = (bitField0_ & ~0x00000004);
+            bitField0_ = (bitField0_ & ~0x00000008);
           } else {
             ensureTargetIsMutable();
             target_.addAll(other.target_);
           }
           onChanged();
         }
+        if (other.getTensorNameIsAlias() != false) {
+          setTensorNameIsAlias(other.getTensorNameIsAlias());
+        }
         if (other.hasOptions()) {
           mergeOptions(other.getOptions());
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
@@ -1064,17 +1017,74 @@ public final class SessionServiceOuterClass {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        tensorflow.serving.SessionServiceOuterClass.SessionRunRequest parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                input.readMessage(
+                    getModelSpecFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 10
+              case 18: {
+                org.tensorflow.framework.NamedTensorProto m =
+                    input.readMessage(
+                        org.tensorflow.framework.NamedTensorProto.parser(),
+                        extensionRegistry);
+                if (feedBuilder_ == null) {
+                  ensureFeedIsMutable();
+                  feed_.add(m);
+                } else {
+                  feedBuilder_.addMessage(m);
+                }
+                break;
+              } // case 18
+              case 26: {
+                java.lang.String s = input.readStringRequireUtf8();
+                ensureFetchIsMutable();
+                fetch_.add(s);
+                break;
+              } // case 26
+              case 34: {
+                java.lang.String s = input.readStringRequireUtf8();
+                ensureTargetIsMutable();
+                target_.add(s);
+                break;
+              } // case 34
+              case 42: {
+                input.readMessage(
+                    getOptionsFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000020;
+                break;
+              } // case 42
+              case 48: {
+                tensorNameIsAlias_ = input.readBool();
+                bitField0_ |= 0x00000010;
+                break;
+              } // case 48
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (tensorflow.serving.SessionServiceOuterClass.SessionRunRequest) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
       private int bitField0_;
@@ -1092,7 +1102,7 @@ public final class SessionServiceOuterClass {
        * @return Whether the modelSpec field is set.
        */
       public boolean hasModelSpec() {
-        return modelSpecBuilder_ != null || modelSpec_ != null;
+        return ((bitField0_ & 0x00000001) != 0);
       }
       /**
        * <pre>
@@ -1124,11 +1134,11 @@ public final class SessionServiceOuterClass {
             throw new NullPointerException();
           }
           modelSpec_ = value;
-          onChanged();
         } else {
           modelSpecBuilder_.setMessage(value);
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -1143,11 +1153,11 @@ public final class SessionServiceOuterClass {
           tensorflow.serving.Model.ModelSpec.Builder builderForValue) {
         if (modelSpecBuilder_ == null) {
           modelSpec_ = builderForValue.build();
-          onChanged();
         } else {
           modelSpecBuilder_.setMessage(builderForValue.build());
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -1160,17 +1170,18 @@ public final class SessionServiceOuterClass {
        */
       public Builder mergeModelSpec(tensorflow.serving.Model.ModelSpec value) {
         if (modelSpecBuilder_ == null) {
-          if (modelSpec_ != null) {
-            modelSpec_ =
-              tensorflow.serving.Model.ModelSpec.newBuilder(modelSpec_).mergeFrom(value).buildPartial();
+          if (((bitField0_ & 0x00000001) != 0) &&
+            modelSpec_ != null &&
+            modelSpec_ != tensorflow.serving.Model.ModelSpec.getDefaultInstance()) {
+            getModelSpecBuilder().mergeFrom(value);
           } else {
             modelSpec_ = value;
           }
-          onChanged();
         } else {
           modelSpecBuilder_.mergeFrom(value);
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -1182,14 +1193,13 @@ public final class SessionServiceOuterClass {
        * <code>.tensorflow.serving.ModelSpec model_spec = 1;</code>
        */
       public Builder clearModelSpec() {
-        if (modelSpecBuilder_ == null) {
-          modelSpec_ = null;
-          onChanged();
-        } else {
-          modelSpec_ = null;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        modelSpec_ = null;
+        if (modelSpecBuilder_ != null) {
+          modelSpecBuilder_.dispose();
           modelSpecBuilder_ = null;
         }
-
+        onChanged();
         return this;
       }
       /**
@@ -1201,7 +1211,7 @@ public final class SessionServiceOuterClass {
        * <code>.tensorflow.serving.ModelSpec model_spec = 1;</code>
        */
       public tensorflow.serving.Model.ModelSpec.Builder getModelSpecBuilder() {
-        
+        bitField0_ |= 0x00000001;
         onChanged();
         return getModelSpecFieldBuilder().getBuilder();
       }
@@ -1246,9 +1256,9 @@ public final class SessionServiceOuterClass {
       private java.util.List<org.tensorflow.framework.NamedTensorProto> feed_ =
         java.util.Collections.emptyList();
       private void ensureFeedIsMutable() {
-        if (!((bitField0_ & 0x00000001) != 0)) {
+        if (!((bitField0_ & 0x00000002) != 0)) {
           feed_ = new java.util.ArrayList<org.tensorflow.framework.NamedTensorProto>(feed_);
-          bitField0_ |= 0x00000001;
+          bitField0_ |= 0x00000002;
          }
       }
 
@@ -1442,7 +1452,7 @@ public final class SessionServiceOuterClass {
       public Builder clearFeed() {
         if (feedBuilder_ == null) {
           feed_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000001);
+          bitField0_ = (bitField0_ & ~0x00000002);
           onChanged();
         } else {
           feedBuilder_.clear();
@@ -1547,7 +1557,7 @@ public final class SessionServiceOuterClass {
           feedBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
               org.tensorflow.framework.NamedTensorProto, org.tensorflow.framework.NamedTensorProto.Builder, org.tensorflow.framework.NamedTensorProtoOrBuilder>(
                   feed_,
-                  ((bitField0_ & 0x00000001) != 0),
+                  ((bitField0_ & 0x00000002) != 0),
                   getParentForChildren(),
                   isClean());
           feed_ = null;
@@ -1557,9 +1567,9 @@ public final class SessionServiceOuterClass {
 
       private com.google.protobuf.LazyStringList fetch_ = com.google.protobuf.LazyStringArrayList.EMPTY;
       private void ensureFetchIsMutable() {
-        if (!((bitField0_ & 0x00000002) != 0)) {
+        if (!((bitField0_ & 0x00000004) != 0)) {
           fetch_ = new com.google.protobuf.LazyStringArrayList(fetch_);
-          bitField0_ |= 0x00000002;
+          bitField0_ |= 0x00000004;
          }
       }
       /**
@@ -1632,10 +1642,8 @@ public final class SessionServiceOuterClass {
        */
       public Builder setFetch(
           int index, java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureFetchIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureFetchIsMutable();
         fetch_.set(index, value);
         onChanged();
         return this;
@@ -1653,10 +1661,8 @@ public final class SessionServiceOuterClass {
        */
       public Builder addFetch(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureFetchIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureFetchIsMutable();
         fetch_.add(value);
         onChanged();
         return this;
@@ -1692,7 +1698,7 @@ public final class SessionServiceOuterClass {
        */
       public Builder clearFetch() {
         fetch_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000002);
+        bitField0_ = (bitField0_ & ~0x00000004);
         onChanged();
         return this;
       }
@@ -1709,10 +1715,8 @@ public final class SessionServiceOuterClass {
        */
       public Builder addFetchBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         ensureFetchIsMutable();
         fetch_.add(value);
         onChanged();
@@ -1721,9 +1725,9 @@ public final class SessionServiceOuterClass {
 
       private com.google.protobuf.LazyStringList target_ = com.google.protobuf.LazyStringArrayList.EMPTY;
       private void ensureTargetIsMutable() {
-        if (!((bitField0_ & 0x00000004) != 0)) {
+        if (!((bitField0_ & 0x00000008) != 0)) {
           target_ = new com.google.protobuf.LazyStringArrayList(target_);
-          bitField0_ |= 0x00000004;
+          bitField0_ |= 0x00000008;
          }
       }
       /**
@@ -1791,10 +1795,8 @@ public final class SessionServiceOuterClass {
        */
       public Builder setTarget(
           int index, java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureTargetIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureTargetIsMutable();
         target_.set(index, value);
         onChanged();
         return this;
@@ -1811,10 +1813,8 @@ public final class SessionServiceOuterClass {
        */
       public Builder addTarget(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureTargetIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureTargetIsMutable();
         target_.add(value);
         onChanged();
         return this;
@@ -1848,7 +1848,7 @@ public final class SessionServiceOuterClass {
        */
       public Builder clearTarget() {
         target_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000004);
+        bitField0_ = (bitField0_ & ~0x00000008);
         onChanged();
         return this;
       }
@@ -1864,12 +1864,60 @@ public final class SessionServiceOuterClass {
        */
       public Builder addTargetBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         ensureTargetIsMutable();
         target_.add(value);
+        onChanged();
+        return this;
+      }
+
+      private boolean tensorNameIsAlias_ ;
+      /**
+       * <pre>
+       * If true, treat names in feed/fetch/target as alias names than actual tensor
+       * names (that appear in the TF graph). Alias names are resolved to actual
+       * names using `SignatureDef` in SavedModel associated with the model.
+       * </pre>
+       *
+       * <code>bool tensor_name_is_alias = 6;</code>
+       * @return The tensorNameIsAlias.
+       */
+      @java.lang.Override
+      public boolean getTensorNameIsAlias() {
+        return tensorNameIsAlias_;
+      }
+      /**
+       * <pre>
+       * If true, treat names in feed/fetch/target as alias names than actual tensor
+       * names (that appear in the TF graph). Alias names are resolved to actual
+       * names using `SignatureDef` in SavedModel associated with the model.
+       * </pre>
+       *
+       * <code>bool tensor_name_is_alias = 6;</code>
+       * @param value The tensorNameIsAlias to set.
+       * @return This builder for chaining.
+       */
+      public Builder setTensorNameIsAlias(boolean value) {
+        
+        tensorNameIsAlias_ = value;
+        bitField0_ |= 0x00000010;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * If true, treat names in feed/fetch/target as alias names than actual tensor
+       * names (that appear in the TF graph). Alias names are resolved to actual
+       * names using `SignatureDef` in SavedModel associated with the model.
+       * </pre>
+       *
+       * <code>bool tensor_name_is_alias = 6;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearTensorNameIsAlias() {
+        bitField0_ = (bitField0_ & ~0x00000010);
+        tensorNameIsAlias_ = false;
         onChanged();
         return this;
       }
@@ -1886,7 +1934,7 @@ public final class SessionServiceOuterClass {
        * @return Whether the options field is set.
        */
       public boolean hasOptions() {
-        return optionsBuilder_ != null || options_ != null;
+        return ((bitField0_ & 0x00000020) != 0);
       }
       /**
        * <pre>
@@ -1916,11 +1964,11 @@ public final class SessionServiceOuterClass {
             throw new NullPointerException();
           }
           options_ = value;
-          onChanged();
         } else {
           optionsBuilder_.setMessage(value);
         }
-
+        bitField0_ |= 0x00000020;
+        onChanged();
         return this;
       }
       /**
@@ -1934,11 +1982,11 @@ public final class SessionServiceOuterClass {
           org.tensorflow.framework.RunOptions.Builder builderForValue) {
         if (optionsBuilder_ == null) {
           options_ = builderForValue.build();
-          onChanged();
         } else {
           optionsBuilder_.setMessage(builderForValue.build());
         }
-
+        bitField0_ |= 0x00000020;
+        onChanged();
         return this;
       }
       /**
@@ -1950,17 +1998,18 @@ public final class SessionServiceOuterClass {
        */
       public Builder mergeOptions(org.tensorflow.framework.RunOptions value) {
         if (optionsBuilder_ == null) {
-          if (options_ != null) {
-            options_ =
-              org.tensorflow.framework.RunOptions.newBuilder(options_).mergeFrom(value).buildPartial();
+          if (((bitField0_ & 0x00000020) != 0) &&
+            options_ != null &&
+            options_ != org.tensorflow.framework.RunOptions.getDefaultInstance()) {
+            getOptionsBuilder().mergeFrom(value);
           } else {
             options_ = value;
           }
-          onChanged();
         } else {
           optionsBuilder_.mergeFrom(value);
         }
-
+        bitField0_ |= 0x00000020;
+        onChanged();
         return this;
       }
       /**
@@ -1971,14 +2020,13 @@ public final class SessionServiceOuterClass {
        * <code>.tensorflow.RunOptions options = 5;</code>
        */
       public Builder clearOptions() {
-        if (optionsBuilder_ == null) {
-          options_ = null;
-          onChanged();
-        } else {
-          options_ = null;
+        bitField0_ = (bitField0_ & ~0x00000020);
+        options_ = null;
+        if (optionsBuilder_ != null) {
+          optionsBuilder_.dispose();
           optionsBuilder_ = null;
         }
-
+        onChanged();
         return this;
       }
       /**
@@ -1989,7 +2037,7 @@ public final class SessionServiceOuterClass {
        * <code>.tensorflow.RunOptions options = 5;</code>
        */
       public org.tensorflow.framework.RunOptions.Builder getOptionsBuilder() {
-        
+        bitField0_ |= 0x00000020;
         onChanged();
         return getOptionsFieldBuilder().getBuilder();
       }
@@ -2061,7 +2109,18 @@ public final class SessionServiceOuterClass {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new SessionRunRequest(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -2216,82 +2275,6 @@ public final class SessionServiceOuterClass {
     getUnknownFields() {
       return this.unknownFields;
     }
-    private SessionRunResponse(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
-                tensor_ = new java.util.ArrayList<org.tensorflow.framework.NamedTensorProto>();
-                mutable_bitField0_ |= 0x00000001;
-              }
-              tensor_.add(
-                  input.readMessage(org.tensorflow.framework.NamedTensorProto.parser(), extensionRegistry));
-              break;
-            }
-            case 18: {
-              org.tensorflow.framework.RunMetadata.Builder subBuilder = null;
-              if (metadata_ != null) {
-                subBuilder = metadata_.toBuilder();
-              }
-              metadata_ = input.readMessage(org.tensorflow.framework.RunMetadata.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(metadata_);
-                metadata_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            case 26: {
-              tensorflow.serving.Model.ModelSpec.Builder subBuilder = null;
-              if (modelSpec_ != null) {
-                subBuilder = modelSpec_.toBuilder();
-              }
-              modelSpec_ = input.readMessage(tensorflow.serving.Model.ModelSpec.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(modelSpec_);
-                modelSpec_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        if (((mutable_bitField0_ & 0x00000001) != 0)) {
-          tensor_ = java.util.Collections.unmodifiableList(tensor_);
-        }
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return tensorflow.serving.SessionServiceOuterClass.internal_static_tensorflow_serving_SessionRunResponse_descriptor;
@@ -2340,10 +2323,11 @@ public final class SessionServiceOuterClass {
      */
     @java.lang.Override
     public tensorflow.serving.Model.ModelSpecOrBuilder getModelSpecOrBuilder() {
-      return getModelSpec();
+      return modelSpec_ == null ? tensorflow.serving.Model.ModelSpec.getDefaultInstance() : modelSpec_;
     }
 
     public static final int TENSOR_FIELD_NUMBER = 1;
+    @SuppressWarnings("serial")
     private java.util.List<org.tensorflow.framework.NamedTensorProto> tensor_;
     /**
      * <pre>
@@ -2443,7 +2427,7 @@ public final class SessionServiceOuterClass {
      */
     @java.lang.Override
     public org.tensorflow.framework.RunMetadataOrBuilder getMetadataOrBuilder() {
-      return getMetadata();
+      return metadata_ == null ? org.tensorflow.framework.RunMetadata.getDefaultInstance() : metadata_;
     }
 
     private byte memoizedIsInitialized = -1;
@@ -2469,7 +2453,7 @@ public final class SessionServiceOuterClass {
       if (modelSpec_ != null) {
         output.writeMessage(3, getModelSpec());
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -2490,7 +2474,7 @@ public final class SessionServiceOuterClass {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(3, getModelSpec());
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -2517,7 +2501,7 @@ public final class SessionServiceOuterClass {
         if (!getMetadata()
             .equals(other.getMetadata())) return false;
       }
-      if (!unknownFields.equals(other.unknownFields)) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
 
@@ -2540,7 +2524,7 @@ public final class SessionServiceOuterClass {
         hash = (37 * hash) + METADATA_FIELD_NUMBER;
         hash = (53 * hash) + getMetadata().hashCode();
       }
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -2657,39 +2641,33 @@ public final class SessionServiceOuterClass {
 
       // Construct using tensorflow.serving.SessionServiceOuterClass.SessionRunResponse.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-          getTensorFieldBuilder();
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        if (modelSpecBuilder_ == null) {
-          modelSpec_ = null;
-        } else {
-          modelSpec_ = null;
+        bitField0_ = 0;
+        modelSpec_ = null;
+        if (modelSpecBuilder_ != null) {
+          modelSpecBuilder_.dispose();
           modelSpecBuilder_ = null;
         }
         if (tensorBuilder_ == null) {
           tensor_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000001);
         } else {
+          tensor_ = null;
           tensorBuilder_.clear();
         }
-        if (metadataBuilder_ == null) {
-          metadata_ = null;
-        } else {
-          metadata_ = null;
+        bitField0_ = (bitField0_ & ~0x00000002);
+        metadata_ = null;
+        if (metadataBuilder_ != null) {
+          metadataBuilder_.dispose();
           metadataBuilder_ = null;
         }
         return this;
@@ -2718,28 +2696,36 @@ public final class SessionServiceOuterClass {
       @java.lang.Override
       public tensorflow.serving.SessionServiceOuterClass.SessionRunResponse buildPartial() {
         tensorflow.serving.SessionServiceOuterClass.SessionRunResponse result = new tensorflow.serving.SessionServiceOuterClass.SessionRunResponse(this);
-        int from_bitField0_ = bitField0_;
-        if (modelSpecBuilder_ == null) {
-          result.modelSpec_ = modelSpec_;
-        } else {
-          result.modelSpec_ = modelSpecBuilder_.build();
-        }
+        buildPartialRepeatedFields(result);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartialRepeatedFields(tensorflow.serving.SessionServiceOuterClass.SessionRunResponse result) {
         if (tensorBuilder_ == null) {
-          if (((bitField0_ & 0x00000001) != 0)) {
+          if (((bitField0_ & 0x00000002) != 0)) {
             tensor_ = java.util.Collections.unmodifiableList(tensor_);
-            bitField0_ = (bitField0_ & ~0x00000001);
+            bitField0_ = (bitField0_ & ~0x00000002);
           }
           result.tensor_ = tensor_;
         } else {
           result.tensor_ = tensorBuilder_.build();
         }
-        if (metadataBuilder_ == null) {
-          result.metadata_ = metadata_;
-        } else {
-          result.metadata_ = metadataBuilder_.build();
+      }
+
+      private void buildPartial0(tensorflow.serving.SessionServiceOuterClass.SessionRunResponse result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.modelSpec_ = modelSpecBuilder_ == null
+              ? modelSpec_
+              : modelSpecBuilder_.build();
         }
-        onBuilt();
-        return result;
+        if (((from_bitField0_ & 0x00000004) != 0)) {
+          result.metadata_ = metadataBuilder_ == null
+              ? metadata_
+              : metadataBuilder_.build();
+        }
       }
 
       @java.lang.Override
@@ -2793,7 +2779,7 @@ public final class SessionServiceOuterClass {
           if (!other.tensor_.isEmpty()) {
             if (tensor_.isEmpty()) {
               tensor_ = other.tensor_;
-              bitField0_ = (bitField0_ & ~0x00000001);
+              bitField0_ = (bitField0_ & ~0x00000002);
             } else {
               ensureTensorIsMutable();
               tensor_.addAll(other.tensor_);
@@ -2806,7 +2792,7 @@ public final class SessionServiceOuterClass {
               tensorBuilder_.dispose();
               tensorBuilder_ = null;
               tensor_ = other.tensor_;
-              bitField0_ = (bitField0_ & ~0x00000001);
+              bitField0_ = (bitField0_ & ~0x00000002);
               tensorBuilder_ = 
                 com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
                    getTensorFieldBuilder() : null;
@@ -2818,7 +2804,7 @@ public final class SessionServiceOuterClass {
         if (other.hasMetadata()) {
           mergeMetadata(other.getMetadata());
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
@@ -2833,17 +2819,57 @@ public final class SessionServiceOuterClass {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        tensorflow.serving.SessionServiceOuterClass.SessionRunResponse parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                org.tensorflow.framework.NamedTensorProto m =
+                    input.readMessage(
+                        org.tensorflow.framework.NamedTensorProto.parser(),
+                        extensionRegistry);
+                if (tensorBuilder_ == null) {
+                  ensureTensorIsMutable();
+                  tensor_.add(m);
+                } else {
+                  tensorBuilder_.addMessage(m);
+                }
+                break;
+              } // case 10
+              case 18: {
+                input.readMessage(
+                    getMetadataFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000004;
+                break;
+              } // case 18
+              case 26: {
+                input.readMessage(
+                    getModelSpecFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 26
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (tensorflow.serving.SessionServiceOuterClass.SessionRunResponse) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
       private int bitField0_;
@@ -2860,7 +2886,7 @@ public final class SessionServiceOuterClass {
        * @return Whether the modelSpec field is set.
        */
       public boolean hasModelSpec() {
-        return modelSpecBuilder_ != null || modelSpec_ != null;
+        return ((bitField0_ & 0x00000001) != 0);
       }
       /**
        * <pre>
@@ -2890,11 +2916,11 @@ public final class SessionServiceOuterClass {
             throw new NullPointerException();
           }
           modelSpec_ = value;
-          onChanged();
         } else {
           modelSpecBuilder_.setMessage(value);
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -2908,11 +2934,11 @@ public final class SessionServiceOuterClass {
           tensorflow.serving.Model.ModelSpec.Builder builderForValue) {
         if (modelSpecBuilder_ == null) {
           modelSpec_ = builderForValue.build();
-          onChanged();
         } else {
           modelSpecBuilder_.setMessage(builderForValue.build());
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -2924,17 +2950,18 @@ public final class SessionServiceOuterClass {
        */
       public Builder mergeModelSpec(tensorflow.serving.Model.ModelSpec value) {
         if (modelSpecBuilder_ == null) {
-          if (modelSpec_ != null) {
-            modelSpec_ =
-              tensorflow.serving.Model.ModelSpec.newBuilder(modelSpec_).mergeFrom(value).buildPartial();
+          if (((bitField0_ & 0x00000001) != 0) &&
+            modelSpec_ != null &&
+            modelSpec_ != tensorflow.serving.Model.ModelSpec.getDefaultInstance()) {
+            getModelSpecBuilder().mergeFrom(value);
           } else {
             modelSpec_ = value;
           }
-          onChanged();
         } else {
           modelSpecBuilder_.mergeFrom(value);
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -2945,14 +2972,13 @@ public final class SessionServiceOuterClass {
        * <code>.tensorflow.serving.ModelSpec model_spec = 3;</code>
        */
       public Builder clearModelSpec() {
-        if (modelSpecBuilder_ == null) {
-          modelSpec_ = null;
-          onChanged();
-        } else {
-          modelSpec_ = null;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        modelSpec_ = null;
+        if (modelSpecBuilder_ != null) {
+          modelSpecBuilder_.dispose();
           modelSpecBuilder_ = null;
         }
-
+        onChanged();
         return this;
       }
       /**
@@ -2963,7 +2989,7 @@ public final class SessionServiceOuterClass {
        * <code>.tensorflow.serving.ModelSpec model_spec = 3;</code>
        */
       public tensorflow.serving.Model.ModelSpec.Builder getModelSpecBuilder() {
-        
+        bitField0_ |= 0x00000001;
         onChanged();
         return getModelSpecFieldBuilder().getBuilder();
       }
@@ -3006,9 +3032,9 @@ public final class SessionServiceOuterClass {
       private java.util.List<org.tensorflow.framework.NamedTensorProto> tensor_ =
         java.util.Collections.emptyList();
       private void ensureTensorIsMutable() {
-        if (!((bitField0_ & 0x00000001) != 0)) {
+        if (!((bitField0_ & 0x00000002) != 0)) {
           tensor_ = new java.util.ArrayList<org.tensorflow.framework.NamedTensorProto>(tensor_);
-          bitField0_ |= 0x00000001;
+          bitField0_ |= 0x00000002;
          }
       }
 
@@ -3213,7 +3239,7 @@ public final class SessionServiceOuterClass {
       public Builder clearTensor() {
         if (tensorBuilder_ == null) {
           tensor_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000001);
+          bitField0_ = (bitField0_ & ~0x00000002);
           onChanged();
         } else {
           tensorBuilder_.clear();
@@ -3325,7 +3351,7 @@ public final class SessionServiceOuterClass {
           tensorBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
               org.tensorflow.framework.NamedTensorProto, org.tensorflow.framework.NamedTensorProto.Builder, org.tensorflow.framework.NamedTensorProtoOrBuilder>(
                   tensor_,
-                  ((bitField0_ & 0x00000001) != 0),
+                  ((bitField0_ & 0x00000002) != 0),
                   getParentForChildren(),
                   isClean());
           tensor_ = null;
@@ -3345,7 +3371,7 @@ public final class SessionServiceOuterClass {
        * @return Whether the metadata field is set.
        */
       public boolean hasMetadata() {
-        return metadataBuilder_ != null || metadata_ != null;
+        return ((bitField0_ & 0x00000004) != 0);
       }
       /**
        * <pre>
@@ -3375,11 +3401,11 @@ public final class SessionServiceOuterClass {
             throw new NullPointerException();
           }
           metadata_ = value;
-          onChanged();
         } else {
           metadataBuilder_.setMessage(value);
         }
-
+        bitField0_ |= 0x00000004;
+        onChanged();
         return this;
       }
       /**
@@ -3393,11 +3419,11 @@ public final class SessionServiceOuterClass {
           org.tensorflow.framework.RunMetadata.Builder builderForValue) {
         if (metadataBuilder_ == null) {
           metadata_ = builderForValue.build();
-          onChanged();
         } else {
           metadataBuilder_.setMessage(builderForValue.build());
         }
-
+        bitField0_ |= 0x00000004;
+        onChanged();
         return this;
       }
       /**
@@ -3409,17 +3435,18 @@ public final class SessionServiceOuterClass {
        */
       public Builder mergeMetadata(org.tensorflow.framework.RunMetadata value) {
         if (metadataBuilder_ == null) {
-          if (metadata_ != null) {
-            metadata_ =
-              org.tensorflow.framework.RunMetadata.newBuilder(metadata_).mergeFrom(value).buildPartial();
+          if (((bitField0_ & 0x00000004) != 0) &&
+            metadata_ != null &&
+            metadata_ != org.tensorflow.framework.RunMetadata.getDefaultInstance()) {
+            getMetadataBuilder().mergeFrom(value);
           } else {
             metadata_ = value;
           }
-          onChanged();
         } else {
           metadataBuilder_.mergeFrom(value);
         }
-
+        bitField0_ |= 0x00000004;
+        onChanged();
         return this;
       }
       /**
@@ -3430,14 +3457,13 @@ public final class SessionServiceOuterClass {
        * <code>.tensorflow.RunMetadata metadata = 2;</code>
        */
       public Builder clearMetadata() {
-        if (metadataBuilder_ == null) {
-          metadata_ = null;
-          onChanged();
-        } else {
-          metadata_ = null;
+        bitField0_ = (bitField0_ & ~0x00000004);
+        metadata_ = null;
+        if (metadataBuilder_ != null) {
+          metadataBuilder_.dispose();
           metadataBuilder_ = null;
         }
-
+        onChanged();
         return this;
       }
       /**
@@ -3448,7 +3474,7 @@ public final class SessionServiceOuterClass {
        * <code>.tensorflow.RunMetadata metadata = 2;</code>
        */
       public org.tensorflow.framework.RunMetadata.Builder getMetadataBuilder() {
-        
+        bitField0_ |= 0x00000004;
         onChanged();
         return getMetadataFieldBuilder().getBuilder();
       }
@@ -3520,7 +3546,18 @@ public final class SessionServiceOuterClass {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new SessionRunResponse(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -3560,45 +3597,46 @@ public final class SessionServiceOuterClass {
   static {
     java.lang.String[] descriptorData = {
       "\n-tensorflow_serving/apis/session_servic" +
-      "e.proto\022\022tensorflow.serving\032#tensorflow_" +
-      "serving/apis/model.proto\032%tensorflow/cor" +
-      "e/protobuf/config.proto\032+tensorflow/core" +
-      "/protobuf/named_tensor.proto\"\272\001\n\021Session" +
+      "e.proto\022\022tensorflow.serving\032%tensorflow/" +
+      "core/protobuf/config.proto\032+tensorflow/c" +
+      "ore/protobuf/named_tensor.proto\032#tensorf" +
+      "low_serving/apis/model.proto\"\330\001\n\021Session" +
       "RunRequest\0221\n\nmodel_spec\030\001 \001(\0132\035.tensorf" +
       "low.serving.ModelSpec\022*\n\004feed\030\002 \003(\0132\034.te" +
       "nsorflow.NamedTensorProto\022\r\n\005fetch\030\003 \003(\t" +
-      "\022\016\n\006target\030\004 \003(\t\022\'\n\007options\030\005 \001(\0132\026.tens" +
-      "orflow.RunOptions\"\240\001\n\022SessionRunResponse" +
-      "\0221\n\nmodel_spec\030\003 \001(\0132\035.tensorflow.servin" +
-      "g.ModelSpec\022,\n\006tensor\030\001 \003(\0132\034.tensorflow" +
-      ".NamedTensorProto\022)\n\010metadata\030\002 \001(\0132\027.te" +
-      "nsorflow.RunMetadata2m\n\016SessionService\022[" +
-      "\n\nSessionRun\022%.tensorflow.serving.Sessio" +
-      "nRunRequest\032&.tensorflow.serving.Session" +
-      "RunResponseB\003\370\001\001b\006proto3"
+      "\022\016\n\006target\030\004 \003(\t\022\034\n\024tensor_name_is_alias" +
+      "\030\006 \001(\010\022\'\n\007options\030\005 \001(\0132\026.tensorflow.Run" +
+      "Options\"\240\001\n\022SessionRunResponse\0221\n\nmodel_" +
+      "spec\030\003 \001(\0132\035.tensorflow.serving.ModelSpe" +
+      "c\022,\n\006tensor\030\001 \003(\0132\034.tensorflow.NamedTens" +
+      "orProto\022)\n\010metadata\030\002 \001(\0132\027.tensorflow.R" +
+      "unMetadata2m\n\016SessionService\022[\n\nSessionR" +
+      "un\022%.tensorflow.serving.SessionRunReques" +
+      "t\032&.tensorflow.serving.SessionRunRespons" +
+      "eB\003\370\001\001b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
-          tensorflow.serving.Model.getDescriptor(),
           org.tensorflow.framework.ConfigProtos.getDescriptor(),
           org.tensorflow.framework.NamedTensorProtos.getDescriptor(),
+          tensorflow.serving.Model.getDescriptor(),
         });
     internal_static_tensorflow_serving_SessionRunRequest_descriptor =
       getDescriptor().getMessageTypes().get(0);
     internal_static_tensorflow_serving_SessionRunRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_tensorflow_serving_SessionRunRequest_descriptor,
-        new java.lang.String[] { "ModelSpec", "Feed", "Fetch", "Target", "Options", });
+        new java.lang.String[] { "ModelSpec", "Feed", "Fetch", "Target", "TensorNameIsAlias", "Options", });
     internal_static_tensorflow_serving_SessionRunResponse_descriptor =
       getDescriptor().getMessageTypes().get(1);
     internal_static_tensorflow_serving_SessionRunResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_tensorflow_serving_SessionRunResponse_descriptor,
         new java.lang.String[] { "ModelSpec", "Tensor", "Metadata", });
-    tensorflow.serving.Model.getDescriptor();
     org.tensorflow.framework.ConfigProtos.getDescriptor();
     org.tensorflow.framework.NamedTensorProtos.getDescriptor();
+    tensorflow.serving.Model.getDescriptor();
   }
 
   // @@protoc_insertion_point(outer_class_scope)

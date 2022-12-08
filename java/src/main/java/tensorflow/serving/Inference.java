@@ -107,62 +107,6 @@ public final class Inference {
     getUnknownFields() {
       return this.unknownFields;
     }
-    private InferenceTask(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              tensorflow.serving.Model.ModelSpec.Builder subBuilder = null;
-              if (modelSpec_ != null) {
-                subBuilder = modelSpec_.toBuilder();
-              }
-              modelSpec_ = input.readMessage(tensorflow.serving.Model.ModelSpec.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(modelSpec_);
-                modelSpec_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            case 18: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              methodName_ = s;
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return tensorflow.serving.Inference.internal_static_tensorflow_serving_InferenceTask_descriptor;
@@ -217,11 +161,12 @@ public final class Inference {
      */
     @java.lang.Override
     public tensorflow.serving.Model.ModelSpecOrBuilder getModelSpecOrBuilder() {
-      return getModelSpec();
+      return modelSpec_ == null ? tensorflow.serving.Model.ModelSpec.getDefaultInstance() : modelSpec_;
     }
 
     public static final int METHOD_NAME_FIELD_NUMBER = 2;
-    private volatile java.lang.Object methodName_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object methodName_ = "";
     /**
      * <pre>
      * Signature's method_name. Should be one of the method names defined in
@@ -287,10 +232,10 @@ public final class Inference {
       if (modelSpec_ != null) {
         output.writeMessage(1, getModelSpec());
       }
-      if (!getMethodNameBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(methodName_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, methodName_);
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -303,10 +248,10 @@ public final class Inference {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(1, getModelSpec());
       }
-      if (!getMethodNameBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(methodName_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, methodName_);
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -328,7 +273,7 @@ public final class Inference {
       }
       if (!getMethodName()
           .equals(other.getMethodName())) return false;
-      if (!unknownFields.equals(other.unknownFields)) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
 
@@ -345,7 +290,7 @@ public final class Inference {
       }
       hash = (37 * hash) + METHOD_NAME_FIELD_NUMBER;
       hash = (53 * hash) + getMethodName().hashCode();
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -466,30 +411,24 @@ public final class Inference {
 
       // Construct using tensorflow.serving.Inference.InferenceTask.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        if (modelSpecBuilder_ == null) {
-          modelSpec_ = null;
-        } else {
-          modelSpec_ = null;
+        bitField0_ = 0;
+        modelSpec_ = null;
+        if (modelSpecBuilder_ != null) {
+          modelSpecBuilder_.dispose();
           modelSpecBuilder_ = null;
         }
         methodName_ = "";
-
         return this;
       }
 
@@ -516,14 +455,21 @@ public final class Inference {
       @java.lang.Override
       public tensorflow.serving.Inference.InferenceTask buildPartial() {
         tensorflow.serving.Inference.InferenceTask result = new tensorflow.serving.Inference.InferenceTask(this);
-        if (modelSpecBuilder_ == null) {
-          result.modelSpec_ = modelSpec_;
-        } else {
-          result.modelSpec_ = modelSpecBuilder_.build();
-        }
-        result.methodName_ = methodName_;
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
+      }
+
+      private void buildPartial0(tensorflow.serving.Inference.InferenceTask result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.modelSpec_ = modelSpecBuilder_ == null
+              ? modelSpec_
+              : modelSpecBuilder_.build();
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.methodName_ = methodName_;
+        }
       }
 
       @java.lang.Override
@@ -575,9 +521,10 @@ public final class Inference {
         }
         if (!other.getMethodName().isEmpty()) {
           methodName_ = other.methodName_;
+          bitField0_ |= 0x00000002;
           onChanged();
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
@@ -592,19 +539,45 @@ public final class Inference {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        tensorflow.serving.Inference.InferenceTask parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                input.readMessage(
+                    getModelSpecFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 10
+              case 18: {
+                methodName_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 18
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (tensorflow.serving.Inference.InferenceTask) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
+      private int bitField0_;
 
       private tensorflow.serving.Model.ModelSpec modelSpec_;
       private com.google.protobuf.SingleFieldBuilderV3<
@@ -620,7 +593,7 @@ public final class Inference {
        * @return Whether the modelSpec field is set.
        */
       public boolean hasModelSpec() {
-        return modelSpecBuilder_ != null || modelSpec_ != null;
+        return ((bitField0_ & 0x00000001) != 0);
       }
       /**
        * <pre>
@@ -654,11 +627,11 @@ public final class Inference {
             throw new NullPointerException();
           }
           modelSpec_ = value;
-          onChanged();
         } else {
           modelSpecBuilder_.setMessage(value);
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -674,11 +647,11 @@ public final class Inference {
           tensorflow.serving.Model.ModelSpec.Builder builderForValue) {
         if (modelSpecBuilder_ == null) {
           modelSpec_ = builderForValue.build();
-          onChanged();
         } else {
           modelSpecBuilder_.setMessage(builderForValue.build());
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -692,17 +665,18 @@ public final class Inference {
        */
       public Builder mergeModelSpec(tensorflow.serving.Model.ModelSpec value) {
         if (modelSpecBuilder_ == null) {
-          if (modelSpec_ != null) {
-            modelSpec_ =
-              tensorflow.serving.Model.ModelSpec.newBuilder(modelSpec_).mergeFrom(value).buildPartial();
+          if (((bitField0_ & 0x00000001) != 0) &&
+            modelSpec_ != null &&
+            modelSpec_ != tensorflow.serving.Model.ModelSpec.getDefaultInstance()) {
+            getModelSpecBuilder().mergeFrom(value);
           } else {
             modelSpec_ = value;
           }
-          onChanged();
         } else {
           modelSpecBuilder_.mergeFrom(value);
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -715,14 +689,13 @@ public final class Inference {
        * <code>.tensorflow.serving.ModelSpec model_spec = 1;</code>
        */
       public Builder clearModelSpec() {
-        if (modelSpecBuilder_ == null) {
-          modelSpec_ = null;
-          onChanged();
-        } else {
-          modelSpec_ = null;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        modelSpec_ = null;
+        if (modelSpecBuilder_ != null) {
+          modelSpecBuilder_.dispose();
           modelSpecBuilder_ = null;
         }
-
+        onChanged();
         return this;
       }
       /**
@@ -735,7 +708,7 @@ public final class Inference {
        * <code>.tensorflow.serving.ModelSpec model_spec = 1;</code>
        */
       public tensorflow.serving.Model.ModelSpec.Builder getModelSpecBuilder() {
-        
+        bitField0_ |= 0x00000001;
         onChanged();
         return getModelSpecFieldBuilder().getBuilder();
       }
@@ -838,11 +811,9 @@ public final class Inference {
        */
       public Builder setMethodName(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         methodName_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -857,8 +828,8 @@ public final class Inference {
        * @return This builder for chaining.
        */
       public Builder clearMethodName() {
-        
         methodName_ = getDefaultInstance().getMethodName();
+        bitField0_ = (bitField0_ & ~0x00000002);
         onChanged();
         return this;
       }
@@ -875,12 +846,10 @@ public final class Inference {
        */
       public Builder setMethodNameBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         methodName_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -917,7 +886,18 @@ public final class Inference {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new InferenceTask(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -1019,84 +999,6 @@ public final class Inference {
     getUnknownFields() {
       return this.unknownFields;
     }
-    private InferenceResult(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              tensorflow.serving.Model.ModelSpec.Builder subBuilder = null;
-              if (modelSpec_ != null) {
-                subBuilder = modelSpec_.toBuilder();
-              }
-              modelSpec_ = input.readMessage(tensorflow.serving.Model.ModelSpec.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(modelSpec_);
-                modelSpec_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            case 18: {
-              tensorflow.serving.Classification.ClassificationResult.Builder subBuilder = null;
-              if (resultCase_ == 2) {
-                subBuilder = ((tensorflow.serving.Classification.ClassificationResult) result_).toBuilder();
-              }
-              result_ =
-                  input.readMessage(tensorflow.serving.Classification.ClassificationResult.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom((tensorflow.serving.Classification.ClassificationResult) result_);
-                result_ = subBuilder.buildPartial();
-              }
-              resultCase_ = 2;
-              break;
-            }
-            case 26: {
-              tensorflow.serving.RegressionOuterClass.RegressionResult.Builder subBuilder = null;
-              if (resultCase_ == 3) {
-                subBuilder = ((tensorflow.serving.RegressionOuterClass.RegressionResult) result_).toBuilder();
-              }
-              result_ =
-                  input.readMessage(tensorflow.serving.RegressionOuterClass.RegressionResult.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom((tensorflow.serving.RegressionOuterClass.RegressionResult) result_);
-                result_ = subBuilder.buildPartial();
-              }
-              resultCase_ = 3;
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return tensorflow.serving.Inference.internal_static_tensorflow_serving_InferenceResult_descriptor;
@@ -1174,7 +1076,7 @@ public final class Inference {
      */
     @java.lang.Override
     public tensorflow.serving.Model.ModelSpecOrBuilder getModelSpecOrBuilder() {
-      return getModelSpec();
+      return modelSpec_ == null ? tensorflow.serving.Model.ModelSpec.getDefaultInstance() : modelSpec_;
     }
 
     public static final int CLASSIFICATION_RESULT_FIELD_NUMBER = 2;
@@ -1262,7 +1164,7 @@ public final class Inference {
       if (resultCase_ == 3) {
         output.writeMessage(3, (tensorflow.serving.RegressionOuterClass.RegressionResult) result_);
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -1283,7 +1185,7 @@ public final class Inference {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(3, (tensorflow.serving.RegressionOuterClass.RegressionResult) result_);
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -1316,7 +1218,7 @@ public final class Inference {
         case 0:
         default:
       }
-      if (!unknownFields.equals(other.unknownFields)) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
 
@@ -1343,7 +1245,7 @@ public final class Inference {
         case 0:
         default:
       }
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -1464,27 +1366,28 @@ public final class Inference {
 
       // Construct using tensorflow.serving.Inference.InferenceResult.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        if (modelSpecBuilder_ == null) {
-          modelSpec_ = null;
-        } else {
-          modelSpec_ = null;
+        bitField0_ = 0;
+        modelSpec_ = null;
+        if (modelSpecBuilder_ != null) {
+          modelSpecBuilder_.dispose();
           modelSpecBuilder_ = null;
+        }
+        if (classificationResultBuilder_ != null) {
+          classificationResultBuilder_.clear();
+        }
+        if (regressionResultBuilder_ != null) {
+          regressionResultBuilder_.clear();
         }
         resultCase_ = 0;
         result_ = null;
@@ -1514,28 +1417,32 @@ public final class Inference {
       @java.lang.Override
       public tensorflow.serving.Inference.InferenceResult buildPartial() {
         tensorflow.serving.Inference.InferenceResult result = new tensorflow.serving.Inference.InferenceResult(this);
-        if (modelSpecBuilder_ == null) {
-          result.modelSpec_ = modelSpec_;
-        } else {
-          result.modelSpec_ = modelSpecBuilder_.build();
-        }
-        if (resultCase_ == 2) {
-          if (classificationResultBuilder_ == null) {
-            result.result_ = result_;
-          } else {
-            result.result_ = classificationResultBuilder_.build();
-          }
-        }
-        if (resultCase_ == 3) {
-          if (regressionResultBuilder_ == null) {
-            result.result_ = result_;
-          } else {
-            result.result_ = regressionResultBuilder_.build();
-          }
-        }
-        result.resultCase_ = resultCase_;
+        if (bitField0_ != 0) { buildPartial0(result); }
+        buildPartialOneofs(result);
         onBuilt();
         return result;
+      }
+
+      private void buildPartial0(tensorflow.serving.Inference.InferenceResult result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.modelSpec_ = modelSpecBuilder_ == null
+              ? modelSpec_
+              : modelSpecBuilder_.build();
+        }
+      }
+
+      private void buildPartialOneofs(tensorflow.serving.Inference.InferenceResult result) {
+        result.resultCase_ = resultCase_;
+        result.result_ = this.result_;
+        if (resultCase_ == 2 &&
+            classificationResultBuilder_ != null) {
+          result.result_ = classificationResultBuilder_.build();
+        }
+        if (resultCase_ == 3 &&
+            regressionResultBuilder_ != null) {
+          result.result_ = regressionResultBuilder_.build();
+        }
       }
 
       @java.lang.Override
@@ -1598,7 +1505,7 @@ public final class Inference {
             break;
           }
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
@@ -1613,17 +1520,51 @@ public final class Inference {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        tensorflow.serving.Inference.InferenceResult parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                input.readMessage(
+                    getModelSpecFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 10
+              case 18: {
+                input.readMessage(
+                    getClassificationResultFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                resultCase_ = 2;
+                break;
+              } // case 18
+              case 26: {
+                input.readMessage(
+                    getRegressionResultFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                resultCase_ = 3;
+                break;
+              } // case 26
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (tensorflow.serving.Inference.InferenceResult) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
       private int resultCase_ = 0;
@@ -1641,6 +1582,7 @@ public final class Inference {
         return this;
       }
 
+      private int bitField0_;
 
       private tensorflow.serving.Model.ModelSpec modelSpec_;
       private com.google.protobuf.SingleFieldBuilderV3<
@@ -1650,7 +1592,7 @@ public final class Inference {
        * @return Whether the modelSpec field is set.
        */
       public boolean hasModelSpec() {
-        return modelSpecBuilder_ != null || modelSpec_ != null;
+        return ((bitField0_ & 0x00000001) != 0);
       }
       /**
        * <code>.tensorflow.serving.ModelSpec model_spec = 1;</code>
@@ -1672,11 +1614,11 @@ public final class Inference {
             throw new NullPointerException();
           }
           modelSpec_ = value;
-          onChanged();
         } else {
           modelSpecBuilder_.setMessage(value);
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -1686,11 +1628,11 @@ public final class Inference {
           tensorflow.serving.Model.ModelSpec.Builder builderForValue) {
         if (modelSpecBuilder_ == null) {
           modelSpec_ = builderForValue.build();
-          onChanged();
         } else {
           modelSpecBuilder_.setMessage(builderForValue.build());
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -1698,38 +1640,38 @@ public final class Inference {
        */
       public Builder mergeModelSpec(tensorflow.serving.Model.ModelSpec value) {
         if (modelSpecBuilder_ == null) {
-          if (modelSpec_ != null) {
-            modelSpec_ =
-              tensorflow.serving.Model.ModelSpec.newBuilder(modelSpec_).mergeFrom(value).buildPartial();
+          if (((bitField0_ & 0x00000001) != 0) &&
+            modelSpec_ != null &&
+            modelSpec_ != tensorflow.serving.Model.ModelSpec.getDefaultInstance()) {
+            getModelSpecBuilder().mergeFrom(value);
           } else {
             modelSpec_ = value;
           }
-          onChanged();
         } else {
           modelSpecBuilder_.mergeFrom(value);
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
        * <code>.tensorflow.serving.ModelSpec model_spec = 1;</code>
        */
       public Builder clearModelSpec() {
-        if (modelSpecBuilder_ == null) {
-          modelSpec_ = null;
-          onChanged();
-        } else {
-          modelSpec_ = null;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        modelSpec_ = null;
+        if (modelSpecBuilder_ != null) {
+          modelSpecBuilder_.dispose();
           modelSpecBuilder_ = null;
         }
-
+        onChanged();
         return this;
       }
       /**
        * <code>.tensorflow.serving.ModelSpec model_spec = 1;</code>
        */
       public tensorflow.serving.Model.ModelSpec.Builder getModelSpecBuilder() {
-        
+        bitField0_ |= 0x00000001;
         onChanged();
         return getModelSpecFieldBuilder().getBuilder();
       }
@@ -1835,8 +1777,9 @@ public final class Inference {
         } else {
           if (resultCase_ == 2) {
             classificationResultBuilder_.mergeFrom(value);
+          } else {
+            classificationResultBuilder_.setMessage(value);
           }
-          classificationResultBuilder_.setMessage(value);
         }
         resultCase_ = 2;
         return this;
@@ -1898,7 +1841,7 @@ public final class Inference {
           result_ = null;
         }
         resultCase_ = 2;
-        onChanged();;
+        onChanged();
         return classificationResultBuilder_;
       }
 
@@ -1976,8 +1919,9 @@ public final class Inference {
         } else {
           if (resultCase_ == 3) {
             regressionResultBuilder_.mergeFrom(value);
+          } else {
+            regressionResultBuilder_.setMessage(value);
           }
-          regressionResultBuilder_.setMessage(value);
         }
         resultCase_ = 3;
         return this;
@@ -2039,7 +1983,7 @@ public final class Inference {
           result_ = null;
         }
         resultCase_ = 3;
-        onChanged();;
+        onChanged();
         return regressionResultBuilder_;
       }
       @java.lang.Override
@@ -2075,7 +2019,18 @@ public final class Inference {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new InferenceResult(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -2202,69 +2157,6 @@ public final class Inference {
     getUnknownFields() {
       return this.unknownFields;
     }
-    private MultiInferenceRequest(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
-                tasks_ = new java.util.ArrayList<tensorflow.serving.Inference.InferenceTask>();
-                mutable_bitField0_ |= 0x00000001;
-              }
-              tasks_.add(
-                  input.readMessage(tensorflow.serving.Inference.InferenceTask.parser(), extensionRegistry));
-              break;
-            }
-            case 18: {
-              tensorflow.serving.InputOuterClass.Input.Builder subBuilder = null;
-              if (input_ != null) {
-                subBuilder = input_.toBuilder();
-              }
-              input_ = input.readMessage(tensorflow.serving.InputOuterClass.Input.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(input_);
-                input_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        if (((mutable_bitField0_ & 0x00000001) != 0)) {
-          tasks_ = java.util.Collections.unmodifiableList(tasks_);
-        }
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return tensorflow.serving.Inference.internal_static_tensorflow_serving_MultiInferenceRequest_descriptor;
@@ -2279,6 +2171,7 @@ public final class Inference {
     }
 
     public static final int TASKS_FIELD_NUMBER = 1;
+    @SuppressWarnings("serial")
     private java.util.List<tensorflow.serving.Inference.InferenceTask> tasks_;
     /**
      * <pre>
@@ -2373,7 +2266,7 @@ public final class Inference {
      */
     @java.lang.Override
     public tensorflow.serving.InputOuterClass.InputOrBuilder getInputOrBuilder() {
-      return getInput();
+      return input_ == null ? tensorflow.serving.InputOuterClass.Input.getDefaultInstance() : input_;
     }
 
     private byte memoizedIsInitialized = -1;
@@ -2396,7 +2289,7 @@ public final class Inference {
       if (input_ != null) {
         output.writeMessage(2, getInput());
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -2413,7 +2306,7 @@ public final class Inference {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(2, getInput());
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -2435,7 +2328,7 @@ public final class Inference {
         if (!getInput()
             .equals(other.getInput())) return false;
       }
-      if (!unknownFields.equals(other.unknownFields)) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
 
@@ -2454,7 +2347,7 @@ public final class Inference {
         hash = (37 * hash) + INPUT_FIELD_NUMBER;
         hash = (53 * hash) + getInput().hashCode();
       }
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -2575,33 +2468,28 @@ public final class Inference {
 
       // Construct using tensorflow.serving.Inference.MultiInferenceRequest.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-          getTasksFieldBuilder();
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         if (tasksBuilder_ == null) {
           tasks_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000001);
         } else {
+          tasks_ = null;
           tasksBuilder_.clear();
         }
-        if (inputBuilder_ == null) {
-          input_ = null;
-        } else {
-          input_ = null;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        input_ = null;
+        if (inputBuilder_ != null) {
+          inputBuilder_.dispose();
           inputBuilder_ = null;
         }
         return this;
@@ -2630,7 +2518,13 @@ public final class Inference {
       @java.lang.Override
       public tensorflow.serving.Inference.MultiInferenceRequest buildPartial() {
         tensorflow.serving.Inference.MultiInferenceRequest result = new tensorflow.serving.Inference.MultiInferenceRequest(this);
-        int from_bitField0_ = bitField0_;
+        buildPartialRepeatedFields(result);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartialRepeatedFields(tensorflow.serving.Inference.MultiInferenceRequest result) {
         if (tasksBuilder_ == null) {
           if (((bitField0_ & 0x00000001) != 0)) {
             tasks_ = java.util.Collections.unmodifiableList(tasks_);
@@ -2640,13 +2534,15 @@ public final class Inference {
         } else {
           result.tasks_ = tasksBuilder_.build();
         }
-        if (inputBuilder_ == null) {
-          result.input_ = input_;
-        } else {
-          result.input_ = inputBuilder_.build();
+      }
+
+      private void buildPartial0(tensorflow.serving.Inference.MultiInferenceRequest result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.input_ = inputBuilder_ == null
+              ? input_
+              : inputBuilder_.build();
         }
-        onBuilt();
-        return result;
       }
 
       @java.lang.Override
@@ -2722,7 +2618,7 @@ public final class Inference {
         if (other.hasInput()) {
           mergeInput(other.getInput());
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
@@ -2737,17 +2633,50 @@ public final class Inference {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        tensorflow.serving.Inference.MultiInferenceRequest parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                tensorflow.serving.Inference.InferenceTask m =
+                    input.readMessage(
+                        tensorflow.serving.Inference.InferenceTask.parser(),
+                        extensionRegistry);
+                if (tasksBuilder_ == null) {
+                  ensureTasksIsMutable();
+                  tasks_.add(m);
+                } else {
+                  tasksBuilder_.addMessage(m);
+                }
+                break;
+              } // case 10
+              case 18: {
+                input.readMessage(
+                    getInputFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 18
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (tensorflow.serving.Inference.MultiInferenceRequest) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
       private int bitField0_;
@@ -3076,7 +3005,7 @@ public final class Inference {
        * @return Whether the input field is set.
        */
       public boolean hasInput() {
-        return inputBuilder_ != null || input_ != null;
+        return ((bitField0_ & 0x00000002) != 0);
       }
       /**
        * <pre>
@@ -3106,11 +3035,11 @@ public final class Inference {
             throw new NullPointerException();
           }
           input_ = value;
-          onChanged();
         } else {
           inputBuilder_.setMessage(value);
         }
-
+        bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
@@ -3124,11 +3053,11 @@ public final class Inference {
           tensorflow.serving.InputOuterClass.Input.Builder builderForValue) {
         if (inputBuilder_ == null) {
           input_ = builderForValue.build();
-          onChanged();
         } else {
           inputBuilder_.setMessage(builderForValue.build());
         }
-
+        bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
@@ -3140,17 +3069,18 @@ public final class Inference {
        */
       public Builder mergeInput(tensorflow.serving.InputOuterClass.Input value) {
         if (inputBuilder_ == null) {
-          if (input_ != null) {
-            input_ =
-              tensorflow.serving.InputOuterClass.Input.newBuilder(input_).mergeFrom(value).buildPartial();
+          if (((bitField0_ & 0x00000002) != 0) &&
+            input_ != null &&
+            input_ != tensorflow.serving.InputOuterClass.Input.getDefaultInstance()) {
+            getInputBuilder().mergeFrom(value);
           } else {
             input_ = value;
           }
-          onChanged();
         } else {
           inputBuilder_.mergeFrom(value);
         }
-
+        bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
@@ -3161,14 +3091,13 @@ public final class Inference {
        * <code>.tensorflow.serving.Input input = 2;</code>
        */
       public Builder clearInput() {
-        if (inputBuilder_ == null) {
-          input_ = null;
-          onChanged();
-        } else {
-          input_ = null;
+        bitField0_ = (bitField0_ & ~0x00000002);
+        input_ = null;
+        if (inputBuilder_ != null) {
+          inputBuilder_.dispose();
           inputBuilder_ = null;
         }
-
+        onChanged();
         return this;
       }
       /**
@@ -3179,7 +3108,7 @@ public final class Inference {
        * <code>.tensorflow.serving.Input input = 2;</code>
        */
       public tensorflow.serving.InputOuterClass.Input.Builder getInputBuilder() {
-        
+        bitField0_ |= 0x00000002;
         onChanged();
         return getInputFieldBuilder().getBuilder();
       }
@@ -3251,7 +3180,18 @@ public final class Inference {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new MultiInferenceRequest(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -3356,56 +3296,6 @@ public final class Inference {
     getUnknownFields() {
       return this.unknownFields;
     }
-    private MultiInferenceResponse(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
-                results_ = new java.util.ArrayList<tensorflow.serving.Inference.InferenceResult>();
-                mutable_bitField0_ |= 0x00000001;
-              }
-              results_.add(
-                  input.readMessage(tensorflow.serving.Inference.InferenceResult.parser(), extensionRegistry));
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        if (((mutable_bitField0_ & 0x00000001) != 0)) {
-          results_ = java.util.Collections.unmodifiableList(results_);
-        }
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return tensorflow.serving.Inference.internal_static_tensorflow_serving_MultiInferenceResponse_descriptor;
@@ -3420,6 +3310,7 @@ public final class Inference {
     }
 
     public static final int RESULTS_FIELD_NUMBER = 1;
+    @SuppressWarnings("serial")
     private java.util.List<tensorflow.serving.Inference.InferenceResult> results_;
     /**
      * <pre>
@@ -3501,7 +3392,7 @@ public final class Inference {
       for (int i = 0; i < results_.size(); i++) {
         output.writeMessage(1, results_.get(i));
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -3514,7 +3405,7 @@ public final class Inference {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(1, results_.get(i));
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -3531,7 +3422,7 @@ public final class Inference {
 
       if (!getResultsList()
           .equals(other.getResultsList())) return false;
-      if (!unknownFields.equals(other.unknownFields)) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
 
@@ -3546,7 +3437,7 @@ public final class Inference {
         hash = (37 * hash) + RESULTS_FIELD_NUMBER;
         hash = (53 * hash) + getResultsList().hashCode();
       }
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -3667,29 +3558,25 @@ public final class Inference {
 
       // Construct using tensorflow.serving.Inference.MultiInferenceResponse.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-          getResultsFieldBuilder();
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         if (resultsBuilder_ == null) {
           results_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000001);
         } else {
+          results_ = null;
           resultsBuilder_.clear();
         }
+        bitField0_ = (bitField0_ & ~0x00000001);
         return this;
       }
 
@@ -3716,7 +3603,13 @@ public final class Inference {
       @java.lang.Override
       public tensorflow.serving.Inference.MultiInferenceResponse buildPartial() {
         tensorflow.serving.Inference.MultiInferenceResponse result = new tensorflow.serving.Inference.MultiInferenceResponse(this);
-        int from_bitField0_ = bitField0_;
+        buildPartialRepeatedFields(result);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartialRepeatedFields(tensorflow.serving.Inference.MultiInferenceResponse result) {
         if (resultsBuilder_ == null) {
           if (((bitField0_ & 0x00000001) != 0)) {
             results_ = java.util.Collections.unmodifiableList(results_);
@@ -3726,8 +3619,10 @@ public final class Inference {
         } else {
           result.results_ = resultsBuilder_.build();
         }
-        onBuilt();
-        return result;
+      }
+
+      private void buildPartial0(tensorflow.serving.Inference.MultiInferenceResponse result) {
+        int from_bitField0_ = bitField0_;
       }
 
       @java.lang.Override
@@ -3800,7 +3695,7 @@ public final class Inference {
             }
           }
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
@@ -3815,17 +3710,43 @@ public final class Inference {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        tensorflow.serving.Inference.MultiInferenceResponse parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                tensorflow.serving.Inference.InferenceResult m =
+                    input.readMessage(
+                        tensorflow.serving.Inference.InferenceResult.parser(),
+                        extensionRegistry);
+                if (resultsBuilder_ == null) {
+                  ensureResultsIsMutable();
+                  results_.add(m);
+                } else {
+                  resultsBuilder_.addMessage(m);
+                }
+                break;
+              } // case 10
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (tensorflow.serving.Inference.MultiInferenceResponse) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
       private int bitField0_;
@@ -4192,7 +4113,18 @@ public final class Inference {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new MultiInferenceResponse(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 

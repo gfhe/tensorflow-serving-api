@@ -83,56 +83,6 @@ public final class GetModelStatus {
     getUnknownFields() {
       return this.unknownFields;
     }
-    private GetModelStatusRequest(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              tensorflow.serving.Model.ModelSpec.Builder subBuilder = null;
-              if (modelSpec_ != null) {
-                subBuilder = modelSpec_.toBuilder();
-              }
-              modelSpec_ = input.readMessage(tensorflow.serving.Model.ModelSpec.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(modelSpec_);
-                modelSpec_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return tensorflow.serving.GetModelStatus.internal_static_tensorflow_serving_GetModelStatusRequest_descriptor;
@@ -187,7 +137,7 @@ public final class GetModelStatus {
      */
     @java.lang.Override
     public tensorflow.serving.Model.ModelSpecOrBuilder getModelSpecOrBuilder() {
-      return getModelSpec();
+      return modelSpec_ == null ? tensorflow.serving.Model.ModelSpec.getDefaultInstance() : modelSpec_;
     }
 
     private byte memoizedIsInitialized = -1;
@@ -207,7 +157,7 @@ public final class GetModelStatus {
       if (modelSpec_ != null) {
         output.writeMessage(1, getModelSpec());
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -220,7 +170,7 @@ public final class GetModelStatus {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(1, getModelSpec());
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -240,7 +190,7 @@ public final class GetModelStatus {
         if (!getModelSpec()
             .equals(other.getModelSpec())) return false;
       }
-      if (!unknownFields.equals(other.unknownFields)) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
 
@@ -255,7 +205,7 @@ public final class GetModelStatus {
         hash = (37 * hash) + MODEL_SPEC_FIELD_NUMBER;
         hash = (53 * hash) + getModelSpec().hashCode();
       }
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -377,26 +327,21 @@ public final class GetModelStatus {
 
       // Construct using tensorflow.serving.GetModelStatus.GetModelStatusRequest.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        if (modelSpecBuilder_ == null) {
-          modelSpec_ = null;
-        } else {
-          modelSpec_ = null;
+        bitField0_ = 0;
+        modelSpec_ = null;
+        if (modelSpecBuilder_ != null) {
+          modelSpecBuilder_.dispose();
           modelSpecBuilder_ = null;
         }
         return this;
@@ -425,13 +370,18 @@ public final class GetModelStatus {
       @java.lang.Override
       public tensorflow.serving.GetModelStatus.GetModelStatusRequest buildPartial() {
         tensorflow.serving.GetModelStatus.GetModelStatusRequest result = new tensorflow.serving.GetModelStatus.GetModelStatusRequest(this);
-        if (modelSpecBuilder_ == null) {
-          result.modelSpec_ = modelSpec_;
-        } else {
-          result.modelSpec_ = modelSpecBuilder_.build();
-        }
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
+      }
+
+      private void buildPartial0(tensorflow.serving.GetModelStatus.GetModelStatusRequest result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.modelSpec_ = modelSpecBuilder_ == null
+              ? modelSpec_
+              : modelSpecBuilder_.build();
+        }
       }
 
       @java.lang.Override
@@ -481,7 +431,7 @@ public final class GetModelStatus {
         if (other.hasModelSpec()) {
           mergeModelSpec(other.getModelSpec());
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
@@ -496,19 +446,40 @@ public final class GetModelStatus {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        tensorflow.serving.GetModelStatus.GetModelStatusRequest parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                input.readMessage(
+                    getModelSpecFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 10
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (tensorflow.serving.GetModelStatus.GetModelStatusRequest) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
+      private int bitField0_;
 
       private tensorflow.serving.Model.ModelSpec modelSpec_;
       private com.google.protobuf.SingleFieldBuilderV3<
@@ -524,7 +495,7 @@ public final class GetModelStatus {
        * @return Whether the modelSpec field is set.
        */
       public boolean hasModelSpec() {
-        return modelSpecBuilder_ != null || modelSpec_ != null;
+        return ((bitField0_ & 0x00000001) != 0);
       }
       /**
        * <pre>
@@ -558,11 +529,11 @@ public final class GetModelStatus {
             throw new NullPointerException();
           }
           modelSpec_ = value;
-          onChanged();
         } else {
           modelSpecBuilder_.setMessage(value);
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -578,11 +549,11 @@ public final class GetModelStatus {
           tensorflow.serving.Model.ModelSpec.Builder builderForValue) {
         if (modelSpecBuilder_ == null) {
           modelSpec_ = builderForValue.build();
-          onChanged();
         } else {
           modelSpecBuilder_.setMessage(builderForValue.build());
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -596,17 +567,18 @@ public final class GetModelStatus {
        */
       public Builder mergeModelSpec(tensorflow.serving.Model.ModelSpec value) {
         if (modelSpecBuilder_ == null) {
-          if (modelSpec_ != null) {
-            modelSpec_ =
-              tensorflow.serving.Model.ModelSpec.newBuilder(modelSpec_).mergeFrom(value).buildPartial();
+          if (((bitField0_ & 0x00000001) != 0) &&
+            modelSpec_ != null &&
+            modelSpec_ != tensorflow.serving.Model.ModelSpec.getDefaultInstance()) {
+            getModelSpecBuilder().mergeFrom(value);
           } else {
             modelSpec_ = value;
           }
-          onChanged();
         } else {
           modelSpecBuilder_.mergeFrom(value);
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -619,14 +591,13 @@ public final class GetModelStatus {
        * <code>.tensorflow.serving.ModelSpec model_spec = 1;</code>
        */
       public Builder clearModelSpec() {
-        if (modelSpecBuilder_ == null) {
-          modelSpec_ = null;
-          onChanged();
-        } else {
-          modelSpec_ = null;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        modelSpec_ = null;
+        if (modelSpecBuilder_ != null) {
+          modelSpecBuilder_.dispose();
           modelSpecBuilder_ = null;
         }
-
+        onChanged();
         return this;
       }
       /**
@@ -639,7 +610,7 @@ public final class GetModelStatus {
        * <code>.tensorflow.serving.ModelSpec model_spec = 1;</code>
        */
       public tensorflow.serving.Model.ModelSpec.Builder getModelSpecBuilder() {
-        
+        bitField0_ |= 0x00000001;
         onChanged();
         return getModelSpecFieldBuilder().getBuilder();
       }
@@ -715,7 +686,18 @@ public final class GetModelStatus {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new GetModelStatusRequest(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -826,67 +808,6 @@ public final class GetModelStatus {
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
-    }
-    private ModelVersionStatus(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 8: {
-
-              version_ = input.readInt64();
-              break;
-            }
-            case 16: {
-              int rawValue = input.readEnum();
-
-              state_ = rawValue;
-              break;
-            }
-            case 26: {
-              tensorflow.serving.Status.StatusProto.Builder subBuilder = null;
-              if (status_ != null) {
-                subBuilder = status_.toBuilder();
-              }
-              status_ = input.readMessage(tensorflow.serving.Status.StatusProto.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(status_);
-                status_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
@@ -1119,7 +1040,7 @@ public final class GetModelStatus {
     }
 
     public static final int VERSION_FIELD_NUMBER = 1;
-    private long version_;
+    private long version_ = 0L;
     /**
      * <pre>
      * Model version.
@@ -1134,7 +1055,7 @@ public final class GetModelStatus {
     }
 
     public static final int STATE_FIELD_NUMBER = 2;
-    private int state_;
+    private int state_ = 0;
     /**
      * <pre>
      * Model state.
@@ -1155,8 +1076,7 @@ public final class GetModelStatus {
      * @return The state.
      */
     @java.lang.Override public tensorflow.serving.GetModelStatus.ModelVersionStatus.State getState() {
-      @SuppressWarnings("deprecation")
-      tensorflow.serving.GetModelStatus.ModelVersionStatus.State result = tensorflow.serving.GetModelStatus.ModelVersionStatus.State.valueOf(state_);
+      tensorflow.serving.GetModelStatus.ModelVersionStatus.State result = tensorflow.serving.GetModelStatus.ModelVersionStatus.State.forNumber(state_);
       return result == null ? tensorflow.serving.GetModelStatus.ModelVersionStatus.State.UNRECOGNIZED : result;
     }
 
@@ -1195,7 +1115,7 @@ public final class GetModelStatus {
      */
     @java.lang.Override
     public tensorflow.serving.Status.StatusProtoOrBuilder getStatusOrBuilder() {
-      return getStatus();
+      return status_ == null ? tensorflow.serving.Status.StatusProto.getDefaultInstance() : status_;
     }
 
     private byte memoizedIsInitialized = -1;
@@ -1221,7 +1141,7 @@ public final class GetModelStatus {
       if (status_ != null) {
         output.writeMessage(3, getStatus());
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -1242,7 +1162,7 @@ public final class GetModelStatus {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(3, getStatus());
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -1265,7 +1185,7 @@ public final class GetModelStatus {
         if (!getStatus()
             .equals(other.getStatus())) return false;
       }
-      if (!unknownFields.equals(other.unknownFields)) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
 
@@ -1285,7 +1205,7 @@ public final class GetModelStatus {
         hash = (37 * hash) + STATUS_FIELD_NUMBER;
         hash = (53 * hash) + getStatus().hashCode();
       }
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -1406,30 +1326,23 @@ public final class GetModelStatus {
 
       // Construct using tensorflow.serving.GetModelStatus.ModelVersionStatus.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         version_ = 0L;
-
         state_ = 0;
-
-        if (statusBuilder_ == null) {
-          status_ = null;
-        } else {
-          status_ = null;
+        status_ = null;
+        if (statusBuilder_ != null) {
+          statusBuilder_.dispose();
           statusBuilder_ = null;
         }
         return this;
@@ -1458,15 +1371,24 @@ public final class GetModelStatus {
       @java.lang.Override
       public tensorflow.serving.GetModelStatus.ModelVersionStatus buildPartial() {
         tensorflow.serving.GetModelStatus.ModelVersionStatus result = new tensorflow.serving.GetModelStatus.ModelVersionStatus(this);
-        result.version_ = version_;
-        result.state_ = state_;
-        if (statusBuilder_ == null) {
-          result.status_ = status_;
-        } else {
-          result.status_ = statusBuilder_.build();
-        }
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
+      }
+
+      private void buildPartial0(tensorflow.serving.GetModelStatus.ModelVersionStatus result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.version_ = version_;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.state_ = state_;
+        }
+        if (((from_bitField0_ & 0x00000004) != 0)) {
+          result.status_ = statusBuilder_ == null
+              ? status_
+              : statusBuilder_.build();
+        }
       }
 
       @java.lang.Override
@@ -1522,7 +1444,7 @@ public final class GetModelStatus {
         if (other.hasStatus()) {
           mergeStatus(other.getStatus());
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
@@ -1537,19 +1459,50 @@ public final class GetModelStatus {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        tensorflow.serving.GetModelStatus.ModelVersionStatus parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 8: {
+                version_ = input.readInt64();
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 8
+              case 16: {
+                state_ = input.readEnum();
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 16
+              case 26: {
+                input.readMessage(
+                    getStatusFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000004;
+                break;
+              } // case 26
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (tensorflow.serving.GetModelStatus.ModelVersionStatus) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
+      private int bitField0_;
 
       private long version_ ;
       /**
@@ -1576,6 +1529,7 @@ public final class GetModelStatus {
       public Builder setVersion(long value) {
         
         version_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -1588,7 +1542,7 @@ public final class GetModelStatus {
        * @return This builder for chaining.
        */
       public Builder clearVersion() {
-        
+        bitField0_ = (bitField0_ & ~0x00000001);
         version_ = 0L;
         onChanged();
         return this;
@@ -1616,8 +1570,8 @@ public final class GetModelStatus {
        * @return This builder for chaining.
        */
       public Builder setStateValue(int value) {
-        
         state_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -1631,8 +1585,7 @@ public final class GetModelStatus {
        */
       @java.lang.Override
       public tensorflow.serving.GetModelStatus.ModelVersionStatus.State getState() {
-        @SuppressWarnings("deprecation")
-        tensorflow.serving.GetModelStatus.ModelVersionStatus.State result = tensorflow.serving.GetModelStatus.ModelVersionStatus.State.valueOf(state_);
+        tensorflow.serving.GetModelStatus.ModelVersionStatus.State result = tensorflow.serving.GetModelStatus.ModelVersionStatus.State.forNumber(state_);
         return result == null ? tensorflow.serving.GetModelStatus.ModelVersionStatus.State.UNRECOGNIZED : result;
       }
       /**
@@ -1648,7 +1601,7 @@ public final class GetModelStatus {
         if (value == null) {
           throw new NullPointerException();
         }
-        
+        bitField0_ |= 0x00000002;
         state_ = value.getNumber();
         onChanged();
         return this;
@@ -1662,7 +1615,7 @@ public final class GetModelStatus {
        * @return This builder for chaining.
        */
       public Builder clearState() {
-        
+        bitField0_ = (bitField0_ & ~0x00000002);
         state_ = 0;
         onChanged();
         return this;
@@ -1680,7 +1633,7 @@ public final class GetModelStatus {
        * @return Whether the status field is set.
        */
       public boolean hasStatus() {
-        return statusBuilder_ != null || status_ != null;
+        return ((bitField0_ & 0x00000004) != 0);
       }
       /**
        * <pre>
@@ -1710,11 +1663,11 @@ public final class GetModelStatus {
             throw new NullPointerException();
           }
           status_ = value;
-          onChanged();
         } else {
           statusBuilder_.setMessage(value);
         }
-
+        bitField0_ |= 0x00000004;
+        onChanged();
         return this;
       }
       /**
@@ -1728,11 +1681,11 @@ public final class GetModelStatus {
           tensorflow.serving.Status.StatusProto.Builder builderForValue) {
         if (statusBuilder_ == null) {
           status_ = builderForValue.build();
-          onChanged();
         } else {
           statusBuilder_.setMessage(builderForValue.build());
         }
-
+        bitField0_ |= 0x00000004;
+        onChanged();
         return this;
       }
       /**
@@ -1744,17 +1697,18 @@ public final class GetModelStatus {
        */
       public Builder mergeStatus(tensorflow.serving.Status.StatusProto value) {
         if (statusBuilder_ == null) {
-          if (status_ != null) {
-            status_ =
-              tensorflow.serving.Status.StatusProto.newBuilder(status_).mergeFrom(value).buildPartial();
+          if (((bitField0_ & 0x00000004) != 0) &&
+            status_ != null &&
+            status_ != tensorflow.serving.Status.StatusProto.getDefaultInstance()) {
+            getStatusBuilder().mergeFrom(value);
           } else {
             status_ = value;
           }
-          onChanged();
         } else {
           statusBuilder_.mergeFrom(value);
         }
-
+        bitField0_ |= 0x00000004;
+        onChanged();
         return this;
       }
       /**
@@ -1765,14 +1719,13 @@ public final class GetModelStatus {
        * <code>.tensorflow.serving.StatusProto status = 3;</code>
        */
       public Builder clearStatus() {
-        if (statusBuilder_ == null) {
-          status_ = null;
-          onChanged();
-        } else {
-          status_ = null;
+        bitField0_ = (bitField0_ & ~0x00000004);
+        status_ = null;
+        if (statusBuilder_ != null) {
+          statusBuilder_.dispose();
           statusBuilder_ = null;
         }
-
+        onChanged();
         return this;
       }
       /**
@@ -1783,7 +1736,7 @@ public final class GetModelStatus {
        * <code>.tensorflow.serving.StatusProto status = 3;</code>
        */
       public tensorflow.serving.Status.StatusProto.Builder getStatusBuilder() {
-        
+        bitField0_ |= 0x00000004;
         onChanged();
         return getStatusFieldBuilder().getBuilder();
       }
@@ -1855,7 +1808,18 @@ public final class GetModelStatus {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new ModelVersionStatus(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -1884,7 +1848,7 @@ public final class GetModelStatus {
      * Version number and status information for applicable model version(s).
      * </pre>
      *
-     * <code>repeated .tensorflow.serving.ModelVersionStatus model_version_status = 1[json_name = "model_version_status"];</code>
+     * <code>repeated .tensorflow.serving.ModelVersionStatus model_version_status = 1 [json_name = "model_version_status"];</code>
      */
     java.util.List<tensorflow.serving.GetModelStatus.ModelVersionStatus> 
         getModelVersionStatusList();
@@ -1893,7 +1857,7 @@ public final class GetModelStatus {
      * Version number and status information for applicable model version(s).
      * </pre>
      *
-     * <code>repeated .tensorflow.serving.ModelVersionStatus model_version_status = 1[json_name = "model_version_status"];</code>
+     * <code>repeated .tensorflow.serving.ModelVersionStatus model_version_status = 1 [json_name = "model_version_status"];</code>
      */
     tensorflow.serving.GetModelStatus.ModelVersionStatus getModelVersionStatus(int index);
     /**
@@ -1901,7 +1865,7 @@ public final class GetModelStatus {
      * Version number and status information for applicable model version(s).
      * </pre>
      *
-     * <code>repeated .tensorflow.serving.ModelVersionStatus model_version_status = 1[json_name = "model_version_status"];</code>
+     * <code>repeated .tensorflow.serving.ModelVersionStatus model_version_status = 1 [json_name = "model_version_status"];</code>
      */
     int getModelVersionStatusCount();
     /**
@@ -1909,7 +1873,7 @@ public final class GetModelStatus {
      * Version number and status information for applicable model version(s).
      * </pre>
      *
-     * <code>repeated .tensorflow.serving.ModelVersionStatus model_version_status = 1[json_name = "model_version_status"];</code>
+     * <code>repeated .tensorflow.serving.ModelVersionStatus model_version_status = 1 [json_name = "model_version_status"];</code>
      */
     java.util.List<? extends tensorflow.serving.GetModelStatus.ModelVersionStatusOrBuilder> 
         getModelVersionStatusOrBuilderList();
@@ -1918,7 +1882,7 @@ public final class GetModelStatus {
      * Version number and status information for applicable model version(s).
      * </pre>
      *
-     * <code>repeated .tensorflow.serving.ModelVersionStatus model_version_status = 1[json_name = "model_version_status"];</code>
+     * <code>repeated .tensorflow.serving.ModelVersionStatus model_version_status = 1 [json_name = "model_version_status"];</code>
      */
     tensorflow.serving.GetModelStatus.ModelVersionStatusOrBuilder getModelVersionStatusOrBuilder(
         int index);
@@ -1955,56 +1919,6 @@ public final class GetModelStatus {
     getUnknownFields() {
       return this.unknownFields;
     }
-    private GetModelStatusResponse(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
-                modelVersionStatus_ = new java.util.ArrayList<tensorflow.serving.GetModelStatus.ModelVersionStatus>();
-                mutable_bitField0_ |= 0x00000001;
-              }
-              modelVersionStatus_.add(
-                  input.readMessage(tensorflow.serving.GetModelStatus.ModelVersionStatus.parser(), extensionRegistry));
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        if (((mutable_bitField0_ & 0x00000001) != 0)) {
-          modelVersionStatus_ = java.util.Collections.unmodifiableList(modelVersionStatus_);
-        }
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return tensorflow.serving.GetModelStatus.internal_static_tensorflow_serving_GetModelStatusResponse_descriptor;
@@ -2019,13 +1933,14 @@ public final class GetModelStatus {
     }
 
     public static final int MODEL_VERSION_STATUS_FIELD_NUMBER = 1;
+    @SuppressWarnings("serial")
     private java.util.List<tensorflow.serving.GetModelStatus.ModelVersionStatus> modelVersionStatus_;
     /**
      * <pre>
      * Version number and status information for applicable model version(s).
      * </pre>
      *
-     * <code>repeated .tensorflow.serving.ModelVersionStatus model_version_status = 1[json_name = "model_version_status"];</code>
+     * <code>repeated .tensorflow.serving.ModelVersionStatus model_version_status = 1 [json_name = "model_version_status"];</code>
      */
     @java.lang.Override
     public java.util.List<tensorflow.serving.GetModelStatus.ModelVersionStatus> getModelVersionStatusList() {
@@ -2036,7 +1951,7 @@ public final class GetModelStatus {
      * Version number and status information for applicable model version(s).
      * </pre>
      *
-     * <code>repeated .tensorflow.serving.ModelVersionStatus model_version_status = 1[json_name = "model_version_status"];</code>
+     * <code>repeated .tensorflow.serving.ModelVersionStatus model_version_status = 1 [json_name = "model_version_status"];</code>
      */
     @java.lang.Override
     public java.util.List<? extends tensorflow.serving.GetModelStatus.ModelVersionStatusOrBuilder> 
@@ -2048,7 +1963,7 @@ public final class GetModelStatus {
      * Version number and status information for applicable model version(s).
      * </pre>
      *
-     * <code>repeated .tensorflow.serving.ModelVersionStatus model_version_status = 1[json_name = "model_version_status"];</code>
+     * <code>repeated .tensorflow.serving.ModelVersionStatus model_version_status = 1 [json_name = "model_version_status"];</code>
      */
     @java.lang.Override
     public int getModelVersionStatusCount() {
@@ -2059,7 +1974,7 @@ public final class GetModelStatus {
      * Version number and status information for applicable model version(s).
      * </pre>
      *
-     * <code>repeated .tensorflow.serving.ModelVersionStatus model_version_status = 1[json_name = "model_version_status"];</code>
+     * <code>repeated .tensorflow.serving.ModelVersionStatus model_version_status = 1 [json_name = "model_version_status"];</code>
      */
     @java.lang.Override
     public tensorflow.serving.GetModelStatus.ModelVersionStatus getModelVersionStatus(int index) {
@@ -2070,7 +1985,7 @@ public final class GetModelStatus {
      * Version number and status information for applicable model version(s).
      * </pre>
      *
-     * <code>repeated .tensorflow.serving.ModelVersionStatus model_version_status = 1[json_name = "model_version_status"];</code>
+     * <code>repeated .tensorflow.serving.ModelVersionStatus model_version_status = 1 [json_name = "model_version_status"];</code>
      */
     @java.lang.Override
     public tensorflow.serving.GetModelStatus.ModelVersionStatusOrBuilder getModelVersionStatusOrBuilder(
@@ -2095,7 +2010,7 @@ public final class GetModelStatus {
       for (int i = 0; i < modelVersionStatus_.size(); i++) {
         output.writeMessage(1, modelVersionStatus_.get(i));
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -2108,7 +2023,7 @@ public final class GetModelStatus {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(1, modelVersionStatus_.get(i));
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -2125,7 +2040,7 @@ public final class GetModelStatus {
 
       if (!getModelVersionStatusList()
           .equals(other.getModelVersionStatusList())) return false;
-      if (!unknownFields.equals(other.unknownFields)) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
 
@@ -2140,7 +2055,7 @@ public final class GetModelStatus {
         hash = (37 * hash) + MODEL_VERSION_STATUS_FIELD_NUMBER;
         hash = (53 * hash) + getModelVersionStatusList().hashCode();
       }
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -2261,29 +2176,25 @@ public final class GetModelStatus {
 
       // Construct using tensorflow.serving.GetModelStatus.GetModelStatusResponse.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-          getModelVersionStatusFieldBuilder();
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         if (modelVersionStatusBuilder_ == null) {
           modelVersionStatus_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000001);
         } else {
+          modelVersionStatus_ = null;
           modelVersionStatusBuilder_.clear();
         }
+        bitField0_ = (bitField0_ & ~0x00000001);
         return this;
       }
 
@@ -2310,7 +2221,13 @@ public final class GetModelStatus {
       @java.lang.Override
       public tensorflow.serving.GetModelStatus.GetModelStatusResponse buildPartial() {
         tensorflow.serving.GetModelStatus.GetModelStatusResponse result = new tensorflow.serving.GetModelStatus.GetModelStatusResponse(this);
-        int from_bitField0_ = bitField0_;
+        buildPartialRepeatedFields(result);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartialRepeatedFields(tensorflow.serving.GetModelStatus.GetModelStatusResponse result) {
         if (modelVersionStatusBuilder_ == null) {
           if (((bitField0_ & 0x00000001) != 0)) {
             modelVersionStatus_ = java.util.Collections.unmodifiableList(modelVersionStatus_);
@@ -2320,8 +2237,10 @@ public final class GetModelStatus {
         } else {
           result.modelVersionStatus_ = modelVersionStatusBuilder_.build();
         }
-        onBuilt();
-        return result;
+      }
+
+      private void buildPartial0(tensorflow.serving.GetModelStatus.GetModelStatusResponse result) {
+        int from_bitField0_ = bitField0_;
       }
 
       @java.lang.Override
@@ -2394,7 +2313,7 @@ public final class GetModelStatus {
             }
           }
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
@@ -2409,17 +2328,43 @@ public final class GetModelStatus {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        tensorflow.serving.GetModelStatus.GetModelStatusResponse parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                tensorflow.serving.GetModelStatus.ModelVersionStatus m =
+                    input.readMessage(
+                        tensorflow.serving.GetModelStatus.ModelVersionStatus.parser(),
+                        extensionRegistry);
+                if (modelVersionStatusBuilder_ == null) {
+                  ensureModelVersionStatusIsMutable();
+                  modelVersionStatus_.add(m);
+                } else {
+                  modelVersionStatusBuilder_.addMessage(m);
+                }
+                break;
+              } // case 10
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (tensorflow.serving.GetModelStatus.GetModelStatusResponse) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
       private int bitField0_;
@@ -2441,7 +2386,7 @@ public final class GetModelStatus {
        * Version number and status information for applicable model version(s).
        * </pre>
        *
-       * <code>repeated .tensorflow.serving.ModelVersionStatus model_version_status = 1[json_name = "model_version_status"];</code>
+       * <code>repeated .tensorflow.serving.ModelVersionStatus model_version_status = 1 [json_name = "model_version_status"];</code>
        */
       public java.util.List<tensorflow.serving.GetModelStatus.ModelVersionStatus> getModelVersionStatusList() {
         if (modelVersionStatusBuilder_ == null) {
@@ -2455,7 +2400,7 @@ public final class GetModelStatus {
        * Version number and status information for applicable model version(s).
        * </pre>
        *
-       * <code>repeated .tensorflow.serving.ModelVersionStatus model_version_status = 1[json_name = "model_version_status"];</code>
+       * <code>repeated .tensorflow.serving.ModelVersionStatus model_version_status = 1 [json_name = "model_version_status"];</code>
        */
       public int getModelVersionStatusCount() {
         if (modelVersionStatusBuilder_ == null) {
@@ -2469,7 +2414,7 @@ public final class GetModelStatus {
        * Version number and status information for applicable model version(s).
        * </pre>
        *
-       * <code>repeated .tensorflow.serving.ModelVersionStatus model_version_status = 1[json_name = "model_version_status"];</code>
+       * <code>repeated .tensorflow.serving.ModelVersionStatus model_version_status = 1 [json_name = "model_version_status"];</code>
        */
       public tensorflow.serving.GetModelStatus.ModelVersionStatus getModelVersionStatus(int index) {
         if (modelVersionStatusBuilder_ == null) {
@@ -2483,7 +2428,7 @@ public final class GetModelStatus {
        * Version number and status information for applicable model version(s).
        * </pre>
        *
-       * <code>repeated .tensorflow.serving.ModelVersionStatus model_version_status = 1[json_name = "model_version_status"];</code>
+       * <code>repeated .tensorflow.serving.ModelVersionStatus model_version_status = 1 [json_name = "model_version_status"];</code>
        */
       public Builder setModelVersionStatus(
           int index, tensorflow.serving.GetModelStatus.ModelVersionStatus value) {
@@ -2504,7 +2449,7 @@ public final class GetModelStatus {
        * Version number and status information for applicable model version(s).
        * </pre>
        *
-       * <code>repeated .tensorflow.serving.ModelVersionStatus model_version_status = 1[json_name = "model_version_status"];</code>
+       * <code>repeated .tensorflow.serving.ModelVersionStatus model_version_status = 1 [json_name = "model_version_status"];</code>
        */
       public Builder setModelVersionStatus(
           int index, tensorflow.serving.GetModelStatus.ModelVersionStatus.Builder builderForValue) {
@@ -2522,7 +2467,7 @@ public final class GetModelStatus {
        * Version number and status information for applicable model version(s).
        * </pre>
        *
-       * <code>repeated .tensorflow.serving.ModelVersionStatus model_version_status = 1[json_name = "model_version_status"];</code>
+       * <code>repeated .tensorflow.serving.ModelVersionStatus model_version_status = 1 [json_name = "model_version_status"];</code>
        */
       public Builder addModelVersionStatus(tensorflow.serving.GetModelStatus.ModelVersionStatus value) {
         if (modelVersionStatusBuilder_ == null) {
@@ -2542,7 +2487,7 @@ public final class GetModelStatus {
        * Version number and status information for applicable model version(s).
        * </pre>
        *
-       * <code>repeated .tensorflow.serving.ModelVersionStatus model_version_status = 1[json_name = "model_version_status"];</code>
+       * <code>repeated .tensorflow.serving.ModelVersionStatus model_version_status = 1 [json_name = "model_version_status"];</code>
        */
       public Builder addModelVersionStatus(
           int index, tensorflow.serving.GetModelStatus.ModelVersionStatus value) {
@@ -2563,7 +2508,7 @@ public final class GetModelStatus {
        * Version number and status information for applicable model version(s).
        * </pre>
        *
-       * <code>repeated .tensorflow.serving.ModelVersionStatus model_version_status = 1[json_name = "model_version_status"];</code>
+       * <code>repeated .tensorflow.serving.ModelVersionStatus model_version_status = 1 [json_name = "model_version_status"];</code>
        */
       public Builder addModelVersionStatus(
           tensorflow.serving.GetModelStatus.ModelVersionStatus.Builder builderForValue) {
@@ -2581,7 +2526,7 @@ public final class GetModelStatus {
        * Version number and status information for applicable model version(s).
        * </pre>
        *
-       * <code>repeated .tensorflow.serving.ModelVersionStatus model_version_status = 1[json_name = "model_version_status"];</code>
+       * <code>repeated .tensorflow.serving.ModelVersionStatus model_version_status = 1 [json_name = "model_version_status"];</code>
        */
       public Builder addModelVersionStatus(
           int index, tensorflow.serving.GetModelStatus.ModelVersionStatus.Builder builderForValue) {
@@ -2599,7 +2544,7 @@ public final class GetModelStatus {
        * Version number and status information for applicable model version(s).
        * </pre>
        *
-       * <code>repeated .tensorflow.serving.ModelVersionStatus model_version_status = 1[json_name = "model_version_status"];</code>
+       * <code>repeated .tensorflow.serving.ModelVersionStatus model_version_status = 1 [json_name = "model_version_status"];</code>
        */
       public Builder addAllModelVersionStatus(
           java.lang.Iterable<? extends tensorflow.serving.GetModelStatus.ModelVersionStatus> values) {
@@ -2618,7 +2563,7 @@ public final class GetModelStatus {
        * Version number and status information for applicable model version(s).
        * </pre>
        *
-       * <code>repeated .tensorflow.serving.ModelVersionStatus model_version_status = 1[json_name = "model_version_status"];</code>
+       * <code>repeated .tensorflow.serving.ModelVersionStatus model_version_status = 1 [json_name = "model_version_status"];</code>
        */
       public Builder clearModelVersionStatus() {
         if (modelVersionStatusBuilder_ == null) {
@@ -2635,7 +2580,7 @@ public final class GetModelStatus {
        * Version number and status information for applicable model version(s).
        * </pre>
        *
-       * <code>repeated .tensorflow.serving.ModelVersionStatus model_version_status = 1[json_name = "model_version_status"];</code>
+       * <code>repeated .tensorflow.serving.ModelVersionStatus model_version_status = 1 [json_name = "model_version_status"];</code>
        */
       public Builder removeModelVersionStatus(int index) {
         if (modelVersionStatusBuilder_ == null) {
@@ -2652,7 +2597,7 @@ public final class GetModelStatus {
        * Version number and status information for applicable model version(s).
        * </pre>
        *
-       * <code>repeated .tensorflow.serving.ModelVersionStatus model_version_status = 1[json_name = "model_version_status"];</code>
+       * <code>repeated .tensorflow.serving.ModelVersionStatus model_version_status = 1 [json_name = "model_version_status"];</code>
        */
       public tensorflow.serving.GetModelStatus.ModelVersionStatus.Builder getModelVersionStatusBuilder(
           int index) {
@@ -2663,7 +2608,7 @@ public final class GetModelStatus {
        * Version number and status information for applicable model version(s).
        * </pre>
        *
-       * <code>repeated .tensorflow.serving.ModelVersionStatus model_version_status = 1[json_name = "model_version_status"];</code>
+       * <code>repeated .tensorflow.serving.ModelVersionStatus model_version_status = 1 [json_name = "model_version_status"];</code>
        */
       public tensorflow.serving.GetModelStatus.ModelVersionStatusOrBuilder getModelVersionStatusOrBuilder(
           int index) {
@@ -2677,7 +2622,7 @@ public final class GetModelStatus {
        * Version number and status information for applicable model version(s).
        * </pre>
        *
-       * <code>repeated .tensorflow.serving.ModelVersionStatus model_version_status = 1[json_name = "model_version_status"];</code>
+       * <code>repeated .tensorflow.serving.ModelVersionStatus model_version_status = 1 [json_name = "model_version_status"];</code>
        */
       public java.util.List<? extends tensorflow.serving.GetModelStatus.ModelVersionStatusOrBuilder> 
            getModelVersionStatusOrBuilderList() {
@@ -2692,7 +2637,7 @@ public final class GetModelStatus {
        * Version number and status information for applicable model version(s).
        * </pre>
        *
-       * <code>repeated .tensorflow.serving.ModelVersionStatus model_version_status = 1[json_name = "model_version_status"];</code>
+       * <code>repeated .tensorflow.serving.ModelVersionStatus model_version_status = 1 [json_name = "model_version_status"];</code>
        */
       public tensorflow.serving.GetModelStatus.ModelVersionStatus.Builder addModelVersionStatusBuilder() {
         return getModelVersionStatusFieldBuilder().addBuilder(
@@ -2703,7 +2648,7 @@ public final class GetModelStatus {
        * Version number and status information for applicable model version(s).
        * </pre>
        *
-       * <code>repeated .tensorflow.serving.ModelVersionStatus model_version_status = 1[json_name = "model_version_status"];</code>
+       * <code>repeated .tensorflow.serving.ModelVersionStatus model_version_status = 1 [json_name = "model_version_status"];</code>
        */
       public tensorflow.serving.GetModelStatus.ModelVersionStatus.Builder addModelVersionStatusBuilder(
           int index) {
@@ -2715,7 +2660,7 @@ public final class GetModelStatus {
        * Version number and status information for applicable model version(s).
        * </pre>
        *
-       * <code>repeated .tensorflow.serving.ModelVersionStatus model_version_status = 1[json_name = "model_version_status"];</code>
+       * <code>repeated .tensorflow.serving.ModelVersionStatus model_version_status = 1 [json_name = "model_version_status"];</code>
        */
       public java.util.List<tensorflow.serving.GetModelStatus.ModelVersionStatus.Builder> 
            getModelVersionStatusBuilderList() {
@@ -2768,7 +2713,18 @@ public final class GetModelStatus {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new GetModelStatusResponse(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -2815,7 +2771,7 @@ public final class GetModelStatus {
       "\n.tensorflow_serving/apis/get_model_stat" +
       "us.proto\022\022tensorflow.serving\032#tensorflow" +
       "_serving/apis/model.proto\032$tensorflow_se" +
-      "rving/util/status.proto\"J\n\025GetModelStatu" +
+      "rving/apis/status.proto\"J\n\025GetModelStatu" +
       "sRequest\0221\n\nmodel_spec\030\001 \001(\0132\035.tensorflo" +
       "w.serving.ModelSpec\"\350\001\n\022ModelVersionStat" +
       "us\022\017\n\007version\030\001 \001(\003\022;\n\005state\030\002 \001(\0162,.ten" +

@@ -200,6 +200,8 @@ public final class ModelServerConfigOuterClass {
      * </pre>
      *
      * <code>.tensorflow.serving.ModelType model_type = 3 [deprecated = true];</code>
+     * @deprecated tensorflow.serving.ModelConfig.model_type is deprecated.
+     *     See tensorflow_serving/config/model_server_config.proto;l=34
      * @return The enum numeric value on the wire for modelType.
      */
     @java.lang.Deprecated int getModelTypeValue();
@@ -210,6 +212,8 @@ public final class ModelServerConfigOuterClass {
      * </pre>
      *
      * <code>.tensorflow.serving.ModelType model_type = 3 [deprecated = true];</code>
+     * @deprecated tensorflow.serving.ModelConfig.model_type is deprecated.
+     *     See tensorflow_serving/config/model_server_config.proto;l=34
      * @return The modelType.
      */
     @java.lang.Deprecated tensorflow.serving.ModelServerConfigOuterClass.ModelType getModelType();
@@ -347,7 +351,6 @@ public final class ModelServerConfigOuterClass {
      *
      * <code>map&lt;string, int64&gt; version_labels = 8;</code>
      */
-
     long getVersionLabelsOrDefault(
         java.lang.String key,
         long defaultValue);
@@ -367,7 +370,6 @@ public final class ModelServerConfigOuterClass {
      *
      * <code>map&lt;string, int64&gt; version_labels = 8;</code>
      */
-
     long getVersionLabelsOrThrow(
         java.lang.String key);
 
@@ -436,107 +438,6 @@ public final class ModelServerConfigOuterClass {
     getUnknownFields() {
       return this.unknownFields;
     }
-    private ModelConfig(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              name_ = s;
-              break;
-            }
-            case 18: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              basePath_ = s;
-              break;
-            }
-            case 24: {
-              int rawValue = input.readEnum();
-
-              modelType_ = rawValue;
-              break;
-            }
-            case 34: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              modelPlatform_ = s;
-              break;
-            }
-            case 50: {
-              tensorflow.serving.LoggingConfigOuterClass.LoggingConfig.Builder subBuilder = null;
-              if (loggingConfig_ != null) {
-                subBuilder = loggingConfig_.toBuilder();
-              }
-              loggingConfig_ = input.readMessage(tensorflow.serving.LoggingConfigOuterClass.LoggingConfig.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(loggingConfig_);
-                loggingConfig_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            case 58: {
-              tensorflow.serving.FileSystemStoragePathSource.FileSystemStoragePathSourceConfig.ServableVersionPolicy.Builder subBuilder = null;
-              if (modelVersionPolicy_ != null) {
-                subBuilder = modelVersionPolicy_.toBuilder();
-              }
-              modelVersionPolicy_ = input.readMessage(tensorflow.serving.FileSystemStoragePathSource.FileSystemStoragePathSourceConfig.ServableVersionPolicy.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(modelVersionPolicy_);
-                modelVersionPolicy_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            case 66: {
-              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
-                versionLabels_ = com.google.protobuf.MapField.newMapField(
-                    VersionLabelsDefaultEntryHolder.defaultEntry);
-                mutable_bitField0_ |= 0x00000001;
-              }
-              com.google.protobuf.MapEntry<java.lang.String, java.lang.Long>
-              versionLabels__ = input.readMessage(
-                  VersionLabelsDefaultEntryHolder.defaultEntry.getParserForType(), extensionRegistry);
-              versionLabels_.getMutableMap().put(
-                  versionLabels__.getKey(), versionLabels__.getValue());
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return tensorflow.serving.ModelServerConfigOuterClass.internal_static_tensorflow_serving_ModelConfig_descriptor;
@@ -563,7 +464,8 @@ public final class ModelServerConfigOuterClass {
     }
 
     public static final int NAME_FIELD_NUMBER = 1;
-    private volatile java.lang.Object name_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object name_ = "";
     /**
      * <pre>
      * Name of the model.
@@ -609,7 +511,8 @@ public final class ModelServerConfigOuterClass {
     }
 
     public static final int BASE_PATH_FIELD_NUMBER = 2;
-    private volatile java.lang.Object basePath_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object basePath_ = "";
     /**
      * <pre>
      * Base path to the model, excluding the version directory.
@@ -665,7 +568,7 @@ public final class ModelServerConfigOuterClass {
     }
 
     public static final int MODEL_TYPE_FIELD_NUMBER = 3;
-    private int modelType_;
+    private int modelType_ = 0;
     /**
      * <pre>
      * Type of model.
@@ -673,6 +576,8 @@ public final class ModelServerConfigOuterClass {
      * </pre>
      *
      * <code>.tensorflow.serving.ModelType model_type = 3 [deprecated = true];</code>
+     * @deprecated tensorflow.serving.ModelConfig.model_type is deprecated.
+     *     See tensorflow_serving/config/model_server_config.proto;l=34
      * @return The enum numeric value on the wire for modelType.
      */
     @java.lang.Override @java.lang.Deprecated public int getModelTypeValue() {
@@ -685,16 +590,18 @@ public final class ModelServerConfigOuterClass {
      * </pre>
      *
      * <code>.tensorflow.serving.ModelType model_type = 3 [deprecated = true];</code>
+     * @deprecated tensorflow.serving.ModelConfig.model_type is deprecated.
+     *     See tensorflow_serving/config/model_server_config.proto;l=34
      * @return The modelType.
      */
     @java.lang.Override @java.lang.Deprecated public tensorflow.serving.ModelServerConfigOuterClass.ModelType getModelType() {
-      @SuppressWarnings("deprecation")
-      tensorflow.serving.ModelServerConfigOuterClass.ModelType result = tensorflow.serving.ModelServerConfigOuterClass.ModelType.valueOf(modelType_);
+      tensorflow.serving.ModelServerConfigOuterClass.ModelType result = tensorflow.serving.ModelServerConfigOuterClass.ModelType.forNumber(modelType_);
       return result == null ? tensorflow.serving.ModelServerConfigOuterClass.ModelType.UNRECOGNIZED : result;
     }
 
     public static final int MODEL_PLATFORM_FIELD_NUMBER = 4;
-    private volatile java.lang.Object modelPlatform_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object modelPlatform_ = "";
     /**
      * <pre>
      * Type of model (e.g. "tensorflow").
@@ -785,7 +692,7 @@ public final class ModelServerConfigOuterClass {
      */
     @java.lang.Override
     public tensorflow.serving.FileSystemStoragePathSource.FileSystemStoragePathSourceConfig.ServableVersionPolicyOrBuilder getModelVersionPolicyOrBuilder() {
-      return getModelVersionPolicy();
+      return modelVersionPolicy_ == null ? tensorflow.serving.FileSystemStoragePathSource.FileSystemStoragePathSourceConfig.ServableVersionPolicy.getDefaultInstance() : modelVersionPolicy_;
     }
 
     public static final int VERSION_LABELS_FIELD_NUMBER = 8;
@@ -800,6 +707,7 @@ public final class ModelServerConfigOuterClass {
                   com.google.protobuf.WireFormat.FieldType.INT64,
                   0L);
     }
+    @SuppressWarnings("serial")
     private com.google.protobuf.MapField<
         java.lang.String, java.lang.Long> versionLabels_;
     private com.google.protobuf.MapField<java.lang.String, java.lang.Long>
@@ -810,7 +718,6 @@ public final class ModelServerConfigOuterClass {
       }
       return versionLabels_;
     }
-
     public int getVersionLabelsCount() {
       return internalGetVersionLabels().getMap().size();
     }
@@ -830,11 +737,10 @@ public final class ModelServerConfigOuterClass {
      *
      * <code>map&lt;string, int64&gt; version_labels = 8;</code>
      */
-
     @java.lang.Override
     public boolean containsVersionLabels(
         java.lang.String key) {
-      if (key == null) { throw new java.lang.NullPointerException(); }
+      if (key == null) { throw new NullPointerException("map key"); }
       return internalGetVersionLabels().getMap().containsKey(key);
     }
     /**
@@ -862,7 +768,6 @@ public final class ModelServerConfigOuterClass {
      * <code>map&lt;string, int64&gt; version_labels = 8;</code>
      */
     @java.lang.Override
-
     public java.util.Map<java.lang.String, java.lang.Long> getVersionLabelsMap() {
       return internalGetVersionLabels().getMap();
     }
@@ -883,11 +788,10 @@ public final class ModelServerConfigOuterClass {
      * <code>map&lt;string, int64&gt; version_labels = 8;</code>
      */
     @java.lang.Override
-
     public long getVersionLabelsOrDefault(
         java.lang.String key,
         long defaultValue) {
-      if (key == null) { throw new java.lang.NullPointerException(); }
+      if (key == null) { throw new NullPointerException("map key"); }
       java.util.Map<java.lang.String, java.lang.Long> map =
           internalGetVersionLabels().getMap();
       return map.containsKey(key) ? map.get(key) : defaultValue;
@@ -909,10 +813,9 @@ public final class ModelServerConfigOuterClass {
      * <code>map&lt;string, int64&gt; version_labels = 8;</code>
      */
     @java.lang.Override
-
     public long getVersionLabelsOrThrow(
         java.lang.String key) {
-      if (key == null) { throw new java.lang.NullPointerException(); }
+      if (key == null) { throw new NullPointerException("map key"); }
       java.util.Map<java.lang.String, java.lang.Long> map =
           internalGetVersionLabels().getMap();
       if (!map.containsKey(key)) {
@@ -959,7 +862,7 @@ public final class ModelServerConfigOuterClass {
      */
     @java.lang.Override
     public tensorflow.serving.LoggingConfigOuterClass.LoggingConfigOrBuilder getLoggingConfigOrBuilder() {
-      return getLoggingConfig();
+      return loggingConfig_ == null ? tensorflow.serving.LoggingConfigOuterClass.LoggingConfig.getDefaultInstance() : loggingConfig_;
     }
 
     private byte memoizedIsInitialized = -1;
@@ -976,16 +879,16 @@ public final class ModelServerConfigOuterClass {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getNameBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(name_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, name_);
       }
-      if (!getBasePathBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(basePath_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, basePath_);
       }
       if (modelType_ != tensorflow.serving.ModelServerConfigOuterClass.ModelType.MODEL_TYPE_UNSPECIFIED.getNumber()) {
         output.writeEnum(3, modelType_);
       }
-      if (!getModelPlatformBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(modelPlatform_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 4, modelPlatform_);
       }
       if (loggingConfig_ != null) {
@@ -1000,7 +903,7 @@ public final class ModelServerConfigOuterClass {
           internalGetVersionLabels(),
           VersionLabelsDefaultEntryHolder.defaultEntry,
           8);
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -1009,17 +912,17 @@ public final class ModelServerConfigOuterClass {
       if (size != -1) return size;
 
       size = 0;
-      if (!getNameBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(name_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, name_);
       }
-      if (!getBasePathBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(basePath_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, basePath_);
       }
       if (modelType_ != tensorflow.serving.ModelServerConfigOuterClass.ModelType.MODEL_TYPE_UNSPECIFIED.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(3, modelType_);
       }
-      if (!getModelPlatformBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(modelPlatform_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, modelPlatform_);
       }
       if (loggingConfig_ != null) {
@@ -1040,7 +943,7 @@ public final class ModelServerConfigOuterClass {
         size += com.google.protobuf.CodedOutputStream
             .computeMessageSize(8, versionLabels__);
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -1074,7 +977,7 @@ public final class ModelServerConfigOuterClass {
         if (!getLoggingConfig()
             .equals(other.getLoggingConfig())) return false;
       }
-      if (!unknownFields.equals(other.unknownFields)) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
 
@@ -1105,7 +1008,7 @@ public final class ModelServerConfigOuterClass {
         hash = (37 * hash) + LOGGING_CONFIG_FIELD_NUMBER;
         hash = (53 * hash) + getLoggingConfig().hashCode();
       }
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -1248,41 +1151,31 @@ public final class ModelServerConfigOuterClass {
 
       // Construct using tensorflow.serving.ModelServerConfigOuterClass.ModelConfig.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         name_ = "";
-
         basePath_ = "";
-
         modelType_ = 0;
-
         modelPlatform_ = "";
-
-        if (modelVersionPolicyBuilder_ == null) {
-          modelVersionPolicy_ = null;
-        } else {
-          modelVersionPolicy_ = null;
+        modelVersionPolicy_ = null;
+        if (modelVersionPolicyBuilder_ != null) {
+          modelVersionPolicyBuilder_.dispose();
           modelVersionPolicyBuilder_ = null;
         }
         internalGetMutableVersionLabels().clear();
-        if (loggingConfigBuilder_ == null) {
-          loggingConfig_ = null;
-        } else {
-          loggingConfig_ = null;
+        loggingConfig_ = null;
+        if (loggingConfigBuilder_ != null) {
+          loggingConfigBuilder_.dispose();
           loggingConfigBuilder_ = null;
         }
         return this;
@@ -1311,25 +1204,39 @@ public final class ModelServerConfigOuterClass {
       @java.lang.Override
       public tensorflow.serving.ModelServerConfigOuterClass.ModelConfig buildPartial() {
         tensorflow.serving.ModelServerConfigOuterClass.ModelConfig result = new tensorflow.serving.ModelServerConfigOuterClass.ModelConfig(this);
-        int from_bitField0_ = bitField0_;
-        result.name_ = name_;
-        result.basePath_ = basePath_;
-        result.modelType_ = modelType_;
-        result.modelPlatform_ = modelPlatform_;
-        if (modelVersionPolicyBuilder_ == null) {
-          result.modelVersionPolicy_ = modelVersionPolicy_;
-        } else {
-          result.modelVersionPolicy_ = modelVersionPolicyBuilder_.build();
-        }
-        result.versionLabels_ = internalGetVersionLabels();
-        result.versionLabels_.makeImmutable();
-        if (loggingConfigBuilder_ == null) {
-          result.loggingConfig_ = loggingConfig_;
-        } else {
-          result.loggingConfig_ = loggingConfigBuilder_.build();
-        }
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
+      }
+
+      private void buildPartial0(tensorflow.serving.ModelServerConfigOuterClass.ModelConfig result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.name_ = name_;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.basePath_ = basePath_;
+        }
+        if (((from_bitField0_ & 0x00000004) != 0)) {
+          result.modelType_ = modelType_;
+        }
+        if (((from_bitField0_ & 0x00000008) != 0)) {
+          result.modelPlatform_ = modelPlatform_;
+        }
+        if (((from_bitField0_ & 0x00000010) != 0)) {
+          result.modelVersionPolicy_ = modelVersionPolicyBuilder_ == null
+              ? modelVersionPolicy_
+              : modelVersionPolicyBuilder_.build();
+        }
+        if (((from_bitField0_ & 0x00000020) != 0)) {
+          result.versionLabels_ = internalGetVersionLabels();
+          result.versionLabels_.makeImmutable();
+        }
+        if (((from_bitField0_ & 0x00000040) != 0)) {
+          result.loggingConfig_ = loggingConfigBuilder_ == null
+              ? loggingConfig_
+              : loggingConfigBuilder_.build();
+        }
       }
 
       @java.lang.Override
@@ -1378,10 +1285,12 @@ public final class ModelServerConfigOuterClass {
         if (other == tensorflow.serving.ModelServerConfigOuterClass.ModelConfig.getDefaultInstance()) return this;
         if (!other.getName().isEmpty()) {
           name_ = other.name_;
+          bitField0_ |= 0x00000001;
           onChanged();
         }
         if (!other.getBasePath().isEmpty()) {
           basePath_ = other.basePath_;
+          bitField0_ |= 0x00000002;
           onChanged();
         }
         if (other.modelType_ != 0) {
@@ -1389,6 +1298,7 @@ public final class ModelServerConfigOuterClass {
         }
         if (!other.getModelPlatform().isEmpty()) {
           modelPlatform_ = other.modelPlatform_;
+          bitField0_ |= 0x00000008;
           onChanged();
         }
         if (other.hasModelVersionPolicy()) {
@@ -1396,10 +1306,11 @@ public final class ModelServerConfigOuterClass {
         }
         internalGetMutableVersionLabels().mergeFrom(
             other.internalGetVersionLabels());
+        bitField0_ |= 0x00000020;
         if (other.hasLoggingConfig()) {
           mergeLoggingConfig(other.getLoggingConfig());
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
@@ -1414,17 +1325,73 @@ public final class ModelServerConfigOuterClass {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        tensorflow.serving.ModelServerConfigOuterClass.ModelConfig parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                name_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 10
+              case 18: {
+                basePath_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 18
+              case 24: {
+                modelType_ = input.readEnum();
+                bitField0_ |= 0x00000004;
+                break;
+              } // case 24
+              case 34: {
+                modelPlatform_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000008;
+                break;
+              } // case 34
+              case 50: {
+                input.readMessage(
+                    getLoggingConfigFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000040;
+                break;
+              } // case 50
+              case 58: {
+                input.readMessage(
+                    getModelVersionPolicyFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000010;
+                break;
+              } // case 58
+              case 66: {
+                com.google.protobuf.MapEntry<java.lang.String, java.lang.Long>
+                versionLabels__ = input.readMessage(
+                    VersionLabelsDefaultEntryHolder.defaultEntry.getParserForType(), extensionRegistry);
+                internalGetMutableVersionLabels().getMutableMap().put(
+                    versionLabels__.getKey(), versionLabels__.getValue());
+                bitField0_ |= 0x00000020;
+                break;
+              } // case 66
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (tensorflow.serving.ModelServerConfigOuterClass.ModelConfig) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
       private int bitField0_;
@@ -1482,11 +1449,9 @@ public final class ModelServerConfigOuterClass {
        */
       public Builder setName(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         name_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -1499,8 +1464,8 @@ public final class ModelServerConfigOuterClass {
        * @return This builder for chaining.
        */
       public Builder clearName() {
-        
         name_ = getDefaultInstance().getName();
+        bitField0_ = (bitField0_ & ~0x00000001);
         onChanged();
         return this;
       }
@@ -1515,12 +1480,10 @@ public final class ModelServerConfigOuterClass {
        */
       public Builder setNameBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         name_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -1593,11 +1556,9 @@ public final class ModelServerConfigOuterClass {
        */
       public Builder setBasePath(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         basePath_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -1615,8 +1576,8 @@ public final class ModelServerConfigOuterClass {
        * @return This builder for chaining.
        */
       public Builder clearBasePath() {
-        
         basePath_ = getDefaultInstance().getBasePath();
+        bitField0_ = (bitField0_ & ~0x00000002);
         onChanged();
         return this;
       }
@@ -1636,12 +1597,10 @@ public final class ModelServerConfigOuterClass {
        */
       public Builder setBasePathBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         basePath_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -1654,6 +1613,8 @@ public final class ModelServerConfigOuterClass {
        * </pre>
        *
        * <code>.tensorflow.serving.ModelType model_type = 3 [deprecated = true];</code>
+       * @deprecated tensorflow.serving.ModelConfig.model_type is deprecated.
+       *     See tensorflow_serving/config/model_server_config.proto;l=34
        * @return The enum numeric value on the wire for modelType.
        */
       @java.lang.Override @java.lang.Deprecated public int getModelTypeValue() {
@@ -1666,12 +1627,14 @@ public final class ModelServerConfigOuterClass {
        * </pre>
        *
        * <code>.tensorflow.serving.ModelType model_type = 3 [deprecated = true];</code>
+       * @deprecated tensorflow.serving.ModelConfig.model_type is deprecated.
+       *     See tensorflow_serving/config/model_server_config.proto;l=34
        * @param value The enum numeric value on the wire for modelType to set.
        * @return This builder for chaining.
        */
       @java.lang.Deprecated public Builder setModelTypeValue(int value) {
-        
         modelType_ = value;
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
@@ -1682,12 +1645,13 @@ public final class ModelServerConfigOuterClass {
        * </pre>
        *
        * <code>.tensorflow.serving.ModelType model_type = 3 [deprecated = true];</code>
+       * @deprecated tensorflow.serving.ModelConfig.model_type is deprecated.
+       *     See tensorflow_serving/config/model_server_config.proto;l=34
        * @return The modelType.
        */
       @java.lang.Override
       @java.lang.Deprecated public tensorflow.serving.ModelServerConfigOuterClass.ModelType getModelType() {
-        @SuppressWarnings("deprecation")
-        tensorflow.serving.ModelServerConfigOuterClass.ModelType result = tensorflow.serving.ModelServerConfigOuterClass.ModelType.valueOf(modelType_);
+        tensorflow.serving.ModelServerConfigOuterClass.ModelType result = tensorflow.serving.ModelServerConfigOuterClass.ModelType.forNumber(modelType_);
         return result == null ? tensorflow.serving.ModelServerConfigOuterClass.ModelType.UNRECOGNIZED : result;
       }
       /**
@@ -1697,6 +1661,8 @@ public final class ModelServerConfigOuterClass {
        * </pre>
        *
        * <code>.tensorflow.serving.ModelType model_type = 3 [deprecated = true];</code>
+       * @deprecated tensorflow.serving.ModelConfig.model_type is deprecated.
+       *     See tensorflow_serving/config/model_server_config.proto;l=34
        * @param value The modelType to set.
        * @return This builder for chaining.
        */
@@ -1704,7 +1670,7 @@ public final class ModelServerConfigOuterClass {
         if (value == null) {
           throw new NullPointerException();
         }
-        
+        bitField0_ |= 0x00000004;
         modelType_ = value.getNumber();
         onChanged();
         return this;
@@ -1716,10 +1682,12 @@ public final class ModelServerConfigOuterClass {
        * </pre>
        *
        * <code>.tensorflow.serving.ModelType model_type = 3 [deprecated = true];</code>
+       * @deprecated tensorflow.serving.ModelConfig.model_type is deprecated.
+       *     See tensorflow_serving/config/model_server_config.proto;l=34
        * @return This builder for chaining.
        */
       @java.lang.Deprecated public Builder clearModelType() {
-        
+        bitField0_ = (bitField0_ & ~0x00000004);
         modelType_ = 0;
         onChanged();
         return this;
@@ -1781,11 +1749,9 @@ public final class ModelServerConfigOuterClass {
        */
       public Builder setModelPlatform(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         modelPlatform_ = value;
+        bitField0_ |= 0x00000008;
         onChanged();
         return this;
       }
@@ -1799,8 +1765,8 @@ public final class ModelServerConfigOuterClass {
        * @return This builder for chaining.
        */
       public Builder clearModelPlatform() {
-        
         modelPlatform_ = getDefaultInstance().getModelPlatform();
+        bitField0_ = (bitField0_ & ~0x00000008);
         onChanged();
         return this;
       }
@@ -1816,12 +1782,10 @@ public final class ModelServerConfigOuterClass {
        */
       public Builder setModelPlatformBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         modelPlatform_ = value;
+        bitField0_ |= 0x00000008;
         onChanged();
         return this;
       }
@@ -1841,7 +1805,7 @@ public final class ModelServerConfigOuterClass {
        * @return Whether the modelVersionPolicy field is set.
        */
       public boolean hasModelVersionPolicy() {
-        return modelVersionPolicyBuilder_ != null || modelVersionPolicy_ != null;
+        return ((bitField0_ & 0x00000010) != 0);
       }
       /**
        * <pre>
@@ -1877,11 +1841,11 @@ public final class ModelServerConfigOuterClass {
             throw new NullPointerException();
           }
           modelVersionPolicy_ = value;
-          onChanged();
         } else {
           modelVersionPolicyBuilder_.setMessage(value);
         }
-
+        bitField0_ |= 0x00000010;
+        onChanged();
         return this;
       }
       /**
@@ -1898,11 +1862,11 @@ public final class ModelServerConfigOuterClass {
           tensorflow.serving.FileSystemStoragePathSource.FileSystemStoragePathSourceConfig.ServableVersionPolicy.Builder builderForValue) {
         if (modelVersionPolicyBuilder_ == null) {
           modelVersionPolicy_ = builderForValue.build();
-          onChanged();
         } else {
           modelVersionPolicyBuilder_.setMessage(builderForValue.build());
         }
-
+        bitField0_ |= 0x00000010;
+        onChanged();
         return this;
       }
       /**
@@ -1917,17 +1881,18 @@ public final class ModelServerConfigOuterClass {
        */
       public Builder mergeModelVersionPolicy(tensorflow.serving.FileSystemStoragePathSource.FileSystemStoragePathSourceConfig.ServableVersionPolicy value) {
         if (modelVersionPolicyBuilder_ == null) {
-          if (modelVersionPolicy_ != null) {
-            modelVersionPolicy_ =
-              tensorflow.serving.FileSystemStoragePathSource.FileSystemStoragePathSourceConfig.ServableVersionPolicy.newBuilder(modelVersionPolicy_).mergeFrom(value).buildPartial();
+          if (((bitField0_ & 0x00000010) != 0) &&
+            modelVersionPolicy_ != null &&
+            modelVersionPolicy_ != tensorflow.serving.FileSystemStoragePathSource.FileSystemStoragePathSourceConfig.ServableVersionPolicy.getDefaultInstance()) {
+            getModelVersionPolicyBuilder().mergeFrom(value);
           } else {
             modelVersionPolicy_ = value;
           }
-          onChanged();
         } else {
           modelVersionPolicyBuilder_.mergeFrom(value);
         }
-
+        bitField0_ |= 0x00000010;
+        onChanged();
         return this;
       }
       /**
@@ -1941,14 +1906,13 @@ public final class ModelServerConfigOuterClass {
        * <code>.tensorflow.serving.FileSystemStoragePathSourceConfig.ServableVersionPolicy model_version_policy = 7;</code>
        */
       public Builder clearModelVersionPolicy() {
-        if (modelVersionPolicyBuilder_ == null) {
-          modelVersionPolicy_ = null;
-          onChanged();
-        } else {
-          modelVersionPolicy_ = null;
+        bitField0_ = (bitField0_ & ~0x00000010);
+        modelVersionPolicy_ = null;
+        if (modelVersionPolicyBuilder_ != null) {
+          modelVersionPolicyBuilder_.dispose();
           modelVersionPolicyBuilder_ = null;
         }
-
+        onChanged();
         return this;
       }
       /**
@@ -1962,7 +1926,7 @@ public final class ModelServerConfigOuterClass {
        * <code>.tensorflow.serving.FileSystemStoragePathSourceConfig.ServableVersionPolicy model_version_policy = 7;</code>
        */
       public tensorflow.serving.FileSystemStoragePathSource.FileSystemStoragePathSourceConfig.ServableVersionPolicy.Builder getModelVersionPolicyBuilder() {
-        
+        bitField0_ |= 0x00000010;
         onChanged();
         return getModelVersionPolicyFieldBuilder().getBuilder();
       }
@@ -2011,7 +1975,7 @@ public final class ModelServerConfigOuterClass {
       private com.google.protobuf.MapField<
           java.lang.String, java.lang.Long> versionLabels_;
       private com.google.protobuf.MapField<java.lang.String, java.lang.Long>
-      internalGetVersionLabels() {
+          internalGetVersionLabels() {
         if (versionLabels_ == null) {
           return com.google.protobuf.MapField.emptyMapField(
               VersionLabelsDefaultEntryHolder.defaultEntry);
@@ -2019,8 +1983,7 @@ public final class ModelServerConfigOuterClass {
         return versionLabels_;
       }
       private com.google.protobuf.MapField<java.lang.String, java.lang.Long>
-      internalGetMutableVersionLabels() {
-        onChanged();;
+          internalGetMutableVersionLabels() {
         if (versionLabels_ == null) {
           versionLabels_ = com.google.protobuf.MapField.newMapField(
               VersionLabelsDefaultEntryHolder.defaultEntry);
@@ -2028,9 +1991,10 @@ public final class ModelServerConfigOuterClass {
         if (!versionLabels_.isMutable()) {
           versionLabels_ = versionLabels_.copy();
         }
+        bitField0_ |= 0x00000020;
+        onChanged();
         return versionLabels_;
       }
-
       public int getVersionLabelsCount() {
         return internalGetVersionLabels().getMap().size();
       }
@@ -2050,11 +2014,10 @@ public final class ModelServerConfigOuterClass {
        *
        * <code>map&lt;string, int64&gt; version_labels = 8;</code>
        */
-
       @java.lang.Override
       public boolean containsVersionLabels(
           java.lang.String key) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
+        if (key == null) { throw new NullPointerException("map key"); }
         return internalGetVersionLabels().getMap().containsKey(key);
       }
       /**
@@ -2082,7 +2045,6 @@ public final class ModelServerConfigOuterClass {
        * <code>map&lt;string, int64&gt; version_labels = 8;</code>
        */
       @java.lang.Override
-
       public java.util.Map<java.lang.String, java.lang.Long> getVersionLabelsMap() {
         return internalGetVersionLabels().getMap();
       }
@@ -2103,11 +2065,10 @@ public final class ModelServerConfigOuterClass {
        * <code>map&lt;string, int64&gt; version_labels = 8;</code>
        */
       @java.lang.Override
-
       public long getVersionLabelsOrDefault(
           java.lang.String key,
           long defaultValue) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
+        if (key == null) { throw new NullPointerException("map key"); }
         java.util.Map<java.lang.String, java.lang.Long> map =
             internalGetVersionLabels().getMap();
         return map.containsKey(key) ? map.get(key) : defaultValue;
@@ -2129,10 +2090,9 @@ public final class ModelServerConfigOuterClass {
        * <code>map&lt;string, int64&gt; version_labels = 8;</code>
        */
       @java.lang.Override
-
       public long getVersionLabelsOrThrow(
           java.lang.String key) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
+        if (key == null) { throw new NullPointerException("map key"); }
         java.util.Map<java.lang.String, java.lang.Long> map =
             internalGetVersionLabels().getMap();
         if (!map.containsKey(key)) {
@@ -2140,8 +2100,8 @@ public final class ModelServerConfigOuterClass {
         }
         return map.get(key);
       }
-
       public Builder clearVersionLabels() {
+        bitField0_ = (bitField0_ & ~0x00000020);
         internalGetMutableVersionLabels().getMutableMap()
             .clear();
         return this;
@@ -2162,10 +2122,9 @@ public final class ModelServerConfigOuterClass {
        *
        * <code>map&lt;string, int64&gt; version_labels = 8;</code>
        */
-
       public Builder removeVersionLabels(
           java.lang.String key) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
+        if (key == null) { throw new NullPointerException("map key"); }
         internalGetMutableVersionLabels().getMutableMap()
             .remove(key);
         return this;
@@ -2175,7 +2134,8 @@ public final class ModelServerConfigOuterClass {
        */
       @java.lang.Deprecated
       public java.util.Map<java.lang.String, java.lang.Long>
-      getMutableVersionLabels() {
+          getMutableVersionLabels() {
+        bitField0_ |= 0x00000020;
         return internalGetMutableVersionLabels().getMutableMap();
       }
       /**
@@ -2197,10 +2157,11 @@ public final class ModelServerConfigOuterClass {
       public Builder putVersionLabels(
           java.lang.String key,
           long value) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
+        if (key == null) { throw new NullPointerException("map key"); }
         
         internalGetMutableVersionLabels().getMutableMap()
             .put(key, value);
+        bitField0_ |= 0x00000020;
         return this;
       }
       /**
@@ -2219,11 +2180,11 @@ public final class ModelServerConfigOuterClass {
        *
        * <code>map&lt;string, int64&gt; version_labels = 8;</code>
        */
-
       public Builder putAllVersionLabels(
           java.util.Map<java.lang.String, java.lang.Long> values) {
         internalGetMutableVersionLabels().getMutableMap()
             .putAll(values);
+        bitField0_ |= 0x00000020;
         return this;
       }
 
@@ -2240,7 +2201,7 @@ public final class ModelServerConfigOuterClass {
        * @return Whether the loggingConfig field is set.
        */
       public boolean hasLoggingConfig() {
-        return loggingConfigBuilder_ != null || loggingConfig_ != null;
+        return ((bitField0_ & 0x00000040) != 0);
       }
       /**
        * <pre>
@@ -2272,11 +2233,11 @@ public final class ModelServerConfigOuterClass {
             throw new NullPointerException();
           }
           loggingConfig_ = value;
-          onChanged();
         } else {
           loggingConfigBuilder_.setMessage(value);
         }
-
+        bitField0_ |= 0x00000040;
+        onChanged();
         return this;
       }
       /**
@@ -2291,11 +2252,11 @@ public final class ModelServerConfigOuterClass {
           tensorflow.serving.LoggingConfigOuterClass.LoggingConfig.Builder builderForValue) {
         if (loggingConfigBuilder_ == null) {
           loggingConfig_ = builderForValue.build();
-          onChanged();
         } else {
           loggingConfigBuilder_.setMessage(builderForValue.build());
         }
-
+        bitField0_ |= 0x00000040;
+        onChanged();
         return this;
       }
       /**
@@ -2308,17 +2269,18 @@ public final class ModelServerConfigOuterClass {
        */
       public Builder mergeLoggingConfig(tensorflow.serving.LoggingConfigOuterClass.LoggingConfig value) {
         if (loggingConfigBuilder_ == null) {
-          if (loggingConfig_ != null) {
-            loggingConfig_ =
-              tensorflow.serving.LoggingConfigOuterClass.LoggingConfig.newBuilder(loggingConfig_).mergeFrom(value).buildPartial();
+          if (((bitField0_ & 0x00000040) != 0) &&
+            loggingConfig_ != null &&
+            loggingConfig_ != tensorflow.serving.LoggingConfigOuterClass.LoggingConfig.getDefaultInstance()) {
+            getLoggingConfigBuilder().mergeFrom(value);
           } else {
             loggingConfig_ = value;
           }
-          onChanged();
         } else {
           loggingConfigBuilder_.mergeFrom(value);
         }
-
+        bitField0_ |= 0x00000040;
+        onChanged();
         return this;
       }
       /**
@@ -2330,14 +2292,13 @@ public final class ModelServerConfigOuterClass {
        * <code>.tensorflow.serving.LoggingConfig logging_config = 6;</code>
        */
       public Builder clearLoggingConfig() {
-        if (loggingConfigBuilder_ == null) {
-          loggingConfig_ = null;
-          onChanged();
-        } else {
-          loggingConfig_ = null;
+        bitField0_ = (bitField0_ & ~0x00000040);
+        loggingConfig_ = null;
+        if (loggingConfigBuilder_ != null) {
+          loggingConfigBuilder_.dispose();
           loggingConfigBuilder_ = null;
         }
-
+        onChanged();
         return this;
       }
       /**
@@ -2349,7 +2310,7 @@ public final class ModelServerConfigOuterClass {
        * <code>.tensorflow.serving.LoggingConfig logging_config = 6;</code>
        */
       public tensorflow.serving.LoggingConfigOuterClass.LoggingConfig.Builder getLoggingConfigBuilder() {
-        
+        bitField0_ |= 0x00000040;
         onChanged();
         return getLoggingConfigFieldBuilder().getBuilder();
       }
@@ -2423,7 +2384,18 @@ public final class ModelServerConfigOuterClass {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new ModelConfig(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -2503,56 +2475,6 @@ public final class ModelServerConfigOuterClass {
     getUnknownFields() {
       return this.unknownFields;
     }
-    private ModelConfigList(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
-                config_ = new java.util.ArrayList<tensorflow.serving.ModelServerConfigOuterClass.ModelConfig>();
-                mutable_bitField0_ |= 0x00000001;
-              }
-              config_.add(
-                  input.readMessage(tensorflow.serving.ModelServerConfigOuterClass.ModelConfig.parser(), extensionRegistry));
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        if (((mutable_bitField0_ & 0x00000001) != 0)) {
-          config_ = java.util.Collections.unmodifiableList(config_);
-        }
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return tensorflow.serving.ModelServerConfigOuterClass.internal_static_tensorflow_serving_ModelConfigList_descriptor;
@@ -2567,6 +2489,7 @@ public final class ModelServerConfigOuterClass {
     }
 
     public static final int CONFIG_FIELD_NUMBER = 1;
+    @SuppressWarnings("serial")
     private java.util.List<tensorflow.serving.ModelServerConfigOuterClass.ModelConfig> config_;
     /**
      * <code>repeated .tensorflow.serving.ModelConfig config = 1;</code>
@@ -2623,7 +2546,7 @@ public final class ModelServerConfigOuterClass {
       for (int i = 0; i < config_.size(); i++) {
         output.writeMessage(1, config_.get(i));
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -2636,7 +2559,7 @@ public final class ModelServerConfigOuterClass {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(1, config_.get(i));
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -2653,7 +2576,7 @@ public final class ModelServerConfigOuterClass {
 
       if (!getConfigList()
           .equals(other.getConfigList())) return false;
-      if (!unknownFields.equals(other.unknownFields)) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
 
@@ -2668,7 +2591,7 @@ public final class ModelServerConfigOuterClass {
         hash = (37 * hash) + CONFIG_FIELD_NUMBER;
         hash = (53 * hash) + getConfigList().hashCode();
       }
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -2789,29 +2712,25 @@ public final class ModelServerConfigOuterClass {
 
       // Construct using tensorflow.serving.ModelServerConfigOuterClass.ModelConfigList.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-          getConfigFieldBuilder();
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         if (configBuilder_ == null) {
           config_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000001);
         } else {
+          config_ = null;
           configBuilder_.clear();
         }
+        bitField0_ = (bitField0_ & ~0x00000001);
         return this;
       }
 
@@ -2838,7 +2757,13 @@ public final class ModelServerConfigOuterClass {
       @java.lang.Override
       public tensorflow.serving.ModelServerConfigOuterClass.ModelConfigList buildPartial() {
         tensorflow.serving.ModelServerConfigOuterClass.ModelConfigList result = new tensorflow.serving.ModelServerConfigOuterClass.ModelConfigList(this);
-        int from_bitField0_ = bitField0_;
+        buildPartialRepeatedFields(result);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartialRepeatedFields(tensorflow.serving.ModelServerConfigOuterClass.ModelConfigList result) {
         if (configBuilder_ == null) {
           if (((bitField0_ & 0x00000001) != 0)) {
             config_ = java.util.Collections.unmodifiableList(config_);
@@ -2848,8 +2773,10 @@ public final class ModelServerConfigOuterClass {
         } else {
           result.config_ = configBuilder_.build();
         }
-        onBuilt();
-        return result;
+      }
+
+      private void buildPartial0(tensorflow.serving.ModelServerConfigOuterClass.ModelConfigList result) {
+        int from_bitField0_ = bitField0_;
       }
 
       @java.lang.Override
@@ -2922,7 +2849,7 @@ public final class ModelServerConfigOuterClass {
             }
           }
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
@@ -2937,17 +2864,43 @@ public final class ModelServerConfigOuterClass {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        tensorflow.serving.ModelServerConfigOuterClass.ModelConfigList parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                tensorflow.serving.ModelServerConfigOuterClass.ModelConfig m =
+                    input.readMessage(
+                        tensorflow.serving.ModelServerConfigOuterClass.ModelConfig.parser(),
+                        extensionRegistry);
+                if (configBuilder_ == null) {
+                  ensureConfigIsMutable();
+                  config_.add(m);
+                } else {
+                  configBuilder_.addMessage(m);
+                }
+                break;
+              } // case 10
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (tensorflow.serving.ModelServerConfigOuterClass.ModelConfigList) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
       private int bitField0_;
@@ -3224,7 +3177,18 @@ public final class ModelServerConfigOuterClass {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new ModelConfigList(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -3310,71 +3274,6 @@ public final class ModelServerConfigOuterClass {
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
-    }
-    private ModelServerConfig(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              tensorflow.serving.ModelServerConfigOuterClass.ModelConfigList.Builder subBuilder = null;
-              if (configCase_ == 1) {
-                subBuilder = ((tensorflow.serving.ModelServerConfigOuterClass.ModelConfigList) config_).toBuilder();
-              }
-              config_ =
-                  input.readMessage(tensorflow.serving.ModelServerConfigOuterClass.ModelConfigList.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom((tensorflow.serving.ModelServerConfigOuterClass.ModelConfigList) config_);
-                config_ = subBuilder.buildPartial();
-              }
-              configCase_ = 1;
-              break;
-            }
-            case 18: {
-              com.google.protobuf.Any.Builder subBuilder = null;
-              if (configCase_ == 2) {
-                subBuilder = ((com.google.protobuf.Any) config_).toBuilder();
-              }
-              config_ =
-                  input.readMessage(com.google.protobuf.Any.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom((com.google.protobuf.Any) config_);
-                config_ = subBuilder.buildPartial();
-              }
-              configCase_ = 2;
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
@@ -3512,7 +3411,7 @@ public final class ModelServerConfigOuterClass {
       if (configCase_ == 2) {
         output.writeMessage(2, (com.google.protobuf.Any) config_);
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -3529,7 +3428,7 @@ public final class ModelServerConfigOuterClass {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(2, (com.google.protobuf.Any) config_);
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -3557,7 +3456,7 @@ public final class ModelServerConfigOuterClass {
         case 0:
         default:
       }
-      if (!unknownFields.equals(other.unknownFields)) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
 
@@ -3580,7 +3479,7 @@ public final class ModelServerConfigOuterClass {
         case 0:
         default:
       }
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -3701,22 +3600,24 @@ public final class ModelServerConfigOuterClass {
 
       // Construct using tensorflow.serving.ModelServerConfigOuterClass.ModelServerConfig.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
+        if (modelConfigListBuilder_ != null) {
+          modelConfigListBuilder_.clear();
+        }
+        if (customModelConfigBuilder_ != null) {
+          customModelConfigBuilder_.clear();
+        }
         configCase_ = 0;
         config_ = null;
         return this;
@@ -3745,23 +3646,27 @@ public final class ModelServerConfigOuterClass {
       @java.lang.Override
       public tensorflow.serving.ModelServerConfigOuterClass.ModelServerConfig buildPartial() {
         tensorflow.serving.ModelServerConfigOuterClass.ModelServerConfig result = new tensorflow.serving.ModelServerConfigOuterClass.ModelServerConfig(this);
-        if (configCase_ == 1) {
-          if (modelConfigListBuilder_ == null) {
-            result.config_ = config_;
-          } else {
-            result.config_ = modelConfigListBuilder_.build();
-          }
-        }
-        if (configCase_ == 2) {
-          if (customModelConfigBuilder_ == null) {
-            result.config_ = config_;
-          } else {
-            result.config_ = customModelConfigBuilder_.build();
-          }
-        }
-        result.configCase_ = configCase_;
+        if (bitField0_ != 0) { buildPartial0(result); }
+        buildPartialOneofs(result);
         onBuilt();
         return result;
+      }
+
+      private void buildPartial0(tensorflow.serving.ModelServerConfigOuterClass.ModelServerConfig result) {
+        int from_bitField0_ = bitField0_;
+      }
+
+      private void buildPartialOneofs(tensorflow.serving.ModelServerConfigOuterClass.ModelServerConfig result) {
+        result.configCase_ = configCase_;
+        result.config_ = this.config_;
+        if (configCase_ == 1 &&
+            modelConfigListBuilder_ != null) {
+          result.config_ = modelConfigListBuilder_.build();
+        }
+        if (configCase_ == 2 &&
+            customModelConfigBuilder_ != null) {
+          result.config_ = customModelConfigBuilder_.build();
+        }
       }
 
       @java.lang.Override
@@ -3821,7 +3726,7 @@ public final class ModelServerConfigOuterClass {
             break;
           }
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
@@ -3836,17 +3741,44 @@ public final class ModelServerConfigOuterClass {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        tensorflow.serving.ModelServerConfigOuterClass.ModelServerConfig parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                input.readMessage(
+                    getModelConfigListFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                configCase_ = 1;
+                break;
+              } // case 10
+              case 18: {
+                input.readMessage(
+                    getCustomModelConfigFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                configCase_ = 2;
+                break;
+              } // case 18
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (tensorflow.serving.ModelServerConfigOuterClass.ModelServerConfig) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
       private int configCase_ = 0;
@@ -3864,6 +3796,7 @@ public final class ModelServerConfigOuterClass {
         return this;
       }
 
+      private int bitField0_;
 
       private com.google.protobuf.SingleFieldBuilderV3<
           tensorflow.serving.ModelServerConfigOuterClass.ModelConfigList, tensorflow.serving.ModelServerConfigOuterClass.ModelConfigList.Builder, tensorflow.serving.ModelServerConfigOuterClass.ModelConfigListOrBuilder> modelConfigListBuilder_;
@@ -3939,8 +3872,9 @@ public final class ModelServerConfigOuterClass {
         } else {
           if (configCase_ == 1) {
             modelConfigListBuilder_.mergeFrom(value);
+          } else {
+            modelConfigListBuilder_.setMessage(value);
           }
-          modelConfigListBuilder_.setMessage(value);
         }
         configCase_ = 1;
         return this;
@@ -4002,7 +3936,7 @@ public final class ModelServerConfigOuterClass {
           config_ = null;
         }
         configCase_ = 1;
-        onChanged();;
+        onChanged();
         return modelConfigListBuilder_;
       }
 
@@ -4080,8 +4014,9 @@ public final class ModelServerConfigOuterClass {
         } else {
           if (configCase_ == 2) {
             customModelConfigBuilder_.mergeFrom(value);
+          } else {
+            customModelConfigBuilder_.setMessage(value);
           }
-          customModelConfigBuilder_.setMessage(value);
         }
         configCase_ = 2;
         return this;
@@ -4143,7 +4078,7 @@ public final class ModelServerConfigOuterClass {
           config_ = null;
         }
         configCase_ = 2;
-        onChanged();;
+        onChanged();
         return customModelConfigBuilder_;
       }
       @java.lang.Override
@@ -4179,7 +4114,18 @@ public final class ModelServerConfigOuterClass {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new ModelServerConfig(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -4230,36 +4176,36 @@ public final class ModelServerConfigOuterClass {
     java.lang.String[] descriptorData = {
       "\n3tensorflow_serving/config/model_server" +
       "_config.proto\022\022tensorflow.serving\032\031googl" +
-      "e/protobuf/any.proto\032.tensorflow_serving" +
-      "/config/logging_config.proto\032Mtensorflow" +
-      "_serving/sources/storage_path/file_syste" +
-      "m_storage_path_source.proto\"\253\003\n\013ModelCon" +
-      "fig\022\014\n\004name\030\001 \001(\t\022\021\n\tbase_path\030\002 \001(\t\0225\n\n" +
-      "model_type\030\003 \001(\0162\035.tensorflow.serving.Mo" +
-      "delTypeB\002\030\001\022\026\n\016model_platform\030\004 \001(\t\022i\n\024m" +
-      "odel_version_policy\030\007 \001(\0132K.tensorflow.s" +
-      "erving.FileSystemStoragePathSourceConfig" +
-      ".ServableVersionPolicy\022J\n\016version_labels" +
-      "\030\010 \003(\01322.tensorflow.serving.ModelConfig." +
-      "VersionLabelsEntry\0229\n\016logging_config\030\006 \001" +
-      "(\0132!.tensorflow.serving.LoggingConfig\0324\n" +
-      "\022VersionLabelsEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005valu" +
-      "e\030\002 \001(\003:\0028\001J\004\010\005\020\006\"B\n\017ModelConfigList\022/\n\006" +
-      "config\030\001 \003(\0132\037.tensorflow.serving.ModelC" +
-      "onfig\"\224\001\n\021ModelServerConfig\022@\n\021model_con" +
-      "fig_list\030\001 \001(\0132#.tensorflow.serving.Mode" +
-      "lConfigListH\000\0223\n\023custom_model_config\030\002 \001" +
-      "(\0132\024.google.protobuf.AnyH\000B\010\n\006config*N\n\t" +
-      "ModelType\022\036\n\026MODEL_TYPE_UNSPECIFIED\020\000\032\002\010" +
-      "\001\022\022\n\nTENSORFLOW\020\001\032\002\010\001\022\r\n\005OTHER\020\002\032\002\010\001B\003\370\001" +
-      "\001b\006proto3"
+      "e/protobuf/any.proto\032?tensorflow_serving" +
+      "/config/file_system_storage_path_source." +
+      "proto\032.tensorflow_serving/config/logging" +
+      "_config.proto\"\261\003\n\013ModelConfig\022\014\n\004name\030\001 " +
+      "\001(\t\022\021\n\tbase_path\030\002 \001(\t\0225\n\nmodel_type\030\003 \001" +
+      "(\0162\035.tensorflow.serving.ModelTypeB\002\030\001\022\026\n" +
+      "\016model_platform\030\004 \001(\t\022i\n\024model_version_p" +
+      "olicy\030\007 \001(\0132K.tensorflow.serving.FileSys" +
+      "temStoragePathSourceConfig.ServableVersi" +
+      "onPolicy\022J\n\016version_labels\030\010 \003(\01322.tenso" +
+      "rflow.serving.ModelConfig.VersionLabelsE" +
+      "ntry\0229\n\016logging_config\030\006 \001(\0132!.tensorflo" +
+      "w.serving.LoggingConfig\0324\n\022VersionLabels" +
+      "Entry\022\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002 \001(\003:\0028\001J\004\010" +
+      "\005\020\006J\004\010\t\020\n\"B\n\017ModelConfigList\022/\n\006config\030\001" +
+      " \003(\0132\037.tensorflow.serving.ModelConfig\"\224\001" +
+      "\n\021ModelServerConfig\022@\n\021model_config_list" +
+      "\030\001 \001(\0132#.tensorflow.serving.ModelConfigL" +
+      "istH\000\0223\n\023custom_model_config\030\002 \001(\0132\024.goo" +
+      "gle.protobuf.AnyH\000B\010\n\006config*N\n\tModelTyp" +
+      "e\022\036\n\026MODEL_TYPE_UNSPECIFIED\020\000\032\002\010\001\022\022\n\nTEN" +
+      "SORFLOW\020\001\032\002\010\001\022\r\n\005OTHER\020\002\032\002\010\001B\003\370\001\001b\006proto" +
+      "3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
           com.google.protobuf.AnyProto.getDescriptor(),
-          tensorflow.serving.LoggingConfigOuterClass.getDescriptor(),
           tensorflow.serving.FileSystemStoragePathSource.getDescriptor(),
+          tensorflow.serving.LoggingConfigOuterClass.getDescriptor(),
         });
     internal_static_tensorflow_serving_ModelConfig_descriptor =
       getDescriptor().getMessageTypes().get(0);
@@ -4286,8 +4232,8 @@ public final class ModelServerConfigOuterClass {
         internal_static_tensorflow_serving_ModelServerConfig_descriptor,
         new java.lang.String[] { "ModelConfigList", "CustomModelConfig", "Config", });
     com.google.protobuf.AnyProto.getDescriptor();
-    tensorflow.serving.LoggingConfigOuterClass.getDescriptor();
     tensorflow.serving.FileSystemStoragePathSource.getDescriptor();
+    tensorflow.serving.LoggingConfigOuterClass.getDescriptor();
   }
 
   // @@protoc_insertion_point(outer_class_scope)

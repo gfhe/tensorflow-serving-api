@@ -99,10 +99,11 @@ public final class Predict {
      *
      * <code>map&lt;string, .tensorflow.TensorProto&gt; inputs = 2;</code>
      */
-
-    org.tensorflow.framework.TensorProto getInputsOrDefault(
+    /* nullable */
+org.tensorflow.framework.TensorProto getInputsOrDefault(
         java.lang.String key,
-        org.tensorflow.framework.TensorProto defaultValue);
+        /* nullable */
+org.tensorflow.framework.TensorProto defaultValue);
     /**
      * <pre>
      * Input tensors.
@@ -113,7 +114,6 @@ public final class Predict {
      *
      * <code>map&lt;string, .tensorflow.TensorProto&gt; inputs = 2;</code>
      */
-
     org.tensorflow.framework.TensorProto getInputsOrThrow(
         java.lang.String key);
 
@@ -216,82 +216,6 @@ public final class Predict {
     getUnknownFields() {
       return this.unknownFields;
     }
-    private PredictRequest(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              tensorflow.serving.Model.ModelSpec.Builder subBuilder = null;
-              if (modelSpec_ != null) {
-                subBuilder = modelSpec_.toBuilder();
-              }
-              modelSpec_ = input.readMessage(tensorflow.serving.Model.ModelSpec.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(modelSpec_);
-                modelSpec_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            case 18: {
-              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
-                inputs_ = com.google.protobuf.MapField.newMapField(
-                    InputsDefaultEntryHolder.defaultEntry);
-                mutable_bitField0_ |= 0x00000001;
-              }
-              com.google.protobuf.MapEntry<java.lang.String, org.tensorflow.framework.TensorProto>
-              inputs__ = input.readMessage(
-                  InputsDefaultEntryHolder.defaultEntry.getParserForType(), extensionRegistry);
-              inputs_.getMutableMap().put(
-                  inputs__.getKey(), inputs__.getValue());
-              break;
-            }
-            case 26: {
-              java.lang.String s = input.readStringRequireUtf8();
-              if (!((mutable_bitField0_ & 0x00000002) != 0)) {
-                outputFilter_ = new com.google.protobuf.LazyStringArrayList();
-                mutable_bitField0_ |= 0x00000002;
-              }
-              outputFilter_.add(s);
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        if (((mutable_bitField0_ & 0x00000002) != 0)) {
-          outputFilter_ = outputFilter_.getUnmodifiableView();
-        }
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return tensorflow.serving.Predict.internal_static_tensorflow_serving_PredictRequest_descriptor;
@@ -355,7 +279,7 @@ public final class Predict {
      */
     @java.lang.Override
     public tensorflow.serving.Model.ModelSpecOrBuilder getModelSpecOrBuilder() {
-      return getModelSpec();
+      return modelSpec_ == null ? tensorflow.serving.Model.ModelSpec.getDefaultInstance() : modelSpec_;
     }
 
     public static final int INPUTS_FIELD_NUMBER = 2;
@@ -370,6 +294,7 @@ public final class Predict {
                   com.google.protobuf.WireFormat.FieldType.MESSAGE,
                   org.tensorflow.framework.TensorProto.getDefaultInstance());
     }
+    @SuppressWarnings("serial")
     private com.google.protobuf.MapField<
         java.lang.String, org.tensorflow.framework.TensorProto> inputs_;
     private com.google.protobuf.MapField<java.lang.String, org.tensorflow.framework.TensorProto>
@@ -380,7 +305,6 @@ public final class Predict {
       }
       return inputs_;
     }
-
     public int getInputsCount() {
       return internalGetInputs().getMap().size();
     }
@@ -394,11 +318,10 @@ public final class Predict {
      *
      * <code>map&lt;string, .tensorflow.TensorProto&gt; inputs = 2;</code>
      */
-
     @java.lang.Override
     public boolean containsInputs(
         java.lang.String key) {
-      if (key == null) { throw new java.lang.NullPointerException(); }
+      if (key == null) { throw new NullPointerException("map key"); }
       return internalGetInputs().getMap().containsKey(key);
     }
     /**
@@ -420,7 +343,6 @@ public final class Predict {
      * <code>map&lt;string, .tensorflow.TensorProto&gt; inputs = 2;</code>
      */
     @java.lang.Override
-
     public java.util.Map<java.lang.String, org.tensorflow.framework.TensorProto> getInputsMap() {
       return internalGetInputs().getMap();
     }
@@ -435,11 +357,12 @@ public final class Predict {
      * <code>map&lt;string, .tensorflow.TensorProto&gt; inputs = 2;</code>
      */
     @java.lang.Override
-
-    public org.tensorflow.framework.TensorProto getInputsOrDefault(
+    public /* nullable */
+org.tensorflow.framework.TensorProto getInputsOrDefault(
         java.lang.String key,
-        org.tensorflow.framework.TensorProto defaultValue) {
-      if (key == null) { throw new java.lang.NullPointerException(); }
+        /* nullable */
+org.tensorflow.framework.TensorProto defaultValue) {
+      if (key == null) { throw new NullPointerException("map key"); }
       java.util.Map<java.lang.String, org.tensorflow.framework.TensorProto> map =
           internalGetInputs().getMap();
       return map.containsKey(key) ? map.get(key) : defaultValue;
@@ -455,10 +378,9 @@ public final class Predict {
      * <code>map&lt;string, .tensorflow.TensorProto&gt; inputs = 2;</code>
      */
     @java.lang.Override
-
     public org.tensorflow.framework.TensorProto getInputsOrThrow(
         java.lang.String key) {
-      if (key == null) { throw new java.lang.NullPointerException(); }
+      if (key == null) { throw new NullPointerException("map key"); }
       java.util.Map<java.lang.String, org.tensorflow.framework.TensorProto> map =
           internalGetInputs().getMap();
       if (!map.containsKey(key)) {
@@ -468,6 +390,7 @@ public final class Predict {
     }
 
     public static final int OUTPUT_FILTER_FIELD_NUMBER = 3;
+    @SuppressWarnings("serial")
     private com.google.protobuf.LazyStringList outputFilter_;
     /**
      * <pre>
@@ -568,7 +491,7 @@ public final class Predict {
       for (int i = 0; i < outputFilter_.size(); i++) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 3, outputFilter_.getRaw(i));
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -599,7 +522,7 @@ public final class Predict {
         size += dataSize;
         size += 1 * getOutputFilterList().size();
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -623,7 +546,7 @@ public final class Predict {
           other.internalGetInputs())) return false;
       if (!getOutputFilterList()
           .equals(other.getOutputFilterList())) return false;
-      if (!unknownFields.equals(other.unknownFields)) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
 
@@ -646,7 +569,7 @@ public final class Predict {
         hash = (37 * hash) + OUTPUT_FILTER_FIELD_NUMBER;
         hash = (53 * hash) + getOutputFilterList().hashCode();
       }
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -791,31 +714,26 @@ public final class Predict {
 
       // Construct using tensorflow.serving.Predict.PredictRequest.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        if (modelSpecBuilder_ == null) {
-          modelSpec_ = null;
-        } else {
-          modelSpec_ = null;
+        bitField0_ = 0;
+        modelSpec_ = null;
+        if (modelSpecBuilder_ != null) {
+          modelSpecBuilder_.dispose();
           modelSpecBuilder_ = null;
         }
         internalGetMutableInputs().clear();
         outputFilter_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000002);
+        bitField0_ = (bitField0_ & ~0x00000004);
         return this;
       }
 
@@ -842,21 +760,31 @@ public final class Predict {
       @java.lang.Override
       public tensorflow.serving.Predict.PredictRequest buildPartial() {
         tensorflow.serving.Predict.PredictRequest result = new tensorflow.serving.Predict.PredictRequest(this);
-        int from_bitField0_ = bitField0_;
-        if (modelSpecBuilder_ == null) {
-          result.modelSpec_ = modelSpec_;
-        } else {
-          result.modelSpec_ = modelSpecBuilder_.build();
-        }
-        result.inputs_ = internalGetInputs();
-        result.inputs_.makeImmutable();
-        if (((bitField0_ & 0x00000002) != 0)) {
-          outputFilter_ = outputFilter_.getUnmodifiableView();
-          bitField0_ = (bitField0_ & ~0x00000002);
-        }
-        result.outputFilter_ = outputFilter_;
+        buildPartialRepeatedFields(result);
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
+      }
+
+      private void buildPartialRepeatedFields(tensorflow.serving.Predict.PredictRequest result) {
+        if (((bitField0_ & 0x00000004) != 0)) {
+          outputFilter_ = outputFilter_.getUnmodifiableView();
+          bitField0_ = (bitField0_ & ~0x00000004);
+        }
+        result.outputFilter_ = outputFilter_;
+      }
+
+      private void buildPartial0(tensorflow.serving.Predict.PredictRequest result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.modelSpec_ = modelSpecBuilder_ == null
+              ? modelSpec_
+              : modelSpecBuilder_.build();
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.inputs_ = internalGetInputs();
+          result.inputs_.makeImmutable();
+        }
       }
 
       @java.lang.Override
@@ -908,17 +836,18 @@ public final class Predict {
         }
         internalGetMutableInputs().mergeFrom(
             other.internalGetInputs());
+        bitField0_ |= 0x00000002;
         if (!other.outputFilter_.isEmpty()) {
           if (outputFilter_.isEmpty()) {
             outputFilter_ = other.outputFilter_;
-            bitField0_ = (bitField0_ & ~0x00000002);
+            bitField0_ = (bitField0_ & ~0x00000004);
           } else {
             ensureOutputFilterIsMutable();
             outputFilter_.addAll(other.outputFilter_);
           }
           onChanged();
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
@@ -933,17 +862,52 @@ public final class Predict {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        tensorflow.serving.Predict.PredictRequest parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                input.readMessage(
+                    getModelSpecFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 10
+              case 18: {
+                com.google.protobuf.MapEntry<java.lang.String, org.tensorflow.framework.TensorProto>
+                inputs__ = input.readMessage(
+                    InputsDefaultEntryHolder.defaultEntry.getParserForType(), extensionRegistry);
+                internalGetMutableInputs().getMutableMap().put(
+                    inputs__.getKey(), inputs__.getValue());
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 18
+              case 26: {
+                java.lang.String s = input.readStringRequireUtf8();
+                ensureOutputFilterIsMutable();
+                outputFilter_.add(s);
+                break;
+              } // case 26
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (tensorflow.serving.Predict.PredictRequest) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
       private int bitField0_;
@@ -961,7 +925,7 @@ public final class Predict {
        * @return Whether the modelSpec field is set.
        */
       public boolean hasModelSpec() {
-        return modelSpecBuilder_ != null || modelSpec_ != null;
+        return ((bitField0_ & 0x00000001) != 0);
       }
       /**
        * <pre>
@@ -993,11 +957,11 @@ public final class Predict {
             throw new NullPointerException();
           }
           modelSpec_ = value;
-          onChanged();
         } else {
           modelSpecBuilder_.setMessage(value);
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -1012,11 +976,11 @@ public final class Predict {
           tensorflow.serving.Model.ModelSpec.Builder builderForValue) {
         if (modelSpecBuilder_ == null) {
           modelSpec_ = builderForValue.build();
-          onChanged();
         } else {
           modelSpecBuilder_.setMessage(builderForValue.build());
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -1029,17 +993,18 @@ public final class Predict {
        */
       public Builder mergeModelSpec(tensorflow.serving.Model.ModelSpec value) {
         if (modelSpecBuilder_ == null) {
-          if (modelSpec_ != null) {
-            modelSpec_ =
-              tensorflow.serving.Model.ModelSpec.newBuilder(modelSpec_).mergeFrom(value).buildPartial();
+          if (((bitField0_ & 0x00000001) != 0) &&
+            modelSpec_ != null &&
+            modelSpec_ != tensorflow.serving.Model.ModelSpec.getDefaultInstance()) {
+            getModelSpecBuilder().mergeFrom(value);
           } else {
             modelSpec_ = value;
           }
-          onChanged();
         } else {
           modelSpecBuilder_.mergeFrom(value);
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -1051,14 +1016,13 @@ public final class Predict {
        * <code>.tensorflow.serving.ModelSpec model_spec = 1;</code>
        */
       public Builder clearModelSpec() {
-        if (modelSpecBuilder_ == null) {
-          modelSpec_ = null;
-          onChanged();
-        } else {
-          modelSpec_ = null;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        modelSpec_ = null;
+        if (modelSpecBuilder_ != null) {
+          modelSpecBuilder_.dispose();
           modelSpecBuilder_ = null;
         }
-
+        onChanged();
         return this;
       }
       /**
@@ -1070,7 +1034,7 @@ public final class Predict {
        * <code>.tensorflow.serving.ModelSpec model_spec = 1;</code>
        */
       public tensorflow.serving.Model.ModelSpec.Builder getModelSpecBuilder() {
-        
+        bitField0_ |= 0x00000001;
         onChanged();
         return getModelSpecFieldBuilder().getBuilder();
       }
@@ -1115,7 +1079,7 @@ public final class Predict {
       private com.google.protobuf.MapField<
           java.lang.String, org.tensorflow.framework.TensorProto> inputs_;
       private com.google.protobuf.MapField<java.lang.String, org.tensorflow.framework.TensorProto>
-      internalGetInputs() {
+          internalGetInputs() {
         if (inputs_ == null) {
           return com.google.protobuf.MapField.emptyMapField(
               InputsDefaultEntryHolder.defaultEntry);
@@ -1123,8 +1087,7 @@ public final class Predict {
         return inputs_;
       }
       private com.google.protobuf.MapField<java.lang.String, org.tensorflow.framework.TensorProto>
-      internalGetMutableInputs() {
-        onChanged();;
+          internalGetMutableInputs() {
         if (inputs_ == null) {
           inputs_ = com.google.protobuf.MapField.newMapField(
               InputsDefaultEntryHolder.defaultEntry);
@@ -1132,9 +1095,10 @@ public final class Predict {
         if (!inputs_.isMutable()) {
           inputs_ = inputs_.copy();
         }
+        bitField0_ |= 0x00000002;
+        onChanged();
         return inputs_;
       }
-
       public int getInputsCount() {
         return internalGetInputs().getMap().size();
       }
@@ -1148,11 +1112,10 @@ public final class Predict {
        *
        * <code>map&lt;string, .tensorflow.TensorProto&gt; inputs = 2;</code>
        */
-
       @java.lang.Override
       public boolean containsInputs(
           java.lang.String key) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
+        if (key == null) { throw new NullPointerException("map key"); }
         return internalGetInputs().getMap().containsKey(key);
       }
       /**
@@ -1174,7 +1137,6 @@ public final class Predict {
        * <code>map&lt;string, .tensorflow.TensorProto&gt; inputs = 2;</code>
        */
       @java.lang.Override
-
       public java.util.Map<java.lang.String, org.tensorflow.framework.TensorProto> getInputsMap() {
         return internalGetInputs().getMap();
       }
@@ -1189,11 +1151,12 @@ public final class Predict {
        * <code>map&lt;string, .tensorflow.TensorProto&gt; inputs = 2;</code>
        */
       @java.lang.Override
-
-      public org.tensorflow.framework.TensorProto getInputsOrDefault(
+      public /* nullable */
+org.tensorflow.framework.TensorProto getInputsOrDefault(
           java.lang.String key,
-          org.tensorflow.framework.TensorProto defaultValue) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
+          /* nullable */
+org.tensorflow.framework.TensorProto defaultValue) {
+        if (key == null) { throw new NullPointerException("map key"); }
         java.util.Map<java.lang.String, org.tensorflow.framework.TensorProto> map =
             internalGetInputs().getMap();
         return map.containsKey(key) ? map.get(key) : defaultValue;
@@ -1209,10 +1172,9 @@ public final class Predict {
        * <code>map&lt;string, .tensorflow.TensorProto&gt; inputs = 2;</code>
        */
       @java.lang.Override
-
       public org.tensorflow.framework.TensorProto getInputsOrThrow(
           java.lang.String key) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
+        if (key == null) { throw new NullPointerException("map key"); }
         java.util.Map<java.lang.String, org.tensorflow.framework.TensorProto> map =
             internalGetInputs().getMap();
         if (!map.containsKey(key)) {
@@ -1220,8 +1182,8 @@ public final class Predict {
         }
         return map.get(key);
       }
-
       public Builder clearInputs() {
+        bitField0_ = (bitField0_ & ~0x00000002);
         internalGetMutableInputs().getMutableMap()
             .clear();
         return this;
@@ -1236,10 +1198,9 @@ public final class Predict {
        *
        * <code>map&lt;string, .tensorflow.TensorProto&gt; inputs = 2;</code>
        */
-
       public Builder removeInputs(
           java.lang.String key) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
+        if (key == null) { throw new NullPointerException("map key"); }
         internalGetMutableInputs().getMutableMap()
             .remove(key);
         return this;
@@ -1249,7 +1210,8 @@ public final class Predict {
        */
       @java.lang.Deprecated
       public java.util.Map<java.lang.String, org.tensorflow.framework.TensorProto>
-      getMutableInputs() {
+          getMutableInputs() {
+        bitField0_ |= 0x00000002;
         return internalGetMutableInputs().getMutableMap();
       }
       /**
@@ -1265,10 +1227,11 @@ public final class Predict {
       public Builder putInputs(
           java.lang.String key,
           org.tensorflow.framework.TensorProto value) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
-        if (value == null) { throw new java.lang.NullPointerException(); }
+        if (key == null) { throw new NullPointerException("map key"); }
+        if (value == null) { throw new NullPointerException("map value"); }
         internalGetMutableInputs().getMutableMap()
             .put(key, value);
+        bitField0_ |= 0x00000002;
         return this;
       }
       /**
@@ -1281,19 +1244,19 @@ public final class Predict {
        *
        * <code>map&lt;string, .tensorflow.TensorProto&gt; inputs = 2;</code>
        */
-
       public Builder putAllInputs(
           java.util.Map<java.lang.String, org.tensorflow.framework.TensorProto> values) {
         internalGetMutableInputs().getMutableMap()
             .putAll(values);
+        bitField0_ |= 0x00000002;
         return this;
       }
 
       private com.google.protobuf.LazyStringList outputFilter_ = com.google.protobuf.LazyStringArrayList.EMPTY;
       private void ensureOutputFilterIsMutable() {
-        if (!((bitField0_ & 0x00000002) != 0)) {
+        if (!((bitField0_ & 0x00000004) != 0)) {
           outputFilter_ = new com.google.protobuf.LazyStringArrayList(outputFilter_);
-          bitField0_ |= 0x00000002;
+          bitField0_ |= 0x00000004;
          }
       }
       /**
@@ -1386,10 +1349,8 @@ public final class Predict {
        */
       public Builder setOutputFilter(
           int index, java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureOutputFilterIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureOutputFilterIsMutable();
         outputFilter_.set(index, value);
         onChanged();
         return this;
@@ -1411,10 +1372,8 @@ public final class Predict {
        */
       public Builder addOutputFilter(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureOutputFilterIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureOutputFilterIsMutable();
         outputFilter_.add(value);
         onChanged();
         return this;
@@ -1458,7 +1417,7 @@ public final class Predict {
        */
       public Builder clearOutputFilter() {
         outputFilter_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000002);
+        bitField0_ = (bitField0_ & ~0x00000004);
         onChanged();
         return this;
       }
@@ -1479,10 +1438,8 @@ public final class Predict {
        */
       public Builder addOutputFilterBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         ensureOutputFilterIsMutable();
         outputFilter_.add(value);
         onChanged();
@@ -1521,7 +1478,18 @@ public final class Predict {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new PredictRequest(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -1611,10 +1579,11 @@ public final class Predict {
      *
      * <code>map&lt;string, .tensorflow.TensorProto&gt; outputs = 1;</code>
      */
-
-    org.tensorflow.framework.TensorProto getOutputsOrDefault(
+    /* nullable */
+org.tensorflow.framework.TensorProto getOutputsOrDefault(
         java.lang.String key,
-        org.tensorflow.framework.TensorProto defaultValue);
+        /* nullable */
+org.tensorflow.framework.TensorProto defaultValue);
     /**
      * <pre>
      * Output tensors.
@@ -1622,7 +1591,6 @@ public final class Predict {
      *
      * <code>map&lt;string, .tensorflow.TensorProto&gt; outputs = 1;</code>
      */
-
     org.tensorflow.framework.TensorProto getOutputsOrThrow(
         java.lang.String key);
   }
@@ -1656,70 +1624,6 @@ public final class Predict {
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
-    }
-    private PredictResponse(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
-                outputs_ = com.google.protobuf.MapField.newMapField(
-                    OutputsDefaultEntryHolder.defaultEntry);
-                mutable_bitField0_ |= 0x00000001;
-              }
-              com.google.protobuf.MapEntry<java.lang.String, org.tensorflow.framework.TensorProto>
-              outputs__ = input.readMessage(
-                  OutputsDefaultEntryHolder.defaultEntry.getParserForType(), extensionRegistry);
-              outputs_.getMutableMap().put(
-                  outputs__.getKey(), outputs__.getValue());
-              break;
-            }
-            case 18: {
-              tensorflow.serving.Model.ModelSpec.Builder subBuilder = null;
-              if (modelSpec_ != null) {
-                subBuilder = modelSpec_.toBuilder();
-              }
-              modelSpec_ = input.readMessage(tensorflow.serving.Model.ModelSpec.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(modelSpec_);
-                modelSpec_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
@@ -1781,7 +1685,7 @@ public final class Predict {
      */
     @java.lang.Override
     public tensorflow.serving.Model.ModelSpecOrBuilder getModelSpecOrBuilder() {
-      return getModelSpec();
+      return modelSpec_ == null ? tensorflow.serving.Model.ModelSpec.getDefaultInstance() : modelSpec_;
     }
 
     public static final int OUTPUTS_FIELD_NUMBER = 1;
@@ -1796,6 +1700,7 @@ public final class Predict {
                   com.google.protobuf.WireFormat.FieldType.MESSAGE,
                   org.tensorflow.framework.TensorProto.getDefaultInstance());
     }
+    @SuppressWarnings("serial")
     private com.google.protobuf.MapField<
         java.lang.String, org.tensorflow.framework.TensorProto> outputs_;
     private com.google.protobuf.MapField<java.lang.String, org.tensorflow.framework.TensorProto>
@@ -1806,7 +1711,6 @@ public final class Predict {
       }
       return outputs_;
     }
-
     public int getOutputsCount() {
       return internalGetOutputs().getMap().size();
     }
@@ -1817,11 +1721,10 @@ public final class Predict {
      *
      * <code>map&lt;string, .tensorflow.TensorProto&gt; outputs = 1;</code>
      */
-
     @java.lang.Override
     public boolean containsOutputs(
         java.lang.String key) {
-      if (key == null) { throw new java.lang.NullPointerException(); }
+      if (key == null) { throw new NullPointerException("map key"); }
       return internalGetOutputs().getMap().containsKey(key);
     }
     /**
@@ -1840,7 +1743,6 @@ public final class Predict {
      * <code>map&lt;string, .tensorflow.TensorProto&gt; outputs = 1;</code>
      */
     @java.lang.Override
-
     public java.util.Map<java.lang.String, org.tensorflow.framework.TensorProto> getOutputsMap() {
       return internalGetOutputs().getMap();
     }
@@ -1852,11 +1754,12 @@ public final class Predict {
      * <code>map&lt;string, .tensorflow.TensorProto&gt; outputs = 1;</code>
      */
     @java.lang.Override
-
-    public org.tensorflow.framework.TensorProto getOutputsOrDefault(
+    public /* nullable */
+org.tensorflow.framework.TensorProto getOutputsOrDefault(
         java.lang.String key,
-        org.tensorflow.framework.TensorProto defaultValue) {
-      if (key == null) { throw new java.lang.NullPointerException(); }
+        /* nullable */
+org.tensorflow.framework.TensorProto defaultValue) {
+      if (key == null) { throw new NullPointerException("map key"); }
       java.util.Map<java.lang.String, org.tensorflow.framework.TensorProto> map =
           internalGetOutputs().getMap();
       return map.containsKey(key) ? map.get(key) : defaultValue;
@@ -1869,10 +1772,9 @@ public final class Predict {
      * <code>map&lt;string, .tensorflow.TensorProto&gt; outputs = 1;</code>
      */
     @java.lang.Override
-
     public org.tensorflow.framework.TensorProto getOutputsOrThrow(
         java.lang.String key) {
-      if (key == null) { throw new java.lang.NullPointerException(); }
+      if (key == null) { throw new NullPointerException("map key"); }
       java.util.Map<java.lang.String, org.tensorflow.framework.TensorProto> map =
           internalGetOutputs().getMap();
       if (!map.containsKey(key)) {
@@ -1904,7 +1806,7 @@ public final class Predict {
       if (modelSpec_ != null) {
         output.writeMessage(2, getModelSpec());
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -1927,7 +1829,7 @@ public final class Predict {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(2, getModelSpec());
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -1949,7 +1851,7 @@ public final class Predict {
       }
       if (!internalGetOutputs().equals(
           other.internalGetOutputs())) return false;
-      if (!unknownFields.equals(other.unknownFields)) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
 
@@ -1968,7 +1870,7 @@ public final class Predict {
         hash = (37 * hash) + OUTPUTS_FIELD_NUMBER;
         hash = (53 * hash) + internalGetOutputs().hashCode();
       }
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -2111,26 +2013,21 @@ public final class Predict {
 
       // Construct using tensorflow.serving.Predict.PredictResponse.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        if (modelSpecBuilder_ == null) {
-          modelSpec_ = null;
-        } else {
-          modelSpec_ = null;
+        bitField0_ = 0;
+        modelSpec_ = null;
+        if (modelSpecBuilder_ != null) {
+          modelSpecBuilder_.dispose();
           modelSpecBuilder_ = null;
         }
         internalGetMutableOutputs().clear();
@@ -2160,16 +2057,22 @@ public final class Predict {
       @java.lang.Override
       public tensorflow.serving.Predict.PredictResponse buildPartial() {
         tensorflow.serving.Predict.PredictResponse result = new tensorflow.serving.Predict.PredictResponse(this);
-        int from_bitField0_ = bitField0_;
-        if (modelSpecBuilder_ == null) {
-          result.modelSpec_ = modelSpec_;
-        } else {
-          result.modelSpec_ = modelSpecBuilder_.build();
-        }
-        result.outputs_ = internalGetOutputs();
-        result.outputs_.makeImmutable();
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
+      }
+
+      private void buildPartial0(tensorflow.serving.Predict.PredictResponse result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.modelSpec_ = modelSpecBuilder_ == null
+              ? modelSpec_
+              : modelSpecBuilder_.build();
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.outputs_ = internalGetOutputs();
+          result.outputs_.makeImmutable();
+        }
       }
 
       @java.lang.Override
@@ -2221,7 +2124,8 @@ public final class Predict {
         }
         internalGetMutableOutputs().mergeFrom(
             other.internalGetOutputs());
-        this.mergeUnknownFields(other.unknownFields);
+        bitField0_ |= 0x00000002;
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
@@ -2236,17 +2140,46 @@ public final class Predict {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        tensorflow.serving.Predict.PredictResponse parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                com.google.protobuf.MapEntry<java.lang.String, org.tensorflow.framework.TensorProto>
+                outputs__ = input.readMessage(
+                    OutputsDefaultEntryHolder.defaultEntry.getParserForType(), extensionRegistry);
+                internalGetMutableOutputs().getMutableMap().put(
+                    outputs__.getKey(), outputs__.getValue());
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 10
+              case 18: {
+                input.readMessage(
+                    getModelSpecFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 18
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (tensorflow.serving.Predict.PredictResponse) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
       private int bitField0_;
@@ -2263,7 +2196,7 @@ public final class Predict {
        * @return Whether the modelSpec field is set.
        */
       public boolean hasModelSpec() {
-        return modelSpecBuilder_ != null || modelSpec_ != null;
+        return ((bitField0_ & 0x00000001) != 0);
       }
       /**
        * <pre>
@@ -2293,11 +2226,11 @@ public final class Predict {
             throw new NullPointerException();
           }
           modelSpec_ = value;
-          onChanged();
         } else {
           modelSpecBuilder_.setMessage(value);
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -2311,11 +2244,11 @@ public final class Predict {
           tensorflow.serving.Model.ModelSpec.Builder builderForValue) {
         if (modelSpecBuilder_ == null) {
           modelSpec_ = builderForValue.build();
-          onChanged();
         } else {
           modelSpecBuilder_.setMessage(builderForValue.build());
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -2327,17 +2260,18 @@ public final class Predict {
        */
       public Builder mergeModelSpec(tensorflow.serving.Model.ModelSpec value) {
         if (modelSpecBuilder_ == null) {
-          if (modelSpec_ != null) {
-            modelSpec_ =
-              tensorflow.serving.Model.ModelSpec.newBuilder(modelSpec_).mergeFrom(value).buildPartial();
+          if (((bitField0_ & 0x00000001) != 0) &&
+            modelSpec_ != null &&
+            modelSpec_ != tensorflow.serving.Model.ModelSpec.getDefaultInstance()) {
+            getModelSpecBuilder().mergeFrom(value);
           } else {
             modelSpec_ = value;
           }
-          onChanged();
         } else {
           modelSpecBuilder_.mergeFrom(value);
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -2348,14 +2282,13 @@ public final class Predict {
        * <code>.tensorflow.serving.ModelSpec model_spec = 2;</code>
        */
       public Builder clearModelSpec() {
-        if (modelSpecBuilder_ == null) {
-          modelSpec_ = null;
-          onChanged();
-        } else {
-          modelSpec_ = null;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        modelSpec_ = null;
+        if (modelSpecBuilder_ != null) {
+          modelSpecBuilder_.dispose();
           modelSpecBuilder_ = null;
         }
-
+        onChanged();
         return this;
       }
       /**
@@ -2366,7 +2299,7 @@ public final class Predict {
        * <code>.tensorflow.serving.ModelSpec model_spec = 2;</code>
        */
       public tensorflow.serving.Model.ModelSpec.Builder getModelSpecBuilder() {
-        
+        bitField0_ |= 0x00000001;
         onChanged();
         return getModelSpecFieldBuilder().getBuilder();
       }
@@ -2409,7 +2342,7 @@ public final class Predict {
       private com.google.protobuf.MapField<
           java.lang.String, org.tensorflow.framework.TensorProto> outputs_;
       private com.google.protobuf.MapField<java.lang.String, org.tensorflow.framework.TensorProto>
-      internalGetOutputs() {
+          internalGetOutputs() {
         if (outputs_ == null) {
           return com.google.protobuf.MapField.emptyMapField(
               OutputsDefaultEntryHolder.defaultEntry);
@@ -2417,8 +2350,7 @@ public final class Predict {
         return outputs_;
       }
       private com.google.protobuf.MapField<java.lang.String, org.tensorflow.framework.TensorProto>
-      internalGetMutableOutputs() {
-        onChanged();;
+          internalGetMutableOutputs() {
         if (outputs_ == null) {
           outputs_ = com.google.protobuf.MapField.newMapField(
               OutputsDefaultEntryHolder.defaultEntry);
@@ -2426,9 +2358,10 @@ public final class Predict {
         if (!outputs_.isMutable()) {
           outputs_ = outputs_.copy();
         }
+        bitField0_ |= 0x00000002;
+        onChanged();
         return outputs_;
       }
-
       public int getOutputsCount() {
         return internalGetOutputs().getMap().size();
       }
@@ -2439,11 +2372,10 @@ public final class Predict {
        *
        * <code>map&lt;string, .tensorflow.TensorProto&gt; outputs = 1;</code>
        */
-
       @java.lang.Override
       public boolean containsOutputs(
           java.lang.String key) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
+        if (key == null) { throw new NullPointerException("map key"); }
         return internalGetOutputs().getMap().containsKey(key);
       }
       /**
@@ -2462,7 +2394,6 @@ public final class Predict {
        * <code>map&lt;string, .tensorflow.TensorProto&gt; outputs = 1;</code>
        */
       @java.lang.Override
-
       public java.util.Map<java.lang.String, org.tensorflow.framework.TensorProto> getOutputsMap() {
         return internalGetOutputs().getMap();
       }
@@ -2474,11 +2405,12 @@ public final class Predict {
        * <code>map&lt;string, .tensorflow.TensorProto&gt; outputs = 1;</code>
        */
       @java.lang.Override
-
-      public org.tensorflow.framework.TensorProto getOutputsOrDefault(
+      public /* nullable */
+org.tensorflow.framework.TensorProto getOutputsOrDefault(
           java.lang.String key,
-          org.tensorflow.framework.TensorProto defaultValue) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
+          /* nullable */
+org.tensorflow.framework.TensorProto defaultValue) {
+        if (key == null) { throw new NullPointerException("map key"); }
         java.util.Map<java.lang.String, org.tensorflow.framework.TensorProto> map =
             internalGetOutputs().getMap();
         return map.containsKey(key) ? map.get(key) : defaultValue;
@@ -2491,10 +2423,9 @@ public final class Predict {
        * <code>map&lt;string, .tensorflow.TensorProto&gt; outputs = 1;</code>
        */
       @java.lang.Override
-
       public org.tensorflow.framework.TensorProto getOutputsOrThrow(
           java.lang.String key) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
+        if (key == null) { throw new NullPointerException("map key"); }
         java.util.Map<java.lang.String, org.tensorflow.framework.TensorProto> map =
             internalGetOutputs().getMap();
         if (!map.containsKey(key)) {
@@ -2502,8 +2433,8 @@ public final class Predict {
         }
         return map.get(key);
       }
-
       public Builder clearOutputs() {
+        bitField0_ = (bitField0_ & ~0x00000002);
         internalGetMutableOutputs().getMutableMap()
             .clear();
         return this;
@@ -2515,10 +2446,9 @@ public final class Predict {
        *
        * <code>map&lt;string, .tensorflow.TensorProto&gt; outputs = 1;</code>
        */
-
       public Builder removeOutputs(
           java.lang.String key) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
+        if (key == null) { throw new NullPointerException("map key"); }
         internalGetMutableOutputs().getMutableMap()
             .remove(key);
         return this;
@@ -2528,7 +2458,8 @@ public final class Predict {
        */
       @java.lang.Deprecated
       public java.util.Map<java.lang.String, org.tensorflow.framework.TensorProto>
-      getMutableOutputs() {
+          getMutableOutputs() {
+        bitField0_ |= 0x00000002;
         return internalGetMutableOutputs().getMutableMap();
       }
       /**
@@ -2541,10 +2472,11 @@ public final class Predict {
       public Builder putOutputs(
           java.lang.String key,
           org.tensorflow.framework.TensorProto value) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
-        if (value == null) { throw new java.lang.NullPointerException(); }
+        if (key == null) { throw new NullPointerException("map key"); }
+        if (value == null) { throw new NullPointerException("map value"); }
         internalGetMutableOutputs().getMutableMap()
             .put(key, value);
+        bitField0_ |= 0x00000002;
         return this;
       }
       /**
@@ -2554,11 +2486,11 @@ public final class Predict {
        *
        * <code>map&lt;string, .tensorflow.TensorProto&gt; outputs = 1;</code>
        */
-
       public Builder putAllOutputs(
           java.util.Map<java.lang.String, org.tensorflow.framework.TensorProto> values) {
         internalGetMutableOutputs().getMutableMap()
             .putAll(values);
+        bitField0_ |= 0x00000002;
         return this;
       }
       @java.lang.Override
@@ -2594,7 +2526,18 @@ public final class Predict {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new PredictResponse(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 

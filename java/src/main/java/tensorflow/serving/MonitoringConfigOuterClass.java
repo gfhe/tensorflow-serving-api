@@ -82,54 +82,6 @@ public final class MonitoringConfigOuterClass {
     getUnknownFields() {
       return this.unknownFields;
     }
-    private PrometheusConfig(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 8: {
-
-              enable_ = input.readBool();
-              break;
-            }
-            case 18: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              path_ = s;
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return tensorflow.serving.MonitoringConfigOuterClass.internal_static_tensorflow_serving_PrometheusConfig_descriptor;
@@ -144,7 +96,7 @@ public final class MonitoringConfigOuterClass {
     }
 
     public static final int ENABLE_FIELD_NUMBER = 1;
-    private boolean enable_;
+    private boolean enable_ = false;
     /**
      * <pre>
      * Whether to expose Prometheus metrics.
@@ -159,7 +111,8 @@ public final class MonitoringConfigOuterClass {
     }
 
     public static final int PATH_FIELD_NUMBER = 2;
-    private volatile java.lang.Object path_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object path_ = "";
     /**
      * <pre>
      * The endpoint to expose Prometheus metrics.
@@ -223,10 +176,10 @@ public final class MonitoringConfigOuterClass {
       if (enable_ != false) {
         output.writeBool(1, enable_);
       }
-      if (!getPathBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(path_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, path_);
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -239,10 +192,10 @@ public final class MonitoringConfigOuterClass {
         size += com.google.protobuf.CodedOutputStream
           .computeBoolSize(1, enable_);
       }
-      if (!getPathBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(path_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, path_);
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -261,7 +214,7 @@ public final class MonitoringConfigOuterClass {
           != other.getEnable()) return false;
       if (!getPath()
           .equals(other.getPath())) return false;
-      if (!unknownFields.equals(other.unknownFields)) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
 
@@ -277,7 +230,7 @@ public final class MonitoringConfigOuterClass {
           getEnable());
       hash = (37 * hash) + PATH_FIELD_NUMBER;
       hash = (53 * hash) + getPath().hashCode();
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -398,26 +351,20 @@ public final class MonitoringConfigOuterClass {
 
       // Construct using tensorflow.serving.MonitoringConfigOuterClass.PrometheusConfig.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         enable_ = false;
-
         path_ = "";
-
         return this;
       }
 
@@ -444,10 +391,19 @@ public final class MonitoringConfigOuterClass {
       @java.lang.Override
       public tensorflow.serving.MonitoringConfigOuterClass.PrometheusConfig buildPartial() {
         tensorflow.serving.MonitoringConfigOuterClass.PrometheusConfig result = new tensorflow.serving.MonitoringConfigOuterClass.PrometheusConfig(this);
-        result.enable_ = enable_;
-        result.path_ = path_;
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
+      }
+
+      private void buildPartial0(tensorflow.serving.MonitoringConfigOuterClass.PrometheusConfig result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.enable_ = enable_;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.path_ = path_;
+        }
       }
 
       @java.lang.Override
@@ -499,9 +455,10 @@ public final class MonitoringConfigOuterClass {
         }
         if (!other.getPath().isEmpty()) {
           path_ = other.path_;
+          bitField0_ |= 0x00000002;
           onChanged();
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
@@ -516,19 +473,43 @@ public final class MonitoringConfigOuterClass {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        tensorflow.serving.MonitoringConfigOuterClass.PrometheusConfig parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 8: {
+                enable_ = input.readBool();
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 8
+              case 18: {
+                path_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 18
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (tensorflow.serving.MonitoringConfigOuterClass.PrometheusConfig) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
+      private int bitField0_;
 
       private boolean enable_ ;
       /**
@@ -555,6 +536,7 @@ public final class MonitoringConfigOuterClass {
       public Builder setEnable(boolean value) {
         
         enable_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -567,7 +549,7 @@ public final class MonitoringConfigOuterClass {
        * @return This builder for chaining.
        */
       public Builder clearEnable() {
-        
+        bitField0_ = (bitField0_ & ~0x00000001);
         enable_ = false;
         onChanged();
         return this;
@@ -629,11 +611,9 @@ public final class MonitoringConfigOuterClass {
        */
       public Builder setPath(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         path_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -647,8 +627,8 @@ public final class MonitoringConfigOuterClass {
        * @return This builder for chaining.
        */
       public Builder clearPath() {
-        
         path_ = getDefaultInstance().getPath();
+        bitField0_ = (bitField0_ & ~0x00000002);
         onChanged();
         return this;
       }
@@ -664,12 +644,10 @@ public final class MonitoringConfigOuterClass {
        */
       public Builder setPathBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         path_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -706,7 +684,18 @@ public final class MonitoringConfigOuterClass {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new PrometheusConfig(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -776,56 +765,6 @@ public final class MonitoringConfigOuterClass {
     getUnknownFields() {
       return this.unknownFields;
     }
-    private MonitoringConfig(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              tensorflow.serving.MonitoringConfigOuterClass.PrometheusConfig.Builder subBuilder = null;
-              if (prometheusConfig_ != null) {
-                subBuilder = prometheusConfig_.toBuilder();
-              }
-              prometheusConfig_ = input.readMessage(tensorflow.serving.MonitoringConfigOuterClass.PrometheusConfig.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(prometheusConfig_);
-                prometheusConfig_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return tensorflow.serving.MonitoringConfigOuterClass.internal_static_tensorflow_serving_MonitoringConfig_descriptor;
@@ -862,7 +801,7 @@ public final class MonitoringConfigOuterClass {
      */
     @java.lang.Override
     public tensorflow.serving.MonitoringConfigOuterClass.PrometheusConfigOrBuilder getPrometheusConfigOrBuilder() {
-      return getPrometheusConfig();
+      return prometheusConfig_ == null ? tensorflow.serving.MonitoringConfigOuterClass.PrometheusConfig.getDefaultInstance() : prometheusConfig_;
     }
 
     private byte memoizedIsInitialized = -1;
@@ -882,7 +821,7 @@ public final class MonitoringConfigOuterClass {
       if (prometheusConfig_ != null) {
         output.writeMessage(1, getPrometheusConfig());
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -895,7 +834,7 @@ public final class MonitoringConfigOuterClass {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(1, getPrometheusConfig());
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -915,7 +854,7 @@ public final class MonitoringConfigOuterClass {
         if (!getPrometheusConfig()
             .equals(other.getPrometheusConfig())) return false;
       }
-      if (!unknownFields.equals(other.unknownFields)) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
 
@@ -930,7 +869,7 @@ public final class MonitoringConfigOuterClass {
         hash = (37 * hash) + PROMETHEUS_CONFIG_FIELD_NUMBER;
         hash = (53 * hash) + getPrometheusConfig().hashCode();
       }
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -1051,26 +990,21 @@ public final class MonitoringConfigOuterClass {
 
       // Construct using tensorflow.serving.MonitoringConfigOuterClass.MonitoringConfig.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        if (prometheusConfigBuilder_ == null) {
-          prometheusConfig_ = null;
-        } else {
-          prometheusConfig_ = null;
+        bitField0_ = 0;
+        prometheusConfig_ = null;
+        if (prometheusConfigBuilder_ != null) {
+          prometheusConfigBuilder_.dispose();
           prometheusConfigBuilder_ = null;
         }
         return this;
@@ -1099,13 +1033,18 @@ public final class MonitoringConfigOuterClass {
       @java.lang.Override
       public tensorflow.serving.MonitoringConfigOuterClass.MonitoringConfig buildPartial() {
         tensorflow.serving.MonitoringConfigOuterClass.MonitoringConfig result = new tensorflow.serving.MonitoringConfigOuterClass.MonitoringConfig(this);
-        if (prometheusConfigBuilder_ == null) {
-          result.prometheusConfig_ = prometheusConfig_;
-        } else {
-          result.prometheusConfig_ = prometheusConfigBuilder_.build();
-        }
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
+      }
+
+      private void buildPartial0(tensorflow.serving.MonitoringConfigOuterClass.MonitoringConfig result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.prometheusConfig_ = prometheusConfigBuilder_ == null
+              ? prometheusConfig_
+              : prometheusConfigBuilder_.build();
+        }
       }
 
       @java.lang.Override
@@ -1155,7 +1094,7 @@ public final class MonitoringConfigOuterClass {
         if (other.hasPrometheusConfig()) {
           mergePrometheusConfig(other.getPrometheusConfig());
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
@@ -1170,19 +1109,40 @@ public final class MonitoringConfigOuterClass {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        tensorflow.serving.MonitoringConfigOuterClass.MonitoringConfig parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                input.readMessage(
+                    getPrometheusConfigFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 10
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (tensorflow.serving.MonitoringConfigOuterClass.MonitoringConfig) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
+      private int bitField0_;
 
       private tensorflow.serving.MonitoringConfigOuterClass.PrometheusConfig prometheusConfig_;
       private com.google.protobuf.SingleFieldBuilderV3<
@@ -1192,7 +1152,7 @@ public final class MonitoringConfigOuterClass {
        * @return Whether the prometheusConfig field is set.
        */
       public boolean hasPrometheusConfig() {
-        return prometheusConfigBuilder_ != null || prometheusConfig_ != null;
+        return ((bitField0_ & 0x00000001) != 0);
       }
       /**
        * <code>.tensorflow.serving.PrometheusConfig prometheus_config = 1;</code>
@@ -1214,11 +1174,11 @@ public final class MonitoringConfigOuterClass {
             throw new NullPointerException();
           }
           prometheusConfig_ = value;
-          onChanged();
         } else {
           prometheusConfigBuilder_.setMessage(value);
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -1228,11 +1188,11 @@ public final class MonitoringConfigOuterClass {
           tensorflow.serving.MonitoringConfigOuterClass.PrometheusConfig.Builder builderForValue) {
         if (prometheusConfigBuilder_ == null) {
           prometheusConfig_ = builderForValue.build();
-          onChanged();
         } else {
           prometheusConfigBuilder_.setMessage(builderForValue.build());
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -1240,38 +1200,38 @@ public final class MonitoringConfigOuterClass {
        */
       public Builder mergePrometheusConfig(tensorflow.serving.MonitoringConfigOuterClass.PrometheusConfig value) {
         if (prometheusConfigBuilder_ == null) {
-          if (prometheusConfig_ != null) {
-            prometheusConfig_ =
-              tensorflow.serving.MonitoringConfigOuterClass.PrometheusConfig.newBuilder(prometheusConfig_).mergeFrom(value).buildPartial();
+          if (((bitField0_ & 0x00000001) != 0) &&
+            prometheusConfig_ != null &&
+            prometheusConfig_ != tensorflow.serving.MonitoringConfigOuterClass.PrometheusConfig.getDefaultInstance()) {
+            getPrometheusConfigBuilder().mergeFrom(value);
           } else {
             prometheusConfig_ = value;
           }
-          onChanged();
         } else {
           prometheusConfigBuilder_.mergeFrom(value);
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
        * <code>.tensorflow.serving.PrometheusConfig prometheus_config = 1;</code>
        */
       public Builder clearPrometheusConfig() {
-        if (prometheusConfigBuilder_ == null) {
-          prometheusConfig_ = null;
-          onChanged();
-        } else {
-          prometheusConfig_ = null;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        prometheusConfig_ = null;
+        if (prometheusConfigBuilder_ != null) {
+          prometheusConfigBuilder_.dispose();
           prometheusConfigBuilder_ = null;
         }
-
+        onChanged();
         return this;
       }
       /**
        * <code>.tensorflow.serving.PrometheusConfig prometheus_config = 1;</code>
        */
       public tensorflow.serving.MonitoringConfigOuterClass.PrometheusConfig.Builder getPrometheusConfigBuilder() {
-        
+        bitField0_ |= 0x00000001;
         onChanged();
         return getPrometheusConfigFieldBuilder().getBuilder();
       }
@@ -1335,7 +1295,18 @@ public final class MonitoringConfigOuterClass {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new MonitoringConfig(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 

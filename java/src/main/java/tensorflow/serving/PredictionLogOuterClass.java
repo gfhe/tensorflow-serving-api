@@ -75,69 +75,6 @@ public final class PredictionLogOuterClass {
     getUnknownFields() {
       return this.unknownFields;
     }
-    private ClassifyLog(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              tensorflow.serving.Classification.ClassificationRequest.Builder subBuilder = null;
-              if (request_ != null) {
-                subBuilder = request_.toBuilder();
-              }
-              request_ = input.readMessage(tensorflow.serving.Classification.ClassificationRequest.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(request_);
-                request_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            case 18: {
-              tensorflow.serving.Classification.ClassificationResponse.Builder subBuilder = null;
-              if (response_ != null) {
-                subBuilder = response_.toBuilder();
-              }
-              response_ = input.readMessage(tensorflow.serving.Classification.ClassificationResponse.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(response_);
-                response_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return tensorflow.serving.PredictionLogOuterClass.internal_static_tensorflow_serving_ClassifyLog_descriptor;
@@ -174,7 +111,7 @@ public final class PredictionLogOuterClass {
      */
     @java.lang.Override
     public tensorflow.serving.Classification.ClassificationRequestOrBuilder getRequestOrBuilder() {
-      return getRequest();
+      return request_ == null ? tensorflow.serving.Classification.ClassificationRequest.getDefaultInstance() : request_;
     }
 
     public static final int RESPONSE_FIELD_NUMBER = 2;
@@ -200,7 +137,7 @@ public final class PredictionLogOuterClass {
      */
     @java.lang.Override
     public tensorflow.serving.Classification.ClassificationResponseOrBuilder getResponseOrBuilder() {
-      return getResponse();
+      return response_ == null ? tensorflow.serving.Classification.ClassificationResponse.getDefaultInstance() : response_;
     }
 
     private byte memoizedIsInitialized = -1;
@@ -223,7 +160,7 @@ public final class PredictionLogOuterClass {
       if (response_ != null) {
         output.writeMessage(2, getResponse());
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -240,7 +177,7 @@ public final class PredictionLogOuterClass {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(2, getResponse());
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -265,7 +202,7 @@ public final class PredictionLogOuterClass {
         if (!getResponse()
             .equals(other.getResponse())) return false;
       }
-      if (!unknownFields.equals(other.unknownFields)) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
 
@@ -284,7 +221,7 @@ public final class PredictionLogOuterClass {
         hash = (37 * hash) + RESPONSE_FIELD_NUMBER;
         hash = (53 * hash) + getResponse().hashCode();
       }
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -401,32 +338,26 @@ public final class PredictionLogOuterClass {
 
       // Construct using tensorflow.serving.PredictionLogOuterClass.ClassifyLog.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        if (requestBuilder_ == null) {
-          request_ = null;
-        } else {
-          request_ = null;
+        bitField0_ = 0;
+        request_ = null;
+        if (requestBuilder_ != null) {
+          requestBuilder_.dispose();
           requestBuilder_ = null;
         }
-        if (responseBuilder_ == null) {
-          response_ = null;
-        } else {
-          response_ = null;
+        response_ = null;
+        if (responseBuilder_ != null) {
+          responseBuilder_.dispose();
           responseBuilder_ = null;
         }
         return this;
@@ -455,18 +386,23 @@ public final class PredictionLogOuterClass {
       @java.lang.Override
       public tensorflow.serving.PredictionLogOuterClass.ClassifyLog buildPartial() {
         tensorflow.serving.PredictionLogOuterClass.ClassifyLog result = new tensorflow.serving.PredictionLogOuterClass.ClassifyLog(this);
-        if (requestBuilder_ == null) {
-          result.request_ = request_;
-        } else {
-          result.request_ = requestBuilder_.build();
-        }
-        if (responseBuilder_ == null) {
-          result.response_ = response_;
-        } else {
-          result.response_ = responseBuilder_.build();
-        }
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
+      }
+
+      private void buildPartial0(tensorflow.serving.PredictionLogOuterClass.ClassifyLog result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.request_ = requestBuilder_ == null
+              ? request_
+              : requestBuilder_.build();
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.response_ = responseBuilder_ == null
+              ? response_
+              : responseBuilder_.build();
+        }
       }
 
       @java.lang.Override
@@ -519,7 +455,7 @@ public final class PredictionLogOuterClass {
         if (other.hasResponse()) {
           mergeResponse(other.getResponse());
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
@@ -534,19 +470,47 @@ public final class PredictionLogOuterClass {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        tensorflow.serving.PredictionLogOuterClass.ClassifyLog parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                input.readMessage(
+                    getRequestFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 10
+              case 18: {
+                input.readMessage(
+                    getResponseFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 18
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (tensorflow.serving.PredictionLogOuterClass.ClassifyLog) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
+      private int bitField0_;
 
       private tensorflow.serving.Classification.ClassificationRequest request_;
       private com.google.protobuf.SingleFieldBuilderV3<
@@ -556,7 +520,7 @@ public final class PredictionLogOuterClass {
        * @return Whether the request field is set.
        */
       public boolean hasRequest() {
-        return requestBuilder_ != null || request_ != null;
+        return ((bitField0_ & 0x00000001) != 0);
       }
       /**
        * <code>.tensorflow.serving.ClassificationRequest request = 1;</code>
@@ -578,11 +542,11 @@ public final class PredictionLogOuterClass {
             throw new NullPointerException();
           }
           request_ = value;
-          onChanged();
         } else {
           requestBuilder_.setMessage(value);
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -592,11 +556,11 @@ public final class PredictionLogOuterClass {
           tensorflow.serving.Classification.ClassificationRequest.Builder builderForValue) {
         if (requestBuilder_ == null) {
           request_ = builderForValue.build();
-          onChanged();
         } else {
           requestBuilder_.setMessage(builderForValue.build());
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -604,38 +568,38 @@ public final class PredictionLogOuterClass {
        */
       public Builder mergeRequest(tensorflow.serving.Classification.ClassificationRequest value) {
         if (requestBuilder_ == null) {
-          if (request_ != null) {
-            request_ =
-              tensorflow.serving.Classification.ClassificationRequest.newBuilder(request_).mergeFrom(value).buildPartial();
+          if (((bitField0_ & 0x00000001) != 0) &&
+            request_ != null &&
+            request_ != tensorflow.serving.Classification.ClassificationRequest.getDefaultInstance()) {
+            getRequestBuilder().mergeFrom(value);
           } else {
             request_ = value;
           }
-          onChanged();
         } else {
           requestBuilder_.mergeFrom(value);
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
        * <code>.tensorflow.serving.ClassificationRequest request = 1;</code>
        */
       public Builder clearRequest() {
-        if (requestBuilder_ == null) {
-          request_ = null;
-          onChanged();
-        } else {
-          request_ = null;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        request_ = null;
+        if (requestBuilder_ != null) {
+          requestBuilder_.dispose();
           requestBuilder_ = null;
         }
-
+        onChanged();
         return this;
       }
       /**
        * <code>.tensorflow.serving.ClassificationRequest request = 1;</code>
        */
       public tensorflow.serving.Classification.ClassificationRequest.Builder getRequestBuilder() {
-        
+        bitField0_ |= 0x00000001;
         onChanged();
         return getRequestFieldBuilder().getBuilder();
       }
@@ -675,7 +639,7 @@ public final class PredictionLogOuterClass {
        * @return Whether the response field is set.
        */
       public boolean hasResponse() {
-        return responseBuilder_ != null || response_ != null;
+        return ((bitField0_ & 0x00000002) != 0);
       }
       /**
        * <code>.tensorflow.serving.ClassificationResponse response = 2;</code>
@@ -697,11 +661,11 @@ public final class PredictionLogOuterClass {
             throw new NullPointerException();
           }
           response_ = value;
-          onChanged();
         } else {
           responseBuilder_.setMessage(value);
         }
-
+        bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
@@ -711,11 +675,11 @@ public final class PredictionLogOuterClass {
           tensorflow.serving.Classification.ClassificationResponse.Builder builderForValue) {
         if (responseBuilder_ == null) {
           response_ = builderForValue.build();
-          onChanged();
         } else {
           responseBuilder_.setMessage(builderForValue.build());
         }
-
+        bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
@@ -723,38 +687,38 @@ public final class PredictionLogOuterClass {
        */
       public Builder mergeResponse(tensorflow.serving.Classification.ClassificationResponse value) {
         if (responseBuilder_ == null) {
-          if (response_ != null) {
-            response_ =
-              tensorflow.serving.Classification.ClassificationResponse.newBuilder(response_).mergeFrom(value).buildPartial();
+          if (((bitField0_ & 0x00000002) != 0) &&
+            response_ != null &&
+            response_ != tensorflow.serving.Classification.ClassificationResponse.getDefaultInstance()) {
+            getResponseBuilder().mergeFrom(value);
           } else {
             response_ = value;
           }
-          onChanged();
         } else {
           responseBuilder_.mergeFrom(value);
         }
-
+        bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
        * <code>.tensorflow.serving.ClassificationResponse response = 2;</code>
        */
       public Builder clearResponse() {
-        if (responseBuilder_ == null) {
-          response_ = null;
-          onChanged();
-        } else {
-          response_ = null;
+        bitField0_ = (bitField0_ & ~0x00000002);
+        response_ = null;
+        if (responseBuilder_ != null) {
+          responseBuilder_.dispose();
           responseBuilder_ = null;
         }
-
+        onChanged();
         return this;
       }
       /**
        * <code>.tensorflow.serving.ClassificationResponse response = 2;</code>
        */
       public tensorflow.serving.Classification.ClassificationResponse.Builder getResponseBuilder() {
-        
+        bitField0_ |= 0x00000002;
         onChanged();
         return getResponseFieldBuilder().getBuilder();
       }
@@ -818,7 +782,18 @@ public final class PredictionLogOuterClass {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new ClassifyLog(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -899,69 +874,6 @@ public final class PredictionLogOuterClass {
     getUnknownFields() {
       return this.unknownFields;
     }
-    private RegressLog(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              tensorflow.serving.RegressionOuterClass.RegressionRequest.Builder subBuilder = null;
-              if (request_ != null) {
-                subBuilder = request_.toBuilder();
-              }
-              request_ = input.readMessage(tensorflow.serving.RegressionOuterClass.RegressionRequest.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(request_);
-                request_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            case 18: {
-              tensorflow.serving.RegressionOuterClass.RegressionResponse.Builder subBuilder = null;
-              if (response_ != null) {
-                subBuilder = response_.toBuilder();
-              }
-              response_ = input.readMessage(tensorflow.serving.RegressionOuterClass.RegressionResponse.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(response_);
-                response_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return tensorflow.serving.PredictionLogOuterClass.internal_static_tensorflow_serving_RegressLog_descriptor;
@@ -998,7 +910,7 @@ public final class PredictionLogOuterClass {
      */
     @java.lang.Override
     public tensorflow.serving.RegressionOuterClass.RegressionRequestOrBuilder getRequestOrBuilder() {
-      return getRequest();
+      return request_ == null ? tensorflow.serving.RegressionOuterClass.RegressionRequest.getDefaultInstance() : request_;
     }
 
     public static final int RESPONSE_FIELD_NUMBER = 2;
@@ -1024,7 +936,7 @@ public final class PredictionLogOuterClass {
      */
     @java.lang.Override
     public tensorflow.serving.RegressionOuterClass.RegressionResponseOrBuilder getResponseOrBuilder() {
-      return getResponse();
+      return response_ == null ? tensorflow.serving.RegressionOuterClass.RegressionResponse.getDefaultInstance() : response_;
     }
 
     private byte memoizedIsInitialized = -1;
@@ -1047,7 +959,7 @@ public final class PredictionLogOuterClass {
       if (response_ != null) {
         output.writeMessage(2, getResponse());
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -1064,7 +976,7 @@ public final class PredictionLogOuterClass {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(2, getResponse());
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -1089,7 +1001,7 @@ public final class PredictionLogOuterClass {
         if (!getResponse()
             .equals(other.getResponse())) return false;
       }
-      if (!unknownFields.equals(other.unknownFields)) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
 
@@ -1108,7 +1020,7 @@ public final class PredictionLogOuterClass {
         hash = (37 * hash) + RESPONSE_FIELD_NUMBER;
         hash = (53 * hash) + getResponse().hashCode();
       }
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -1225,32 +1137,26 @@ public final class PredictionLogOuterClass {
 
       // Construct using tensorflow.serving.PredictionLogOuterClass.RegressLog.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        if (requestBuilder_ == null) {
-          request_ = null;
-        } else {
-          request_ = null;
+        bitField0_ = 0;
+        request_ = null;
+        if (requestBuilder_ != null) {
+          requestBuilder_.dispose();
           requestBuilder_ = null;
         }
-        if (responseBuilder_ == null) {
-          response_ = null;
-        } else {
-          response_ = null;
+        response_ = null;
+        if (responseBuilder_ != null) {
+          responseBuilder_.dispose();
           responseBuilder_ = null;
         }
         return this;
@@ -1279,18 +1185,23 @@ public final class PredictionLogOuterClass {
       @java.lang.Override
       public tensorflow.serving.PredictionLogOuterClass.RegressLog buildPartial() {
         tensorflow.serving.PredictionLogOuterClass.RegressLog result = new tensorflow.serving.PredictionLogOuterClass.RegressLog(this);
-        if (requestBuilder_ == null) {
-          result.request_ = request_;
-        } else {
-          result.request_ = requestBuilder_.build();
-        }
-        if (responseBuilder_ == null) {
-          result.response_ = response_;
-        } else {
-          result.response_ = responseBuilder_.build();
-        }
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
+      }
+
+      private void buildPartial0(tensorflow.serving.PredictionLogOuterClass.RegressLog result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.request_ = requestBuilder_ == null
+              ? request_
+              : requestBuilder_.build();
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.response_ = responseBuilder_ == null
+              ? response_
+              : responseBuilder_.build();
+        }
       }
 
       @java.lang.Override
@@ -1343,7 +1254,7 @@ public final class PredictionLogOuterClass {
         if (other.hasResponse()) {
           mergeResponse(other.getResponse());
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
@@ -1358,19 +1269,47 @@ public final class PredictionLogOuterClass {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        tensorflow.serving.PredictionLogOuterClass.RegressLog parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                input.readMessage(
+                    getRequestFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 10
+              case 18: {
+                input.readMessage(
+                    getResponseFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 18
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (tensorflow.serving.PredictionLogOuterClass.RegressLog) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
+      private int bitField0_;
 
       private tensorflow.serving.RegressionOuterClass.RegressionRequest request_;
       private com.google.protobuf.SingleFieldBuilderV3<
@@ -1380,7 +1319,7 @@ public final class PredictionLogOuterClass {
        * @return Whether the request field is set.
        */
       public boolean hasRequest() {
-        return requestBuilder_ != null || request_ != null;
+        return ((bitField0_ & 0x00000001) != 0);
       }
       /**
        * <code>.tensorflow.serving.RegressionRequest request = 1;</code>
@@ -1402,11 +1341,11 @@ public final class PredictionLogOuterClass {
             throw new NullPointerException();
           }
           request_ = value;
-          onChanged();
         } else {
           requestBuilder_.setMessage(value);
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -1416,11 +1355,11 @@ public final class PredictionLogOuterClass {
           tensorflow.serving.RegressionOuterClass.RegressionRequest.Builder builderForValue) {
         if (requestBuilder_ == null) {
           request_ = builderForValue.build();
-          onChanged();
         } else {
           requestBuilder_.setMessage(builderForValue.build());
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -1428,38 +1367,38 @@ public final class PredictionLogOuterClass {
        */
       public Builder mergeRequest(tensorflow.serving.RegressionOuterClass.RegressionRequest value) {
         if (requestBuilder_ == null) {
-          if (request_ != null) {
-            request_ =
-              tensorflow.serving.RegressionOuterClass.RegressionRequest.newBuilder(request_).mergeFrom(value).buildPartial();
+          if (((bitField0_ & 0x00000001) != 0) &&
+            request_ != null &&
+            request_ != tensorflow.serving.RegressionOuterClass.RegressionRequest.getDefaultInstance()) {
+            getRequestBuilder().mergeFrom(value);
           } else {
             request_ = value;
           }
-          onChanged();
         } else {
           requestBuilder_.mergeFrom(value);
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
        * <code>.tensorflow.serving.RegressionRequest request = 1;</code>
        */
       public Builder clearRequest() {
-        if (requestBuilder_ == null) {
-          request_ = null;
-          onChanged();
-        } else {
-          request_ = null;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        request_ = null;
+        if (requestBuilder_ != null) {
+          requestBuilder_.dispose();
           requestBuilder_ = null;
         }
-
+        onChanged();
         return this;
       }
       /**
        * <code>.tensorflow.serving.RegressionRequest request = 1;</code>
        */
       public tensorflow.serving.RegressionOuterClass.RegressionRequest.Builder getRequestBuilder() {
-        
+        bitField0_ |= 0x00000001;
         onChanged();
         return getRequestFieldBuilder().getBuilder();
       }
@@ -1499,7 +1438,7 @@ public final class PredictionLogOuterClass {
        * @return Whether the response field is set.
        */
       public boolean hasResponse() {
-        return responseBuilder_ != null || response_ != null;
+        return ((bitField0_ & 0x00000002) != 0);
       }
       /**
        * <code>.tensorflow.serving.RegressionResponse response = 2;</code>
@@ -1521,11 +1460,11 @@ public final class PredictionLogOuterClass {
             throw new NullPointerException();
           }
           response_ = value;
-          onChanged();
         } else {
           responseBuilder_.setMessage(value);
         }
-
+        bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
@@ -1535,11 +1474,11 @@ public final class PredictionLogOuterClass {
           tensorflow.serving.RegressionOuterClass.RegressionResponse.Builder builderForValue) {
         if (responseBuilder_ == null) {
           response_ = builderForValue.build();
-          onChanged();
         } else {
           responseBuilder_.setMessage(builderForValue.build());
         }
-
+        bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
@@ -1547,38 +1486,38 @@ public final class PredictionLogOuterClass {
        */
       public Builder mergeResponse(tensorflow.serving.RegressionOuterClass.RegressionResponse value) {
         if (responseBuilder_ == null) {
-          if (response_ != null) {
-            response_ =
-              tensorflow.serving.RegressionOuterClass.RegressionResponse.newBuilder(response_).mergeFrom(value).buildPartial();
+          if (((bitField0_ & 0x00000002) != 0) &&
+            response_ != null &&
+            response_ != tensorflow.serving.RegressionOuterClass.RegressionResponse.getDefaultInstance()) {
+            getResponseBuilder().mergeFrom(value);
           } else {
             response_ = value;
           }
-          onChanged();
         } else {
           responseBuilder_.mergeFrom(value);
         }
-
+        bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
        * <code>.tensorflow.serving.RegressionResponse response = 2;</code>
        */
       public Builder clearResponse() {
-        if (responseBuilder_ == null) {
-          response_ = null;
-          onChanged();
-        } else {
-          response_ = null;
+        bitField0_ = (bitField0_ & ~0x00000002);
+        response_ = null;
+        if (responseBuilder_ != null) {
+          responseBuilder_.dispose();
           responseBuilder_ = null;
         }
-
+        onChanged();
         return this;
       }
       /**
        * <code>.tensorflow.serving.RegressionResponse response = 2;</code>
        */
       public tensorflow.serving.RegressionOuterClass.RegressionResponse.Builder getResponseBuilder() {
-        
+        bitField0_ |= 0x00000002;
         onChanged();
         return getResponseFieldBuilder().getBuilder();
       }
@@ -1642,7 +1581,18 @@ public final class PredictionLogOuterClass {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new RegressLog(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -1723,69 +1673,6 @@ public final class PredictionLogOuterClass {
     getUnknownFields() {
       return this.unknownFields;
     }
-    private PredictLog(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              tensorflow.serving.Predict.PredictRequest.Builder subBuilder = null;
-              if (request_ != null) {
-                subBuilder = request_.toBuilder();
-              }
-              request_ = input.readMessage(tensorflow.serving.Predict.PredictRequest.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(request_);
-                request_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            case 18: {
-              tensorflow.serving.Predict.PredictResponse.Builder subBuilder = null;
-              if (response_ != null) {
-                subBuilder = response_.toBuilder();
-              }
-              response_ = input.readMessage(tensorflow.serving.Predict.PredictResponse.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(response_);
-                response_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return tensorflow.serving.PredictionLogOuterClass.internal_static_tensorflow_serving_PredictLog_descriptor;
@@ -1822,7 +1709,7 @@ public final class PredictionLogOuterClass {
      */
     @java.lang.Override
     public tensorflow.serving.Predict.PredictRequestOrBuilder getRequestOrBuilder() {
-      return getRequest();
+      return request_ == null ? tensorflow.serving.Predict.PredictRequest.getDefaultInstance() : request_;
     }
 
     public static final int RESPONSE_FIELD_NUMBER = 2;
@@ -1848,7 +1735,7 @@ public final class PredictionLogOuterClass {
      */
     @java.lang.Override
     public tensorflow.serving.Predict.PredictResponseOrBuilder getResponseOrBuilder() {
-      return getResponse();
+      return response_ == null ? tensorflow.serving.Predict.PredictResponse.getDefaultInstance() : response_;
     }
 
     private byte memoizedIsInitialized = -1;
@@ -1871,7 +1758,7 @@ public final class PredictionLogOuterClass {
       if (response_ != null) {
         output.writeMessage(2, getResponse());
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -1888,7 +1775,7 @@ public final class PredictionLogOuterClass {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(2, getResponse());
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -1913,7 +1800,7 @@ public final class PredictionLogOuterClass {
         if (!getResponse()
             .equals(other.getResponse())) return false;
       }
-      if (!unknownFields.equals(other.unknownFields)) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
 
@@ -1932,7 +1819,7 @@ public final class PredictionLogOuterClass {
         hash = (37 * hash) + RESPONSE_FIELD_NUMBER;
         hash = (53 * hash) + getResponse().hashCode();
       }
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -2049,32 +1936,26 @@ public final class PredictionLogOuterClass {
 
       // Construct using tensorflow.serving.PredictionLogOuterClass.PredictLog.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        if (requestBuilder_ == null) {
-          request_ = null;
-        } else {
-          request_ = null;
+        bitField0_ = 0;
+        request_ = null;
+        if (requestBuilder_ != null) {
+          requestBuilder_.dispose();
           requestBuilder_ = null;
         }
-        if (responseBuilder_ == null) {
-          response_ = null;
-        } else {
-          response_ = null;
+        response_ = null;
+        if (responseBuilder_ != null) {
+          responseBuilder_.dispose();
           responseBuilder_ = null;
         }
         return this;
@@ -2103,18 +1984,23 @@ public final class PredictionLogOuterClass {
       @java.lang.Override
       public tensorflow.serving.PredictionLogOuterClass.PredictLog buildPartial() {
         tensorflow.serving.PredictionLogOuterClass.PredictLog result = new tensorflow.serving.PredictionLogOuterClass.PredictLog(this);
-        if (requestBuilder_ == null) {
-          result.request_ = request_;
-        } else {
-          result.request_ = requestBuilder_.build();
-        }
-        if (responseBuilder_ == null) {
-          result.response_ = response_;
-        } else {
-          result.response_ = responseBuilder_.build();
-        }
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
+      }
+
+      private void buildPartial0(tensorflow.serving.PredictionLogOuterClass.PredictLog result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.request_ = requestBuilder_ == null
+              ? request_
+              : requestBuilder_.build();
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.response_ = responseBuilder_ == null
+              ? response_
+              : responseBuilder_.build();
+        }
       }
 
       @java.lang.Override
@@ -2167,7 +2053,7 @@ public final class PredictionLogOuterClass {
         if (other.hasResponse()) {
           mergeResponse(other.getResponse());
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
@@ -2182,19 +2068,47 @@ public final class PredictionLogOuterClass {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        tensorflow.serving.PredictionLogOuterClass.PredictLog parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                input.readMessage(
+                    getRequestFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 10
+              case 18: {
+                input.readMessage(
+                    getResponseFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 18
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (tensorflow.serving.PredictionLogOuterClass.PredictLog) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
+      private int bitField0_;
 
       private tensorflow.serving.Predict.PredictRequest request_;
       private com.google.protobuf.SingleFieldBuilderV3<
@@ -2204,7 +2118,7 @@ public final class PredictionLogOuterClass {
        * @return Whether the request field is set.
        */
       public boolean hasRequest() {
-        return requestBuilder_ != null || request_ != null;
+        return ((bitField0_ & 0x00000001) != 0);
       }
       /**
        * <code>.tensorflow.serving.PredictRequest request = 1;</code>
@@ -2226,11 +2140,11 @@ public final class PredictionLogOuterClass {
             throw new NullPointerException();
           }
           request_ = value;
-          onChanged();
         } else {
           requestBuilder_.setMessage(value);
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -2240,11 +2154,11 @@ public final class PredictionLogOuterClass {
           tensorflow.serving.Predict.PredictRequest.Builder builderForValue) {
         if (requestBuilder_ == null) {
           request_ = builderForValue.build();
-          onChanged();
         } else {
           requestBuilder_.setMessage(builderForValue.build());
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -2252,38 +2166,38 @@ public final class PredictionLogOuterClass {
        */
       public Builder mergeRequest(tensorflow.serving.Predict.PredictRequest value) {
         if (requestBuilder_ == null) {
-          if (request_ != null) {
-            request_ =
-              tensorflow.serving.Predict.PredictRequest.newBuilder(request_).mergeFrom(value).buildPartial();
+          if (((bitField0_ & 0x00000001) != 0) &&
+            request_ != null &&
+            request_ != tensorflow.serving.Predict.PredictRequest.getDefaultInstance()) {
+            getRequestBuilder().mergeFrom(value);
           } else {
             request_ = value;
           }
-          onChanged();
         } else {
           requestBuilder_.mergeFrom(value);
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
        * <code>.tensorflow.serving.PredictRequest request = 1;</code>
        */
       public Builder clearRequest() {
-        if (requestBuilder_ == null) {
-          request_ = null;
-          onChanged();
-        } else {
-          request_ = null;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        request_ = null;
+        if (requestBuilder_ != null) {
+          requestBuilder_.dispose();
           requestBuilder_ = null;
         }
-
+        onChanged();
         return this;
       }
       /**
        * <code>.tensorflow.serving.PredictRequest request = 1;</code>
        */
       public tensorflow.serving.Predict.PredictRequest.Builder getRequestBuilder() {
-        
+        bitField0_ |= 0x00000001;
         onChanged();
         return getRequestFieldBuilder().getBuilder();
       }
@@ -2323,7 +2237,7 @@ public final class PredictionLogOuterClass {
        * @return Whether the response field is set.
        */
       public boolean hasResponse() {
-        return responseBuilder_ != null || response_ != null;
+        return ((bitField0_ & 0x00000002) != 0);
       }
       /**
        * <code>.tensorflow.serving.PredictResponse response = 2;</code>
@@ -2345,11 +2259,11 @@ public final class PredictionLogOuterClass {
             throw new NullPointerException();
           }
           response_ = value;
-          onChanged();
         } else {
           responseBuilder_.setMessage(value);
         }
-
+        bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
@@ -2359,11 +2273,11 @@ public final class PredictionLogOuterClass {
           tensorflow.serving.Predict.PredictResponse.Builder builderForValue) {
         if (responseBuilder_ == null) {
           response_ = builderForValue.build();
-          onChanged();
         } else {
           responseBuilder_.setMessage(builderForValue.build());
         }
-
+        bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
@@ -2371,38 +2285,38 @@ public final class PredictionLogOuterClass {
        */
       public Builder mergeResponse(tensorflow.serving.Predict.PredictResponse value) {
         if (responseBuilder_ == null) {
-          if (response_ != null) {
-            response_ =
-              tensorflow.serving.Predict.PredictResponse.newBuilder(response_).mergeFrom(value).buildPartial();
+          if (((bitField0_ & 0x00000002) != 0) &&
+            response_ != null &&
+            response_ != tensorflow.serving.Predict.PredictResponse.getDefaultInstance()) {
+            getResponseBuilder().mergeFrom(value);
           } else {
             response_ = value;
           }
-          onChanged();
         } else {
           responseBuilder_.mergeFrom(value);
         }
-
+        bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
        * <code>.tensorflow.serving.PredictResponse response = 2;</code>
        */
       public Builder clearResponse() {
-        if (responseBuilder_ == null) {
-          response_ = null;
-          onChanged();
-        } else {
-          response_ = null;
+        bitField0_ = (bitField0_ & ~0x00000002);
+        response_ = null;
+        if (responseBuilder_ != null) {
+          responseBuilder_.dispose();
           responseBuilder_ = null;
         }
-
+        onChanged();
         return this;
       }
       /**
        * <code>.tensorflow.serving.PredictResponse response = 2;</code>
        */
       public tensorflow.serving.Predict.PredictResponse.Builder getResponseBuilder() {
-        
+        bitField0_ |= 0x00000002;
         onChanged();
         return getResponseFieldBuilder().getBuilder();
       }
@@ -2466,7 +2380,18 @@ public final class PredictionLogOuterClass {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new PredictLog(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -2547,69 +2472,6 @@ public final class PredictionLogOuterClass {
     getUnknownFields() {
       return this.unknownFields;
     }
-    private MultiInferenceLog(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              tensorflow.serving.Inference.MultiInferenceRequest.Builder subBuilder = null;
-              if (request_ != null) {
-                subBuilder = request_.toBuilder();
-              }
-              request_ = input.readMessage(tensorflow.serving.Inference.MultiInferenceRequest.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(request_);
-                request_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            case 18: {
-              tensorflow.serving.Inference.MultiInferenceResponse.Builder subBuilder = null;
-              if (response_ != null) {
-                subBuilder = response_.toBuilder();
-              }
-              response_ = input.readMessage(tensorflow.serving.Inference.MultiInferenceResponse.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(response_);
-                response_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return tensorflow.serving.PredictionLogOuterClass.internal_static_tensorflow_serving_MultiInferenceLog_descriptor;
@@ -2646,7 +2508,7 @@ public final class PredictionLogOuterClass {
      */
     @java.lang.Override
     public tensorflow.serving.Inference.MultiInferenceRequestOrBuilder getRequestOrBuilder() {
-      return getRequest();
+      return request_ == null ? tensorflow.serving.Inference.MultiInferenceRequest.getDefaultInstance() : request_;
     }
 
     public static final int RESPONSE_FIELD_NUMBER = 2;
@@ -2672,7 +2534,7 @@ public final class PredictionLogOuterClass {
      */
     @java.lang.Override
     public tensorflow.serving.Inference.MultiInferenceResponseOrBuilder getResponseOrBuilder() {
-      return getResponse();
+      return response_ == null ? tensorflow.serving.Inference.MultiInferenceResponse.getDefaultInstance() : response_;
     }
 
     private byte memoizedIsInitialized = -1;
@@ -2695,7 +2557,7 @@ public final class PredictionLogOuterClass {
       if (response_ != null) {
         output.writeMessage(2, getResponse());
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -2712,7 +2574,7 @@ public final class PredictionLogOuterClass {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(2, getResponse());
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -2737,7 +2599,7 @@ public final class PredictionLogOuterClass {
         if (!getResponse()
             .equals(other.getResponse())) return false;
       }
-      if (!unknownFields.equals(other.unknownFields)) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
 
@@ -2756,7 +2618,7 @@ public final class PredictionLogOuterClass {
         hash = (37 * hash) + RESPONSE_FIELD_NUMBER;
         hash = (53 * hash) + getResponse().hashCode();
       }
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -2873,32 +2735,26 @@ public final class PredictionLogOuterClass {
 
       // Construct using tensorflow.serving.PredictionLogOuterClass.MultiInferenceLog.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        if (requestBuilder_ == null) {
-          request_ = null;
-        } else {
-          request_ = null;
+        bitField0_ = 0;
+        request_ = null;
+        if (requestBuilder_ != null) {
+          requestBuilder_.dispose();
           requestBuilder_ = null;
         }
-        if (responseBuilder_ == null) {
-          response_ = null;
-        } else {
-          response_ = null;
+        response_ = null;
+        if (responseBuilder_ != null) {
+          responseBuilder_.dispose();
           responseBuilder_ = null;
         }
         return this;
@@ -2927,18 +2783,23 @@ public final class PredictionLogOuterClass {
       @java.lang.Override
       public tensorflow.serving.PredictionLogOuterClass.MultiInferenceLog buildPartial() {
         tensorflow.serving.PredictionLogOuterClass.MultiInferenceLog result = new tensorflow.serving.PredictionLogOuterClass.MultiInferenceLog(this);
-        if (requestBuilder_ == null) {
-          result.request_ = request_;
-        } else {
-          result.request_ = requestBuilder_.build();
-        }
-        if (responseBuilder_ == null) {
-          result.response_ = response_;
-        } else {
-          result.response_ = responseBuilder_.build();
-        }
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
+      }
+
+      private void buildPartial0(tensorflow.serving.PredictionLogOuterClass.MultiInferenceLog result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.request_ = requestBuilder_ == null
+              ? request_
+              : requestBuilder_.build();
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.response_ = responseBuilder_ == null
+              ? response_
+              : responseBuilder_.build();
+        }
       }
 
       @java.lang.Override
@@ -2991,7 +2852,7 @@ public final class PredictionLogOuterClass {
         if (other.hasResponse()) {
           mergeResponse(other.getResponse());
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
@@ -3006,19 +2867,47 @@ public final class PredictionLogOuterClass {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        tensorflow.serving.PredictionLogOuterClass.MultiInferenceLog parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                input.readMessage(
+                    getRequestFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 10
+              case 18: {
+                input.readMessage(
+                    getResponseFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 18
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (tensorflow.serving.PredictionLogOuterClass.MultiInferenceLog) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
+      private int bitField0_;
 
       private tensorflow.serving.Inference.MultiInferenceRequest request_;
       private com.google.protobuf.SingleFieldBuilderV3<
@@ -3028,7 +2917,7 @@ public final class PredictionLogOuterClass {
        * @return Whether the request field is set.
        */
       public boolean hasRequest() {
-        return requestBuilder_ != null || request_ != null;
+        return ((bitField0_ & 0x00000001) != 0);
       }
       /**
        * <code>.tensorflow.serving.MultiInferenceRequest request = 1;</code>
@@ -3050,11 +2939,11 @@ public final class PredictionLogOuterClass {
             throw new NullPointerException();
           }
           request_ = value;
-          onChanged();
         } else {
           requestBuilder_.setMessage(value);
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -3064,11 +2953,11 @@ public final class PredictionLogOuterClass {
           tensorflow.serving.Inference.MultiInferenceRequest.Builder builderForValue) {
         if (requestBuilder_ == null) {
           request_ = builderForValue.build();
-          onChanged();
         } else {
           requestBuilder_.setMessage(builderForValue.build());
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -3076,38 +2965,38 @@ public final class PredictionLogOuterClass {
        */
       public Builder mergeRequest(tensorflow.serving.Inference.MultiInferenceRequest value) {
         if (requestBuilder_ == null) {
-          if (request_ != null) {
-            request_ =
-              tensorflow.serving.Inference.MultiInferenceRequest.newBuilder(request_).mergeFrom(value).buildPartial();
+          if (((bitField0_ & 0x00000001) != 0) &&
+            request_ != null &&
+            request_ != tensorflow.serving.Inference.MultiInferenceRequest.getDefaultInstance()) {
+            getRequestBuilder().mergeFrom(value);
           } else {
             request_ = value;
           }
-          onChanged();
         } else {
           requestBuilder_.mergeFrom(value);
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
        * <code>.tensorflow.serving.MultiInferenceRequest request = 1;</code>
        */
       public Builder clearRequest() {
-        if (requestBuilder_ == null) {
-          request_ = null;
-          onChanged();
-        } else {
-          request_ = null;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        request_ = null;
+        if (requestBuilder_ != null) {
+          requestBuilder_.dispose();
           requestBuilder_ = null;
         }
-
+        onChanged();
         return this;
       }
       /**
        * <code>.tensorflow.serving.MultiInferenceRequest request = 1;</code>
        */
       public tensorflow.serving.Inference.MultiInferenceRequest.Builder getRequestBuilder() {
-        
+        bitField0_ |= 0x00000001;
         onChanged();
         return getRequestFieldBuilder().getBuilder();
       }
@@ -3147,7 +3036,7 @@ public final class PredictionLogOuterClass {
        * @return Whether the response field is set.
        */
       public boolean hasResponse() {
-        return responseBuilder_ != null || response_ != null;
+        return ((bitField0_ & 0x00000002) != 0);
       }
       /**
        * <code>.tensorflow.serving.MultiInferenceResponse response = 2;</code>
@@ -3169,11 +3058,11 @@ public final class PredictionLogOuterClass {
             throw new NullPointerException();
           }
           response_ = value;
-          onChanged();
         } else {
           responseBuilder_.setMessage(value);
         }
-
+        bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
@@ -3183,11 +3072,11 @@ public final class PredictionLogOuterClass {
           tensorflow.serving.Inference.MultiInferenceResponse.Builder builderForValue) {
         if (responseBuilder_ == null) {
           response_ = builderForValue.build();
-          onChanged();
         } else {
           responseBuilder_.setMessage(builderForValue.build());
         }
-
+        bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
@@ -3195,38 +3084,38 @@ public final class PredictionLogOuterClass {
        */
       public Builder mergeResponse(tensorflow.serving.Inference.MultiInferenceResponse value) {
         if (responseBuilder_ == null) {
-          if (response_ != null) {
-            response_ =
-              tensorflow.serving.Inference.MultiInferenceResponse.newBuilder(response_).mergeFrom(value).buildPartial();
+          if (((bitField0_ & 0x00000002) != 0) &&
+            response_ != null &&
+            response_ != tensorflow.serving.Inference.MultiInferenceResponse.getDefaultInstance()) {
+            getResponseBuilder().mergeFrom(value);
           } else {
             response_ = value;
           }
-          onChanged();
         } else {
           responseBuilder_.mergeFrom(value);
         }
-
+        bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
        * <code>.tensorflow.serving.MultiInferenceResponse response = 2;</code>
        */
       public Builder clearResponse() {
-        if (responseBuilder_ == null) {
-          response_ = null;
-          onChanged();
-        } else {
-          response_ = null;
+        bitField0_ = (bitField0_ & ~0x00000002);
+        response_ = null;
+        if (responseBuilder_ != null) {
+          responseBuilder_.dispose();
           responseBuilder_ = null;
         }
-
+        onChanged();
         return this;
       }
       /**
        * <code>.tensorflow.serving.MultiInferenceResponse response = 2;</code>
        */
       public tensorflow.serving.Inference.MultiInferenceResponse.Builder getResponseBuilder() {
-        
+        bitField0_ |= 0x00000002;
         onChanged();
         return getResponseFieldBuilder().getBuilder();
       }
@@ -3290,7 +3179,18 @@ public final class PredictionLogOuterClass {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new MultiInferenceLog(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -3371,69 +3271,6 @@ public final class PredictionLogOuterClass {
     getUnknownFields() {
       return this.unknownFields;
     }
-    private SessionRunLog(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              tensorflow.serving.SessionServiceOuterClass.SessionRunRequest.Builder subBuilder = null;
-              if (request_ != null) {
-                subBuilder = request_.toBuilder();
-              }
-              request_ = input.readMessage(tensorflow.serving.SessionServiceOuterClass.SessionRunRequest.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(request_);
-                request_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            case 18: {
-              tensorflow.serving.SessionServiceOuterClass.SessionRunResponse.Builder subBuilder = null;
-              if (response_ != null) {
-                subBuilder = response_.toBuilder();
-              }
-              response_ = input.readMessage(tensorflow.serving.SessionServiceOuterClass.SessionRunResponse.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(response_);
-                response_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return tensorflow.serving.PredictionLogOuterClass.internal_static_tensorflow_serving_SessionRunLog_descriptor;
@@ -3470,7 +3307,7 @@ public final class PredictionLogOuterClass {
      */
     @java.lang.Override
     public tensorflow.serving.SessionServiceOuterClass.SessionRunRequestOrBuilder getRequestOrBuilder() {
-      return getRequest();
+      return request_ == null ? tensorflow.serving.SessionServiceOuterClass.SessionRunRequest.getDefaultInstance() : request_;
     }
 
     public static final int RESPONSE_FIELD_NUMBER = 2;
@@ -3496,7 +3333,7 @@ public final class PredictionLogOuterClass {
      */
     @java.lang.Override
     public tensorflow.serving.SessionServiceOuterClass.SessionRunResponseOrBuilder getResponseOrBuilder() {
-      return getResponse();
+      return response_ == null ? tensorflow.serving.SessionServiceOuterClass.SessionRunResponse.getDefaultInstance() : response_;
     }
 
     private byte memoizedIsInitialized = -1;
@@ -3519,7 +3356,7 @@ public final class PredictionLogOuterClass {
       if (response_ != null) {
         output.writeMessage(2, getResponse());
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -3536,7 +3373,7 @@ public final class PredictionLogOuterClass {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(2, getResponse());
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -3561,7 +3398,7 @@ public final class PredictionLogOuterClass {
         if (!getResponse()
             .equals(other.getResponse())) return false;
       }
-      if (!unknownFields.equals(other.unknownFields)) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
 
@@ -3580,7 +3417,7 @@ public final class PredictionLogOuterClass {
         hash = (37 * hash) + RESPONSE_FIELD_NUMBER;
         hash = (53 * hash) + getResponse().hashCode();
       }
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -3697,32 +3534,26 @@ public final class PredictionLogOuterClass {
 
       // Construct using tensorflow.serving.PredictionLogOuterClass.SessionRunLog.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        if (requestBuilder_ == null) {
-          request_ = null;
-        } else {
-          request_ = null;
+        bitField0_ = 0;
+        request_ = null;
+        if (requestBuilder_ != null) {
+          requestBuilder_.dispose();
           requestBuilder_ = null;
         }
-        if (responseBuilder_ == null) {
-          response_ = null;
-        } else {
-          response_ = null;
+        response_ = null;
+        if (responseBuilder_ != null) {
+          responseBuilder_.dispose();
           responseBuilder_ = null;
         }
         return this;
@@ -3751,18 +3582,23 @@ public final class PredictionLogOuterClass {
       @java.lang.Override
       public tensorflow.serving.PredictionLogOuterClass.SessionRunLog buildPartial() {
         tensorflow.serving.PredictionLogOuterClass.SessionRunLog result = new tensorflow.serving.PredictionLogOuterClass.SessionRunLog(this);
-        if (requestBuilder_ == null) {
-          result.request_ = request_;
-        } else {
-          result.request_ = requestBuilder_.build();
-        }
-        if (responseBuilder_ == null) {
-          result.response_ = response_;
-        } else {
-          result.response_ = responseBuilder_.build();
-        }
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
+      }
+
+      private void buildPartial0(tensorflow.serving.PredictionLogOuterClass.SessionRunLog result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.request_ = requestBuilder_ == null
+              ? request_
+              : requestBuilder_.build();
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.response_ = responseBuilder_ == null
+              ? response_
+              : responseBuilder_.build();
+        }
       }
 
       @java.lang.Override
@@ -3815,7 +3651,7 @@ public final class PredictionLogOuterClass {
         if (other.hasResponse()) {
           mergeResponse(other.getResponse());
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
@@ -3830,19 +3666,47 @@ public final class PredictionLogOuterClass {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        tensorflow.serving.PredictionLogOuterClass.SessionRunLog parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                input.readMessage(
+                    getRequestFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 10
+              case 18: {
+                input.readMessage(
+                    getResponseFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 18
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (tensorflow.serving.PredictionLogOuterClass.SessionRunLog) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
+      private int bitField0_;
 
       private tensorflow.serving.SessionServiceOuterClass.SessionRunRequest request_;
       private com.google.protobuf.SingleFieldBuilderV3<
@@ -3852,7 +3716,7 @@ public final class PredictionLogOuterClass {
        * @return Whether the request field is set.
        */
       public boolean hasRequest() {
-        return requestBuilder_ != null || request_ != null;
+        return ((bitField0_ & 0x00000001) != 0);
       }
       /**
        * <code>.tensorflow.serving.SessionRunRequest request = 1;</code>
@@ -3874,11 +3738,11 @@ public final class PredictionLogOuterClass {
             throw new NullPointerException();
           }
           request_ = value;
-          onChanged();
         } else {
           requestBuilder_.setMessage(value);
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -3888,11 +3752,11 @@ public final class PredictionLogOuterClass {
           tensorflow.serving.SessionServiceOuterClass.SessionRunRequest.Builder builderForValue) {
         if (requestBuilder_ == null) {
           request_ = builderForValue.build();
-          onChanged();
         } else {
           requestBuilder_.setMessage(builderForValue.build());
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -3900,38 +3764,38 @@ public final class PredictionLogOuterClass {
        */
       public Builder mergeRequest(tensorflow.serving.SessionServiceOuterClass.SessionRunRequest value) {
         if (requestBuilder_ == null) {
-          if (request_ != null) {
-            request_ =
-              tensorflow.serving.SessionServiceOuterClass.SessionRunRequest.newBuilder(request_).mergeFrom(value).buildPartial();
+          if (((bitField0_ & 0x00000001) != 0) &&
+            request_ != null &&
+            request_ != tensorflow.serving.SessionServiceOuterClass.SessionRunRequest.getDefaultInstance()) {
+            getRequestBuilder().mergeFrom(value);
           } else {
             request_ = value;
           }
-          onChanged();
         } else {
           requestBuilder_.mergeFrom(value);
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
        * <code>.tensorflow.serving.SessionRunRequest request = 1;</code>
        */
       public Builder clearRequest() {
-        if (requestBuilder_ == null) {
-          request_ = null;
-          onChanged();
-        } else {
-          request_ = null;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        request_ = null;
+        if (requestBuilder_ != null) {
+          requestBuilder_.dispose();
           requestBuilder_ = null;
         }
-
+        onChanged();
         return this;
       }
       /**
        * <code>.tensorflow.serving.SessionRunRequest request = 1;</code>
        */
       public tensorflow.serving.SessionServiceOuterClass.SessionRunRequest.Builder getRequestBuilder() {
-        
+        bitField0_ |= 0x00000001;
         onChanged();
         return getRequestFieldBuilder().getBuilder();
       }
@@ -3971,7 +3835,7 @@ public final class PredictionLogOuterClass {
        * @return Whether the response field is set.
        */
       public boolean hasResponse() {
-        return responseBuilder_ != null || response_ != null;
+        return ((bitField0_ & 0x00000002) != 0);
       }
       /**
        * <code>.tensorflow.serving.SessionRunResponse response = 2;</code>
@@ -3993,11 +3857,11 @@ public final class PredictionLogOuterClass {
             throw new NullPointerException();
           }
           response_ = value;
-          onChanged();
         } else {
           responseBuilder_.setMessage(value);
         }
-
+        bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
@@ -4007,11 +3871,11 @@ public final class PredictionLogOuterClass {
           tensorflow.serving.SessionServiceOuterClass.SessionRunResponse.Builder builderForValue) {
         if (responseBuilder_ == null) {
           response_ = builderForValue.build();
-          onChanged();
         } else {
           responseBuilder_.setMessage(builderForValue.build());
         }
-
+        bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
@@ -4019,38 +3883,38 @@ public final class PredictionLogOuterClass {
        */
       public Builder mergeResponse(tensorflow.serving.SessionServiceOuterClass.SessionRunResponse value) {
         if (responseBuilder_ == null) {
-          if (response_ != null) {
-            response_ =
-              tensorflow.serving.SessionServiceOuterClass.SessionRunResponse.newBuilder(response_).mergeFrom(value).buildPartial();
+          if (((bitField0_ & 0x00000002) != 0) &&
+            response_ != null &&
+            response_ != tensorflow.serving.SessionServiceOuterClass.SessionRunResponse.getDefaultInstance()) {
+            getResponseBuilder().mergeFrom(value);
           } else {
             response_ = value;
           }
-          onChanged();
         } else {
           responseBuilder_.mergeFrom(value);
         }
-
+        bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
        * <code>.tensorflow.serving.SessionRunResponse response = 2;</code>
        */
       public Builder clearResponse() {
-        if (responseBuilder_ == null) {
-          response_ = null;
-          onChanged();
-        } else {
-          response_ = null;
+        bitField0_ = (bitField0_ & ~0x00000002);
+        response_ = null;
+        if (responseBuilder_ != null) {
+          responseBuilder_.dispose();
           responseBuilder_ = null;
         }
-
+        onChanged();
         return this;
       }
       /**
        * <code>.tensorflow.serving.SessionRunResponse response = 2;</code>
        */
       public tensorflow.serving.SessionServiceOuterClass.SessionRunResponse.Builder getResponseBuilder() {
-        
+        bitField0_ |= 0x00000002;
         onChanged();
         return getResponseFieldBuilder().getBuilder();
       }
@@ -4114,7 +3978,18 @@ public final class PredictionLogOuterClass {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new SessionRunLog(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -4261,126 +4136,6 @@ public final class PredictionLogOuterClass {
     getUnknownFields() {
       return this.unknownFields;
     }
-    private PredictionLog(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              tensorflow.serving.Logging.LogMetadata.Builder subBuilder = null;
-              if (logMetadata_ != null) {
-                subBuilder = logMetadata_.toBuilder();
-              }
-              logMetadata_ = input.readMessage(tensorflow.serving.Logging.LogMetadata.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(logMetadata_);
-                logMetadata_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            case 18: {
-              tensorflow.serving.PredictionLogOuterClass.ClassifyLog.Builder subBuilder = null;
-              if (logTypeCase_ == 2) {
-                subBuilder = ((tensorflow.serving.PredictionLogOuterClass.ClassifyLog) logType_).toBuilder();
-              }
-              logType_ =
-                  input.readMessage(tensorflow.serving.PredictionLogOuterClass.ClassifyLog.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom((tensorflow.serving.PredictionLogOuterClass.ClassifyLog) logType_);
-                logType_ = subBuilder.buildPartial();
-              }
-              logTypeCase_ = 2;
-              break;
-            }
-            case 26: {
-              tensorflow.serving.PredictionLogOuterClass.RegressLog.Builder subBuilder = null;
-              if (logTypeCase_ == 3) {
-                subBuilder = ((tensorflow.serving.PredictionLogOuterClass.RegressLog) logType_).toBuilder();
-              }
-              logType_ =
-                  input.readMessage(tensorflow.serving.PredictionLogOuterClass.RegressLog.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom((tensorflow.serving.PredictionLogOuterClass.RegressLog) logType_);
-                logType_ = subBuilder.buildPartial();
-              }
-              logTypeCase_ = 3;
-              break;
-            }
-            case 34: {
-              tensorflow.serving.PredictionLogOuterClass.MultiInferenceLog.Builder subBuilder = null;
-              if (logTypeCase_ == 4) {
-                subBuilder = ((tensorflow.serving.PredictionLogOuterClass.MultiInferenceLog) logType_).toBuilder();
-              }
-              logType_ =
-                  input.readMessage(tensorflow.serving.PredictionLogOuterClass.MultiInferenceLog.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom((tensorflow.serving.PredictionLogOuterClass.MultiInferenceLog) logType_);
-                logType_ = subBuilder.buildPartial();
-              }
-              logTypeCase_ = 4;
-              break;
-            }
-            case 42: {
-              tensorflow.serving.PredictionLogOuterClass.SessionRunLog.Builder subBuilder = null;
-              if (logTypeCase_ == 5) {
-                subBuilder = ((tensorflow.serving.PredictionLogOuterClass.SessionRunLog) logType_).toBuilder();
-              }
-              logType_ =
-                  input.readMessage(tensorflow.serving.PredictionLogOuterClass.SessionRunLog.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom((tensorflow.serving.PredictionLogOuterClass.SessionRunLog) logType_);
-                logType_ = subBuilder.buildPartial();
-              }
-              logTypeCase_ = 5;
-              break;
-            }
-            case 50: {
-              tensorflow.serving.PredictionLogOuterClass.PredictLog.Builder subBuilder = null;
-              if (logTypeCase_ == 6) {
-                subBuilder = ((tensorflow.serving.PredictionLogOuterClass.PredictLog) logType_).toBuilder();
-              }
-              logType_ =
-                  input.readMessage(tensorflow.serving.PredictionLogOuterClass.PredictLog.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom((tensorflow.serving.PredictionLogOuterClass.PredictLog) logType_);
-                logType_ = subBuilder.buildPartial();
-              }
-              logTypeCase_ = 6;
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return tensorflow.serving.PredictionLogOuterClass.internal_static_tensorflow_serving_PredictionLog_descriptor;
@@ -4464,7 +4219,7 @@ public final class PredictionLogOuterClass {
      */
     @java.lang.Override
     public tensorflow.serving.Logging.LogMetadataOrBuilder getLogMetadataOrBuilder() {
-      return getLogMetadata();
+      return logMetadata_ == null ? tensorflow.serving.Logging.LogMetadata.getDefaultInstance() : logMetadata_;
     }
 
     public static final int CLASSIFY_LOG_FIELD_NUMBER = 2;
@@ -4654,7 +4409,7 @@ public final class PredictionLogOuterClass {
       if (logTypeCase_ == 6) {
         output.writeMessage(6, (tensorflow.serving.PredictionLogOuterClass.PredictLog) logType_);
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -4687,7 +4442,7 @@ public final class PredictionLogOuterClass {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(6, (tensorflow.serving.PredictionLogOuterClass.PredictLog) logType_);
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -4732,7 +4487,7 @@ public final class PredictionLogOuterClass {
         case 0:
         default:
       }
-      if (!unknownFields.equals(other.unknownFields)) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
 
@@ -4771,7 +4526,7 @@ public final class PredictionLogOuterClass {
         case 0:
         default:
       }
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -4892,27 +4647,37 @@ public final class PredictionLogOuterClass {
 
       // Construct using tensorflow.serving.PredictionLogOuterClass.PredictionLog.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        if (logMetadataBuilder_ == null) {
-          logMetadata_ = null;
-        } else {
-          logMetadata_ = null;
+        bitField0_ = 0;
+        logMetadata_ = null;
+        if (logMetadataBuilder_ != null) {
+          logMetadataBuilder_.dispose();
           logMetadataBuilder_ = null;
+        }
+        if (classifyLogBuilder_ != null) {
+          classifyLogBuilder_.clear();
+        }
+        if (regressLogBuilder_ != null) {
+          regressLogBuilder_.clear();
+        }
+        if (predictLogBuilder_ != null) {
+          predictLogBuilder_.clear();
+        }
+        if (multiInferenceLogBuilder_ != null) {
+          multiInferenceLogBuilder_.clear();
+        }
+        if (sessionRunLogBuilder_ != null) {
+          sessionRunLogBuilder_.clear();
         }
         logTypeCase_ = 0;
         logType_ = null;
@@ -4942,49 +4707,44 @@ public final class PredictionLogOuterClass {
       @java.lang.Override
       public tensorflow.serving.PredictionLogOuterClass.PredictionLog buildPartial() {
         tensorflow.serving.PredictionLogOuterClass.PredictionLog result = new tensorflow.serving.PredictionLogOuterClass.PredictionLog(this);
-        if (logMetadataBuilder_ == null) {
-          result.logMetadata_ = logMetadata_;
-        } else {
-          result.logMetadata_ = logMetadataBuilder_.build();
-        }
-        if (logTypeCase_ == 2) {
-          if (classifyLogBuilder_ == null) {
-            result.logType_ = logType_;
-          } else {
-            result.logType_ = classifyLogBuilder_.build();
-          }
-        }
-        if (logTypeCase_ == 3) {
-          if (regressLogBuilder_ == null) {
-            result.logType_ = logType_;
-          } else {
-            result.logType_ = regressLogBuilder_.build();
-          }
-        }
-        if (logTypeCase_ == 6) {
-          if (predictLogBuilder_ == null) {
-            result.logType_ = logType_;
-          } else {
-            result.logType_ = predictLogBuilder_.build();
-          }
-        }
-        if (logTypeCase_ == 4) {
-          if (multiInferenceLogBuilder_ == null) {
-            result.logType_ = logType_;
-          } else {
-            result.logType_ = multiInferenceLogBuilder_.build();
-          }
-        }
-        if (logTypeCase_ == 5) {
-          if (sessionRunLogBuilder_ == null) {
-            result.logType_ = logType_;
-          } else {
-            result.logType_ = sessionRunLogBuilder_.build();
-          }
-        }
-        result.logTypeCase_ = logTypeCase_;
+        if (bitField0_ != 0) { buildPartial0(result); }
+        buildPartialOneofs(result);
         onBuilt();
         return result;
+      }
+
+      private void buildPartial0(tensorflow.serving.PredictionLogOuterClass.PredictionLog result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.logMetadata_ = logMetadataBuilder_ == null
+              ? logMetadata_
+              : logMetadataBuilder_.build();
+        }
+      }
+
+      private void buildPartialOneofs(tensorflow.serving.PredictionLogOuterClass.PredictionLog result) {
+        result.logTypeCase_ = logTypeCase_;
+        result.logType_ = this.logType_;
+        if (logTypeCase_ == 2 &&
+            classifyLogBuilder_ != null) {
+          result.logType_ = classifyLogBuilder_.build();
+        }
+        if (logTypeCase_ == 3 &&
+            regressLogBuilder_ != null) {
+          result.logType_ = regressLogBuilder_.build();
+        }
+        if (logTypeCase_ == 6 &&
+            predictLogBuilder_ != null) {
+          result.logType_ = predictLogBuilder_.build();
+        }
+        if (logTypeCase_ == 4 &&
+            multiInferenceLogBuilder_ != null) {
+          result.logType_ = multiInferenceLogBuilder_.build();
+        }
+        if (logTypeCase_ == 5 &&
+            sessionRunLogBuilder_ != null) {
+          result.logType_ = sessionRunLogBuilder_.build();
+        }
       }
 
       @java.lang.Override
@@ -5059,7 +4819,7 @@ public final class PredictionLogOuterClass {
             break;
           }
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
@@ -5074,17 +4834,72 @@ public final class PredictionLogOuterClass {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        tensorflow.serving.PredictionLogOuterClass.PredictionLog parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                input.readMessage(
+                    getLogMetadataFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 10
+              case 18: {
+                input.readMessage(
+                    getClassifyLogFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                logTypeCase_ = 2;
+                break;
+              } // case 18
+              case 26: {
+                input.readMessage(
+                    getRegressLogFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                logTypeCase_ = 3;
+                break;
+              } // case 26
+              case 34: {
+                input.readMessage(
+                    getMultiInferenceLogFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                logTypeCase_ = 4;
+                break;
+              } // case 34
+              case 42: {
+                input.readMessage(
+                    getSessionRunLogFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                logTypeCase_ = 5;
+                break;
+              } // case 42
+              case 50: {
+                input.readMessage(
+                    getPredictLogFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                logTypeCase_ = 6;
+                break;
+              } // case 50
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (tensorflow.serving.PredictionLogOuterClass.PredictionLog) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
       private int logTypeCase_ = 0;
@@ -5102,6 +4917,7 @@ public final class PredictionLogOuterClass {
         return this;
       }
 
+      private int bitField0_;
 
       private tensorflow.serving.Logging.LogMetadata logMetadata_;
       private com.google.protobuf.SingleFieldBuilderV3<
@@ -5111,7 +4927,7 @@ public final class PredictionLogOuterClass {
        * @return Whether the logMetadata field is set.
        */
       public boolean hasLogMetadata() {
-        return logMetadataBuilder_ != null || logMetadata_ != null;
+        return ((bitField0_ & 0x00000001) != 0);
       }
       /**
        * <code>.tensorflow.serving.LogMetadata log_metadata = 1;</code>
@@ -5133,11 +4949,11 @@ public final class PredictionLogOuterClass {
             throw new NullPointerException();
           }
           logMetadata_ = value;
-          onChanged();
         } else {
           logMetadataBuilder_.setMessage(value);
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -5147,11 +4963,11 @@ public final class PredictionLogOuterClass {
           tensorflow.serving.Logging.LogMetadata.Builder builderForValue) {
         if (logMetadataBuilder_ == null) {
           logMetadata_ = builderForValue.build();
-          onChanged();
         } else {
           logMetadataBuilder_.setMessage(builderForValue.build());
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -5159,38 +4975,38 @@ public final class PredictionLogOuterClass {
        */
       public Builder mergeLogMetadata(tensorflow.serving.Logging.LogMetadata value) {
         if (logMetadataBuilder_ == null) {
-          if (logMetadata_ != null) {
-            logMetadata_ =
-              tensorflow.serving.Logging.LogMetadata.newBuilder(logMetadata_).mergeFrom(value).buildPartial();
+          if (((bitField0_ & 0x00000001) != 0) &&
+            logMetadata_ != null &&
+            logMetadata_ != tensorflow.serving.Logging.LogMetadata.getDefaultInstance()) {
+            getLogMetadataBuilder().mergeFrom(value);
           } else {
             logMetadata_ = value;
           }
-          onChanged();
         } else {
           logMetadataBuilder_.mergeFrom(value);
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
        * <code>.tensorflow.serving.LogMetadata log_metadata = 1;</code>
        */
       public Builder clearLogMetadata() {
-        if (logMetadataBuilder_ == null) {
-          logMetadata_ = null;
-          onChanged();
-        } else {
-          logMetadata_ = null;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        logMetadata_ = null;
+        if (logMetadataBuilder_ != null) {
+          logMetadataBuilder_.dispose();
           logMetadataBuilder_ = null;
         }
-
+        onChanged();
         return this;
       }
       /**
        * <code>.tensorflow.serving.LogMetadata log_metadata = 1;</code>
        */
       public tensorflow.serving.Logging.LogMetadata.Builder getLogMetadataBuilder() {
-        
+        bitField0_ |= 0x00000001;
         onChanged();
         return getLogMetadataFieldBuilder().getBuilder();
       }
@@ -5296,8 +5112,9 @@ public final class PredictionLogOuterClass {
         } else {
           if (logTypeCase_ == 2) {
             classifyLogBuilder_.mergeFrom(value);
+          } else {
+            classifyLogBuilder_.setMessage(value);
           }
-          classifyLogBuilder_.setMessage(value);
         }
         logTypeCase_ = 2;
         return this;
@@ -5359,7 +5176,7 @@ public final class PredictionLogOuterClass {
           logType_ = null;
         }
         logTypeCase_ = 2;
-        onChanged();;
+        onChanged();
         return classifyLogBuilder_;
       }
 
@@ -5437,8 +5254,9 @@ public final class PredictionLogOuterClass {
         } else {
           if (logTypeCase_ == 3) {
             regressLogBuilder_.mergeFrom(value);
+          } else {
+            regressLogBuilder_.setMessage(value);
           }
-          regressLogBuilder_.setMessage(value);
         }
         logTypeCase_ = 3;
         return this;
@@ -5500,7 +5318,7 @@ public final class PredictionLogOuterClass {
           logType_ = null;
         }
         logTypeCase_ = 3;
-        onChanged();;
+        onChanged();
         return regressLogBuilder_;
       }
 
@@ -5578,8 +5396,9 @@ public final class PredictionLogOuterClass {
         } else {
           if (logTypeCase_ == 6) {
             predictLogBuilder_.mergeFrom(value);
+          } else {
+            predictLogBuilder_.setMessage(value);
           }
-          predictLogBuilder_.setMessage(value);
         }
         logTypeCase_ = 6;
         return this;
@@ -5641,7 +5460,7 @@ public final class PredictionLogOuterClass {
           logType_ = null;
         }
         logTypeCase_ = 6;
-        onChanged();;
+        onChanged();
         return predictLogBuilder_;
       }
 
@@ -5719,8 +5538,9 @@ public final class PredictionLogOuterClass {
         } else {
           if (logTypeCase_ == 4) {
             multiInferenceLogBuilder_.mergeFrom(value);
+          } else {
+            multiInferenceLogBuilder_.setMessage(value);
           }
-          multiInferenceLogBuilder_.setMessage(value);
         }
         logTypeCase_ = 4;
         return this;
@@ -5782,7 +5602,7 @@ public final class PredictionLogOuterClass {
           logType_ = null;
         }
         logTypeCase_ = 4;
-        onChanged();;
+        onChanged();
         return multiInferenceLogBuilder_;
       }
 
@@ -5860,8 +5680,9 @@ public final class PredictionLogOuterClass {
         } else {
           if (logTypeCase_ == 5) {
             sessionRunLogBuilder_.mergeFrom(value);
+          } else {
+            sessionRunLogBuilder_.setMessage(value);
           }
-          sessionRunLogBuilder_.setMessage(value);
         }
         logTypeCase_ = 5;
         return this;
@@ -5923,7 +5744,7 @@ public final class PredictionLogOuterClass {
           logType_ = null;
         }
         logTypeCase_ = 5;
-        onChanged();;
+        onChanged();
         return sessionRunLogBuilder_;
       }
       @java.lang.Override
@@ -5959,7 +5780,18 @@ public final class PredictionLogOuterClass {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new PredictionLog(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -6022,10 +5854,10 @@ public final class PredictionLogOuterClass {
       ".proto\022\022tensorflow.serving\032,tensorflow_s" +
       "erving/apis/classification.proto\032\'tensor" +
       "flow_serving/apis/inference.proto\032%tenso" +
-      "rflow_serving/apis/predict.proto\032(tensor" +
-      "flow_serving/apis/regression.proto\032-tens" +
-      "orflow_serving/apis/session_service.prot" +
-      "o\032%tensorflow_serving/core/logging.proto" +
+      "rflow_serving/apis/logging.proto\032%tensor" +
+      "flow_serving/apis/predict.proto\032(tensorf" +
+      "low_serving/apis/regression.proto\032-tenso" +
+      "rflow_serving/apis/session_service.proto" +
       "\"\207\001\n\013ClassifyLog\022:\n\007request\030\001 \001(\0132).tens" +
       "orflow.serving.ClassificationRequest\022<\n\010" +
       "response\030\002 \001(\0132*.tensorflow.serving.Clas" +
@@ -6059,10 +5891,10 @@ public final class PredictionLogOuterClass {
         new com.google.protobuf.Descriptors.FileDescriptor[] {
           tensorflow.serving.Classification.getDescriptor(),
           tensorflow.serving.Inference.getDescriptor(),
+          tensorflow.serving.Logging.getDescriptor(),
           tensorflow.serving.Predict.getDescriptor(),
           tensorflow.serving.RegressionOuterClass.getDescriptor(),
           tensorflow.serving.SessionServiceOuterClass.getDescriptor(),
-          tensorflow.serving.Logging.getDescriptor(),
         });
     internal_static_tensorflow_serving_ClassifyLog_descriptor =
       getDescriptor().getMessageTypes().get(0);
@@ -6102,10 +5934,10 @@ public final class PredictionLogOuterClass {
         new java.lang.String[] { "LogMetadata", "ClassifyLog", "RegressLog", "PredictLog", "MultiInferenceLog", "SessionRunLog", "LogType", });
     tensorflow.serving.Classification.getDescriptor();
     tensorflow.serving.Inference.getDescriptor();
+    tensorflow.serving.Logging.getDescriptor();
     tensorflow.serving.Predict.getDescriptor();
     tensorflow.serving.RegressionOuterClass.getDescriptor();
     tensorflow.serving.SessionServiceOuterClass.getDescriptor();
-    tensorflow.serving.Logging.getDescriptor();
   }
 
   // @@protoc_insertion_point(outer_class_scope)

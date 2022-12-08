@@ -56,48 +56,6 @@ public final class LoggingConfigOuterClass {
     getUnknownFields() {
       return this.unknownFields;
     }
-    private SamplingConfig(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 9: {
-
-              samplingRate_ = input.readDouble();
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return tensorflow.serving.LoggingConfigOuterClass.internal_static_tensorflow_serving_SamplingConfig_descriptor;
@@ -112,7 +70,7 @@ public final class LoggingConfigOuterClass {
     }
 
     public static final int SAMPLING_RATE_FIELD_NUMBER = 1;
-    private double samplingRate_;
+    private double samplingRate_ = 0D;
     /**
      * <pre>
      * Requests will be logged uniformly at random with this probability. Valid
@@ -141,10 +99,10 @@ public final class LoggingConfigOuterClass {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (samplingRate_ != 0D) {
+      if (java.lang.Double.doubleToRawLongBits(samplingRate_) != 0) {
         output.writeDouble(1, samplingRate_);
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -153,11 +111,11 @@ public final class LoggingConfigOuterClass {
       if (size != -1) return size;
 
       size = 0;
-      if (samplingRate_ != 0D) {
+      if (java.lang.Double.doubleToRawLongBits(samplingRate_) != 0) {
         size += com.google.protobuf.CodedOutputStream
           .computeDoubleSize(1, samplingRate_);
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -175,7 +133,7 @@ public final class LoggingConfigOuterClass {
       if (java.lang.Double.doubleToLongBits(getSamplingRate())
           != java.lang.Double.doubleToLongBits(
               other.getSamplingRate())) return false;
-      if (!unknownFields.equals(other.unknownFields)) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
 
@@ -189,7 +147,7 @@ public final class LoggingConfigOuterClass {
       hash = (37 * hash) + SAMPLING_RATE_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
           java.lang.Double.doubleToLongBits(getSamplingRate()));
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -306,24 +264,19 @@ public final class LoggingConfigOuterClass {
 
       // Construct using tensorflow.serving.LoggingConfigOuterClass.SamplingConfig.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         samplingRate_ = 0D;
-
         return this;
       }
 
@@ -350,9 +303,16 @@ public final class LoggingConfigOuterClass {
       @java.lang.Override
       public tensorflow.serving.LoggingConfigOuterClass.SamplingConfig buildPartial() {
         tensorflow.serving.LoggingConfigOuterClass.SamplingConfig result = new tensorflow.serving.LoggingConfigOuterClass.SamplingConfig(this);
-        result.samplingRate_ = samplingRate_;
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
+      }
+
+      private void buildPartial0(tensorflow.serving.LoggingConfigOuterClass.SamplingConfig result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.samplingRate_ = samplingRate_;
+        }
       }
 
       @java.lang.Override
@@ -402,7 +362,7 @@ public final class LoggingConfigOuterClass {
         if (other.getSamplingRate() != 0D) {
           setSamplingRate(other.getSamplingRate());
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
@@ -417,19 +377,38 @@ public final class LoggingConfigOuterClass {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        tensorflow.serving.LoggingConfigOuterClass.SamplingConfig parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 9: {
+                samplingRate_ = input.readDouble();
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 9
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (tensorflow.serving.LoggingConfigOuterClass.SamplingConfig) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
+      private int bitField0_;
 
       private double samplingRate_ ;
       /**
@@ -458,6 +437,7 @@ public final class LoggingConfigOuterClass {
       public Builder setSamplingRate(double value) {
         
         samplingRate_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -471,7 +451,7 @@ public final class LoggingConfigOuterClass {
        * @return This builder for chaining.
        */
       public Builder clearSamplingRate() {
-        
+        bitField0_ = (bitField0_ & ~0x00000001);
         samplingRate_ = 0D;
         onChanged();
         return this;
@@ -509,7 +489,18 @@ public final class LoggingConfigOuterClass {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new SamplingConfig(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -594,69 +585,6 @@ public final class LoggingConfigOuterClass {
     getUnknownFields() {
       return this.unknownFields;
     }
-    private LoggingConfig(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              tensorflow.serving.LogCollectorConfigOuterClass.LogCollectorConfig.Builder subBuilder = null;
-              if (logCollectorConfig_ != null) {
-                subBuilder = logCollectorConfig_.toBuilder();
-              }
-              logCollectorConfig_ = input.readMessage(tensorflow.serving.LogCollectorConfigOuterClass.LogCollectorConfig.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(logCollectorConfig_);
-                logCollectorConfig_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            case 18: {
-              tensorflow.serving.LoggingConfigOuterClass.SamplingConfig.Builder subBuilder = null;
-              if (samplingConfig_ != null) {
-                subBuilder = samplingConfig_.toBuilder();
-              }
-              samplingConfig_ = input.readMessage(tensorflow.serving.LoggingConfigOuterClass.SamplingConfig.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(samplingConfig_);
-                samplingConfig_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return tensorflow.serving.LoggingConfigOuterClass.internal_static_tensorflow_serving_LoggingConfig_descriptor;
@@ -693,7 +621,7 @@ public final class LoggingConfigOuterClass {
      */
     @java.lang.Override
     public tensorflow.serving.LogCollectorConfigOuterClass.LogCollectorConfigOrBuilder getLogCollectorConfigOrBuilder() {
-      return getLogCollectorConfig();
+      return logCollectorConfig_ == null ? tensorflow.serving.LogCollectorConfigOuterClass.LogCollectorConfig.getDefaultInstance() : logCollectorConfig_;
     }
 
     public static final int SAMPLING_CONFIG_FIELD_NUMBER = 2;
@@ -719,7 +647,7 @@ public final class LoggingConfigOuterClass {
      */
     @java.lang.Override
     public tensorflow.serving.LoggingConfigOuterClass.SamplingConfigOrBuilder getSamplingConfigOrBuilder() {
-      return getSamplingConfig();
+      return samplingConfig_ == null ? tensorflow.serving.LoggingConfigOuterClass.SamplingConfig.getDefaultInstance() : samplingConfig_;
     }
 
     private byte memoizedIsInitialized = -1;
@@ -742,7 +670,7 @@ public final class LoggingConfigOuterClass {
       if (samplingConfig_ != null) {
         output.writeMessage(2, getSamplingConfig());
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -759,7 +687,7 @@ public final class LoggingConfigOuterClass {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(2, getSamplingConfig());
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -784,7 +712,7 @@ public final class LoggingConfigOuterClass {
         if (!getSamplingConfig()
             .equals(other.getSamplingConfig())) return false;
       }
-      if (!unknownFields.equals(other.unknownFields)) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
 
@@ -803,7 +731,7 @@ public final class LoggingConfigOuterClass {
         hash = (37 * hash) + SAMPLING_CONFIG_FIELD_NUMBER;
         hash = (53 * hash) + getSamplingConfig().hashCode();
       }
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -924,32 +852,26 @@ public final class LoggingConfigOuterClass {
 
       // Construct using tensorflow.serving.LoggingConfigOuterClass.LoggingConfig.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        if (logCollectorConfigBuilder_ == null) {
-          logCollectorConfig_ = null;
-        } else {
-          logCollectorConfig_ = null;
+        bitField0_ = 0;
+        logCollectorConfig_ = null;
+        if (logCollectorConfigBuilder_ != null) {
+          logCollectorConfigBuilder_.dispose();
           logCollectorConfigBuilder_ = null;
         }
-        if (samplingConfigBuilder_ == null) {
-          samplingConfig_ = null;
-        } else {
-          samplingConfig_ = null;
+        samplingConfig_ = null;
+        if (samplingConfigBuilder_ != null) {
+          samplingConfigBuilder_.dispose();
           samplingConfigBuilder_ = null;
         }
         return this;
@@ -978,18 +900,23 @@ public final class LoggingConfigOuterClass {
       @java.lang.Override
       public tensorflow.serving.LoggingConfigOuterClass.LoggingConfig buildPartial() {
         tensorflow.serving.LoggingConfigOuterClass.LoggingConfig result = new tensorflow.serving.LoggingConfigOuterClass.LoggingConfig(this);
-        if (logCollectorConfigBuilder_ == null) {
-          result.logCollectorConfig_ = logCollectorConfig_;
-        } else {
-          result.logCollectorConfig_ = logCollectorConfigBuilder_.build();
-        }
-        if (samplingConfigBuilder_ == null) {
-          result.samplingConfig_ = samplingConfig_;
-        } else {
-          result.samplingConfig_ = samplingConfigBuilder_.build();
-        }
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
+      }
+
+      private void buildPartial0(tensorflow.serving.LoggingConfigOuterClass.LoggingConfig result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.logCollectorConfig_ = logCollectorConfigBuilder_ == null
+              ? logCollectorConfig_
+              : logCollectorConfigBuilder_.build();
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.samplingConfig_ = samplingConfigBuilder_ == null
+              ? samplingConfig_
+              : samplingConfigBuilder_.build();
+        }
       }
 
       @java.lang.Override
@@ -1042,7 +969,7 @@ public final class LoggingConfigOuterClass {
         if (other.hasSamplingConfig()) {
           mergeSamplingConfig(other.getSamplingConfig());
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
@@ -1057,19 +984,47 @@ public final class LoggingConfigOuterClass {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        tensorflow.serving.LoggingConfigOuterClass.LoggingConfig parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                input.readMessage(
+                    getLogCollectorConfigFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 10
+              case 18: {
+                input.readMessage(
+                    getSamplingConfigFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 18
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (tensorflow.serving.LoggingConfigOuterClass.LoggingConfig) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
+      private int bitField0_;
 
       private tensorflow.serving.LogCollectorConfigOuterClass.LogCollectorConfig logCollectorConfig_;
       private com.google.protobuf.SingleFieldBuilderV3<
@@ -1079,7 +1034,7 @@ public final class LoggingConfigOuterClass {
        * @return Whether the logCollectorConfig field is set.
        */
       public boolean hasLogCollectorConfig() {
-        return logCollectorConfigBuilder_ != null || logCollectorConfig_ != null;
+        return ((bitField0_ & 0x00000001) != 0);
       }
       /**
        * <code>.tensorflow.serving.LogCollectorConfig log_collector_config = 1;</code>
@@ -1101,11 +1056,11 @@ public final class LoggingConfigOuterClass {
             throw new NullPointerException();
           }
           logCollectorConfig_ = value;
-          onChanged();
         } else {
           logCollectorConfigBuilder_.setMessage(value);
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -1115,11 +1070,11 @@ public final class LoggingConfigOuterClass {
           tensorflow.serving.LogCollectorConfigOuterClass.LogCollectorConfig.Builder builderForValue) {
         if (logCollectorConfigBuilder_ == null) {
           logCollectorConfig_ = builderForValue.build();
-          onChanged();
         } else {
           logCollectorConfigBuilder_.setMessage(builderForValue.build());
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -1127,38 +1082,38 @@ public final class LoggingConfigOuterClass {
        */
       public Builder mergeLogCollectorConfig(tensorflow.serving.LogCollectorConfigOuterClass.LogCollectorConfig value) {
         if (logCollectorConfigBuilder_ == null) {
-          if (logCollectorConfig_ != null) {
-            logCollectorConfig_ =
-              tensorflow.serving.LogCollectorConfigOuterClass.LogCollectorConfig.newBuilder(logCollectorConfig_).mergeFrom(value).buildPartial();
+          if (((bitField0_ & 0x00000001) != 0) &&
+            logCollectorConfig_ != null &&
+            logCollectorConfig_ != tensorflow.serving.LogCollectorConfigOuterClass.LogCollectorConfig.getDefaultInstance()) {
+            getLogCollectorConfigBuilder().mergeFrom(value);
           } else {
             logCollectorConfig_ = value;
           }
-          onChanged();
         } else {
           logCollectorConfigBuilder_.mergeFrom(value);
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
        * <code>.tensorflow.serving.LogCollectorConfig log_collector_config = 1;</code>
        */
       public Builder clearLogCollectorConfig() {
-        if (logCollectorConfigBuilder_ == null) {
-          logCollectorConfig_ = null;
-          onChanged();
-        } else {
-          logCollectorConfig_ = null;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        logCollectorConfig_ = null;
+        if (logCollectorConfigBuilder_ != null) {
+          logCollectorConfigBuilder_.dispose();
           logCollectorConfigBuilder_ = null;
         }
-
+        onChanged();
         return this;
       }
       /**
        * <code>.tensorflow.serving.LogCollectorConfig log_collector_config = 1;</code>
        */
       public tensorflow.serving.LogCollectorConfigOuterClass.LogCollectorConfig.Builder getLogCollectorConfigBuilder() {
-        
+        bitField0_ |= 0x00000001;
         onChanged();
         return getLogCollectorConfigFieldBuilder().getBuilder();
       }
@@ -1198,7 +1153,7 @@ public final class LoggingConfigOuterClass {
        * @return Whether the samplingConfig field is set.
        */
       public boolean hasSamplingConfig() {
-        return samplingConfigBuilder_ != null || samplingConfig_ != null;
+        return ((bitField0_ & 0x00000002) != 0);
       }
       /**
        * <code>.tensorflow.serving.SamplingConfig sampling_config = 2;</code>
@@ -1220,11 +1175,11 @@ public final class LoggingConfigOuterClass {
             throw new NullPointerException();
           }
           samplingConfig_ = value;
-          onChanged();
         } else {
           samplingConfigBuilder_.setMessage(value);
         }
-
+        bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
@@ -1234,11 +1189,11 @@ public final class LoggingConfigOuterClass {
           tensorflow.serving.LoggingConfigOuterClass.SamplingConfig.Builder builderForValue) {
         if (samplingConfigBuilder_ == null) {
           samplingConfig_ = builderForValue.build();
-          onChanged();
         } else {
           samplingConfigBuilder_.setMessage(builderForValue.build());
         }
-
+        bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
@@ -1246,38 +1201,38 @@ public final class LoggingConfigOuterClass {
        */
       public Builder mergeSamplingConfig(tensorflow.serving.LoggingConfigOuterClass.SamplingConfig value) {
         if (samplingConfigBuilder_ == null) {
-          if (samplingConfig_ != null) {
-            samplingConfig_ =
-              tensorflow.serving.LoggingConfigOuterClass.SamplingConfig.newBuilder(samplingConfig_).mergeFrom(value).buildPartial();
+          if (((bitField0_ & 0x00000002) != 0) &&
+            samplingConfig_ != null &&
+            samplingConfig_ != tensorflow.serving.LoggingConfigOuterClass.SamplingConfig.getDefaultInstance()) {
+            getSamplingConfigBuilder().mergeFrom(value);
           } else {
             samplingConfig_ = value;
           }
-          onChanged();
         } else {
           samplingConfigBuilder_.mergeFrom(value);
         }
-
+        bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
        * <code>.tensorflow.serving.SamplingConfig sampling_config = 2;</code>
        */
       public Builder clearSamplingConfig() {
-        if (samplingConfigBuilder_ == null) {
-          samplingConfig_ = null;
-          onChanged();
-        } else {
-          samplingConfig_ = null;
+        bitField0_ = (bitField0_ & ~0x00000002);
+        samplingConfig_ = null;
+        if (samplingConfigBuilder_ != null) {
+          samplingConfigBuilder_.dispose();
           samplingConfigBuilder_ = null;
         }
-
+        onChanged();
         return this;
       }
       /**
        * <code>.tensorflow.serving.SamplingConfig sampling_config = 2;</code>
        */
       public tensorflow.serving.LoggingConfigOuterClass.SamplingConfig.Builder getSamplingConfigBuilder() {
-        
+        bitField0_ |= 0x00000002;
         onChanged();
         return getSamplingConfigFieldBuilder().getBuilder();
       }
@@ -1341,7 +1296,18 @@ public final class LoggingConfigOuterClass {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new LoggingConfig(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 

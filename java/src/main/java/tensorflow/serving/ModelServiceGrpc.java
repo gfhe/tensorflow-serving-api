@@ -1,19 +1,6 @@
 package tensorflow.serving;
 
 import static io.grpc.MethodDescriptor.generateFullMethodName;
-import static io.grpc.stub.ClientCalls.asyncBidiStreamingCall;
-import static io.grpc.stub.ClientCalls.asyncClientStreamingCall;
-import static io.grpc.stub.ClientCalls.asyncServerStreamingCall;
-import static io.grpc.stub.ClientCalls.asyncUnaryCall;
-import static io.grpc.stub.ClientCalls.blockingServerStreamingCall;
-import static io.grpc.stub.ClientCalls.blockingUnaryCall;
-import static io.grpc.stub.ClientCalls.futureUnaryCall;
-import static io.grpc.stub.ServerCalls.asyncBidiStreamingCall;
-import static io.grpc.stub.ServerCalls.asyncClientStreamingCall;
-import static io.grpc.stub.ServerCalls.asyncServerStreamingCall;
-import static io.grpc.stub.ServerCalls.asyncUnaryCall;
-import static io.grpc.stub.ServerCalls.asyncUnimplementedStreamingCall;
-import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
 
 /**
  * <pre>
@@ -22,8 +9,9 @@ import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
  * </pre>
  */
 @javax.annotation.Generated(
-    value = "by gRPC proto compiler (version 1.30.2)",
+    value = "by gRPC proto compiler (version 1.51.0)",
     comments = "Source: tensorflow_serving/apis/model_service.proto")
+@io.grpc.stub.annotations.GrpcGenerated
 public final class ModelServiceGrpc {
 
   private ModelServiceGrpc() {}
@@ -155,7 +143,7 @@ public final class ModelServiceGrpc {
      */
     public void getModelStatus(tensorflow.serving.GetModelStatus.GetModelStatusRequest request,
         io.grpc.stub.StreamObserver<tensorflow.serving.GetModelStatus.GetModelStatusResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(getGetModelStatusMethod(), responseObserver);
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getGetModelStatusMethod(), responseObserver);
     }
 
     /**
@@ -167,21 +155,21 @@ public final class ModelServiceGrpc {
      */
     public void handleReloadConfigRequest(tensorflow.serving.ModelManagement.ReloadConfigRequest request,
         io.grpc.stub.StreamObserver<tensorflow.serving.ModelManagement.ReloadConfigResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(getHandleReloadConfigRequestMethod(), responseObserver);
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getHandleReloadConfigRequestMethod(), responseObserver);
     }
 
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
             getGetModelStatusMethod(),
-            asyncUnaryCall(
+            io.grpc.stub.ServerCalls.asyncUnaryCall(
               new MethodHandlers<
                 tensorflow.serving.GetModelStatus.GetModelStatusRequest,
                 tensorflow.serving.GetModelStatus.GetModelStatusResponse>(
                   this, METHODID_GET_MODEL_STATUS)))
           .addMethod(
             getHandleReloadConfigRequestMethod(),
-            asyncUnaryCall(
+            io.grpc.stub.ServerCalls.asyncUnaryCall(
               new MethodHandlers<
                 tensorflow.serving.ModelManagement.ReloadConfigRequest,
                 tensorflow.serving.ModelManagement.ReloadConfigResponse>(
@@ -218,7 +206,7 @@ public final class ModelServiceGrpc {
      */
     public void getModelStatus(tensorflow.serving.GetModelStatus.GetModelStatusRequest request,
         io.grpc.stub.StreamObserver<tensorflow.serving.GetModelStatus.GetModelStatusResponse> responseObserver) {
-      asyncUnaryCall(
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getGetModelStatusMethod(), getCallOptions()), request, responseObserver);
     }
 
@@ -231,7 +219,7 @@ public final class ModelServiceGrpc {
      */
     public void handleReloadConfigRequest(tensorflow.serving.ModelManagement.ReloadConfigRequest request,
         io.grpc.stub.StreamObserver<tensorflow.serving.ModelManagement.ReloadConfigResponse> responseObserver) {
-      asyncUnaryCall(
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getHandleReloadConfigRequestMethod(), getCallOptions()), request, responseObserver);
     }
   }
@@ -263,7 +251,7 @@ public final class ModelServiceGrpc {
      * </pre>
      */
     public tensorflow.serving.GetModelStatus.GetModelStatusResponse getModelStatus(tensorflow.serving.GetModelStatus.GetModelStatusRequest request) {
-      return blockingUnaryCall(
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getGetModelStatusMethod(), getCallOptions(), request);
     }
 
@@ -275,7 +263,7 @@ public final class ModelServiceGrpc {
      * </pre>
      */
     public tensorflow.serving.ModelManagement.ReloadConfigResponse handleReloadConfigRequest(tensorflow.serving.ModelManagement.ReloadConfigRequest request) {
-      return blockingUnaryCall(
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getHandleReloadConfigRequestMethod(), getCallOptions(), request);
     }
   }
@@ -308,7 +296,7 @@ public final class ModelServiceGrpc {
      */
     public com.google.common.util.concurrent.ListenableFuture<tensorflow.serving.GetModelStatus.GetModelStatusResponse> getModelStatus(
         tensorflow.serving.GetModelStatus.GetModelStatusRequest request) {
-      return futureUnaryCall(
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getGetModelStatusMethod(), getCallOptions()), request);
     }
 
@@ -321,7 +309,7 @@ public final class ModelServiceGrpc {
      */
     public com.google.common.util.concurrent.ListenableFuture<tensorflow.serving.ModelManagement.ReloadConfigResponse> handleReloadConfigRequest(
         tensorflow.serving.ModelManagement.ReloadConfigRequest request) {
-      return futureUnaryCall(
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getHandleReloadConfigRequestMethod(), getCallOptions()), request);
     }
   }

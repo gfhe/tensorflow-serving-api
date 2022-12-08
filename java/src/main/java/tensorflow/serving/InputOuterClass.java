@@ -76,56 +76,6 @@ public final class InputOuterClass {
     getUnknownFields() {
       return this.unknownFields;
     }
-    private ExampleList(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
-                examples_ = new java.util.ArrayList<org.tensorflow.example.Example>();
-                mutable_bitField0_ |= 0x00000001;
-              }
-              examples_.add(
-                  input.readMessage(org.tensorflow.example.Example.parser(), extensionRegistry));
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        if (((mutable_bitField0_ & 0x00000001) != 0)) {
-          examples_ = java.util.Collections.unmodifiableList(examples_);
-        }
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return tensorflow.serving.InputOuterClass.internal_static_tensorflow_serving_ExampleList_descriptor;
@@ -140,6 +90,7 @@ public final class InputOuterClass {
     }
 
     public static final int EXAMPLES_FIELD_NUMBER = 1;
+    @SuppressWarnings("serial")
     private java.util.List<org.tensorflow.example.Example> examples_;
     /**
      * <code>repeated .tensorflow.Example examples = 1;</code>
@@ -196,7 +147,7 @@ public final class InputOuterClass {
       for (int i = 0; i < examples_.size(); i++) {
         output.writeMessage(1, examples_.get(i));
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -209,7 +160,7 @@ public final class InputOuterClass {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(1, examples_.get(i));
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -226,7 +177,7 @@ public final class InputOuterClass {
 
       if (!getExamplesList()
           .equals(other.getExamplesList())) return false;
-      if (!unknownFields.equals(other.unknownFields)) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
 
@@ -241,7 +192,7 @@ public final class InputOuterClass {
         hash = (37 * hash) + EXAMPLES_FIELD_NUMBER;
         hash = (53 * hash) + getExamplesList().hashCode();
       }
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -364,29 +315,25 @@ public final class InputOuterClass {
 
       // Construct using tensorflow.serving.InputOuterClass.ExampleList.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-          getExamplesFieldBuilder();
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         if (examplesBuilder_ == null) {
           examples_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000001);
         } else {
+          examples_ = null;
           examplesBuilder_.clear();
         }
+        bitField0_ = (bitField0_ & ~0x00000001);
         return this;
       }
 
@@ -413,7 +360,13 @@ public final class InputOuterClass {
       @java.lang.Override
       public tensorflow.serving.InputOuterClass.ExampleList buildPartial() {
         tensorflow.serving.InputOuterClass.ExampleList result = new tensorflow.serving.InputOuterClass.ExampleList(this);
-        int from_bitField0_ = bitField0_;
+        buildPartialRepeatedFields(result);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartialRepeatedFields(tensorflow.serving.InputOuterClass.ExampleList result) {
         if (examplesBuilder_ == null) {
           if (((bitField0_ & 0x00000001) != 0)) {
             examples_ = java.util.Collections.unmodifiableList(examples_);
@@ -423,8 +376,10 @@ public final class InputOuterClass {
         } else {
           result.examples_ = examplesBuilder_.build();
         }
-        onBuilt();
-        return result;
+      }
+
+      private void buildPartial0(tensorflow.serving.InputOuterClass.ExampleList result) {
+        int from_bitField0_ = bitField0_;
       }
 
       @java.lang.Override
@@ -497,7 +452,7 @@ public final class InputOuterClass {
             }
           }
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
@@ -512,17 +467,43 @@ public final class InputOuterClass {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        tensorflow.serving.InputOuterClass.ExampleList parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                org.tensorflow.example.Example m =
+                    input.readMessage(
+                        org.tensorflow.example.Example.parser(),
+                        extensionRegistry);
+                if (examplesBuilder_ == null) {
+                  ensureExamplesIsMutable();
+                  examples_.add(m);
+                } else {
+                  examplesBuilder_.addMessage(m);
+                }
+                break;
+              } // case 10
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (tensorflow.serving.InputOuterClass.ExampleList) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
       private int bitField0_;
@@ -799,7 +780,18 @@ public final class InputOuterClass {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new ExampleList(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -941,69 +933,6 @@ public final class InputOuterClass {
     getUnknownFields() {
       return this.unknownFields;
     }
-    private ExampleListWithContext(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
-                examples_ = new java.util.ArrayList<org.tensorflow.example.Example>();
-                mutable_bitField0_ |= 0x00000001;
-              }
-              examples_.add(
-                  input.readMessage(org.tensorflow.example.Example.parser(), extensionRegistry));
-              break;
-            }
-            case 18: {
-              org.tensorflow.example.Example.Builder subBuilder = null;
-              if (context_ != null) {
-                subBuilder = context_.toBuilder();
-              }
-              context_ = input.readMessage(org.tensorflow.example.Example.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(context_);
-                context_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        if (((mutable_bitField0_ & 0x00000001) != 0)) {
-          examples_ = java.util.Collections.unmodifiableList(examples_);
-        }
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return tensorflow.serving.InputOuterClass.internal_static_tensorflow_serving_ExampleListWithContext_descriptor;
@@ -1018,6 +947,7 @@ public final class InputOuterClass {
     }
 
     public static final int EXAMPLES_FIELD_NUMBER = 1;
+    @SuppressWarnings("serial")
     private java.util.List<org.tensorflow.example.Example> examples_;
     /**
      * <code>repeated .tensorflow.Example examples = 1;</code>
@@ -1080,7 +1010,7 @@ public final class InputOuterClass {
      */
     @java.lang.Override
     public org.tensorflow.example.ExampleOrBuilder getContextOrBuilder() {
-      return getContext();
+      return context_ == null ? org.tensorflow.example.Example.getDefaultInstance() : context_;
     }
 
     private byte memoizedIsInitialized = -1;
@@ -1103,7 +1033,7 @@ public final class InputOuterClass {
       if (context_ != null) {
         output.writeMessage(2, getContext());
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -1120,7 +1050,7 @@ public final class InputOuterClass {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(2, getContext());
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -1142,7 +1072,7 @@ public final class InputOuterClass {
         if (!getContext()
             .equals(other.getContext())) return false;
       }
-      if (!unknownFields.equals(other.unknownFields)) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
 
@@ -1161,7 +1091,7 @@ public final class InputOuterClass {
         hash = (37 * hash) + CONTEXT_FIELD_NUMBER;
         hash = (53 * hash) + getContext().hashCode();
       }
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -1329,33 +1259,28 @@ public final class InputOuterClass {
 
       // Construct using tensorflow.serving.InputOuterClass.ExampleListWithContext.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-          getExamplesFieldBuilder();
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         if (examplesBuilder_ == null) {
           examples_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000001);
         } else {
+          examples_ = null;
           examplesBuilder_.clear();
         }
-        if (contextBuilder_ == null) {
-          context_ = null;
-        } else {
-          context_ = null;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        context_ = null;
+        if (contextBuilder_ != null) {
+          contextBuilder_.dispose();
           contextBuilder_ = null;
         }
         return this;
@@ -1384,7 +1309,13 @@ public final class InputOuterClass {
       @java.lang.Override
       public tensorflow.serving.InputOuterClass.ExampleListWithContext buildPartial() {
         tensorflow.serving.InputOuterClass.ExampleListWithContext result = new tensorflow.serving.InputOuterClass.ExampleListWithContext(this);
-        int from_bitField0_ = bitField0_;
+        buildPartialRepeatedFields(result);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartialRepeatedFields(tensorflow.serving.InputOuterClass.ExampleListWithContext result) {
         if (examplesBuilder_ == null) {
           if (((bitField0_ & 0x00000001) != 0)) {
             examples_ = java.util.Collections.unmodifiableList(examples_);
@@ -1394,13 +1325,15 @@ public final class InputOuterClass {
         } else {
           result.examples_ = examplesBuilder_.build();
         }
-        if (contextBuilder_ == null) {
-          result.context_ = context_;
-        } else {
-          result.context_ = contextBuilder_.build();
+      }
+
+      private void buildPartial0(tensorflow.serving.InputOuterClass.ExampleListWithContext result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.context_ = contextBuilder_ == null
+              ? context_
+              : contextBuilder_.build();
         }
-        onBuilt();
-        return result;
       }
 
       @java.lang.Override
@@ -1476,7 +1409,7 @@ public final class InputOuterClass {
         if (other.hasContext()) {
           mergeContext(other.getContext());
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
@@ -1491,17 +1424,50 @@ public final class InputOuterClass {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        tensorflow.serving.InputOuterClass.ExampleListWithContext parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                org.tensorflow.example.Example m =
+                    input.readMessage(
+                        org.tensorflow.example.Example.parser(),
+                        extensionRegistry);
+                if (examplesBuilder_ == null) {
+                  ensureExamplesIsMutable();
+                  examples_.add(m);
+                } else {
+                  examplesBuilder_.addMessage(m);
+                }
+                break;
+              } // case 10
+              case 18: {
+                input.readMessage(
+                    getContextFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 18
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (tensorflow.serving.InputOuterClass.ExampleListWithContext) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
       private int bitField0_;
@@ -1754,7 +1720,7 @@ public final class InputOuterClass {
        * @return Whether the context field is set.
        */
       public boolean hasContext() {
-        return contextBuilder_ != null || context_ != null;
+        return ((bitField0_ & 0x00000002) != 0);
       }
       /**
        * <code>.tensorflow.Example context = 2;</code>
@@ -1776,11 +1742,11 @@ public final class InputOuterClass {
             throw new NullPointerException();
           }
           context_ = value;
-          onChanged();
         } else {
           contextBuilder_.setMessage(value);
         }
-
+        bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
@@ -1790,11 +1756,11 @@ public final class InputOuterClass {
           org.tensorflow.example.Example.Builder builderForValue) {
         if (contextBuilder_ == null) {
           context_ = builderForValue.build();
-          onChanged();
         } else {
           contextBuilder_.setMessage(builderForValue.build());
         }
-
+        bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
@@ -1802,38 +1768,38 @@ public final class InputOuterClass {
        */
       public Builder mergeContext(org.tensorflow.example.Example value) {
         if (contextBuilder_ == null) {
-          if (context_ != null) {
-            context_ =
-              org.tensorflow.example.Example.newBuilder(context_).mergeFrom(value).buildPartial();
+          if (((bitField0_ & 0x00000002) != 0) &&
+            context_ != null &&
+            context_ != org.tensorflow.example.Example.getDefaultInstance()) {
+            getContextBuilder().mergeFrom(value);
           } else {
             context_ = value;
           }
-          onChanged();
         } else {
           contextBuilder_.mergeFrom(value);
         }
-
+        bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
        * <code>.tensorflow.Example context = 2;</code>
        */
       public Builder clearContext() {
-        if (contextBuilder_ == null) {
-          context_ = null;
-          onChanged();
-        } else {
-          context_ = null;
+        bitField0_ = (bitField0_ & ~0x00000002);
+        context_ = null;
+        if (contextBuilder_ != null) {
+          contextBuilder_.dispose();
           contextBuilder_ = null;
         }
-
+        onChanged();
         return this;
       }
       /**
        * <code>.tensorflow.Example context = 2;</code>
        */
       public org.tensorflow.example.Example.Builder getContextBuilder() {
-        
+        bitField0_ |= 0x00000002;
         onChanged();
         return getContextFieldBuilder().getBuilder();
       }
@@ -1897,7 +1863,18 @@ public final class InputOuterClass {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new ExampleListWithContext(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -1979,71 +1956,6 @@ public final class InputOuterClass {
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
-    }
-    private Input(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              tensorflow.serving.InputOuterClass.ExampleList.Builder subBuilder = null;
-              if (kindCase_ == 1) {
-                subBuilder = ((tensorflow.serving.InputOuterClass.ExampleList) kind_).toBuilder();
-              }
-              kind_ =
-                  input.readMessage(tensorflow.serving.InputOuterClass.ExampleList.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom((tensorflow.serving.InputOuterClass.ExampleList) kind_);
-                kind_ = subBuilder.buildPartial();
-              }
-              kindCase_ = 1;
-              break;
-            }
-            case 18: {
-              tensorflow.serving.InputOuterClass.ExampleListWithContext.Builder subBuilder = null;
-              if (kindCase_ == 2) {
-                subBuilder = ((tensorflow.serving.InputOuterClass.ExampleListWithContext) kind_).toBuilder();
-              }
-              kind_ =
-                  input.readMessage(tensorflow.serving.InputOuterClass.ExampleListWithContext.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom((tensorflow.serving.InputOuterClass.ExampleListWithContext) kind_);
-                kind_ = subBuilder.buildPartial();
-              }
-              kindCase_ = 2;
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
@@ -2181,7 +2093,7 @@ public final class InputOuterClass {
       if (kindCase_ == 2) {
         output.writeMessage(2, (tensorflow.serving.InputOuterClass.ExampleListWithContext) kind_);
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -2198,7 +2110,7 @@ public final class InputOuterClass {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(2, (tensorflow.serving.InputOuterClass.ExampleListWithContext) kind_);
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -2226,7 +2138,7 @@ public final class InputOuterClass {
         case 0:
         default:
       }
-      if (!unknownFields.equals(other.unknownFields)) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
 
@@ -2249,7 +2161,7 @@ public final class InputOuterClass {
         case 0:
         default:
       }
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -2366,22 +2278,24 @@ public final class InputOuterClass {
 
       // Construct using tensorflow.serving.InputOuterClass.Input.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
+        if (exampleListBuilder_ != null) {
+          exampleListBuilder_.clear();
+        }
+        if (exampleListWithContextBuilder_ != null) {
+          exampleListWithContextBuilder_.clear();
+        }
         kindCase_ = 0;
         kind_ = null;
         return this;
@@ -2410,23 +2324,27 @@ public final class InputOuterClass {
       @java.lang.Override
       public tensorflow.serving.InputOuterClass.Input buildPartial() {
         tensorflow.serving.InputOuterClass.Input result = new tensorflow.serving.InputOuterClass.Input(this);
-        if (kindCase_ == 1) {
-          if (exampleListBuilder_ == null) {
-            result.kind_ = kind_;
-          } else {
-            result.kind_ = exampleListBuilder_.build();
-          }
-        }
-        if (kindCase_ == 2) {
-          if (exampleListWithContextBuilder_ == null) {
-            result.kind_ = kind_;
-          } else {
-            result.kind_ = exampleListWithContextBuilder_.build();
-          }
-        }
-        result.kindCase_ = kindCase_;
+        if (bitField0_ != 0) { buildPartial0(result); }
+        buildPartialOneofs(result);
         onBuilt();
         return result;
+      }
+
+      private void buildPartial0(tensorflow.serving.InputOuterClass.Input result) {
+        int from_bitField0_ = bitField0_;
+      }
+
+      private void buildPartialOneofs(tensorflow.serving.InputOuterClass.Input result) {
+        result.kindCase_ = kindCase_;
+        result.kind_ = this.kind_;
+        if (kindCase_ == 1 &&
+            exampleListBuilder_ != null) {
+          result.kind_ = exampleListBuilder_.build();
+        }
+        if (kindCase_ == 2 &&
+            exampleListWithContextBuilder_ != null) {
+          result.kind_ = exampleListWithContextBuilder_.build();
+        }
       }
 
       @java.lang.Override
@@ -2486,7 +2404,7 @@ public final class InputOuterClass {
             break;
           }
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
@@ -2501,17 +2419,44 @@ public final class InputOuterClass {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        tensorflow.serving.InputOuterClass.Input parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                input.readMessage(
+                    getExampleListFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                kindCase_ = 1;
+                break;
+              } // case 10
+              case 18: {
+                input.readMessage(
+                    getExampleListWithContextFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                kindCase_ = 2;
+                break;
+              } // case 18
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (tensorflow.serving.InputOuterClass.Input) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
       private int kindCase_ = 0;
@@ -2529,6 +2474,7 @@ public final class InputOuterClass {
         return this;
       }
 
+      private int bitField0_;
 
       private com.google.protobuf.SingleFieldBuilderV3<
           tensorflow.serving.InputOuterClass.ExampleList, tensorflow.serving.InputOuterClass.ExampleList.Builder, tensorflow.serving.InputOuterClass.ExampleListOrBuilder> exampleListBuilder_;
@@ -2604,8 +2550,9 @@ public final class InputOuterClass {
         } else {
           if (kindCase_ == 1) {
             exampleListBuilder_.mergeFrom(value);
+          } else {
+            exampleListBuilder_.setMessage(value);
           }
-          exampleListBuilder_.setMessage(value);
         }
         kindCase_ = 1;
         return this;
@@ -2667,7 +2614,7 @@ public final class InputOuterClass {
           kind_ = null;
         }
         kindCase_ = 1;
-        onChanged();;
+        onChanged();
         return exampleListBuilder_;
       }
 
@@ -2745,8 +2692,9 @@ public final class InputOuterClass {
         } else {
           if (kindCase_ == 2) {
             exampleListWithContextBuilder_.mergeFrom(value);
+          } else {
+            exampleListWithContextBuilder_.setMessage(value);
           }
-          exampleListWithContextBuilder_.setMessage(value);
         }
         kindCase_ = 2;
         return this;
@@ -2808,7 +2756,7 @@ public final class InputOuterClass {
           kind_ = null;
         }
         kindCase_ = 2;
-        onChanged();;
+        onChanged();
         return exampleListWithContextBuilder_;
       }
       @java.lang.Override
@@ -2844,7 +2792,18 @@ public final class InputOuterClass {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new Input(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 

@@ -82,54 +82,6 @@ public final class Classification {
     getUnknownFields() {
       return this.unknownFields;
     }
-    private Class(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              label_ = s;
-              break;
-            }
-            case 21: {
-
-              score_ = input.readFloat();
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return tensorflow.serving.Classification.internal_static_tensorflow_serving_Class_descriptor;
@@ -144,7 +96,8 @@ public final class Classification {
     }
 
     public static final int LABEL_FIELD_NUMBER = 1;
-    private volatile java.lang.Object label_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object label_ = "";
     /**
      * <pre>
      * Label or name of the class.
@@ -190,7 +143,7 @@ public final class Classification {
     }
 
     public static final int SCORE_FIELD_NUMBER = 2;
-    private float score_;
+    private float score_ = 0F;
     /**
      * <pre>
      * Score for this class (e.g., the probability the item belongs to this
@@ -220,13 +173,13 @@ public final class Classification {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getLabelBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(label_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, label_);
       }
-      if (score_ != 0F) {
+      if (java.lang.Float.floatToRawIntBits(score_) != 0) {
         output.writeFloat(2, score_);
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -235,14 +188,14 @@ public final class Classification {
       if (size != -1) return size;
 
       size = 0;
-      if (!getLabelBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(label_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, label_);
       }
-      if (score_ != 0F) {
+      if (java.lang.Float.floatToRawIntBits(score_) != 0) {
         size += com.google.protobuf.CodedOutputStream
           .computeFloatSize(2, score_);
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -262,7 +215,7 @@ public final class Classification {
       if (java.lang.Float.floatToIntBits(getScore())
           != java.lang.Float.floatToIntBits(
               other.getScore())) return false;
-      if (!unknownFields.equals(other.unknownFields)) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
 
@@ -278,7 +231,7 @@ public final class Classification {
       hash = (37 * hash) + SCORE_FIELD_NUMBER;
       hash = (53 * hash) + java.lang.Float.floatToIntBits(
           getScore());
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -399,26 +352,20 @@ public final class Classification {
 
       // Construct using tensorflow.serving.Classification.Class.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         label_ = "";
-
         score_ = 0F;
-
         return this;
       }
 
@@ -445,10 +392,19 @@ public final class Classification {
       @java.lang.Override
       public tensorflow.serving.Classification.Class buildPartial() {
         tensorflow.serving.Classification.Class result = new tensorflow.serving.Classification.Class(this);
-        result.label_ = label_;
-        result.score_ = score_;
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
+      }
+
+      private void buildPartial0(tensorflow.serving.Classification.Class result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.label_ = label_;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.score_ = score_;
+        }
       }
 
       @java.lang.Override
@@ -497,12 +453,13 @@ public final class Classification {
         if (other == tensorflow.serving.Classification.Class.getDefaultInstance()) return this;
         if (!other.getLabel().isEmpty()) {
           label_ = other.label_;
+          bitField0_ |= 0x00000001;
           onChanged();
         }
         if (other.getScore() != 0F) {
           setScore(other.getScore());
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
@@ -517,19 +474,43 @@ public final class Classification {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        tensorflow.serving.Classification.Class parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                label_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 10
+              case 21: {
+                score_ = input.readFloat();
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 21
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (tensorflow.serving.Classification.Class) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
+      private int bitField0_;
 
       private java.lang.Object label_ = "";
       /**
@@ -584,11 +565,9 @@ public final class Classification {
        */
       public Builder setLabel(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         label_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -601,8 +580,8 @@ public final class Classification {
        * @return This builder for chaining.
        */
       public Builder clearLabel() {
-        
         label_ = getDefaultInstance().getLabel();
+        bitField0_ = (bitField0_ & ~0x00000001);
         onChanged();
         return this;
       }
@@ -617,12 +596,10 @@ public final class Classification {
        */
       public Builder setLabelBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         label_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -656,6 +633,7 @@ public final class Classification {
       public Builder setScore(float value) {
         
         score_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -670,7 +648,7 @@ public final class Classification {
        * @return This builder for chaining.
        */
       public Builder clearScore() {
-        
+        bitField0_ = (bitField0_ & ~0x00000002);
         score_ = 0F;
         onChanged();
         return this;
@@ -708,7 +686,18 @@ public final class Classification {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new Class(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -788,56 +777,6 @@ public final class Classification {
     getUnknownFields() {
       return this.unknownFields;
     }
-    private Classifications(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
-                classes_ = new java.util.ArrayList<tensorflow.serving.Classification.Class>();
-                mutable_bitField0_ |= 0x00000001;
-              }
-              classes_.add(
-                  input.readMessage(tensorflow.serving.Classification.Class.parser(), extensionRegistry));
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        if (((mutable_bitField0_ & 0x00000001) != 0)) {
-          classes_ = java.util.Collections.unmodifiableList(classes_);
-        }
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return tensorflow.serving.Classification.internal_static_tensorflow_serving_Classifications_descriptor;
@@ -852,6 +791,7 @@ public final class Classification {
     }
 
     public static final int CLASSES_FIELD_NUMBER = 1;
+    @SuppressWarnings("serial")
     private java.util.List<tensorflow.serving.Classification.Class> classes_;
     /**
      * <code>repeated .tensorflow.serving.Class classes = 1;</code>
@@ -908,7 +848,7 @@ public final class Classification {
       for (int i = 0; i < classes_.size(); i++) {
         output.writeMessage(1, classes_.get(i));
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -921,7 +861,7 @@ public final class Classification {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(1, classes_.get(i));
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -938,7 +878,7 @@ public final class Classification {
 
       if (!getClassesList()
           .equals(other.getClassesList())) return false;
-      if (!unknownFields.equals(other.unknownFields)) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
 
@@ -953,7 +893,7 @@ public final class Classification {
         hash = (37 * hash) + CLASSES_FIELD_NUMBER;
         hash = (53 * hash) + getClassesList().hashCode();
       }
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -1074,29 +1014,25 @@ public final class Classification {
 
       // Construct using tensorflow.serving.Classification.Classifications.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-          getClassesFieldBuilder();
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         if (classesBuilder_ == null) {
           classes_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000001);
         } else {
+          classes_ = null;
           classesBuilder_.clear();
         }
+        bitField0_ = (bitField0_ & ~0x00000001);
         return this;
       }
 
@@ -1123,7 +1059,13 @@ public final class Classification {
       @java.lang.Override
       public tensorflow.serving.Classification.Classifications buildPartial() {
         tensorflow.serving.Classification.Classifications result = new tensorflow.serving.Classification.Classifications(this);
-        int from_bitField0_ = bitField0_;
+        buildPartialRepeatedFields(result);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartialRepeatedFields(tensorflow.serving.Classification.Classifications result) {
         if (classesBuilder_ == null) {
           if (((bitField0_ & 0x00000001) != 0)) {
             classes_ = java.util.Collections.unmodifiableList(classes_);
@@ -1133,8 +1075,10 @@ public final class Classification {
         } else {
           result.classes_ = classesBuilder_.build();
         }
-        onBuilt();
-        return result;
+      }
+
+      private void buildPartial0(tensorflow.serving.Classification.Classifications result) {
+        int from_bitField0_ = bitField0_;
       }
 
       @java.lang.Override
@@ -1207,7 +1151,7 @@ public final class Classification {
             }
           }
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
@@ -1222,17 +1166,43 @@ public final class Classification {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        tensorflow.serving.Classification.Classifications parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                tensorflow.serving.Classification.Class m =
+                    input.readMessage(
+                        tensorflow.serving.Classification.Class.parser(),
+                        extensionRegistry);
+                if (classesBuilder_ == null) {
+                  ensureClassesIsMutable();
+                  classes_.add(m);
+                } else {
+                  classesBuilder_.addMessage(m);
+                }
+                break;
+              } // case 10
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (tensorflow.serving.Classification.Classifications) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
       private int bitField0_;
@@ -1509,7 +1479,18 @@ public final class Classification {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new Classifications(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -1590,56 +1571,6 @@ public final class Classification {
     getUnknownFields() {
       return this.unknownFields;
     }
-    private ClassificationResult(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
-                classifications_ = new java.util.ArrayList<tensorflow.serving.Classification.Classifications>();
-                mutable_bitField0_ |= 0x00000001;
-              }
-              classifications_.add(
-                  input.readMessage(tensorflow.serving.Classification.Classifications.parser(), extensionRegistry));
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        if (((mutable_bitField0_ & 0x00000001) != 0)) {
-          classifications_ = java.util.Collections.unmodifiableList(classifications_);
-        }
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return tensorflow.serving.Classification.internal_static_tensorflow_serving_ClassificationResult_descriptor;
@@ -1654,6 +1585,7 @@ public final class Classification {
     }
 
     public static final int CLASSIFICATIONS_FIELD_NUMBER = 1;
+    @SuppressWarnings("serial")
     private java.util.List<tensorflow.serving.Classification.Classifications> classifications_;
     /**
      * <code>repeated .tensorflow.serving.Classifications classifications = 1;</code>
@@ -1710,7 +1642,7 @@ public final class Classification {
       for (int i = 0; i < classifications_.size(); i++) {
         output.writeMessage(1, classifications_.get(i));
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -1723,7 +1655,7 @@ public final class Classification {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(1, classifications_.get(i));
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -1740,7 +1672,7 @@ public final class Classification {
 
       if (!getClassificationsList()
           .equals(other.getClassificationsList())) return false;
-      if (!unknownFields.equals(other.unknownFields)) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
 
@@ -1755,7 +1687,7 @@ public final class Classification {
         hash = (37 * hash) + CLASSIFICATIONS_FIELD_NUMBER;
         hash = (53 * hash) + getClassificationsList().hashCode();
       }
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -1877,29 +1809,25 @@ public final class Classification {
 
       // Construct using tensorflow.serving.Classification.ClassificationResult.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-          getClassificationsFieldBuilder();
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         if (classificationsBuilder_ == null) {
           classifications_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000001);
         } else {
+          classifications_ = null;
           classificationsBuilder_.clear();
         }
+        bitField0_ = (bitField0_ & ~0x00000001);
         return this;
       }
 
@@ -1926,7 +1854,13 @@ public final class Classification {
       @java.lang.Override
       public tensorflow.serving.Classification.ClassificationResult buildPartial() {
         tensorflow.serving.Classification.ClassificationResult result = new tensorflow.serving.Classification.ClassificationResult(this);
-        int from_bitField0_ = bitField0_;
+        buildPartialRepeatedFields(result);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartialRepeatedFields(tensorflow.serving.Classification.ClassificationResult result) {
         if (classificationsBuilder_ == null) {
           if (((bitField0_ & 0x00000001) != 0)) {
             classifications_ = java.util.Collections.unmodifiableList(classifications_);
@@ -1936,8 +1870,10 @@ public final class Classification {
         } else {
           result.classifications_ = classificationsBuilder_.build();
         }
-        onBuilt();
-        return result;
+      }
+
+      private void buildPartial0(tensorflow.serving.Classification.ClassificationResult result) {
+        int from_bitField0_ = bitField0_;
       }
 
       @java.lang.Override
@@ -2010,7 +1946,7 @@ public final class Classification {
             }
           }
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
@@ -2025,17 +1961,43 @@ public final class Classification {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        tensorflow.serving.Classification.ClassificationResult parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                tensorflow.serving.Classification.Classifications m =
+                    input.readMessage(
+                        tensorflow.serving.Classification.Classifications.parser(),
+                        extensionRegistry);
+                if (classificationsBuilder_ == null) {
+                  ensureClassificationsIsMutable();
+                  classifications_.add(m);
+                } else {
+                  classificationsBuilder_.addMessage(m);
+                }
+                break;
+              } // case 10
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (tensorflow.serving.Classification.ClassificationResult) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
       private int bitField0_;
@@ -2312,7 +2274,18 @@ public final class Classification {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new ClassificationResult(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -2420,69 +2393,6 @@ public final class Classification {
     getUnknownFields() {
       return this.unknownFields;
     }
-    private ClassificationRequest(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              tensorflow.serving.Model.ModelSpec.Builder subBuilder = null;
-              if (modelSpec_ != null) {
-                subBuilder = modelSpec_.toBuilder();
-              }
-              modelSpec_ = input.readMessage(tensorflow.serving.Model.ModelSpec.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(modelSpec_);
-                modelSpec_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            case 18: {
-              tensorflow.serving.InputOuterClass.Input.Builder subBuilder = null;
-              if (input_ != null) {
-                subBuilder = input_.toBuilder();
-              }
-              input_ = input.readMessage(tensorflow.serving.InputOuterClass.Input.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(input_);
-                input_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return tensorflow.serving.Classification.internal_static_tensorflow_serving_ClassificationRequest_descriptor;
@@ -2534,7 +2444,7 @@ public final class Classification {
      */
     @java.lang.Override
     public tensorflow.serving.Model.ModelSpecOrBuilder getModelSpecOrBuilder() {
-      return getModelSpec();
+      return modelSpec_ == null ? tensorflow.serving.Model.ModelSpec.getDefaultInstance() : modelSpec_;
     }
 
     public static final int INPUT_FIELD_NUMBER = 2;
@@ -2572,7 +2482,7 @@ public final class Classification {
      */
     @java.lang.Override
     public tensorflow.serving.InputOuterClass.InputOrBuilder getInputOrBuilder() {
-      return getInput();
+      return input_ == null ? tensorflow.serving.InputOuterClass.Input.getDefaultInstance() : input_;
     }
 
     private byte memoizedIsInitialized = -1;
@@ -2595,7 +2505,7 @@ public final class Classification {
       if (input_ != null) {
         output.writeMessage(2, getInput());
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -2612,7 +2522,7 @@ public final class Classification {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(2, getInput());
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -2637,7 +2547,7 @@ public final class Classification {
         if (!getInput()
             .equals(other.getInput())) return false;
       }
-      if (!unknownFields.equals(other.unknownFields)) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
 
@@ -2656,7 +2566,7 @@ public final class Classification {
         hash = (37 * hash) + INPUT_FIELD_NUMBER;
         hash = (53 * hash) + getInput().hashCode();
       }
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -2773,32 +2683,26 @@ public final class Classification {
 
       // Construct using tensorflow.serving.Classification.ClassificationRequest.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        if (modelSpecBuilder_ == null) {
-          modelSpec_ = null;
-        } else {
-          modelSpec_ = null;
+        bitField0_ = 0;
+        modelSpec_ = null;
+        if (modelSpecBuilder_ != null) {
+          modelSpecBuilder_.dispose();
           modelSpecBuilder_ = null;
         }
-        if (inputBuilder_ == null) {
-          input_ = null;
-        } else {
-          input_ = null;
+        input_ = null;
+        if (inputBuilder_ != null) {
+          inputBuilder_.dispose();
           inputBuilder_ = null;
         }
         return this;
@@ -2827,18 +2731,23 @@ public final class Classification {
       @java.lang.Override
       public tensorflow.serving.Classification.ClassificationRequest buildPartial() {
         tensorflow.serving.Classification.ClassificationRequest result = new tensorflow.serving.Classification.ClassificationRequest(this);
-        if (modelSpecBuilder_ == null) {
-          result.modelSpec_ = modelSpec_;
-        } else {
-          result.modelSpec_ = modelSpecBuilder_.build();
-        }
-        if (inputBuilder_ == null) {
-          result.input_ = input_;
-        } else {
-          result.input_ = inputBuilder_.build();
-        }
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
+      }
+
+      private void buildPartial0(tensorflow.serving.Classification.ClassificationRequest result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.modelSpec_ = modelSpecBuilder_ == null
+              ? modelSpec_
+              : modelSpecBuilder_.build();
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.input_ = inputBuilder_ == null
+              ? input_
+              : inputBuilder_.build();
+        }
       }
 
       @java.lang.Override
@@ -2891,7 +2800,7 @@ public final class Classification {
         if (other.hasInput()) {
           mergeInput(other.getInput());
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
@@ -2906,19 +2815,47 @@ public final class Classification {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        tensorflow.serving.Classification.ClassificationRequest parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                input.readMessage(
+                    getModelSpecFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 10
+              case 18: {
+                input.readMessage(
+                    getInputFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 18
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (tensorflow.serving.Classification.ClassificationRequest) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
+      private int bitField0_;
 
       private tensorflow.serving.Model.ModelSpec modelSpec_;
       private com.google.protobuf.SingleFieldBuilderV3<
@@ -2933,7 +2870,7 @@ public final class Classification {
        * @return Whether the modelSpec field is set.
        */
       public boolean hasModelSpec() {
-        return modelSpecBuilder_ != null || modelSpec_ != null;
+        return ((bitField0_ & 0x00000001) != 0);
       }
       /**
        * <pre>
@@ -2965,11 +2902,11 @@ public final class Classification {
             throw new NullPointerException();
           }
           modelSpec_ = value;
-          onChanged();
         } else {
           modelSpecBuilder_.setMessage(value);
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -2984,11 +2921,11 @@ public final class Classification {
           tensorflow.serving.Model.ModelSpec.Builder builderForValue) {
         if (modelSpecBuilder_ == null) {
           modelSpec_ = builderForValue.build();
-          onChanged();
         } else {
           modelSpecBuilder_.setMessage(builderForValue.build());
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -3001,17 +2938,18 @@ public final class Classification {
        */
       public Builder mergeModelSpec(tensorflow.serving.Model.ModelSpec value) {
         if (modelSpecBuilder_ == null) {
-          if (modelSpec_ != null) {
-            modelSpec_ =
-              tensorflow.serving.Model.ModelSpec.newBuilder(modelSpec_).mergeFrom(value).buildPartial();
+          if (((bitField0_ & 0x00000001) != 0) &&
+            modelSpec_ != null &&
+            modelSpec_ != tensorflow.serving.Model.ModelSpec.getDefaultInstance()) {
+            getModelSpecBuilder().mergeFrom(value);
           } else {
             modelSpec_ = value;
           }
-          onChanged();
         } else {
           modelSpecBuilder_.mergeFrom(value);
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -3023,14 +2961,13 @@ public final class Classification {
        * <code>.tensorflow.serving.ModelSpec model_spec = 1;</code>
        */
       public Builder clearModelSpec() {
-        if (modelSpecBuilder_ == null) {
-          modelSpec_ = null;
-          onChanged();
-        } else {
-          modelSpec_ = null;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        modelSpec_ = null;
+        if (modelSpecBuilder_ != null) {
+          modelSpecBuilder_.dispose();
           modelSpecBuilder_ = null;
         }
-
+        onChanged();
         return this;
       }
       /**
@@ -3042,7 +2979,7 @@ public final class Classification {
        * <code>.tensorflow.serving.ModelSpec model_spec = 1;</code>
        */
       public tensorflow.serving.Model.ModelSpec.Builder getModelSpecBuilder() {
-        
+        bitField0_ |= 0x00000001;
         onChanged();
         return getModelSpecFieldBuilder().getBuilder();
       }
@@ -3096,7 +3033,7 @@ public final class Classification {
        * @return Whether the input field is set.
        */
       public boolean hasInput() {
-        return inputBuilder_ != null || input_ != null;
+        return ((bitField0_ & 0x00000002) != 0);
       }
       /**
        * <pre>
@@ -3126,11 +3063,11 @@ public final class Classification {
             throw new NullPointerException();
           }
           input_ = value;
-          onChanged();
         } else {
           inputBuilder_.setMessage(value);
         }
-
+        bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
@@ -3144,11 +3081,11 @@ public final class Classification {
           tensorflow.serving.InputOuterClass.Input.Builder builderForValue) {
         if (inputBuilder_ == null) {
           input_ = builderForValue.build();
-          onChanged();
         } else {
           inputBuilder_.setMessage(builderForValue.build());
         }
-
+        bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
@@ -3160,17 +3097,18 @@ public final class Classification {
        */
       public Builder mergeInput(tensorflow.serving.InputOuterClass.Input value) {
         if (inputBuilder_ == null) {
-          if (input_ != null) {
-            input_ =
-              tensorflow.serving.InputOuterClass.Input.newBuilder(input_).mergeFrom(value).buildPartial();
+          if (((bitField0_ & 0x00000002) != 0) &&
+            input_ != null &&
+            input_ != tensorflow.serving.InputOuterClass.Input.getDefaultInstance()) {
+            getInputBuilder().mergeFrom(value);
           } else {
             input_ = value;
           }
-          onChanged();
         } else {
           inputBuilder_.mergeFrom(value);
         }
-
+        bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
@@ -3181,14 +3119,13 @@ public final class Classification {
        * <code>.tensorflow.serving.Input input = 2;</code>
        */
       public Builder clearInput() {
-        if (inputBuilder_ == null) {
-          input_ = null;
-          onChanged();
-        } else {
-          input_ = null;
+        bitField0_ = (bitField0_ & ~0x00000002);
+        input_ = null;
+        if (inputBuilder_ != null) {
+          inputBuilder_.dispose();
           inputBuilder_ = null;
         }
-
+        onChanged();
         return this;
       }
       /**
@@ -3199,7 +3136,7 @@ public final class Classification {
        * <code>.tensorflow.serving.Input input = 2;</code>
        */
       public tensorflow.serving.InputOuterClass.Input.Builder getInputBuilder() {
-        
+        bitField0_ |= 0x00000002;
         onChanged();
         return getInputFieldBuilder().getBuilder();
       }
@@ -3271,7 +3208,18 @@ public final class Classification {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new ClassificationRequest(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -3376,69 +3324,6 @@ public final class Classification {
     getUnknownFields() {
       return this.unknownFields;
     }
-    private ClassificationResponse(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              tensorflow.serving.Classification.ClassificationResult.Builder subBuilder = null;
-              if (result_ != null) {
-                subBuilder = result_.toBuilder();
-              }
-              result_ = input.readMessage(tensorflow.serving.Classification.ClassificationResult.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(result_);
-                result_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            case 18: {
-              tensorflow.serving.Model.ModelSpec.Builder subBuilder = null;
-              if (modelSpec_ != null) {
-                subBuilder = modelSpec_.toBuilder();
-              }
-              modelSpec_ = input.readMessage(tensorflow.serving.Model.ModelSpec.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(modelSpec_);
-                modelSpec_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return tensorflow.serving.Classification.internal_static_tensorflow_serving_ClassificationResponse_descriptor;
@@ -3487,7 +3372,7 @@ public final class Classification {
      */
     @java.lang.Override
     public tensorflow.serving.Model.ModelSpecOrBuilder getModelSpecOrBuilder() {
-      return getModelSpec();
+      return modelSpec_ == null ? tensorflow.serving.Model.ModelSpec.getDefaultInstance() : modelSpec_;
     }
 
     public static final int RESULT_FIELD_NUMBER = 1;
@@ -3525,7 +3410,7 @@ public final class Classification {
      */
     @java.lang.Override
     public tensorflow.serving.Classification.ClassificationResultOrBuilder getResultOrBuilder() {
-      return getResult();
+      return result_ == null ? tensorflow.serving.Classification.ClassificationResult.getDefaultInstance() : result_;
     }
 
     private byte memoizedIsInitialized = -1;
@@ -3548,7 +3433,7 @@ public final class Classification {
       if (modelSpec_ != null) {
         output.writeMessage(2, getModelSpec());
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -3565,7 +3450,7 @@ public final class Classification {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(2, getModelSpec());
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -3590,7 +3475,7 @@ public final class Classification {
         if (!getResult()
             .equals(other.getResult())) return false;
       }
-      if (!unknownFields.equals(other.unknownFields)) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
 
@@ -3609,7 +3494,7 @@ public final class Classification {
         hash = (37 * hash) + RESULT_FIELD_NUMBER;
         hash = (53 * hash) + getResult().hashCode();
       }
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -3726,32 +3611,26 @@ public final class Classification {
 
       // Construct using tensorflow.serving.Classification.ClassificationResponse.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        if (modelSpecBuilder_ == null) {
-          modelSpec_ = null;
-        } else {
-          modelSpec_ = null;
+        bitField0_ = 0;
+        modelSpec_ = null;
+        if (modelSpecBuilder_ != null) {
+          modelSpecBuilder_.dispose();
           modelSpecBuilder_ = null;
         }
-        if (resultBuilder_ == null) {
-          result_ = null;
-        } else {
-          result_ = null;
+        result_ = null;
+        if (resultBuilder_ != null) {
+          resultBuilder_.dispose();
           resultBuilder_ = null;
         }
         return this;
@@ -3780,18 +3659,23 @@ public final class Classification {
       @java.lang.Override
       public tensorflow.serving.Classification.ClassificationResponse buildPartial() {
         tensorflow.serving.Classification.ClassificationResponse result = new tensorflow.serving.Classification.ClassificationResponse(this);
-        if (modelSpecBuilder_ == null) {
-          result.modelSpec_ = modelSpec_;
-        } else {
-          result.modelSpec_ = modelSpecBuilder_.build();
-        }
-        if (resultBuilder_ == null) {
-          result.result_ = result_;
-        } else {
-          result.result_ = resultBuilder_.build();
-        }
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
+      }
+
+      private void buildPartial0(tensorflow.serving.Classification.ClassificationResponse result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.modelSpec_ = modelSpecBuilder_ == null
+              ? modelSpec_
+              : modelSpecBuilder_.build();
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.result_ = resultBuilder_ == null
+              ? result_
+              : resultBuilder_.build();
+        }
       }
 
       @java.lang.Override
@@ -3844,7 +3728,7 @@ public final class Classification {
         if (other.hasResult()) {
           mergeResult(other.getResult());
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
@@ -3859,19 +3743,47 @@ public final class Classification {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        tensorflow.serving.Classification.ClassificationResponse parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                input.readMessage(
+                    getResultFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 10
+              case 18: {
+                input.readMessage(
+                    getModelSpecFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 18
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (tensorflow.serving.Classification.ClassificationResponse) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
+      private int bitField0_;
 
       private tensorflow.serving.Model.ModelSpec modelSpec_;
       private com.google.protobuf.SingleFieldBuilderV3<
@@ -3885,7 +3797,7 @@ public final class Classification {
        * @return Whether the modelSpec field is set.
        */
       public boolean hasModelSpec() {
-        return modelSpecBuilder_ != null || modelSpec_ != null;
+        return ((bitField0_ & 0x00000001) != 0);
       }
       /**
        * <pre>
@@ -3915,11 +3827,11 @@ public final class Classification {
             throw new NullPointerException();
           }
           modelSpec_ = value;
-          onChanged();
         } else {
           modelSpecBuilder_.setMessage(value);
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -3933,11 +3845,11 @@ public final class Classification {
           tensorflow.serving.Model.ModelSpec.Builder builderForValue) {
         if (modelSpecBuilder_ == null) {
           modelSpec_ = builderForValue.build();
-          onChanged();
         } else {
           modelSpecBuilder_.setMessage(builderForValue.build());
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -3949,17 +3861,18 @@ public final class Classification {
        */
       public Builder mergeModelSpec(tensorflow.serving.Model.ModelSpec value) {
         if (modelSpecBuilder_ == null) {
-          if (modelSpec_ != null) {
-            modelSpec_ =
-              tensorflow.serving.Model.ModelSpec.newBuilder(modelSpec_).mergeFrom(value).buildPartial();
+          if (((bitField0_ & 0x00000001) != 0) &&
+            modelSpec_ != null &&
+            modelSpec_ != tensorflow.serving.Model.ModelSpec.getDefaultInstance()) {
+            getModelSpecBuilder().mergeFrom(value);
           } else {
             modelSpec_ = value;
           }
-          onChanged();
         } else {
           modelSpecBuilder_.mergeFrom(value);
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -3970,14 +3883,13 @@ public final class Classification {
        * <code>.tensorflow.serving.ModelSpec model_spec = 2;</code>
        */
       public Builder clearModelSpec() {
-        if (modelSpecBuilder_ == null) {
-          modelSpec_ = null;
-          onChanged();
-        } else {
-          modelSpec_ = null;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        modelSpec_ = null;
+        if (modelSpecBuilder_ != null) {
+          modelSpecBuilder_.dispose();
           modelSpecBuilder_ = null;
         }
-
+        onChanged();
         return this;
       }
       /**
@@ -3988,7 +3900,7 @@ public final class Classification {
        * <code>.tensorflow.serving.ModelSpec model_spec = 2;</code>
        */
       public tensorflow.serving.Model.ModelSpec.Builder getModelSpecBuilder() {
-        
+        bitField0_ |= 0x00000001;
         onChanged();
         return getModelSpecFieldBuilder().getBuilder();
       }
@@ -4040,7 +3952,7 @@ public final class Classification {
        * @return Whether the result field is set.
        */
       public boolean hasResult() {
-        return resultBuilder_ != null || result_ != null;
+        return ((bitField0_ & 0x00000002) != 0);
       }
       /**
        * <pre>
@@ -4070,11 +3982,11 @@ public final class Classification {
             throw new NullPointerException();
           }
           result_ = value;
-          onChanged();
         } else {
           resultBuilder_.setMessage(value);
         }
-
+        bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
@@ -4088,11 +4000,11 @@ public final class Classification {
           tensorflow.serving.Classification.ClassificationResult.Builder builderForValue) {
         if (resultBuilder_ == null) {
           result_ = builderForValue.build();
-          onChanged();
         } else {
           resultBuilder_.setMessage(builderForValue.build());
         }
-
+        bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
@@ -4104,17 +4016,18 @@ public final class Classification {
        */
       public Builder mergeResult(tensorflow.serving.Classification.ClassificationResult value) {
         if (resultBuilder_ == null) {
-          if (result_ != null) {
-            result_ =
-              tensorflow.serving.Classification.ClassificationResult.newBuilder(result_).mergeFrom(value).buildPartial();
+          if (((bitField0_ & 0x00000002) != 0) &&
+            result_ != null &&
+            result_ != tensorflow.serving.Classification.ClassificationResult.getDefaultInstance()) {
+            getResultBuilder().mergeFrom(value);
           } else {
             result_ = value;
           }
-          onChanged();
         } else {
           resultBuilder_.mergeFrom(value);
         }
-
+        bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
@@ -4125,14 +4038,13 @@ public final class Classification {
        * <code>.tensorflow.serving.ClassificationResult result = 1;</code>
        */
       public Builder clearResult() {
-        if (resultBuilder_ == null) {
-          result_ = null;
-          onChanged();
-        } else {
-          result_ = null;
+        bitField0_ = (bitField0_ & ~0x00000002);
+        result_ = null;
+        if (resultBuilder_ != null) {
+          resultBuilder_.dispose();
           resultBuilder_ = null;
         }
-
+        onChanged();
         return this;
       }
       /**
@@ -4143,7 +4055,7 @@ public final class Classification {
        * <code>.tensorflow.serving.ClassificationResult result = 1;</code>
        */
       public tensorflow.serving.Classification.ClassificationResult.Builder getResultBuilder() {
-        
+        bitField0_ |= 0x00000002;
         onChanged();
         return getResultFieldBuilder().getBuilder();
       }
@@ -4215,7 +4127,18 @@ public final class Classification {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new ClassificationResponse(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 

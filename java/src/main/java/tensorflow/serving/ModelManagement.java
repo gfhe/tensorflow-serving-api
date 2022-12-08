@@ -60,56 +60,6 @@ public final class ModelManagement {
     getUnknownFields() {
       return this.unknownFields;
     }
-    private ReloadConfigRequest(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              tensorflow.serving.ModelServerConfigOuterClass.ModelServerConfig.Builder subBuilder = null;
-              if (config_ != null) {
-                subBuilder = config_.toBuilder();
-              }
-              config_ = input.readMessage(tensorflow.serving.ModelServerConfigOuterClass.ModelServerConfig.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(config_);
-                config_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return tensorflow.serving.ModelManagement.internal_static_tensorflow_serving_ReloadConfigRequest_descriptor;
@@ -146,7 +96,7 @@ public final class ModelManagement {
      */
     @java.lang.Override
     public tensorflow.serving.ModelServerConfigOuterClass.ModelServerConfigOrBuilder getConfigOrBuilder() {
-      return getConfig();
+      return config_ == null ? tensorflow.serving.ModelServerConfigOuterClass.ModelServerConfig.getDefaultInstance() : config_;
     }
 
     private byte memoizedIsInitialized = -1;
@@ -166,7 +116,7 @@ public final class ModelManagement {
       if (config_ != null) {
         output.writeMessage(1, getConfig());
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -179,7 +129,7 @@ public final class ModelManagement {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(1, getConfig());
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -199,7 +149,7 @@ public final class ModelManagement {
         if (!getConfig()
             .equals(other.getConfig())) return false;
       }
-      if (!unknownFields.equals(other.unknownFields)) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
 
@@ -214,7 +164,7 @@ public final class ModelManagement {
         hash = (37 * hash) + CONFIG_FIELD_NUMBER;
         hash = (53 * hash) + getConfig().hashCode();
       }
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -331,26 +281,21 @@ public final class ModelManagement {
 
       // Construct using tensorflow.serving.ModelManagement.ReloadConfigRequest.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        if (configBuilder_ == null) {
-          config_ = null;
-        } else {
-          config_ = null;
+        bitField0_ = 0;
+        config_ = null;
+        if (configBuilder_ != null) {
+          configBuilder_.dispose();
           configBuilder_ = null;
         }
         return this;
@@ -379,13 +324,18 @@ public final class ModelManagement {
       @java.lang.Override
       public tensorflow.serving.ModelManagement.ReloadConfigRequest buildPartial() {
         tensorflow.serving.ModelManagement.ReloadConfigRequest result = new tensorflow.serving.ModelManagement.ReloadConfigRequest(this);
-        if (configBuilder_ == null) {
-          result.config_ = config_;
-        } else {
-          result.config_ = configBuilder_.build();
-        }
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
+      }
+
+      private void buildPartial0(tensorflow.serving.ModelManagement.ReloadConfigRequest result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.config_ = configBuilder_ == null
+              ? config_
+              : configBuilder_.build();
+        }
       }
 
       @java.lang.Override
@@ -435,7 +385,7 @@ public final class ModelManagement {
         if (other.hasConfig()) {
           mergeConfig(other.getConfig());
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
@@ -450,19 +400,40 @@ public final class ModelManagement {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        tensorflow.serving.ModelManagement.ReloadConfigRequest parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                input.readMessage(
+                    getConfigFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 10
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (tensorflow.serving.ModelManagement.ReloadConfigRequest) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
+      private int bitField0_;
 
       private tensorflow.serving.ModelServerConfigOuterClass.ModelServerConfig config_;
       private com.google.protobuf.SingleFieldBuilderV3<
@@ -472,7 +443,7 @@ public final class ModelManagement {
        * @return Whether the config field is set.
        */
       public boolean hasConfig() {
-        return configBuilder_ != null || config_ != null;
+        return ((bitField0_ & 0x00000001) != 0);
       }
       /**
        * <code>.tensorflow.serving.ModelServerConfig config = 1;</code>
@@ -494,11 +465,11 @@ public final class ModelManagement {
             throw new NullPointerException();
           }
           config_ = value;
-          onChanged();
         } else {
           configBuilder_.setMessage(value);
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -508,11 +479,11 @@ public final class ModelManagement {
           tensorflow.serving.ModelServerConfigOuterClass.ModelServerConfig.Builder builderForValue) {
         if (configBuilder_ == null) {
           config_ = builderForValue.build();
-          onChanged();
         } else {
           configBuilder_.setMessage(builderForValue.build());
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -520,38 +491,38 @@ public final class ModelManagement {
        */
       public Builder mergeConfig(tensorflow.serving.ModelServerConfigOuterClass.ModelServerConfig value) {
         if (configBuilder_ == null) {
-          if (config_ != null) {
-            config_ =
-              tensorflow.serving.ModelServerConfigOuterClass.ModelServerConfig.newBuilder(config_).mergeFrom(value).buildPartial();
+          if (((bitField0_ & 0x00000001) != 0) &&
+            config_ != null &&
+            config_ != tensorflow.serving.ModelServerConfigOuterClass.ModelServerConfig.getDefaultInstance()) {
+            getConfigBuilder().mergeFrom(value);
           } else {
             config_ = value;
           }
-          onChanged();
         } else {
           configBuilder_.mergeFrom(value);
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
        * <code>.tensorflow.serving.ModelServerConfig config = 1;</code>
        */
       public Builder clearConfig() {
-        if (configBuilder_ == null) {
-          config_ = null;
-          onChanged();
-        } else {
-          config_ = null;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        config_ = null;
+        if (configBuilder_ != null) {
+          configBuilder_.dispose();
           configBuilder_ = null;
         }
-
+        onChanged();
         return this;
       }
       /**
        * <code>.tensorflow.serving.ModelServerConfig config = 1;</code>
        */
       public tensorflow.serving.ModelServerConfigOuterClass.ModelServerConfig.Builder getConfigBuilder() {
-        
+        bitField0_ |= 0x00000001;
         onChanged();
         return getConfigFieldBuilder().getBuilder();
       }
@@ -615,7 +586,18 @@ public final class ModelManagement {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new ReloadConfigRequest(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -681,56 +663,6 @@ public final class ModelManagement {
     getUnknownFields() {
       return this.unknownFields;
     }
-    private ReloadConfigResponse(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              tensorflow.serving.Status.StatusProto.Builder subBuilder = null;
-              if (status_ != null) {
-                subBuilder = status_.toBuilder();
-              }
-              status_ = input.readMessage(tensorflow.serving.Status.StatusProto.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(status_);
-                status_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return tensorflow.serving.ModelManagement.internal_static_tensorflow_serving_ReloadConfigResponse_descriptor;
@@ -767,7 +699,7 @@ public final class ModelManagement {
      */
     @java.lang.Override
     public tensorflow.serving.Status.StatusProtoOrBuilder getStatusOrBuilder() {
-      return getStatus();
+      return status_ == null ? tensorflow.serving.Status.StatusProto.getDefaultInstance() : status_;
     }
 
     private byte memoizedIsInitialized = -1;
@@ -787,7 +719,7 @@ public final class ModelManagement {
       if (status_ != null) {
         output.writeMessage(1, getStatus());
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -800,7 +732,7 @@ public final class ModelManagement {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(1, getStatus());
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -820,7 +752,7 @@ public final class ModelManagement {
         if (!getStatus()
             .equals(other.getStatus())) return false;
       }
-      if (!unknownFields.equals(other.unknownFields)) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
 
@@ -835,7 +767,7 @@ public final class ModelManagement {
         hash = (37 * hash) + STATUS_FIELD_NUMBER;
         hash = (53 * hash) + getStatus().hashCode();
       }
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -952,26 +884,21 @@ public final class ModelManagement {
 
       // Construct using tensorflow.serving.ModelManagement.ReloadConfigResponse.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        if (statusBuilder_ == null) {
-          status_ = null;
-        } else {
-          status_ = null;
+        bitField0_ = 0;
+        status_ = null;
+        if (statusBuilder_ != null) {
+          statusBuilder_.dispose();
           statusBuilder_ = null;
         }
         return this;
@@ -1000,13 +927,18 @@ public final class ModelManagement {
       @java.lang.Override
       public tensorflow.serving.ModelManagement.ReloadConfigResponse buildPartial() {
         tensorflow.serving.ModelManagement.ReloadConfigResponse result = new tensorflow.serving.ModelManagement.ReloadConfigResponse(this);
-        if (statusBuilder_ == null) {
-          result.status_ = status_;
-        } else {
-          result.status_ = statusBuilder_.build();
-        }
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
+      }
+
+      private void buildPartial0(tensorflow.serving.ModelManagement.ReloadConfigResponse result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.status_ = statusBuilder_ == null
+              ? status_
+              : statusBuilder_.build();
+        }
       }
 
       @java.lang.Override
@@ -1056,7 +988,7 @@ public final class ModelManagement {
         if (other.hasStatus()) {
           mergeStatus(other.getStatus());
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
@@ -1071,19 +1003,40 @@ public final class ModelManagement {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        tensorflow.serving.ModelManagement.ReloadConfigResponse parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                input.readMessage(
+                    getStatusFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 10
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (tensorflow.serving.ModelManagement.ReloadConfigResponse) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
+      private int bitField0_;
 
       private tensorflow.serving.Status.StatusProto status_;
       private com.google.protobuf.SingleFieldBuilderV3<
@@ -1093,7 +1046,7 @@ public final class ModelManagement {
        * @return Whether the status field is set.
        */
       public boolean hasStatus() {
-        return statusBuilder_ != null || status_ != null;
+        return ((bitField0_ & 0x00000001) != 0);
       }
       /**
        * <code>.tensorflow.serving.StatusProto status = 1;</code>
@@ -1115,11 +1068,11 @@ public final class ModelManagement {
             throw new NullPointerException();
           }
           status_ = value;
-          onChanged();
         } else {
           statusBuilder_.setMessage(value);
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -1129,11 +1082,11 @@ public final class ModelManagement {
           tensorflow.serving.Status.StatusProto.Builder builderForValue) {
         if (statusBuilder_ == null) {
           status_ = builderForValue.build();
-          onChanged();
         } else {
           statusBuilder_.setMessage(builderForValue.build());
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -1141,38 +1094,38 @@ public final class ModelManagement {
        */
       public Builder mergeStatus(tensorflow.serving.Status.StatusProto value) {
         if (statusBuilder_ == null) {
-          if (status_ != null) {
-            status_ =
-              tensorflow.serving.Status.StatusProto.newBuilder(status_).mergeFrom(value).buildPartial();
+          if (((bitField0_ & 0x00000001) != 0) &&
+            status_ != null &&
+            status_ != tensorflow.serving.Status.StatusProto.getDefaultInstance()) {
+            getStatusBuilder().mergeFrom(value);
           } else {
             status_ = value;
           }
-          onChanged();
         } else {
           statusBuilder_.mergeFrom(value);
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
        * <code>.tensorflow.serving.StatusProto status = 1;</code>
        */
       public Builder clearStatus() {
-        if (statusBuilder_ == null) {
-          status_ = null;
-          onChanged();
-        } else {
-          status_ = null;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        status_ = null;
+        if (statusBuilder_ != null) {
+          statusBuilder_.dispose();
           statusBuilder_ = null;
         }
-
+        onChanged();
         return this;
       }
       /**
        * <code>.tensorflow.serving.StatusProto status = 1;</code>
        */
       public tensorflow.serving.Status.StatusProto.Builder getStatusBuilder() {
-        
+        bitField0_ |= 0x00000001;
         onChanged();
         return getStatusFieldBuilder().getBuilder();
       }
@@ -1236,7 +1189,18 @@ public final class ModelManagement {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new ReloadConfigResponse(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -1276,9 +1240,9 @@ public final class ModelManagement {
   static {
     java.lang.String[] descriptorData = {
       "\n.tensorflow_serving/apis/model_manageme" +
-      "nt.proto\022\022tensorflow.serving\0323tensorflow" +
-      "_serving/config/model_server_config.prot" +
-      "o\032$tensorflow_serving/util/status.proto\"" +
+      "nt.proto\022\022tensorflow.serving\032$tensorflow" +
+      "_serving/apis/status.proto\0323tensorflow_s" +
+      "erving/config/model_server_config.proto\"" +
       "L\n\023ReloadConfigRequest\0225\n\006config\030\001 \001(\0132%" +
       ".tensorflow.serving.ModelServerConfig\"G\n" +
       "\024ReloadConfigResponse\022/\n\006status\030\001 \001(\0132\037." +
@@ -1288,8 +1252,8 @@ public final class ModelManagement {
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
-          tensorflow.serving.ModelServerConfigOuterClass.getDescriptor(),
           tensorflow.serving.Status.getDescriptor(),
+          tensorflow.serving.ModelServerConfigOuterClass.getDescriptor(),
         });
     internal_static_tensorflow_serving_ReloadConfigRequest_descriptor =
       getDescriptor().getMessageTypes().get(0);
@@ -1303,8 +1267,8 @@ public final class ModelManagement {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_tensorflow_serving_ReloadConfigResponse_descriptor,
         new java.lang.String[] { "Status", });
-    tensorflow.serving.ModelServerConfigOuterClass.getDescriptor();
     tensorflow.serving.Status.getDescriptor();
+    tensorflow.serving.ModelServerConfigOuterClass.getDescriptor();
   }
 
   // @@protoc_insertion_point(outer_class_scope)

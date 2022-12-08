@@ -58,49 +58,6 @@ public final class ClassRegistrationTest {
     getUnknownFields() {
       return this.unknownFields;
     }
-    private Config1(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              stringField_ = s;
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return tensorflow.serving.ClassRegistrationTest.internal_static_tensorflow_serving_Config1_descriptor;
@@ -115,7 +72,8 @@ public final class ClassRegistrationTest {
     }
 
     public static final int STRING_FIELD_FIELD_NUMBER = 1;
-    private volatile java.lang.Object stringField_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object stringField_ = "";
     /**
      * <code>string string_field = 1;</code>
      * @return The stringField.
@@ -166,10 +124,10 @@ public final class ClassRegistrationTest {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getStringFieldBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(stringField_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, stringField_);
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -178,10 +136,10 @@ public final class ClassRegistrationTest {
       if (size != -1) return size;
 
       size = 0;
-      if (!getStringFieldBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(stringField_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, stringField_);
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -198,7 +156,7 @@ public final class ClassRegistrationTest {
 
       if (!getStringField()
           .equals(other.getStringField())) return false;
-      if (!unknownFields.equals(other.unknownFields)) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
 
@@ -211,7 +169,7 @@ public final class ClassRegistrationTest {
       hash = (19 * hash) + getDescriptor().hashCode();
       hash = (37 * hash) + STRING_FIELD_FIELD_NUMBER;
       hash = (53 * hash) + getStringField().hashCode();
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -328,24 +286,19 @@ public final class ClassRegistrationTest {
 
       // Construct using tensorflow.serving.ClassRegistrationTest.Config1.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         stringField_ = "";
-
         return this;
       }
 
@@ -372,9 +325,16 @@ public final class ClassRegistrationTest {
       @java.lang.Override
       public tensorflow.serving.ClassRegistrationTest.Config1 buildPartial() {
         tensorflow.serving.ClassRegistrationTest.Config1 result = new tensorflow.serving.ClassRegistrationTest.Config1(this);
-        result.stringField_ = stringField_;
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
+      }
+
+      private void buildPartial0(tensorflow.serving.ClassRegistrationTest.Config1 result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.stringField_ = stringField_;
+        }
       }
 
       @java.lang.Override
@@ -423,9 +383,10 @@ public final class ClassRegistrationTest {
         if (other == tensorflow.serving.ClassRegistrationTest.Config1.getDefaultInstance()) return this;
         if (!other.getStringField().isEmpty()) {
           stringField_ = other.stringField_;
+          bitField0_ |= 0x00000001;
           onChanged();
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
@@ -440,19 +401,38 @@ public final class ClassRegistrationTest {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        tensorflow.serving.ClassRegistrationTest.Config1 parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                stringField_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 10
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (tensorflow.serving.ClassRegistrationTest.Config1) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
+      private int bitField0_;
 
       private java.lang.Object stringField_ = "";
       /**
@@ -495,11 +475,9 @@ public final class ClassRegistrationTest {
        */
       public Builder setStringField(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         stringField_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -508,8 +486,8 @@ public final class ClassRegistrationTest {
        * @return This builder for chaining.
        */
       public Builder clearStringField() {
-        
         stringField_ = getDefaultInstance().getStringField();
+        bitField0_ = (bitField0_ & ~0x00000001);
         onChanged();
         return this;
       }
@@ -520,12 +498,10 @@ public final class ClassRegistrationTest {
        */
       public Builder setStringFieldBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         stringField_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -562,7 +538,18 @@ public final class ClassRegistrationTest {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new Config1(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -626,49 +613,6 @@ public final class ClassRegistrationTest {
     getUnknownFields() {
       return this.unknownFields;
     }
-    private Config2(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              stringField_ = s;
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return tensorflow.serving.ClassRegistrationTest.internal_static_tensorflow_serving_Config2_descriptor;
@@ -683,7 +627,8 @@ public final class ClassRegistrationTest {
     }
 
     public static final int STRING_FIELD_FIELD_NUMBER = 1;
-    private volatile java.lang.Object stringField_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object stringField_ = "";
     /**
      * <code>string string_field = 1;</code>
      * @return The stringField.
@@ -734,10 +679,10 @@ public final class ClassRegistrationTest {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getStringFieldBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(stringField_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, stringField_);
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -746,10 +691,10 @@ public final class ClassRegistrationTest {
       if (size != -1) return size;
 
       size = 0;
-      if (!getStringFieldBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(stringField_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, stringField_);
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -766,7 +711,7 @@ public final class ClassRegistrationTest {
 
       if (!getStringField()
           .equals(other.getStringField())) return false;
-      if (!unknownFields.equals(other.unknownFields)) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
 
@@ -779,7 +724,7 @@ public final class ClassRegistrationTest {
       hash = (19 * hash) + getDescriptor().hashCode();
       hash = (37 * hash) + STRING_FIELD_FIELD_NUMBER;
       hash = (53 * hash) + getStringField().hashCode();
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -896,24 +841,19 @@ public final class ClassRegistrationTest {
 
       // Construct using tensorflow.serving.ClassRegistrationTest.Config2.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         stringField_ = "";
-
         return this;
       }
 
@@ -940,9 +880,16 @@ public final class ClassRegistrationTest {
       @java.lang.Override
       public tensorflow.serving.ClassRegistrationTest.Config2 buildPartial() {
         tensorflow.serving.ClassRegistrationTest.Config2 result = new tensorflow.serving.ClassRegistrationTest.Config2(this);
-        result.stringField_ = stringField_;
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
+      }
+
+      private void buildPartial0(tensorflow.serving.ClassRegistrationTest.Config2 result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.stringField_ = stringField_;
+        }
       }
 
       @java.lang.Override
@@ -991,9 +938,10 @@ public final class ClassRegistrationTest {
         if (other == tensorflow.serving.ClassRegistrationTest.Config2.getDefaultInstance()) return this;
         if (!other.getStringField().isEmpty()) {
           stringField_ = other.stringField_;
+          bitField0_ |= 0x00000001;
           onChanged();
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
@@ -1008,19 +956,38 @@ public final class ClassRegistrationTest {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        tensorflow.serving.ClassRegistrationTest.Config2 parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                stringField_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 10
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (tensorflow.serving.ClassRegistrationTest.Config2) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
+      private int bitField0_;
 
       private java.lang.Object stringField_ = "";
       /**
@@ -1063,11 +1030,9 @@ public final class ClassRegistrationTest {
        */
       public Builder setStringField(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         stringField_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -1076,8 +1041,8 @@ public final class ClassRegistrationTest {
        * @return This builder for chaining.
        */
       public Builder clearStringField() {
-        
         stringField_ = getDefaultInstance().getStringField();
+        bitField0_ = (bitField0_ & ~0x00000001);
         onChanged();
         return this;
       }
@@ -1088,12 +1053,10 @@ public final class ClassRegistrationTest {
        */
       public Builder setStringFieldBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         stringField_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -1130,7 +1093,18 @@ public final class ClassRegistrationTest {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new Config2(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -1196,56 +1170,6 @@ public final class ClassRegistrationTest {
     getUnknownFields() {
       return this.unknownFields;
     }
-    private MessageWithAny(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              com.google.protobuf.Any.Builder subBuilder = null;
-              if (anyField_ != null) {
-                subBuilder = anyField_.toBuilder();
-              }
-              anyField_ = input.readMessage(com.google.protobuf.Any.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(anyField_);
-                anyField_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return tensorflow.serving.ClassRegistrationTest.internal_static_tensorflow_serving_MessageWithAny_descriptor;
@@ -1282,7 +1206,7 @@ public final class ClassRegistrationTest {
      */
     @java.lang.Override
     public com.google.protobuf.AnyOrBuilder getAnyFieldOrBuilder() {
-      return getAnyField();
+      return anyField_ == null ? com.google.protobuf.Any.getDefaultInstance() : anyField_;
     }
 
     private byte memoizedIsInitialized = -1;
@@ -1302,7 +1226,7 @@ public final class ClassRegistrationTest {
       if (anyField_ != null) {
         output.writeMessage(1, getAnyField());
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -1315,7 +1239,7 @@ public final class ClassRegistrationTest {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(1, getAnyField());
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -1335,7 +1259,7 @@ public final class ClassRegistrationTest {
         if (!getAnyField()
             .equals(other.getAnyField())) return false;
       }
-      if (!unknownFields.equals(other.unknownFields)) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
 
@@ -1350,7 +1274,7 @@ public final class ClassRegistrationTest {
         hash = (37 * hash) + ANY_FIELD_FIELD_NUMBER;
         hash = (53 * hash) + getAnyField().hashCode();
       }
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -1467,26 +1391,21 @@ public final class ClassRegistrationTest {
 
       // Construct using tensorflow.serving.ClassRegistrationTest.MessageWithAny.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        if (anyFieldBuilder_ == null) {
-          anyField_ = null;
-        } else {
-          anyField_ = null;
+        bitField0_ = 0;
+        anyField_ = null;
+        if (anyFieldBuilder_ != null) {
+          anyFieldBuilder_.dispose();
           anyFieldBuilder_ = null;
         }
         return this;
@@ -1515,13 +1434,18 @@ public final class ClassRegistrationTest {
       @java.lang.Override
       public tensorflow.serving.ClassRegistrationTest.MessageWithAny buildPartial() {
         tensorflow.serving.ClassRegistrationTest.MessageWithAny result = new tensorflow.serving.ClassRegistrationTest.MessageWithAny(this);
-        if (anyFieldBuilder_ == null) {
-          result.anyField_ = anyField_;
-        } else {
-          result.anyField_ = anyFieldBuilder_.build();
-        }
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
+      }
+
+      private void buildPartial0(tensorflow.serving.ClassRegistrationTest.MessageWithAny result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.anyField_ = anyFieldBuilder_ == null
+              ? anyField_
+              : anyFieldBuilder_.build();
+        }
       }
 
       @java.lang.Override
@@ -1571,7 +1495,7 @@ public final class ClassRegistrationTest {
         if (other.hasAnyField()) {
           mergeAnyField(other.getAnyField());
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
@@ -1586,19 +1510,40 @@ public final class ClassRegistrationTest {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        tensorflow.serving.ClassRegistrationTest.MessageWithAny parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                input.readMessage(
+                    getAnyFieldFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 10
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (tensorflow.serving.ClassRegistrationTest.MessageWithAny) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
+      private int bitField0_;
 
       private com.google.protobuf.Any anyField_;
       private com.google.protobuf.SingleFieldBuilderV3<
@@ -1608,7 +1553,7 @@ public final class ClassRegistrationTest {
        * @return Whether the anyField field is set.
        */
       public boolean hasAnyField() {
-        return anyFieldBuilder_ != null || anyField_ != null;
+        return ((bitField0_ & 0x00000001) != 0);
       }
       /**
        * <code>.google.protobuf.Any any_field = 1;</code>
@@ -1630,11 +1575,11 @@ public final class ClassRegistrationTest {
             throw new NullPointerException();
           }
           anyField_ = value;
-          onChanged();
         } else {
           anyFieldBuilder_.setMessage(value);
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -1644,11 +1589,11 @@ public final class ClassRegistrationTest {
           com.google.protobuf.Any.Builder builderForValue) {
         if (anyFieldBuilder_ == null) {
           anyField_ = builderForValue.build();
-          onChanged();
         } else {
           anyFieldBuilder_.setMessage(builderForValue.build());
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -1656,38 +1601,38 @@ public final class ClassRegistrationTest {
        */
       public Builder mergeAnyField(com.google.protobuf.Any value) {
         if (anyFieldBuilder_ == null) {
-          if (anyField_ != null) {
-            anyField_ =
-              com.google.protobuf.Any.newBuilder(anyField_).mergeFrom(value).buildPartial();
+          if (((bitField0_ & 0x00000001) != 0) &&
+            anyField_ != null &&
+            anyField_ != com.google.protobuf.Any.getDefaultInstance()) {
+            getAnyFieldBuilder().mergeFrom(value);
           } else {
             anyField_ = value;
           }
-          onChanged();
         } else {
           anyFieldBuilder_.mergeFrom(value);
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
        * <code>.google.protobuf.Any any_field = 1;</code>
        */
       public Builder clearAnyField() {
-        if (anyFieldBuilder_ == null) {
-          anyField_ = null;
-          onChanged();
-        } else {
-          anyField_ = null;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        anyField_ = null;
+        if (anyFieldBuilder_ != null) {
+          anyFieldBuilder_.dispose();
           anyFieldBuilder_ = null;
         }
-
+        onChanged();
         return this;
       }
       /**
        * <code>.google.protobuf.Any any_field = 1;</code>
        */
       public com.google.protobuf.Any.Builder getAnyFieldBuilder() {
-        
+        bitField0_ |= 0x00000001;
         onChanged();
         return getAnyFieldFieldBuilder().getBuilder();
       }
@@ -1751,7 +1696,18 @@ public final class ClassRegistrationTest {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new MessageWithAny(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 

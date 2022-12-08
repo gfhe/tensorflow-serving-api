@@ -71,6 +71,15 @@ public final class Model {
      * </pre>
      *
      * <code>string version_label = 4;</code>
+     * @return Whether the versionLabel field is set.
+     */
+    boolean hasVersionLabel();
+    /**
+     * <pre>
+     * Use the version associated with the given label.
+     * </pre>
+     *
+     * <code>string version_label = 4;</code>
      * @return The versionLabel.
      */
     java.lang.String getVersionLabel();
@@ -142,75 +151,6 @@ public final class Model {
     getUnknownFields() {
       return this.unknownFields;
     }
-    private ModelSpec(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              name_ = s;
-              break;
-            }
-            case 18: {
-              com.google.protobuf.Int64Value.Builder subBuilder = null;
-              if (versionChoiceCase_ == 2) {
-                subBuilder = ((com.google.protobuf.Int64Value) versionChoice_).toBuilder();
-              }
-              versionChoice_ =
-                  input.readMessage(com.google.protobuf.Int64Value.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom((com.google.protobuf.Int64Value) versionChoice_);
-                versionChoice_ = subBuilder.buildPartial();
-              }
-              versionChoiceCase_ = 2;
-              break;
-            }
-            case 26: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              signatureName_ = s;
-              break;
-            }
-            case 34: {
-              java.lang.String s = input.readStringRequireUtf8();
-              versionChoiceCase_ = 4;
-              versionChoice_ = s;
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return tensorflow.serving.Model.internal_static_tensorflow_serving_ModelSpec_descriptor;
@@ -266,7 +206,8 @@ public final class Model {
     }
 
     public static final int NAME_FIELD_NUMBER = 1;
-    private volatile java.lang.Object name_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object name_ = "";
     /**
      * <pre>
      * Required servable name.
@@ -361,6 +302,17 @@ public final class Model {
      * </pre>
      *
      * <code>string version_label = 4;</code>
+     * @return Whether the versionLabel field is set.
+     */
+    public boolean hasVersionLabel() {
+      return versionChoiceCase_ == 4;
+    }
+    /**
+     * <pre>
+     * Use the version associated with the given label.
+     * </pre>
+     *
+     * <code>string version_label = 4;</code>
      * @return The versionLabel.
      */
     public java.lang.String getVersionLabel() {
@@ -408,7 +360,8 @@ public final class Model {
     }
 
     public static final int SIGNATURE_NAME_FIELD_NUMBER = 3;
-    private volatile java.lang.Object signatureName_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object signatureName_ = "";
     /**
      * <pre>
      * A named signature to evaluate. If unspecified, the default signature will
@@ -469,19 +422,19 @@ public final class Model {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getNameBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(name_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, name_);
       }
       if (versionChoiceCase_ == 2) {
         output.writeMessage(2, (com.google.protobuf.Int64Value) versionChoice_);
       }
-      if (!getSignatureNameBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(signatureName_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 3, signatureName_);
       }
       if (versionChoiceCase_ == 4) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 4, versionChoice_);
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -490,20 +443,20 @@ public final class Model {
       if (size != -1) return size;
 
       size = 0;
-      if (!getNameBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(name_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, name_);
       }
       if (versionChoiceCase_ == 2) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(2, (com.google.protobuf.Int64Value) versionChoice_);
       }
-      if (!getSignatureNameBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(signatureName_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, signatureName_);
       }
       if (versionChoiceCase_ == 4) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, versionChoice_);
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -535,7 +488,7 @@ public final class Model {
         case 0:
         default:
       }
-      if (!unknownFields.equals(other.unknownFields)) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
 
@@ -562,7 +515,7 @@ public final class Model {
         case 0:
         default:
       }
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -683,26 +636,23 @@ public final class Model {
 
       // Construct using tensorflow.serving.Model.ModelSpec.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         name_ = "";
-
+        if (versionBuilder_ != null) {
+          versionBuilder_.clear();
+        }
         signatureName_ = "";
-
         versionChoiceCase_ = 0;
         versionChoice_ = null;
         return this;
@@ -731,21 +681,29 @@ public final class Model {
       @java.lang.Override
       public tensorflow.serving.Model.ModelSpec buildPartial() {
         tensorflow.serving.Model.ModelSpec result = new tensorflow.serving.Model.ModelSpec(this);
-        result.name_ = name_;
-        if (versionChoiceCase_ == 2) {
-          if (versionBuilder_ == null) {
-            result.versionChoice_ = versionChoice_;
-          } else {
-            result.versionChoice_ = versionBuilder_.build();
-          }
-        }
-        if (versionChoiceCase_ == 4) {
-          result.versionChoice_ = versionChoice_;
-        }
-        result.signatureName_ = signatureName_;
-        result.versionChoiceCase_ = versionChoiceCase_;
+        if (bitField0_ != 0) { buildPartial0(result); }
+        buildPartialOneofs(result);
         onBuilt();
         return result;
+      }
+
+      private void buildPartial0(tensorflow.serving.Model.ModelSpec result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.name_ = name_;
+        }
+        if (((from_bitField0_ & 0x00000008) != 0)) {
+          result.signatureName_ = signatureName_;
+        }
+      }
+
+      private void buildPartialOneofs(tensorflow.serving.Model.ModelSpec result) {
+        result.versionChoiceCase_ = versionChoiceCase_;
+        result.versionChoice_ = this.versionChoice_;
+        if (versionChoiceCase_ == 2 &&
+            versionBuilder_ != null) {
+          result.versionChoice_ = versionBuilder_.build();
+        }
       }
 
       @java.lang.Override
@@ -794,10 +752,12 @@ public final class Model {
         if (other == tensorflow.serving.Model.ModelSpec.getDefaultInstance()) return this;
         if (!other.getName().isEmpty()) {
           name_ = other.name_;
+          bitField0_ |= 0x00000001;
           onChanged();
         }
         if (!other.getSignatureName().isEmpty()) {
           signatureName_ = other.signatureName_;
+          bitField0_ |= 0x00000008;
           onChanged();
         }
         switch (other.getVersionChoiceCase()) {
@@ -815,7 +775,7 @@ public final class Model {
             break;
           }
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
@@ -830,17 +790,53 @@ public final class Model {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        tensorflow.serving.Model.ModelSpec parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                name_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 10
+              case 18: {
+                input.readMessage(
+                    getVersionFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                versionChoiceCase_ = 2;
+                break;
+              } // case 18
+              case 26: {
+                signatureName_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000008;
+                break;
+              } // case 26
+              case 34: {
+                java.lang.String s = input.readStringRequireUtf8();
+                versionChoiceCase_ = 4;
+                versionChoice_ = s;
+                break;
+              } // case 34
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (tensorflow.serving.Model.ModelSpec) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
       private int versionChoiceCase_ = 0;
@@ -858,6 +854,7 @@ public final class Model {
         return this;
       }
 
+      private int bitField0_;
 
       private java.lang.Object name_ = "";
       /**
@@ -912,11 +909,9 @@ public final class Model {
        */
       public Builder setName(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         name_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -929,8 +924,8 @@ public final class Model {
        * @return This builder for chaining.
        */
       public Builder clearName() {
-        
         name_ = getDefaultInstance().getName();
+        bitField0_ = (bitField0_ & ~0x00000001);
         onChanged();
         return this;
       }
@@ -945,12 +940,10 @@ public final class Model {
        */
       public Builder setNameBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         name_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -1049,8 +1042,9 @@ public final class Model {
         } else {
           if (versionChoiceCase_ == 2) {
             versionBuilder_.mergeFrom(value);
+          } else {
+            versionBuilder_.setMessage(value);
           }
-          versionBuilder_.setMessage(value);
         }
         versionChoiceCase_ = 2;
         return this;
@@ -1128,10 +1122,22 @@ public final class Model {
           versionChoice_ = null;
         }
         versionChoiceCase_ = 2;
-        onChanged();;
+        onChanged();
         return versionBuilder_;
       }
 
+      /**
+       * <pre>
+       * Use the version associated with the given label.
+       * </pre>
+       *
+       * <code>string version_label = 4;</code>
+       * @return Whether the versionLabel field is set.
+       */
+      @java.lang.Override
+      public boolean hasVersionLabel() {
+        return versionChoiceCase_ == 4;
+      }
       /**
        * <pre>
        * Use the version associated with the given label.
@@ -1196,10 +1202,8 @@ public final class Model {
        */
       public Builder setVersionLabel(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  versionChoiceCase_ = 4;
+        if (value == null) { throw new NullPointerException(); }
+        versionChoiceCase_ = 4;
         versionChoice_ = value;
         onChanged();
         return this;
@@ -1231,10 +1235,8 @@ public final class Model {
        */
       public Builder setVersionLabelBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         versionChoiceCase_ = 4;
         versionChoice_ = value;
         onChanged();
@@ -1297,11 +1299,9 @@ public final class Model {
        */
       public Builder setSignatureName(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         signatureName_ = value;
+        bitField0_ |= 0x00000008;
         onChanged();
         return this;
       }
@@ -1315,8 +1315,8 @@ public final class Model {
        * @return This builder for chaining.
        */
       public Builder clearSignatureName() {
-        
         signatureName_ = getDefaultInstance().getSignatureName();
+        bitField0_ = (bitField0_ & ~0x00000008);
         onChanged();
         return this;
       }
@@ -1332,12 +1332,10 @@ public final class Model {
        */
       public Builder setSignatureNameBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         signatureName_ = value;
+        bitField0_ |= 0x00000008;
         onChanged();
         return this;
       }
@@ -1374,7 +1372,18 @@ public final class Model {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new ModelSpec(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 

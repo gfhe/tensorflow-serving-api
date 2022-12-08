@@ -1,19 +1,6 @@
 package tensorflow.serving;
 
 import static io.grpc.MethodDescriptor.generateFullMethodName;
-import static io.grpc.stub.ClientCalls.asyncBidiStreamingCall;
-import static io.grpc.stub.ClientCalls.asyncClientStreamingCall;
-import static io.grpc.stub.ClientCalls.asyncServerStreamingCall;
-import static io.grpc.stub.ClientCalls.asyncUnaryCall;
-import static io.grpc.stub.ClientCalls.blockingServerStreamingCall;
-import static io.grpc.stub.ClientCalls.blockingUnaryCall;
-import static io.grpc.stub.ClientCalls.futureUnaryCall;
-import static io.grpc.stub.ServerCalls.asyncBidiStreamingCall;
-import static io.grpc.stub.ServerCalls.asyncClientStreamingCall;
-import static io.grpc.stub.ServerCalls.asyncServerStreamingCall;
-import static io.grpc.stub.ServerCalls.asyncUnaryCall;
-import static io.grpc.stub.ServerCalls.asyncUnimplementedStreamingCall;
-import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
 
 /**
  * <pre>
@@ -23,8 +10,9 @@ import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
  * </pre>
  */
 @javax.annotation.Generated(
-    value = "by gRPC proto compiler (version 1.30.2)",
+    value = "by gRPC proto compiler (version 1.51.0)",
     comments = "Source: tensorflow_serving/apis/prediction_service.proto")
+@io.grpc.stub.annotations.GrpcGenerated
 public final class PredictionServiceGrpc {
 
   private PredictionServiceGrpc() {}
@@ -247,7 +235,7 @@ public final class PredictionServiceGrpc {
      */
     public void classify(tensorflow.serving.Classification.ClassificationRequest request,
         io.grpc.stub.StreamObserver<tensorflow.serving.Classification.ClassificationResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(getClassifyMethod(), responseObserver);
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getClassifyMethod(), responseObserver);
     }
 
     /**
@@ -257,7 +245,7 @@ public final class PredictionServiceGrpc {
      */
     public void regress(tensorflow.serving.RegressionOuterClass.RegressionRequest request,
         io.grpc.stub.StreamObserver<tensorflow.serving.RegressionOuterClass.RegressionResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(getRegressMethod(), responseObserver);
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getRegressMethod(), responseObserver);
     }
 
     /**
@@ -267,7 +255,7 @@ public final class PredictionServiceGrpc {
      */
     public void predict(tensorflow.serving.Predict.PredictRequest request,
         io.grpc.stub.StreamObserver<tensorflow.serving.Predict.PredictResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(getPredictMethod(), responseObserver);
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getPredictMethod(), responseObserver);
     }
 
     /**
@@ -277,7 +265,7 @@ public final class PredictionServiceGrpc {
      */
     public void multiInference(tensorflow.serving.Inference.MultiInferenceRequest request,
         io.grpc.stub.StreamObserver<tensorflow.serving.Inference.MultiInferenceResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(getMultiInferenceMethod(), responseObserver);
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getMultiInferenceMethod(), responseObserver);
     }
 
     /**
@@ -287,42 +275,42 @@ public final class PredictionServiceGrpc {
      */
     public void getModelMetadata(tensorflow.serving.GetModelMetadata.GetModelMetadataRequest request,
         io.grpc.stub.StreamObserver<tensorflow.serving.GetModelMetadata.GetModelMetadataResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(getGetModelMetadataMethod(), responseObserver);
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getGetModelMetadataMethod(), responseObserver);
     }
 
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
             getClassifyMethod(),
-            asyncUnaryCall(
+            io.grpc.stub.ServerCalls.asyncUnaryCall(
               new MethodHandlers<
                 tensorflow.serving.Classification.ClassificationRequest,
                 tensorflow.serving.Classification.ClassificationResponse>(
                   this, METHODID_CLASSIFY)))
           .addMethod(
             getRegressMethod(),
-            asyncUnaryCall(
+            io.grpc.stub.ServerCalls.asyncUnaryCall(
               new MethodHandlers<
                 tensorflow.serving.RegressionOuterClass.RegressionRequest,
                 tensorflow.serving.RegressionOuterClass.RegressionResponse>(
                   this, METHODID_REGRESS)))
           .addMethod(
             getPredictMethod(),
-            asyncUnaryCall(
+            io.grpc.stub.ServerCalls.asyncUnaryCall(
               new MethodHandlers<
                 tensorflow.serving.Predict.PredictRequest,
                 tensorflow.serving.Predict.PredictResponse>(
                   this, METHODID_PREDICT)))
           .addMethod(
             getMultiInferenceMethod(),
-            asyncUnaryCall(
+            io.grpc.stub.ServerCalls.asyncUnaryCall(
               new MethodHandlers<
                 tensorflow.serving.Inference.MultiInferenceRequest,
                 tensorflow.serving.Inference.MultiInferenceResponse>(
                   this, METHODID_MULTI_INFERENCE)))
           .addMethod(
             getGetModelMetadataMethod(),
-            asyncUnaryCall(
+            io.grpc.stub.ServerCalls.asyncUnaryCall(
               new MethodHandlers<
                 tensorflow.serving.GetModelMetadata.GetModelMetadataRequest,
                 tensorflow.serving.GetModelMetadata.GetModelMetadataResponse>(
@@ -357,7 +345,7 @@ public final class PredictionServiceGrpc {
      */
     public void classify(tensorflow.serving.Classification.ClassificationRequest request,
         io.grpc.stub.StreamObserver<tensorflow.serving.Classification.ClassificationResponse> responseObserver) {
-      asyncUnaryCall(
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getClassifyMethod(), getCallOptions()), request, responseObserver);
     }
 
@@ -368,7 +356,7 @@ public final class PredictionServiceGrpc {
      */
     public void regress(tensorflow.serving.RegressionOuterClass.RegressionRequest request,
         io.grpc.stub.StreamObserver<tensorflow.serving.RegressionOuterClass.RegressionResponse> responseObserver) {
-      asyncUnaryCall(
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getRegressMethod(), getCallOptions()), request, responseObserver);
     }
 
@@ -379,7 +367,7 @@ public final class PredictionServiceGrpc {
      */
     public void predict(tensorflow.serving.Predict.PredictRequest request,
         io.grpc.stub.StreamObserver<tensorflow.serving.Predict.PredictResponse> responseObserver) {
-      asyncUnaryCall(
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getPredictMethod(), getCallOptions()), request, responseObserver);
     }
 
@@ -390,7 +378,7 @@ public final class PredictionServiceGrpc {
      */
     public void multiInference(tensorflow.serving.Inference.MultiInferenceRequest request,
         io.grpc.stub.StreamObserver<tensorflow.serving.Inference.MultiInferenceResponse> responseObserver) {
-      asyncUnaryCall(
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getMultiInferenceMethod(), getCallOptions()), request, responseObserver);
     }
 
@@ -401,7 +389,7 @@ public final class PredictionServiceGrpc {
      */
     public void getModelMetadata(tensorflow.serving.GetModelMetadata.GetModelMetadataRequest request,
         io.grpc.stub.StreamObserver<tensorflow.serving.GetModelMetadata.GetModelMetadataResponse> responseObserver) {
-      asyncUnaryCall(
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getGetModelMetadataMethod(), getCallOptions()), request, responseObserver);
     }
   }
@@ -431,7 +419,7 @@ public final class PredictionServiceGrpc {
      * </pre>
      */
     public tensorflow.serving.Classification.ClassificationResponse classify(tensorflow.serving.Classification.ClassificationRequest request) {
-      return blockingUnaryCall(
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getClassifyMethod(), getCallOptions(), request);
     }
 
@@ -441,7 +429,7 @@ public final class PredictionServiceGrpc {
      * </pre>
      */
     public tensorflow.serving.RegressionOuterClass.RegressionResponse regress(tensorflow.serving.RegressionOuterClass.RegressionRequest request) {
-      return blockingUnaryCall(
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getRegressMethod(), getCallOptions(), request);
     }
 
@@ -451,7 +439,7 @@ public final class PredictionServiceGrpc {
      * </pre>
      */
     public tensorflow.serving.Predict.PredictResponse predict(tensorflow.serving.Predict.PredictRequest request) {
-      return blockingUnaryCall(
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getPredictMethod(), getCallOptions(), request);
     }
 
@@ -461,7 +449,7 @@ public final class PredictionServiceGrpc {
      * </pre>
      */
     public tensorflow.serving.Inference.MultiInferenceResponse multiInference(tensorflow.serving.Inference.MultiInferenceRequest request) {
-      return blockingUnaryCall(
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getMultiInferenceMethod(), getCallOptions(), request);
     }
 
@@ -471,7 +459,7 @@ public final class PredictionServiceGrpc {
      * </pre>
      */
     public tensorflow.serving.GetModelMetadata.GetModelMetadataResponse getModelMetadata(tensorflow.serving.GetModelMetadata.GetModelMetadataRequest request) {
-      return blockingUnaryCall(
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getGetModelMetadataMethod(), getCallOptions(), request);
     }
   }
@@ -502,7 +490,7 @@ public final class PredictionServiceGrpc {
      */
     public com.google.common.util.concurrent.ListenableFuture<tensorflow.serving.Classification.ClassificationResponse> classify(
         tensorflow.serving.Classification.ClassificationRequest request) {
-      return futureUnaryCall(
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getClassifyMethod(), getCallOptions()), request);
     }
 
@@ -513,7 +501,7 @@ public final class PredictionServiceGrpc {
      */
     public com.google.common.util.concurrent.ListenableFuture<tensorflow.serving.RegressionOuterClass.RegressionResponse> regress(
         tensorflow.serving.RegressionOuterClass.RegressionRequest request) {
-      return futureUnaryCall(
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getRegressMethod(), getCallOptions()), request);
     }
 
@@ -524,7 +512,7 @@ public final class PredictionServiceGrpc {
      */
     public com.google.common.util.concurrent.ListenableFuture<tensorflow.serving.Predict.PredictResponse> predict(
         tensorflow.serving.Predict.PredictRequest request) {
-      return futureUnaryCall(
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getPredictMethod(), getCallOptions()), request);
     }
 
@@ -535,7 +523,7 @@ public final class PredictionServiceGrpc {
      */
     public com.google.common.util.concurrent.ListenableFuture<tensorflow.serving.Inference.MultiInferenceResponse> multiInference(
         tensorflow.serving.Inference.MultiInferenceRequest request) {
-      return futureUnaryCall(
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getMultiInferenceMethod(), getCallOptions()), request);
     }
 
@@ -546,7 +534,7 @@ public final class PredictionServiceGrpc {
      */
     public com.google.common.util.concurrent.ListenableFuture<tensorflow.serving.GetModelMetadata.GetModelMetadataResponse> getModelMetadata(
         tensorflow.serving.GetModelMetadata.GetModelMetadataRequest request) {
-      return futureUnaryCall(
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getGetModelMetadataMethod(), getCallOptions()), request);
     }
   }

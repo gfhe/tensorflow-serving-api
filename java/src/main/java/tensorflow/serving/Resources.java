@@ -136,68 +136,6 @@ public final class Resources {
     getUnknownFields() {
       return this.unknownFields;
     }
-    private Resource(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              device_ = s;
-              break;
-            }
-            case 18: {
-              com.google.protobuf.UInt32Value.Builder subBuilder = null;
-              if (deviceInstance_ != null) {
-                subBuilder = deviceInstance_.toBuilder();
-              }
-              deviceInstance_ = input.readMessage(com.google.protobuf.UInt32Value.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(deviceInstance_);
-                deviceInstance_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            case 26: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              kind_ = s;
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return tensorflow.serving.Resources.internal_static_tensorflow_serving_Resource_descriptor;
@@ -212,7 +150,8 @@ public final class Resources {
     }
 
     public static final int DEVICE_FIELD_NUMBER = 1;
-    private volatile java.lang.Object device_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object device_ = "";
     /**
      * <pre>
      * The type of device on which the resource resides, e.g. CPU or GPU.
@@ -304,11 +243,12 @@ public final class Resources {
      */
     @java.lang.Override
     public com.google.protobuf.UInt32ValueOrBuilder getDeviceInstanceOrBuilder() {
-      return getDeviceInstance();
+      return deviceInstance_ == null ? com.google.protobuf.UInt32Value.getDefaultInstance() : deviceInstance_;
     }
 
     public static final int KIND_FIELD_NUMBER = 3;
-    private volatile java.lang.Object kind_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object kind_ = "";
     /**
      * <pre>
      * The kind of resource on the device (instance), e.g. RAM or compute share.
@@ -373,16 +313,16 @@ public final class Resources {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getDeviceBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(device_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, device_);
       }
       if (deviceInstance_ != null) {
         output.writeMessage(2, getDeviceInstance());
       }
-      if (!getKindBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(kind_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 3, kind_);
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -391,17 +331,17 @@ public final class Resources {
       if (size != -1) return size;
 
       size = 0;
-      if (!getDeviceBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(device_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, device_);
       }
       if (deviceInstance_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(2, getDeviceInstance());
       }
-      if (!getKindBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(kind_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, kind_);
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -425,7 +365,7 @@ public final class Resources {
       }
       if (!getKind()
           .equals(other.getKind())) return false;
-      if (!unknownFields.equals(other.unknownFields)) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
 
@@ -444,7 +384,7 @@ public final class Resources {
       }
       hash = (37 * hash) + KIND_FIELD_NUMBER;
       hash = (53 * hash) + getKind().hashCode();
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -565,32 +505,25 @@ public final class Resources {
 
       // Construct using tensorflow.serving.Resources.Resource.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         device_ = "";
-
-        if (deviceInstanceBuilder_ == null) {
-          deviceInstance_ = null;
-        } else {
-          deviceInstance_ = null;
+        deviceInstance_ = null;
+        if (deviceInstanceBuilder_ != null) {
+          deviceInstanceBuilder_.dispose();
           deviceInstanceBuilder_ = null;
         }
         kind_ = "";
-
         return this;
       }
 
@@ -617,15 +550,24 @@ public final class Resources {
       @java.lang.Override
       public tensorflow.serving.Resources.Resource buildPartial() {
         tensorflow.serving.Resources.Resource result = new tensorflow.serving.Resources.Resource(this);
-        result.device_ = device_;
-        if (deviceInstanceBuilder_ == null) {
-          result.deviceInstance_ = deviceInstance_;
-        } else {
-          result.deviceInstance_ = deviceInstanceBuilder_.build();
-        }
-        result.kind_ = kind_;
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
+      }
+
+      private void buildPartial0(tensorflow.serving.Resources.Resource result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.device_ = device_;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.deviceInstance_ = deviceInstanceBuilder_ == null
+              ? deviceInstance_
+              : deviceInstanceBuilder_.build();
+        }
+        if (((from_bitField0_ & 0x00000004) != 0)) {
+          result.kind_ = kind_;
+        }
       }
 
       @java.lang.Override
@@ -674,6 +616,7 @@ public final class Resources {
         if (other == tensorflow.serving.Resources.Resource.getDefaultInstance()) return this;
         if (!other.getDevice().isEmpty()) {
           device_ = other.device_;
+          bitField0_ |= 0x00000001;
           onChanged();
         }
         if (other.hasDeviceInstance()) {
@@ -681,9 +624,10 @@ public final class Resources {
         }
         if (!other.getKind().isEmpty()) {
           kind_ = other.kind_;
+          bitField0_ |= 0x00000004;
           onChanged();
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
@@ -698,19 +642,50 @@ public final class Resources {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        tensorflow.serving.Resources.Resource parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                device_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 10
+              case 18: {
+                input.readMessage(
+                    getDeviceInstanceFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 18
+              case 26: {
+                kind_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000004;
+                break;
+              } // case 26
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (tensorflow.serving.Resources.Resource) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
+      private int bitField0_;
 
       private java.lang.Object device_ = "";
       /**
@@ -765,11 +740,9 @@ public final class Resources {
        */
       public Builder setDevice(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         device_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -782,8 +755,8 @@ public final class Resources {
        * @return This builder for chaining.
        */
       public Builder clearDevice() {
-        
         device_ = getDefaultInstance().getDevice();
+        bitField0_ = (bitField0_ & ~0x00000001);
         onChanged();
         return this;
       }
@@ -798,12 +771,10 @@ public final class Resources {
        */
       public Builder setDeviceBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         device_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -824,7 +795,7 @@ public final class Resources {
        * @return Whether the deviceInstance field is set.
        */
       public boolean hasDeviceInstance() {
-        return deviceInstanceBuilder_ != null || deviceInstance_ != null;
+        return ((bitField0_ & 0x00000002) != 0);
       }
       /**
        * <pre>
@@ -862,11 +833,11 @@ public final class Resources {
             throw new NullPointerException();
           }
           deviceInstance_ = value;
-          onChanged();
         } else {
           deviceInstanceBuilder_.setMessage(value);
         }
-
+        bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
@@ -884,11 +855,11 @@ public final class Resources {
           com.google.protobuf.UInt32Value.Builder builderForValue) {
         if (deviceInstanceBuilder_ == null) {
           deviceInstance_ = builderForValue.build();
-          onChanged();
         } else {
           deviceInstanceBuilder_.setMessage(builderForValue.build());
         }
-
+        bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
@@ -904,17 +875,18 @@ public final class Resources {
        */
       public Builder mergeDeviceInstance(com.google.protobuf.UInt32Value value) {
         if (deviceInstanceBuilder_ == null) {
-          if (deviceInstance_ != null) {
-            deviceInstance_ =
-              com.google.protobuf.UInt32Value.newBuilder(deviceInstance_).mergeFrom(value).buildPartial();
+          if (((bitField0_ & 0x00000002) != 0) &&
+            deviceInstance_ != null &&
+            deviceInstance_ != com.google.protobuf.UInt32Value.getDefaultInstance()) {
+            getDeviceInstanceBuilder().mergeFrom(value);
           } else {
             deviceInstance_ = value;
           }
-          onChanged();
         } else {
           deviceInstanceBuilder_.mergeFrom(value);
         }
-
+        bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
@@ -929,14 +901,13 @@ public final class Resources {
        * <code>.google.protobuf.UInt32Value device_instance = 2;</code>
        */
       public Builder clearDeviceInstance() {
-        if (deviceInstanceBuilder_ == null) {
-          deviceInstance_ = null;
-          onChanged();
-        } else {
-          deviceInstance_ = null;
+        bitField0_ = (bitField0_ & ~0x00000002);
+        deviceInstance_ = null;
+        if (deviceInstanceBuilder_ != null) {
+          deviceInstanceBuilder_.dispose();
           deviceInstanceBuilder_ = null;
         }
-
+        onChanged();
         return this;
       }
       /**
@@ -951,7 +922,7 @@ public final class Resources {
        * <code>.google.protobuf.UInt32Value device_instance = 2;</code>
        */
       public com.google.protobuf.UInt32Value.Builder getDeviceInstanceBuilder() {
-        
+        bitField0_ |= 0x00000002;
         onChanged();
         return getDeviceInstanceFieldBuilder().getBuilder();
       }
@@ -1061,11 +1032,9 @@ public final class Resources {
        */
       public Builder setKind(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         kind_ = value;
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
@@ -1081,8 +1050,8 @@ public final class Resources {
        * @return This builder for chaining.
        */
       public Builder clearKind() {
-        
         kind_ = getDefaultInstance().getKind();
+        bitField0_ = (bitField0_ & ~0x00000004);
         onChanged();
         return this;
       }
@@ -1100,12 +1069,10 @@ public final class Resources {
        */
       public Builder setKindBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         kind_ = value;
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
@@ -1142,7 +1109,18 @@ public final class Resources {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new Resource(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -1225,56 +1203,6 @@ public final class Resources {
     getUnknownFields() {
       return this.unknownFields;
     }
-    private ResourceAllocation(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
-                resourceQuantities_ = new java.util.ArrayList<tensorflow.serving.Resources.ResourceAllocation.Entry>();
-                mutable_bitField0_ |= 0x00000001;
-              }
-              resourceQuantities_.add(
-                  input.readMessage(tensorflow.serving.Resources.ResourceAllocation.Entry.parser(), extensionRegistry));
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        if (((mutable_bitField0_ & 0x00000001) != 0)) {
-          resourceQuantities_ = java.util.Collections.unmodifiableList(resourceQuantities_);
-        }
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return tensorflow.serving.Resources.internal_static_tensorflow_serving_ResourceAllocation_descriptor;
@@ -1345,61 +1273,6 @@ public final class Resources {
       getUnknownFields() {
         return this.unknownFields;
       }
-      private Entry(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        this();
-        if (extensionRegistry == null) {
-          throw new java.lang.NullPointerException();
-        }
-        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-            com.google.protobuf.UnknownFieldSet.newBuilder();
-        try {
-          boolean done = false;
-          while (!done) {
-            int tag = input.readTag();
-            switch (tag) {
-              case 0:
-                done = true;
-                break;
-              case 10: {
-                tensorflow.serving.Resources.Resource.Builder subBuilder = null;
-                if (resource_ != null) {
-                  subBuilder = resource_.toBuilder();
-                }
-                resource_ = input.readMessage(tensorflow.serving.Resources.Resource.parser(), extensionRegistry);
-                if (subBuilder != null) {
-                  subBuilder.mergeFrom(resource_);
-                  resource_ = subBuilder.buildPartial();
-                }
-
-                break;
-              }
-              case 16: {
-
-                quantity_ = input.readUInt64();
-                break;
-              }
-              default: {
-                if (!parseUnknownField(
-                    input, unknownFields, extensionRegistry, tag)) {
-                  done = true;
-                }
-                break;
-              }
-            }
-          }
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          throw e.setUnfinishedMessage(this);
-        } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(
-              e).setUnfinishedMessage(this);
-        } finally {
-          this.unknownFields = unknownFields.build();
-          makeExtensionsImmutable();
-        }
-      }
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return tensorflow.serving.Resources.internal_static_tensorflow_serving_ResourceAllocation_Entry_descriptor;
@@ -1436,11 +1309,11 @@ public final class Resources {
        */
       @java.lang.Override
       public tensorflow.serving.Resources.ResourceOrBuilder getResourceOrBuilder() {
-        return getResource();
+        return resource_ == null ? tensorflow.serving.Resources.Resource.getDefaultInstance() : resource_;
       }
 
       public static final int QUANTITY_FIELD_NUMBER = 2;
-      private long quantity_;
+      private long quantity_ = 0L;
       /**
        * <code>uint64 quantity = 2;</code>
        * @return The quantity.
@@ -1470,7 +1343,7 @@ public final class Resources {
         if (quantity_ != 0L) {
           output.writeUInt64(2, quantity_);
         }
-        unknownFields.writeTo(output);
+        getUnknownFields().writeTo(output);
       }
 
       @java.lang.Override
@@ -1487,7 +1360,7 @@ public final class Resources {
           size += com.google.protobuf.CodedOutputStream
             .computeUInt64Size(2, quantity_);
         }
-        size += unknownFields.getSerializedSize();
+        size += getUnknownFields().getSerializedSize();
         memoizedSize = size;
         return size;
       }
@@ -1509,7 +1382,7 @@ public final class Resources {
         }
         if (getQuantity()
             != other.getQuantity()) return false;
-        if (!unknownFields.equals(other.unknownFields)) return false;
+        if (!getUnknownFields().equals(other.getUnknownFields())) return false;
         return true;
       }
 
@@ -1527,7 +1400,7 @@ public final class Resources {
         hash = (37 * hash) + QUANTITY_FIELD_NUMBER;
         hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
             getQuantity());
-        hash = (29 * hash) + unknownFields.hashCode();
+        hash = (29 * hash) + getUnknownFields().hashCode();
         memoizedHashCode = hash;
         return hash;
       }
@@ -1649,30 +1522,24 @@ public final class Resources {
 
         // Construct using tensorflow.serving.Resources.ResourceAllocation.Entry.newBuilder()
         private Builder() {
-          maybeForceBuilderInitialization();
+
         }
 
         private Builder(
             com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
           super(parent);
-          maybeForceBuilderInitialization();
-        }
-        private void maybeForceBuilderInitialization() {
-          if (com.google.protobuf.GeneratedMessageV3
-                  .alwaysUseFieldBuilders) {
-          }
+
         }
         @java.lang.Override
         public Builder clear() {
           super.clear();
-          if (resourceBuilder_ == null) {
-            resource_ = null;
-          } else {
-            resource_ = null;
+          bitField0_ = 0;
+          resource_ = null;
+          if (resourceBuilder_ != null) {
+            resourceBuilder_.dispose();
             resourceBuilder_ = null;
           }
           quantity_ = 0L;
-
           return this;
         }
 
@@ -1699,14 +1566,21 @@ public final class Resources {
         @java.lang.Override
         public tensorflow.serving.Resources.ResourceAllocation.Entry buildPartial() {
           tensorflow.serving.Resources.ResourceAllocation.Entry result = new tensorflow.serving.Resources.ResourceAllocation.Entry(this);
-          if (resourceBuilder_ == null) {
-            result.resource_ = resource_;
-          } else {
-            result.resource_ = resourceBuilder_.build();
-          }
-          result.quantity_ = quantity_;
+          if (bitField0_ != 0) { buildPartial0(result); }
           onBuilt();
           return result;
+        }
+
+        private void buildPartial0(tensorflow.serving.Resources.ResourceAllocation.Entry result) {
+          int from_bitField0_ = bitField0_;
+          if (((from_bitField0_ & 0x00000001) != 0)) {
+            result.resource_ = resourceBuilder_ == null
+                ? resource_
+                : resourceBuilder_.build();
+          }
+          if (((from_bitField0_ & 0x00000002) != 0)) {
+            result.quantity_ = quantity_;
+          }
         }
 
         @java.lang.Override
@@ -1759,7 +1633,7 @@ public final class Resources {
           if (other.getQuantity() != 0L) {
             setQuantity(other.getQuantity());
           }
-          this.mergeUnknownFields(other.unknownFields);
+          this.mergeUnknownFields(other.getUnknownFields());
           onChanged();
           return this;
         }
@@ -1774,19 +1648,45 @@ public final class Resources {
             com.google.protobuf.CodedInputStream input,
             com.google.protobuf.ExtensionRegistryLite extensionRegistry)
             throws java.io.IOException {
-          tensorflow.serving.Resources.ResourceAllocation.Entry parsedMessage = null;
+          if (extensionRegistry == null) {
+            throw new java.lang.NullPointerException();
+          }
           try {
-            parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+            boolean done = false;
+            while (!done) {
+              int tag = input.readTag();
+              switch (tag) {
+                case 0:
+                  done = true;
+                  break;
+                case 10: {
+                  input.readMessage(
+                      getResourceFieldBuilder().getBuilder(),
+                      extensionRegistry);
+                  bitField0_ |= 0x00000001;
+                  break;
+                } // case 10
+                case 16: {
+                  quantity_ = input.readUInt64();
+                  bitField0_ |= 0x00000002;
+                  break;
+                } // case 16
+                default: {
+                  if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                    done = true; // was an endgroup tag
+                  }
+                  break;
+                } // default:
+              } // switch (tag)
+            } // while (!done)
           } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-            parsedMessage = (tensorflow.serving.Resources.ResourceAllocation.Entry) e.getUnfinishedMessage();
             throw e.unwrapIOException();
           } finally {
-            if (parsedMessage != null) {
-              mergeFrom(parsedMessage);
-            }
-          }
+            onChanged();
+          } // finally
           return this;
         }
+        private int bitField0_;
 
         private tensorflow.serving.Resources.Resource resource_;
         private com.google.protobuf.SingleFieldBuilderV3<
@@ -1796,7 +1696,7 @@ public final class Resources {
          * @return Whether the resource field is set.
          */
         public boolean hasResource() {
-          return resourceBuilder_ != null || resource_ != null;
+          return ((bitField0_ & 0x00000001) != 0);
         }
         /**
          * <code>.tensorflow.serving.Resource resource = 1;</code>
@@ -1818,11 +1718,11 @@ public final class Resources {
               throw new NullPointerException();
             }
             resource_ = value;
-            onChanged();
           } else {
             resourceBuilder_.setMessage(value);
           }
-
+          bitField0_ |= 0x00000001;
+          onChanged();
           return this;
         }
         /**
@@ -1832,11 +1732,11 @@ public final class Resources {
             tensorflow.serving.Resources.Resource.Builder builderForValue) {
           if (resourceBuilder_ == null) {
             resource_ = builderForValue.build();
-            onChanged();
           } else {
             resourceBuilder_.setMessage(builderForValue.build());
           }
-
+          bitField0_ |= 0x00000001;
+          onChanged();
           return this;
         }
         /**
@@ -1844,38 +1744,38 @@ public final class Resources {
          */
         public Builder mergeResource(tensorflow.serving.Resources.Resource value) {
           if (resourceBuilder_ == null) {
-            if (resource_ != null) {
-              resource_ =
-                tensorflow.serving.Resources.Resource.newBuilder(resource_).mergeFrom(value).buildPartial();
+            if (((bitField0_ & 0x00000001) != 0) &&
+              resource_ != null &&
+              resource_ != tensorflow.serving.Resources.Resource.getDefaultInstance()) {
+              getResourceBuilder().mergeFrom(value);
             } else {
               resource_ = value;
             }
-            onChanged();
           } else {
             resourceBuilder_.mergeFrom(value);
           }
-
+          bitField0_ |= 0x00000001;
+          onChanged();
           return this;
         }
         /**
          * <code>.tensorflow.serving.Resource resource = 1;</code>
          */
         public Builder clearResource() {
-          if (resourceBuilder_ == null) {
-            resource_ = null;
-            onChanged();
-          } else {
-            resource_ = null;
+          bitField0_ = (bitField0_ & ~0x00000001);
+          resource_ = null;
+          if (resourceBuilder_ != null) {
+            resourceBuilder_.dispose();
             resourceBuilder_ = null;
           }
-
+          onChanged();
           return this;
         }
         /**
          * <code>.tensorflow.serving.Resource resource = 1;</code>
          */
         public tensorflow.serving.Resources.Resource.Builder getResourceBuilder() {
-          
+          bitField0_ |= 0x00000001;
           onChanged();
           return getResourceFieldBuilder().getBuilder();
         }
@@ -1924,6 +1824,7 @@ public final class Resources {
         public Builder setQuantity(long value) {
           
           quantity_ = value;
+          bitField0_ |= 0x00000002;
           onChanged();
           return this;
         }
@@ -1932,7 +1833,7 @@ public final class Resources {
          * @return This builder for chaining.
          */
         public Builder clearQuantity() {
-          
+          bitField0_ = (bitField0_ & ~0x00000002);
           quantity_ = 0L;
           onChanged();
           return this;
@@ -1970,7 +1871,18 @@ public final class Resources {
             com.google.protobuf.CodedInputStream input,
             com.google.protobuf.ExtensionRegistryLite extensionRegistry)
             throws com.google.protobuf.InvalidProtocolBufferException {
-          return new Entry(input, extensionRegistry);
+          Builder builder = newBuilder();
+          try {
+            builder.mergeFrom(input, extensionRegistry);
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            throw e.setUnfinishedMessage(builder.buildPartial());
+          } catch (com.google.protobuf.UninitializedMessageException e) {
+            throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+          } catch (java.io.IOException e) {
+            throw new com.google.protobuf.InvalidProtocolBufferException(e)
+                .setUnfinishedMessage(builder.buildPartial());
+          }
+          return builder.buildPartial();
         }
       };
 
@@ -1991,6 +1903,7 @@ public final class Resources {
     }
 
     public static final int RESOURCE_QUANTITIES_FIELD_NUMBER = 1;
+    @SuppressWarnings("serial")
     private java.util.List<tensorflow.serving.Resources.ResourceAllocation.Entry> resourceQuantities_;
     /**
      * <code>repeated .tensorflow.serving.ResourceAllocation.Entry resource_quantities = 1;</code>
@@ -2047,7 +1960,7 @@ public final class Resources {
       for (int i = 0; i < resourceQuantities_.size(); i++) {
         output.writeMessage(1, resourceQuantities_.get(i));
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -2060,7 +1973,7 @@ public final class Resources {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(1, resourceQuantities_.get(i));
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -2077,7 +1990,7 @@ public final class Resources {
 
       if (!getResourceQuantitiesList()
           .equals(other.getResourceQuantitiesList())) return false;
-      if (!unknownFields.equals(other.unknownFields)) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
 
@@ -2092,7 +2005,7 @@ public final class Resources {
         hash = (37 * hash) + RESOURCE_QUANTITIES_FIELD_NUMBER;
         hash = (53 * hash) + getResourceQuantitiesList().hashCode();
       }
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -2216,29 +2129,25 @@ public final class Resources {
 
       // Construct using tensorflow.serving.Resources.ResourceAllocation.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-          getResourceQuantitiesFieldBuilder();
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         if (resourceQuantitiesBuilder_ == null) {
           resourceQuantities_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000001);
         } else {
+          resourceQuantities_ = null;
           resourceQuantitiesBuilder_.clear();
         }
+        bitField0_ = (bitField0_ & ~0x00000001);
         return this;
       }
 
@@ -2265,7 +2174,13 @@ public final class Resources {
       @java.lang.Override
       public tensorflow.serving.Resources.ResourceAllocation buildPartial() {
         tensorflow.serving.Resources.ResourceAllocation result = new tensorflow.serving.Resources.ResourceAllocation(this);
-        int from_bitField0_ = bitField0_;
+        buildPartialRepeatedFields(result);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartialRepeatedFields(tensorflow.serving.Resources.ResourceAllocation result) {
         if (resourceQuantitiesBuilder_ == null) {
           if (((bitField0_ & 0x00000001) != 0)) {
             resourceQuantities_ = java.util.Collections.unmodifiableList(resourceQuantities_);
@@ -2275,8 +2190,10 @@ public final class Resources {
         } else {
           result.resourceQuantities_ = resourceQuantitiesBuilder_.build();
         }
-        onBuilt();
-        return result;
+      }
+
+      private void buildPartial0(tensorflow.serving.Resources.ResourceAllocation result) {
+        int from_bitField0_ = bitField0_;
       }
 
       @java.lang.Override
@@ -2349,7 +2266,7 @@ public final class Resources {
             }
           }
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
@@ -2364,17 +2281,43 @@ public final class Resources {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        tensorflow.serving.Resources.ResourceAllocation parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                tensorflow.serving.Resources.ResourceAllocation.Entry m =
+                    input.readMessage(
+                        tensorflow.serving.Resources.ResourceAllocation.Entry.parser(),
+                        extensionRegistry);
+                if (resourceQuantitiesBuilder_ == null) {
+                  ensureResourceQuantitiesIsMutable();
+                  resourceQuantities_.add(m);
+                } else {
+                  resourceQuantitiesBuilder_.addMessage(m);
+                }
+                break;
+              } // case 10
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (tensorflow.serving.Resources.ResourceAllocation) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
       private int bitField0_;
@@ -2651,7 +2594,18 @@ public final class Resources {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new ResourceAllocation(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 

@@ -55,48 +55,6 @@ public final class RegressionOuterClass {
     getUnknownFields() {
       return this.unknownFields;
     }
-    private Regression(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 13: {
-
-              value_ = input.readFloat();
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return tensorflow.serving.RegressionOuterClass.internal_static_tensorflow_serving_Regression_descriptor;
@@ -111,7 +69,7 @@ public final class RegressionOuterClass {
     }
 
     public static final int VALUE_FIELD_NUMBER = 1;
-    private float value_;
+    private float value_ = 0F;
     /**
      * <code>float value = 1;</code>
      * @return The value.
@@ -135,10 +93,10 @@ public final class RegressionOuterClass {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (value_ != 0F) {
+      if (java.lang.Float.floatToRawIntBits(value_) != 0) {
         output.writeFloat(1, value_);
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -147,11 +105,11 @@ public final class RegressionOuterClass {
       if (size != -1) return size;
 
       size = 0;
-      if (value_ != 0F) {
+      if (java.lang.Float.floatToRawIntBits(value_) != 0) {
         size += com.google.protobuf.CodedOutputStream
           .computeFloatSize(1, value_);
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -169,7 +127,7 @@ public final class RegressionOuterClass {
       if (java.lang.Float.floatToIntBits(getValue())
           != java.lang.Float.floatToIntBits(
               other.getValue())) return false;
-      if (!unknownFields.equals(other.unknownFields)) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
 
@@ -183,7 +141,7 @@ public final class RegressionOuterClass {
       hash = (37 * hash) + VALUE_FIELD_NUMBER;
       hash = (53 * hash) + java.lang.Float.floatToIntBits(
           getValue());
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -304,24 +262,19 @@ public final class RegressionOuterClass {
 
       // Construct using tensorflow.serving.RegressionOuterClass.Regression.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         value_ = 0F;
-
         return this;
       }
 
@@ -348,9 +301,16 @@ public final class RegressionOuterClass {
       @java.lang.Override
       public tensorflow.serving.RegressionOuterClass.Regression buildPartial() {
         tensorflow.serving.RegressionOuterClass.Regression result = new tensorflow.serving.RegressionOuterClass.Regression(this);
-        result.value_ = value_;
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
+      }
+
+      private void buildPartial0(tensorflow.serving.RegressionOuterClass.Regression result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.value_ = value_;
+        }
       }
 
       @java.lang.Override
@@ -400,7 +360,7 @@ public final class RegressionOuterClass {
         if (other.getValue() != 0F) {
           setValue(other.getValue());
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
@@ -415,19 +375,38 @@ public final class RegressionOuterClass {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        tensorflow.serving.RegressionOuterClass.Regression parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 13: {
+                value_ = input.readFloat();
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 13
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (tensorflow.serving.RegressionOuterClass.Regression) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
+      private int bitField0_;
 
       private float value_ ;
       /**
@@ -446,6 +425,7 @@ public final class RegressionOuterClass {
       public Builder setValue(float value) {
         
         value_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -454,7 +434,7 @@ public final class RegressionOuterClass {
        * @return This builder for chaining.
        */
       public Builder clearValue() {
-        
+        bitField0_ = (bitField0_ & ~0x00000001);
         value_ = 0F;
         onChanged();
         return this;
@@ -492,7 +472,18 @@ public final class RegressionOuterClass {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new Regression(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -573,56 +564,6 @@ public final class RegressionOuterClass {
     getUnknownFields() {
       return this.unknownFields;
     }
-    private RegressionResult(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
-                regressions_ = new java.util.ArrayList<tensorflow.serving.RegressionOuterClass.Regression>();
-                mutable_bitField0_ |= 0x00000001;
-              }
-              regressions_.add(
-                  input.readMessage(tensorflow.serving.RegressionOuterClass.Regression.parser(), extensionRegistry));
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        if (((mutable_bitField0_ & 0x00000001) != 0)) {
-          regressions_ = java.util.Collections.unmodifiableList(regressions_);
-        }
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return tensorflow.serving.RegressionOuterClass.internal_static_tensorflow_serving_RegressionResult_descriptor;
@@ -637,6 +578,7 @@ public final class RegressionOuterClass {
     }
 
     public static final int REGRESSIONS_FIELD_NUMBER = 1;
+    @SuppressWarnings("serial")
     private java.util.List<tensorflow.serving.RegressionOuterClass.Regression> regressions_;
     /**
      * <code>repeated .tensorflow.serving.Regression regressions = 1;</code>
@@ -693,7 +635,7 @@ public final class RegressionOuterClass {
       for (int i = 0; i < regressions_.size(); i++) {
         output.writeMessage(1, regressions_.get(i));
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -706,7 +648,7 @@ public final class RegressionOuterClass {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(1, regressions_.get(i));
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -723,7 +665,7 @@ public final class RegressionOuterClass {
 
       if (!getRegressionsList()
           .equals(other.getRegressionsList())) return false;
-      if (!unknownFields.equals(other.unknownFields)) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
 
@@ -738,7 +680,7 @@ public final class RegressionOuterClass {
         hash = (37 * hash) + REGRESSIONS_FIELD_NUMBER;
         hash = (53 * hash) + getRegressionsList().hashCode();
       }
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -860,29 +802,25 @@ public final class RegressionOuterClass {
 
       // Construct using tensorflow.serving.RegressionOuterClass.RegressionResult.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-          getRegressionsFieldBuilder();
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         if (regressionsBuilder_ == null) {
           regressions_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000001);
         } else {
+          regressions_ = null;
           regressionsBuilder_.clear();
         }
+        bitField0_ = (bitField0_ & ~0x00000001);
         return this;
       }
 
@@ -909,7 +847,13 @@ public final class RegressionOuterClass {
       @java.lang.Override
       public tensorflow.serving.RegressionOuterClass.RegressionResult buildPartial() {
         tensorflow.serving.RegressionOuterClass.RegressionResult result = new tensorflow.serving.RegressionOuterClass.RegressionResult(this);
-        int from_bitField0_ = bitField0_;
+        buildPartialRepeatedFields(result);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartialRepeatedFields(tensorflow.serving.RegressionOuterClass.RegressionResult result) {
         if (regressionsBuilder_ == null) {
           if (((bitField0_ & 0x00000001) != 0)) {
             regressions_ = java.util.Collections.unmodifiableList(regressions_);
@@ -919,8 +863,10 @@ public final class RegressionOuterClass {
         } else {
           result.regressions_ = regressionsBuilder_.build();
         }
-        onBuilt();
-        return result;
+      }
+
+      private void buildPartial0(tensorflow.serving.RegressionOuterClass.RegressionResult result) {
+        int from_bitField0_ = bitField0_;
       }
 
       @java.lang.Override
@@ -993,7 +939,7 @@ public final class RegressionOuterClass {
             }
           }
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
@@ -1008,17 +954,43 @@ public final class RegressionOuterClass {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        tensorflow.serving.RegressionOuterClass.RegressionResult parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                tensorflow.serving.RegressionOuterClass.Regression m =
+                    input.readMessage(
+                        tensorflow.serving.RegressionOuterClass.Regression.parser(),
+                        extensionRegistry);
+                if (regressionsBuilder_ == null) {
+                  ensureRegressionsIsMutable();
+                  regressions_.add(m);
+                } else {
+                  regressionsBuilder_.addMessage(m);
+                }
+                break;
+              } // case 10
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (tensorflow.serving.RegressionOuterClass.RegressionResult) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
       private int bitField0_;
@@ -1295,7 +1267,18 @@ public final class RegressionOuterClass {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new RegressionResult(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -1403,69 +1386,6 @@ public final class RegressionOuterClass {
     getUnknownFields() {
       return this.unknownFields;
     }
-    private RegressionRequest(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              tensorflow.serving.Model.ModelSpec.Builder subBuilder = null;
-              if (modelSpec_ != null) {
-                subBuilder = modelSpec_.toBuilder();
-              }
-              modelSpec_ = input.readMessage(tensorflow.serving.Model.ModelSpec.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(modelSpec_);
-                modelSpec_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            case 18: {
-              tensorflow.serving.InputOuterClass.Input.Builder subBuilder = null;
-              if (input_ != null) {
-                subBuilder = input_.toBuilder();
-              }
-              input_ = input.readMessage(tensorflow.serving.InputOuterClass.Input.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(input_);
-                input_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return tensorflow.serving.RegressionOuterClass.internal_static_tensorflow_serving_RegressionRequest_descriptor;
@@ -1517,7 +1437,7 @@ public final class RegressionOuterClass {
      */
     @java.lang.Override
     public tensorflow.serving.Model.ModelSpecOrBuilder getModelSpecOrBuilder() {
-      return getModelSpec();
+      return modelSpec_ == null ? tensorflow.serving.Model.ModelSpec.getDefaultInstance() : modelSpec_;
     }
 
     public static final int INPUT_FIELD_NUMBER = 2;
@@ -1555,7 +1475,7 @@ public final class RegressionOuterClass {
      */
     @java.lang.Override
     public tensorflow.serving.InputOuterClass.InputOrBuilder getInputOrBuilder() {
-      return getInput();
+      return input_ == null ? tensorflow.serving.InputOuterClass.Input.getDefaultInstance() : input_;
     }
 
     private byte memoizedIsInitialized = -1;
@@ -1578,7 +1498,7 @@ public final class RegressionOuterClass {
       if (input_ != null) {
         output.writeMessage(2, getInput());
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -1595,7 +1515,7 @@ public final class RegressionOuterClass {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(2, getInput());
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -1620,7 +1540,7 @@ public final class RegressionOuterClass {
         if (!getInput()
             .equals(other.getInput())) return false;
       }
-      if (!unknownFields.equals(other.unknownFields)) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
 
@@ -1639,7 +1559,7 @@ public final class RegressionOuterClass {
         hash = (37 * hash) + INPUT_FIELD_NUMBER;
         hash = (53 * hash) + getInput().hashCode();
       }
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -1756,32 +1676,26 @@ public final class RegressionOuterClass {
 
       // Construct using tensorflow.serving.RegressionOuterClass.RegressionRequest.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        if (modelSpecBuilder_ == null) {
-          modelSpec_ = null;
-        } else {
-          modelSpec_ = null;
+        bitField0_ = 0;
+        modelSpec_ = null;
+        if (modelSpecBuilder_ != null) {
+          modelSpecBuilder_.dispose();
           modelSpecBuilder_ = null;
         }
-        if (inputBuilder_ == null) {
-          input_ = null;
-        } else {
-          input_ = null;
+        input_ = null;
+        if (inputBuilder_ != null) {
+          inputBuilder_.dispose();
           inputBuilder_ = null;
         }
         return this;
@@ -1810,18 +1724,23 @@ public final class RegressionOuterClass {
       @java.lang.Override
       public tensorflow.serving.RegressionOuterClass.RegressionRequest buildPartial() {
         tensorflow.serving.RegressionOuterClass.RegressionRequest result = new tensorflow.serving.RegressionOuterClass.RegressionRequest(this);
-        if (modelSpecBuilder_ == null) {
-          result.modelSpec_ = modelSpec_;
-        } else {
-          result.modelSpec_ = modelSpecBuilder_.build();
-        }
-        if (inputBuilder_ == null) {
-          result.input_ = input_;
-        } else {
-          result.input_ = inputBuilder_.build();
-        }
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
+      }
+
+      private void buildPartial0(tensorflow.serving.RegressionOuterClass.RegressionRequest result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.modelSpec_ = modelSpecBuilder_ == null
+              ? modelSpec_
+              : modelSpecBuilder_.build();
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.input_ = inputBuilder_ == null
+              ? input_
+              : inputBuilder_.build();
+        }
       }
 
       @java.lang.Override
@@ -1874,7 +1793,7 @@ public final class RegressionOuterClass {
         if (other.hasInput()) {
           mergeInput(other.getInput());
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
@@ -1889,19 +1808,47 @@ public final class RegressionOuterClass {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        tensorflow.serving.RegressionOuterClass.RegressionRequest parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                input.readMessage(
+                    getModelSpecFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 10
+              case 18: {
+                input.readMessage(
+                    getInputFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 18
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (tensorflow.serving.RegressionOuterClass.RegressionRequest) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
+      private int bitField0_;
 
       private tensorflow.serving.Model.ModelSpec modelSpec_;
       private com.google.protobuf.SingleFieldBuilderV3<
@@ -1916,7 +1863,7 @@ public final class RegressionOuterClass {
        * @return Whether the modelSpec field is set.
        */
       public boolean hasModelSpec() {
-        return modelSpecBuilder_ != null || modelSpec_ != null;
+        return ((bitField0_ & 0x00000001) != 0);
       }
       /**
        * <pre>
@@ -1948,11 +1895,11 @@ public final class RegressionOuterClass {
             throw new NullPointerException();
           }
           modelSpec_ = value;
-          onChanged();
         } else {
           modelSpecBuilder_.setMessage(value);
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -1967,11 +1914,11 @@ public final class RegressionOuterClass {
           tensorflow.serving.Model.ModelSpec.Builder builderForValue) {
         if (modelSpecBuilder_ == null) {
           modelSpec_ = builderForValue.build();
-          onChanged();
         } else {
           modelSpecBuilder_.setMessage(builderForValue.build());
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -1984,17 +1931,18 @@ public final class RegressionOuterClass {
        */
       public Builder mergeModelSpec(tensorflow.serving.Model.ModelSpec value) {
         if (modelSpecBuilder_ == null) {
-          if (modelSpec_ != null) {
-            modelSpec_ =
-              tensorflow.serving.Model.ModelSpec.newBuilder(modelSpec_).mergeFrom(value).buildPartial();
+          if (((bitField0_ & 0x00000001) != 0) &&
+            modelSpec_ != null &&
+            modelSpec_ != tensorflow.serving.Model.ModelSpec.getDefaultInstance()) {
+            getModelSpecBuilder().mergeFrom(value);
           } else {
             modelSpec_ = value;
           }
-          onChanged();
         } else {
           modelSpecBuilder_.mergeFrom(value);
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -2006,14 +1954,13 @@ public final class RegressionOuterClass {
        * <code>.tensorflow.serving.ModelSpec model_spec = 1;</code>
        */
       public Builder clearModelSpec() {
-        if (modelSpecBuilder_ == null) {
-          modelSpec_ = null;
-          onChanged();
-        } else {
-          modelSpec_ = null;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        modelSpec_ = null;
+        if (modelSpecBuilder_ != null) {
+          modelSpecBuilder_.dispose();
           modelSpecBuilder_ = null;
         }
-
+        onChanged();
         return this;
       }
       /**
@@ -2025,7 +1972,7 @@ public final class RegressionOuterClass {
        * <code>.tensorflow.serving.ModelSpec model_spec = 1;</code>
        */
       public tensorflow.serving.Model.ModelSpec.Builder getModelSpecBuilder() {
-        
+        bitField0_ |= 0x00000001;
         onChanged();
         return getModelSpecFieldBuilder().getBuilder();
       }
@@ -2079,7 +2026,7 @@ public final class RegressionOuterClass {
        * @return Whether the input field is set.
        */
       public boolean hasInput() {
-        return inputBuilder_ != null || input_ != null;
+        return ((bitField0_ & 0x00000002) != 0);
       }
       /**
        * <pre>
@@ -2109,11 +2056,11 @@ public final class RegressionOuterClass {
             throw new NullPointerException();
           }
           input_ = value;
-          onChanged();
         } else {
           inputBuilder_.setMessage(value);
         }
-
+        bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
@@ -2127,11 +2074,11 @@ public final class RegressionOuterClass {
           tensorflow.serving.InputOuterClass.Input.Builder builderForValue) {
         if (inputBuilder_ == null) {
           input_ = builderForValue.build();
-          onChanged();
         } else {
           inputBuilder_.setMessage(builderForValue.build());
         }
-
+        bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
@@ -2143,17 +2090,18 @@ public final class RegressionOuterClass {
        */
       public Builder mergeInput(tensorflow.serving.InputOuterClass.Input value) {
         if (inputBuilder_ == null) {
-          if (input_ != null) {
-            input_ =
-              tensorflow.serving.InputOuterClass.Input.newBuilder(input_).mergeFrom(value).buildPartial();
+          if (((bitField0_ & 0x00000002) != 0) &&
+            input_ != null &&
+            input_ != tensorflow.serving.InputOuterClass.Input.getDefaultInstance()) {
+            getInputBuilder().mergeFrom(value);
           } else {
             input_ = value;
           }
-          onChanged();
         } else {
           inputBuilder_.mergeFrom(value);
         }
-
+        bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
@@ -2164,14 +2112,13 @@ public final class RegressionOuterClass {
        * <code>.tensorflow.serving.Input input = 2;</code>
        */
       public Builder clearInput() {
-        if (inputBuilder_ == null) {
-          input_ = null;
-          onChanged();
-        } else {
-          input_ = null;
+        bitField0_ = (bitField0_ & ~0x00000002);
+        input_ = null;
+        if (inputBuilder_ != null) {
+          inputBuilder_.dispose();
           inputBuilder_ = null;
         }
-
+        onChanged();
         return this;
       }
       /**
@@ -2182,7 +2129,7 @@ public final class RegressionOuterClass {
        * <code>.tensorflow.serving.Input input = 2;</code>
        */
       public tensorflow.serving.InputOuterClass.Input.Builder getInputBuilder() {
-        
+        bitField0_ |= 0x00000002;
         onChanged();
         return getInputFieldBuilder().getBuilder();
       }
@@ -2254,7 +2201,18 @@ public final class RegressionOuterClass {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new RegressionRequest(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -2347,69 +2305,6 @@ public final class RegressionOuterClass {
     getUnknownFields() {
       return this.unknownFields;
     }
-    private RegressionResponse(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              tensorflow.serving.RegressionOuterClass.RegressionResult.Builder subBuilder = null;
-              if (result_ != null) {
-                subBuilder = result_.toBuilder();
-              }
-              result_ = input.readMessage(tensorflow.serving.RegressionOuterClass.RegressionResult.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(result_);
-                result_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            case 18: {
-              tensorflow.serving.Model.ModelSpec.Builder subBuilder = null;
-              if (modelSpec_ != null) {
-                subBuilder = modelSpec_.toBuilder();
-              }
-              modelSpec_ = input.readMessage(tensorflow.serving.Model.ModelSpec.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(modelSpec_);
-                modelSpec_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return tensorflow.serving.RegressionOuterClass.internal_static_tensorflow_serving_RegressionResponse_descriptor;
@@ -2458,7 +2353,7 @@ public final class RegressionOuterClass {
      */
     @java.lang.Override
     public tensorflow.serving.Model.ModelSpecOrBuilder getModelSpecOrBuilder() {
-      return getModelSpec();
+      return modelSpec_ == null ? tensorflow.serving.Model.ModelSpec.getDefaultInstance() : modelSpec_;
     }
 
     public static final int RESULT_FIELD_NUMBER = 1;
@@ -2484,7 +2379,7 @@ public final class RegressionOuterClass {
      */
     @java.lang.Override
     public tensorflow.serving.RegressionOuterClass.RegressionResultOrBuilder getResultOrBuilder() {
-      return getResult();
+      return result_ == null ? tensorflow.serving.RegressionOuterClass.RegressionResult.getDefaultInstance() : result_;
     }
 
     private byte memoizedIsInitialized = -1;
@@ -2507,7 +2402,7 @@ public final class RegressionOuterClass {
       if (modelSpec_ != null) {
         output.writeMessage(2, getModelSpec());
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -2524,7 +2419,7 @@ public final class RegressionOuterClass {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(2, getModelSpec());
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -2549,7 +2444,7 @@ public final class RegressionOuterClass {
         if (!getResult()
             .equals(other.getResult())) return false;
       }
-      if (!unknownFields.equals(other.unknownFields)) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
 
@@ -2568,7 +2463,7 @@ public final class RegressionOuterClass {
         hash = (37 * hash) + RESULT_FIELD_NUMBER;
         hash = (53 * hash) + getResult().hashCode();
       }
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -2685,32 +2580,26 @@ public final class RegressionOuterClass {
 
       // Construct using tensorflow.serving.RegressionOuterClass.RegressionResponse.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        if (modelSpecBuilder_ == null) {
-          modelSpec_ = null;
-        } else {
-          modelSpec_ = null;
+        bitField0_ = 0;
+        modelSpec_ = null;
+        if (modelSpecBuilder_ != null) {
+          modelSpecBuilder_.dispose();
           modelSpecBuilder_ = null;
         }
-        if (resultBuilder_ == null) {
-          result_ = null;
-        } else {
-          result_ = null;
+        result_ = null;
+        if (resultBuilder_ != null) {
+          resultBuilder_.dispose();
           resultBuilder_ = null;
         }
         return this;
@@ -2739,18 +2628,23 @@ public final class RegressionOuterClass {
       @java.lang.Override
       public tensorflow.serving.RegressionOuterClass.RegressionResponse buildPartial() {
         tensorflow.serving.RegressionOuterClass.RegressionResponse result = new tensorflow.serving.RegressionOuterClass.RegressionResponse(this);
-        if (modelSpecBuilder_ == null) {
-          result.modelSpec_ = modelSpec_;
-        } else {
-          result.modelSpec_ = modelSpecBuilder_.build();
-        }
-        if (resultBuilder_ == null) {
-          result.result_ = result_;
-        } else {
-          result.result_ = resultBuilder_.build();
-        }
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
+      }
+
+      private void buildPartial0(tensorflow.serving.RegressionOuterClass.RegressionResponse result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.modelSpec_ = modelSpecBuilder_ == null
+              ? modelSpec_
+              : modelSpecBuilder_.build();
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.result_ = resultBuilder_ == null
+              ? result_
+              : resultBuilder_.build();
+        }
       }
 
       @java.lang.Override
@@ -2803,7 +2697,7 @@ public final class RegressionOuterClass {
         if (other.hasResult()) {
           mergeResult(other.getResult());
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
@@ -2818,19 +2712,47 @@ public final class RegressionOuterClass {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        tensorflow.serving.RegressionOuterClass.RegressionResponse parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                input.readMessage(
+                    getResultFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 10
+              case 18: {
+                input.readMessage(
+                    getModelSpecFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 18
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (tensorflow.serving.RegressionOuterClass.RegressionResponse) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
+      private int bitField0_;
 
       private tensorflow.serving.Model.ModelSpec modelSpec_;
       private com.google.protobuf.SingleFieldBuilderV3<
@@ -2844,7 +2766,7 @@ public final class RegressionOuterClass {
        * @return Whether the modelSpec field is set.
        */
       public boolean hasModelSpec() {
-        return modelSpecBuilder_ != null || modelSpec_ != null;
+        return ((bitField0_ & 0x00000001) != 0);
       }
       /**
        * <pre>
@@ -2874,11 +2796,11 @@ public final class RegressionOuterClass {
             throw new NullPointerException();
           }
           modelSpec_ = value;
-          onChanged();
         } else {
           modelSpecBuilder_.setMessage(value);
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -2892,11 +2814,11 @@ public final class RegressionOuterClass {
           tensorflow.serving.Model.ModelSpec.Builder builderForValue) {
         if (modelSpecBuilder_ == null) {
           modelSpec_ = builderForValue.build();
-          onChanged();
         } else {
           modelSpecBuilder_.setMessage(builderForValue.build());
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -2908,17 +2830,18 @@ public final class RegressionOuterClass {
        */
       public Builder mergeModelSpec(tensorflow.serving.Model.ModelSpec value) {
         if (modelSpecBuilder_ == null) {
-          if (modelSpec_ != null) {
-            modelSpec_ =
-              tensorflow.serving.Model.ModelSpec.newBuilder(modelSpec_).mergeFrom(value).buildPartial();
+          if (((bitField0_ & 0x00000001) != 0) &&
+            modelSpec_ != null &&
+            modelSpec_ != tensorflow.serving.Model.ModelSpec.getDefaultInstance()) {
+            getModelSpecBuilder().mergeFrom(value);
           } else {
             modelSpec_ = value;
           }
-          onChanged();
         } else {
           modelSpecBuilder_.mergeFrom(value);
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -2929,14 +2852,13 @@ public final class RegressionOuterClass {
        * <code>.tensorflow.serving.ModelSpec model_spec = 2;</code>
        */
       public Builder clearModelSpec() {
-        if (modelSpecBuilder_ == null) {
-          modelSpec_ = null;
-          onChanged();
-        } else {
-          modelSpec_ = null;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        modelSpec_ = null;
+        if (modelSpecBuilder_ != null) {
+          modelSpecBuilder_.dispose();
           modelSpecBuilder_ = null;
         }
-
+        onChanged();
         return this;
       }
       /**
@@ -2947,7 +2869,7 @@ public final class RegressionOuterClass {
        * <code>.tensorflow.serving.ModelSpec model_spec = 2;</code>
        */
       public tensorflow.serving.Model.ModelSpec.Builder getModelSpecBuilder() {
-        
+        bitField0_ |= 0x00000001;
         onChanged();
         return getModelSpecFieldBuilder().getBuilder();
       }
@@ -2995,7 +2917,7 @@ public final class RegressionOuterClass {
        * @return Whether the result field is set.
        */
       public boolean hasResult() {
-        return resultBuilder_ != null || result_ != null;
+        return ((bitField0_ & 0x00000002) != 0);
       }
       /**
        * <code>.tensorflow.serving.RegressionResult result = 1;</code>
@@ -3017,11 +2939,11 @@ public final class RegressionOuterClass {
             throw new NullPointerException();
           }
           result_ = value;
-          onChanged();
         } else {
           resultBuilder_.setMessage(value);
         }
-
+        bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
@@ -3031,11 +2953,11 @@ public final class RegressionOuterClass {
           tensorflow.serving.RegressionOuterClass.RegressionResult.Builder builderForValue) {
         if (resultBuilder_ == null) {
           result_ = builderForValue.build();
-          onChanged();
         } else {
           resultBuilder_.setMessage(builderForValue.build());
         }
-
+        bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
@@ -3043,38 +2965,38 @@ public final class RegressionOuterClass {
        */
       public Builder mergeResult(tensorflow.serving.RegressionOuterClass.RegressionResult value) {
         if (resultBuilder_ == null) {
-          if (result_ != null) {
-            result_ =
-              tensorflow.serving.RegressionOuterClass.RegressionResult.newBuilder(result_).mergeFrom(value).buildPartial();
+          if (((bitField0_ & 0x00000002) != 0) &&
+            result_ != null &&
+            result_ != tensorflow.serving.RegressionOuterClass.RegressionResult.getDefaultInstance()) {
+            getResultBuilder().mergeFrom(value);
           } else {
             result_ = value;
           }
-          onChanged();
         } else {
           resultBuilder_.mergeFrom(value);
         }
-
+        bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
        * <code>.tensorflow.serving.RegressionResult result = 1;</code>
        */
       public Builder clearResult() {
-        if (resultBuilder_ == null) {
-          result_ = null;
-          onChanged();
-        } else {
-          result_ = null;
+        bitField0_ = (bitField0_ & ~0x00000002);
+        result_ = null;
+        if (resultBuilder_ != null) {
+          resultBuilder_.dispose();
           resultBuilder_ = null;
         }
-
+        onChanged();
         return this;
       }
       /**
        * <code>.tensorflow.serving.RegressionResult result = 1;</code>
        */
       public tensorflow.serving.RegressionOuterClass.RegressionResult.Builder getResultBuilder() {
-        
+        bitField0_ |= 0x00000002;
         onChanged();
         return getResultFieldBuilder().getBuilder();
       }
@@ -3138,7 +3060,18 @@ public final class RegressionOuterClass {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new RegressionResponse(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 

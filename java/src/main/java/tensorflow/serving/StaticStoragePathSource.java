@@ -89,60 +89,6 @@ public final class StaticStoragePathSource {
     getUnknownFields() {
       return this.unknownFields;
     }
-    private StaticStoragePathSourceConfig(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              servableName_ = s;
-              break;
-            }
-            case 16: {
-
-              versionNum_ = input.readInt64();
-              break;
-            }
-            case 26: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              versionPath_ = s;
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return tensorflow.serving.StaticStoragePathSource.internal_static_tensorflow_serving_StaticStoragePathSourceConfig_descriptor;
@@ -157,7 +103,8 @@ public final class StaticStoragePathSource {
     }
 
     public static final int SERVABLE_NAME_FIELD_NUMBER = 1;
-    private volatile java.lang.Object servableName_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object servableName_ = "";
     /**
      * <pre>
      * The single servable name, version number and path to supply statically.
@@ -203,7 +150,7 @@ public final class StaticStoragePathSource {
     }
 
     public static final int VERSION_NUM_FIELD_NUMBER = 2;
-    private long versionNum_;
+    private long versionNum_ = 0L;
     /**
      * <code>int64 version_num = 2;</code>
      * @return The versionNum.
@@ -214,7 +161,8 @@ public final class StaticStoragePathSource {
     }
 
     public static final int VERSION_PATH_FIELD_NUMBER = 3;
-    private volatile java.lang.Object versionPath_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object versionPath_ = "";
     /**
      * <code>string version_path = 3;</code>
      * @return The versionPath.
@@ -265,16 +213,16 @@ public final class StaticStoragePathSource {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getServableNameBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(servableName_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, servableName_);
       }
       if (versionNum_ != 0L) {
         output.writeInt64(2, versionNum_);
       }
-      if (!getVersionPathBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(versionPath_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 3, versionPath_);
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -283,17 +231,17 @@ public final class StaticStoragePathSource {
       if (size != -1) return size;
 
       size = 0;
-      if (!getServableNameBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(servableName_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, servableName_);
       }
       if (versionNum_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
           .computeInt64Size(2, versionNum_);
       }
-      if (!getVersionPathBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(versionPath_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, versionPath_);
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -314,7 +262,7 @@ public final class StaticStoragePathSource {
           != other.getVersionNum()) return false;
       if (!getVersionPath()
           .equals(other.getVersionPath())) return false;
-      if (!unknownFields.equals(other.unknownFields)) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
 
@@ -332,7 +280,7 @@ public final class StaticStoragePathSource {
           getVersionNum());
       hash = (37 * hash) + VERSION_PATH_FIELD_NUMBER;
       hash = (53 * hash) + getVersionPath().hashCode();
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -453,28 +401,21 @@ public final class StaticStoragePathSource {
 
       // Construct using tensorflow.serving.StaticStoragePathSource.StaticStoragePathSourceConfig.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         servableName_ = "";
-
         versionNum_ = 0L;
-
         versionPath_ = "";
-
         return this;
       }
 
@@ -501,11 +442,22 @@ public final class StaticStoragePathSource {
       @java.lang.Override
       public tensorflow.serving.StaticStoragePathSource.StaticStoragePathSourceConfig buildPartial() {
         tensorflow.serving.StaticStoragePathSource.StaticStoragePathSourceConfig result = new tensorflow.serving.StaticStoragePathSource.StaticStoragePathSourceConfig(this);
-        result.servableName_ = servableName_;
-        result.versionNum_ = versionNum_;
-        result.versionPath_ = versionPath_;
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
+      }
+
+      private void buildPartial0(tensorflow.serving.StaticStoragePathSource.StaticStoragePathSourceConfig result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.servableName_ = servableName_;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.versionNum_ = versionNum_;
+        }
+        if (((from_bitField0_ & 0x00000004) != 0)) {
+          result.versionPath_ = versionPath_;
+        }
       }
 
       @java.lang.Override
@@ -554,6 +506,7 @@ public final class StaticStoragePathSource {
         if (other == tensorflow.serving.StaticStoragePathSource.StaticStoragePathSourceConfig.getDefaultInstance()) return this;
         if (!other.getServableName().isEmpty()) {
           servableName_ = other.servableName_;
+          bitField0_ |= 0x00000001;
           onChanged();
         }
         if (other.getVersionNum() != 0L) {
@@ -561,9 +514,10 @@ public final class StaticStoragePathSource {
         }
         if (!other.getVersionPath().isEmpty()) {
           versionPath_ = other.versionPath_;
+          bitField0_ |= 0x00000004;
           onChanged();
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
@@ -578,19 +532,48 @@ public final class StaticStoragePathSource {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        tensorflow.serving.StaticStoragePathSource.StaticStoragePathSourceConfig parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                servableName_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 10
+              case 16: {
+                versionNum_ = input.readInt64();
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 16
+              case 26: {
+                versionPath_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000004;
+                break;
+              } // case 26
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (tensorflow.serving.StaticStoragePathSource.StaticStoragePathSourceConfig) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
+      private int bitField0_;
 
       private java.lang.Object servableName_ = "";
       /**
@@ -645,11 +628,9 @@ public final class StaticStoragePathSource {
        */
       public Builder setServableName(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         servableName_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -662,8 +643,8 @@ public final class StaticStoragePathSource {
        * @return This builder for chaining.
        */
       public Builder clearServableName() {
-        
         servableName_ = getDefaultInstance().getServableName();
+        bitField0_ = (bitField0_ & ~0x00000001);
         onChanged();
         return this;
       }
@@ -678,12 +659,10 @@ public final class StaticStoragePathSource {
        */
       public Builder setServableNameBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         servableName_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -705,6 +684,7 @@ public final class StaticStoragePathSource {
       public Builder setVersionNum(long value) {
         
         versionNum_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -713,7 +693,7 @@ public final class StaticStoragePathSource {
        * @return This builder for chaining.
        */
       public Builder clearVersionNum() {
-        
+        bitField0_ = (bitField0_ & ~0x00000002);
         versionNum_ = 0L;
         onChanged();
         return this;
@@ -760,11 +740,9 @@ public final class StaticStoragePathSource {
        */
       public Builder setVersionPath(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         versionPath_ = value;
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
@@ -773,8 +751,8 @@ public final class StaticStoragePathSource {
        * @return This builder for chaining.
        */
       public Builder clearVersionPath() {
-        
         versionPath_ = getDefaultInstance().getVersionPath();
+        bitField0_ = (bitField0_ & ~0x00000004);
         onChanged();
         return this;
       }
@@ -785,12 +763,10 @@ public final class StaticStoragePathSource {
        */
       public Builder setVersionPathBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         versionPath_ = value;
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
@@ -827,7 +803,18 @@ public final class StaticStoragePathSource {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new StaticStoragePathSourceConfig(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 

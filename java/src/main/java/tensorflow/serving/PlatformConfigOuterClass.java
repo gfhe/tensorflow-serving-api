@@ -79,56 +79,6 @@ public final class PlatformConfigOuterClass {
     getUnknownFields() {
       return this.unknownFields;
     }
-    private PlatformConfig(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              com.google.protobuf.Any.Builder subBuilder = null;
-              if (sourceAdapterConfig_ != null) {
-                subBuilder = sourceAdapterConfig_.toBuilder();
-              }
-              sourceAdapterConfig_ = input.readMessage(com.google.protobuf.Any.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(sourceAdapterConfig_);
-                sourceAdapterConfig_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return tensorflow.serving.PlatformConfigOuterClass.internal_static_tensorflow_serving_PlatformConfig_descriptor;
@@ -180,7 +130,7 @@ public final class PlatformConfigOuterClass {
      */
     @java.lang.Override
     public com.google.protobuf.AnyOrBuilder getSourceAdapterConfigOrBuilder() {
-      return getSourceAdapterConfig();
+      return sourceAdapterConfig_ == null ? com.google.protobuf.Any.getDefaultInstance() : sourceAdapterConfig_;
     }
 
     private byte memoizedIsInitialized = -1;
@@ -200,7 +150,7 @@ public final class PlatformConfigOuterClass {
       if (sourceAdapterConfig_ != null) {
         output.writeMessage(1, getSourceAdapterConfig());
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -213,7 +163,7 @@ public final class PlatformConfigOuterClass {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(1, getSourceAdapterConfig());
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -233,7 +183,7 @@ public final class PlatformConfigOuterClass {
         if (!getSourceAdapterConfig()
             .equals(other.getSourceAdapterConfig())) return false;
       }
-      if (!unknownFields.equals(other.unknownFields)) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
 
@@ -248,7 +198,7 @@ public final class PlatformConfigOuterClass {
         hash = (37 * hash) + SOURCE_ADAPTER_CONFIG_FIELD_NUMBER;
         hash = (53 * hash) + getSourceAdapterConfig().hashCode();
       }
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -369,26 +319,21 @@ public final class PlatformConfigOuterClass {
 
       // Construct using tensorflow.serving.PlatformConfigOuterClass.PlatformConfig.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        if (sourceAdapterConfigBuilder_ == null) {
-          sourceAdapterConfig_ = null;
-        } else {
-          sourceAdapterConfig_ = null;
+        bitField0_ = 0;
+        sourceAdapterConfig_ = null;
+        if (sourceAdapterConfigBuilder_ != null) {
+          sourceAdapterConfigBuilder_.dispose();
           sourceAdapterConfigBuilder_ = null;
         }
         return this;
@@ -417,13 +362,18 @@ public final class PlatformConfigOuterClass {
       @java.lang.Override
       public tensorflow.serving.PlatformConfigOuterClass.PlatformConfig buildPartial() {
         tensorflow.serving.PlatformConfigOuterClass.PlatformConfig result = new tensorflow.serving.PlatformConfigOuterClass.PlatformConfig(this);
-        if (sourceAdapterConfigBuilder_ == null) {
-          result.sourceAdapterConfig_ = sourceAdapterConfig_;
-        } else {
-          result.sourceAdapterConfig_ = sourceAdapterConfigBuilder_.build();
-        }
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
+      }
+
+      private void buildPartial0(tensorflow.serving.PlatformConfigOuterClass.PlatformConfig result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.sourceAdapterConfig_ = sourceAdapterConfigBuilder_ == null
+              ? sourceAdapterConfig_
+              : sourceAdapterConfigBuilder_.build();
+        }
       }
 
       @java.lang.Override
@@ -473,7 +423,7 @@ public final class PlatformConfigOuterClass {
         if (other.hasSourceAdapterConfig()) {
           mergeSourceAdapterConfig(other.getSourceAdapterConfig());
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
@@ -488,19 +438,40 @@ public final class PlatformConfigOuterClass {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        tensorflow.serving.PlatformConfigOuterClass.PlatformConfig parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                input.readMessage(
+                    getSourceAdapterConfigFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 10
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (tensorflow.serving.PlatformConfigOuterClass.PlatformConfig) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
+      private int bitField0_;
 
       private com.google.protobuf.Any sourceAdapterConfig_;
       private com.google.protobuf.SingleFieldBuilderV3<
@@ -515,7 +486,7 @@ public final class PlatformConfigOuterClass {
        * @return Whether the sourceAdapterConfig field is set.
        */
       public boolean hasSourceAdapterConfig() {
-        return sourceAdapterConfigBuilder_ != null || sourceAdapterConfig_ != null;
+        return ((bitField0_ & 0x00000001) != 0);
       }
       /**
        * <pre>
@@ -547,11 +518,11 @@ public final class PlatformConfigOuterClass {
             throw new NullPointerException();
           }
           sourceAdapterConfig_ = value;
-          onChanged();
         } else {
           sourceAdapterConfigBuilder_.setMessage(value);
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -566,11 +537,11 @@ public final class PlatformConfigOuterClass {
           com.google.protobuf.Any.Builder builderForValue) {
         if (sourceAdapterConfigBuilder_ == null) {
           sourceAdapterConfig_ = builderForValue.build();
-          onChanged();
         } else {
           sourceAdapterConfigBuilder_.setMessage(builderForValue.build());
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -583,17 +554,18 @@ public final class PlatformConfigOuterClass {
        */
       public Builder mergeSourceAdapterConfig(com.google.protobuf.Any value) {
         if (sourceAdapterConfigBuilder_ == null) {
-          if (sourceAdapterConfig_ != null) {
-            sourceAdapterConfig_ =
-              com.google.protobuf.Any.newBuilder(sourceAdapterConfig_).mergeFrom(value).buildPartial();
+          if (((bitField0_ & 0x00000001) != 0) &&
+            sourceAdapterConfig_ != null &&
+            sourceAdapterConfig_ != com.google.protobuf.Any.getDefaultInstance()) {
+            getSourceAdapterConfigBuilder().mergeFrom(value);
           } else {
             sourceAdapterConfig_ = value;
           }
-          onChanged();
         } else {
           sourceAdapterConfigBuilder_.mergeFrom(value);
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -605,14 +577,13 @@ public final class PlatformConfigOuterClass {
        * <code>.google.protobuf.Any source_adapter_config = 1;</code>
        */
       public Builder clearSourceAdapterConfig() {
-        if (sourceAdapterConfigBuilder_ == null) {
-          sourceAdapterConfig_ = null;
-          onChanged();
-        } else {
-          sourceAdapterConfig_ = null;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        sourceAdapterConfig_ = null;
+        if (sourceAdapterConfigBuilder_ != null) {
+          sourceAdapterConfigBuilder_.dispose();
           sourceAdapterConfigBuilder_ = null;
         }
-
+        onChanged();
         return this;
       }
       /**
@@ -624,7 +595,7 @@ public final class PlatformConfigOuterClass {
        * <code>.google.protobuf.Any source_adapter_config = 1;</code>
        */
       public com.google.protobuf.Any.Builder getSourceAdapterConfigBuilder() {
-        
+        bitField0_ |= 0x00000001;
         onChanged();
         return getSourceAdapterConfigFieldBuilder().getBuilder();
       }
@@ -698,7 +669,18 @@ public final class PlatformConfigOuterClass {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new PlatformConfig(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -765,10 +747,11 @@ public final class PlatformConfigOuterClass {
      *
      * <code>map&lt;string, .tensorflow.serving.PlatformConfig&gt; platform_configs = 1;</code>
      */
-
-    tensorflow.serving.PlatformConfigOuterClass.PlatformConfig getPlatformConfigsOrDefault(
+    /* nullable */
+tensorflow.serving.PlatformConfigOuterClass.PlatformConfig getPlatformConfigsOrDefault(
         java.lang.String key,
-        tensorflow.serving.PlatformConfigOuterClass.PlatformConfig defaultValue);
+        /* nullable */
+tensorflow.serving.PlatformConfigOuterClass.PlatformConfig defaultValue);
     /**
      * <pre>
      * A map from a platform name to a platform config. The platform name is used
@@ -777,7 +760,6 @@ public final class PlatformConfigOuterClass {
      *
      * <code>map&lt;string, .tensorflow.serving.PlatformConfig&gt; platform_configs = 1;</code>
      */
-
     tensorflow.serving.PlatformConfigOuterClass.PlatformConfig getPlatformConfigsOrThrow(
         java.lang.String key);
   }
@@ -807,57 +789,6 @@ public final class PlatformConfigOuterClass {
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
-    }
-    private PlatformConfigMap(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
-                platformConfigs_ = com.google.protobuf.MapField.newMapField(
-                    PlatformConfigsDefaultEntryHolder.defaultEntry);
-                mutable_bitField0_ |= 0x00000001;
-              }
-              com.google.protobuf.MapEntry<java.lang.String, tensorflow.serving.PlatformConfigOuterClass.PlatformConfig>
-              platformConfigs__ = input.readMessage(
-                  PlatformConfigsDefaultEntryHolder.defaultEntry.getParserForType(), extensionRegistry);
-              platformConfigs_.getMutableMap().put(
-                  platformConfigs__.getKey(), platformConfigs__.getValue());
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
@@ -896,6 +827,7 @@ public final class PlatformConfigOuterClass {
                   com.google.protobuf.WireFormat.FieldType.MESSAGE,
                   tensorflow.serving.PlatformConfigOuterClass.PlatformConfig.getDefaultInstance());
     }
+    @SuppressWarnings("serial")
     private com.google.protobuf.MapField<
         java.lang.String, tensorflow.serving.PlatformConfigOuterClass.PlatformConfig> platformConfigs_;
     private com.google.protobuf.MapField<java.lang.String, tensorflow.serving.PlatformConfigOuterClass.PlatformConfig>
@@ -906,7 +838,6 @@ public final class PlatformConfigOuterClass {
       }
       return platformConfigs_;
     }
-
     public int getPlatformConfigsCount() {
       return internalGetPlatformConfigs().getMap().size();
     }
@@ -918,11 +849,10 @@ public final class PlatformConfigOuterClass {
      *
      * <code>map&lt;string, .tensorflow.serving.PlatformConfig&gt; platform_configs = 1;</code>
      */
-
     @java.lang.Override
     public boolean containsPlatformConfigs(
         java.lang.String key) {
-      if (key == null) { throw new java.lang.NullPointerException(); }
+      if (key == null) { throw new NullPointerException("map key"); }
       return internalGetPlatformConfigs().getMap().containsKey(key);
     }
     /**
@@ -942,7 +872,6 @@ public final class PlatformConfigOuterClass {
      * <code>map&lt;string, .tensorflow.serving.PlatformConfig&gt; platform_configs = 1;</code>
      */
     @java.lang.Override
-
     public java.util.Map<java.lang.String, tensorflow.serving.PlatformConfigOuterClass.PlatformConfig> getPlatformConfigsMap() {
       return internalGetPlatformConfigs().getMap();
     }
@@ -955,11 +884,12 @@ public final class PlatformConfigOuterClass {
      * <code>map&lt;string, .tensorflow.serving.PlatformConfig&gt; platform_configs = 1;</code>
      */
     @java.lang.Override
-
-    public tensorflow.serving.PlatformConfigOuterClass.PlatformConfig getPlatformConfigsOrDefault(
+    public /* nullable */
+tensorflow.serving.PlatformConfigOuterClass.PlatformConfig getPlatformConfigsOrDefault(
         java.lang.String key,
-        tensorflow.serving.PlatformConfigOuterClass.PlatformConfig defaultValue) {
-      if (key == null) { throw new java.lang.NullPointerException(); }
+        /* nullable */
+tensorflow.serving.PlatformConfigOuterClass.PlatformConfig defaultValue) {
+      if (key == null) { throw new NullPointerException("map key"); }
       java.util.Map<java.lang.String, tensorflow.serving.PlatformConfigOuterClass.PlatformConfig> map =
           internalGetPlatformConfigs().getMap();
       return map.containsKey(key) ? map.get(key) : defaultValue;
@@ -973,10 +903,9 @@ public final class PlatformConfigOuterClass {
      * <code>map&lt;string, .tensorflow.serving.PlatformConfig&gt; platform_configs = 1;</code>
      */
     @java.lang.Override
-
     public tensorflow.serving.PlatformConfigOuterClass.PlatformConfig getPlatformConfigsOrThrow(
         java.lang.String key) {
-      if (key == null) { throw new java.lang.NullPointerException(); }
+      if (key == null) { throw new NullPointerException("map key"); }
       java.util.Map<java.lang.String, tensorflow.serving.PlatformConfigOuterClass.PlatformConfig> map =
           internalGetPlatformConfigs().getMap();
       if (!map.containsKey(key)) {
@@ -1005,7 +934,7 @@ public final class PlatformConfigOuterClass {
           internalGetPlatformConfigs(),
           PlatformConfigsDefaultEntryHolder.defaultEntry,
           1);
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -1024,7 +953,7 @@ public final class PlatformConfigOuterClass {
         size += com.google.protobuf.CodedOutputStream
             .computeMessageSize(1, platformConfigs__);
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -1041,7 +970,7 @@ public final class PlatformConfigOuterClass {
 
       if (!internalGetPlatformConfigs().equals(
           other.internalGetPlatformConfigs())) return false;
-      if (!unknownFields.equals(other.unknownFields)) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
 
@@ -1056,7 +985,7 @@ public final class PlatformConfigOuterClass {
         hash = (37 * hash) + PLATFORM_CONFIGS_FIELD_NUMBER;
         hash = (53 * hash) + internalGetPlatformConfigs().hashCode();
       }
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -1195,22 +1124,18 @@ public final class PlatformConfigOuterClass {
 
       // Construct using tensorflow.serving.PlatformConfigOuterClass.PlatformConfigMap.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         internalGetMutablePlatformConfigs().clear();
         return this;
       }
@@ -1238,11 +1163,17 @@ public final class PlatformConfigOuterClass {
       @java.lang.Override
       public tensorflow.serving.PlatformConfigOuterClass.PlatformConfigMap buildPartial() {
         tensorflow.serving.PlatformConfigOuterClass.PlatformConfigMap result = new tensorflow.serving.PlatformConfigOuterClass.PlatformConfigMap(this);
-        int from_bitField0_ = bitField0_;
-        result.platformConfigs_ = internalGetPlatformConfigs();
-        result.platformConfigs_.makeImmutable();
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
+      }
+
+      private void buildPartial0(tensorflow.serving.PlatformConfigOuterClass.PlatformConfigMap result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.platformConfigs_ = internalGetPlatformConfigs();
+          result.platformConfigs_.makeImmutable();
+        }
       }
 
       @java.lang.Override
@@ -1291,7 +1222,8 @@ public final class PlatformConfigOuterClass {
         if (other == tensorflow.serving.PlatformConfigOuterClass.PlatformConfigMap.getDefaultInstance()) return this;
         internalGetMutablePlatformConfigs().mergeFrom(
             other.internalGetPlatformConfigs());
-        this.mergeUnknownFields(other.unknownFields);
+        bitField0_ |= 0x00000001;
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
@@ -1306,17 +1238,39 @@ public final class PlatformConfigOuterClass {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        tensorflow.serving.PlatformConfigOuterClass.PlatformConfigMap parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                com.google.protobuf.MapEntry<java.lang.String, tensorflow.serving.PlatformConfigOuterClass.PlatformConfig>
+                platformConfigs__ = input.readMessage(
+                    PlatformConfigsDefaultEntryHolder.defaultEntry.getParserForType(), extensionRegistry);
+                internalGetMutablePlatformConfigs().getMutableMap().put(
+                    platformConfigs__.getKey(), platformConfigs__.getValue());
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 10
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (tensorflow.serving.PlatformConfigOuterClass.PlatformConfigMap) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
       private int bitField0_;
@@ -1324,7 +1278,7 @@ public final class PlatformConfigOuterClass {
       private com.google.protobuf.MapField<
           java.lang.String, tensorflow.serving.PlatformConfigOuterClass.PlatformConfig> platformConfigs_;
       private com.google.protobuf.MapField<java.lang.String, tensorflow.serving.PlatformConfigOuterClass.PlatformConfig>
-      internalGetPlatformConfigs() {
+          internalGetPlatformConfigs() {
         if (platformConfigs_ == null) {
           return com.google.protobuf.MapField.emptyMapField(
               PlatformConfigsDefaultEntryHolder.defaultEntry);
@@ -1332,8 +1286,7 @@ public final class PlatformConfigOuterClass {
         return platformConfigs_;
       }
       private com.google.protobuf.MapField<java.lang.String, tensorflow.serving.PlatformConfigOuterClass.PlatformConfig>
-      internalGetMutablePlatformConfigs() {
-        onChanged();;
+          internalGetMutablePlatformConfigs() {
         if (platformConfigs_ == null) {
           platformConfigs_ = com.google.protobuf.MapField.newMapField(
               PlatformConfigsDefaultEntryHolder.defaultEntry);
@@ -1341,9 +1294,10 @@ public final class PlatformConfigOuterClass {
         if (!platformConfigs_.isMutable()) {
           platformConfigs_ = platformConfigs_.copy();
         }
+        bitField0_ |= 0x00000001;
+        onChanged();
         return platformConfigs_;
       }
-
       public int getPlatformConfigsCount() {
         return internalGetPlatformConfigs().getMap().size();
       }
@@ -1355,11 +1309,10 @@ public final class PlatformConfigOuterClass {
        *
        * <code>map&lt;string, .tensorflow.serving.PlatformConfig&gt; platform_configs = 1;</code>
        */
-
       @java.lang.Override
       public boolean containsPlatformConfigs(
           java.lang.String key) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
+        if (key == null) { throw new NullPointerException("map key"); }
         return internalGetPlatformConfigs().getMap().containsKey(key);
       }
       /**
@@ -1379,7 +1332,6 @@ public final class PlatformConfigOuterClass {
        * <code>map&lt;string, .tensorflow.serving.PlatformConfig&gt; platform_configs = 1;</code>
        */
       @java.lang.Override
-
       public java.util.Map<java.lang.String, tensorflow.serving.PlatformConfigOuterClass.PlatformConfig> getPlatformConfigsMap() {
         return internalGetPlatformConfigs().getMap();
       }
@@ -1392,11 +1344,12 @@ public final class PlatformConfigOuterClass {
        * <code>map&lt;string, .tensorflow.serving.PlatformConfig&gt; platform_configs = 1;</code>
        */
       @java.lang.Override
-
-      public tensorflow.serving.PlatformConfigOuterClass.PlatformConfig getPlatformConfigsOrDefault(
+      public /* nullable */
+tensorflow.serving.PlatformConfigOuterClass.PlatformConfig getPlatformConfigsOrDefault(
           java.lang.String key,
-          tensorflow.serving.PlatformConfigOuterClass.PlatformConfig defaultValue) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
+          /* nullable */
+tensorflow.serving.PlatformConfigOuterClass.PlatformConfig defaultValue) {
+        if (key == null) { throw new NullPointerException("map key"); }
         java.util.Map<java.lang.String, tensorflow.serving.PlatformConfigOuterClass.PlatformConfig> map =
             internalGetPlatformConfigs().getMap();
         return map.containsKey(key) ? map.get(key) : defaultValue;
@@ -1410,10 +1363,9 @@ public final class PlatformConfigOuterClass {
        * <code>map&lt;string, .tensorflow.serving.PlatformConfig&gt; platform_configs = 1;</code>
        */
       @java.lang.Override
-
       public tensorflow.serving.PlatformConfigOuterClass.PlatformConfig getPlatformConfigsOrThrow(
           java.lang.String key) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
+        if (key == null) { throw new NullPointerException("map key"); }
         java.util.Map<java.lang.String, tensorflow.serving.PlatformConfigOuterClass.PlatformConfig> map =
             internalGetPlatformConfigs().getMap();
         if (!map.containsKey(key)) {
@@ -1421,8 +1373,8 @@ public final class PlatformConfigOuterClass {
         }
         return map.get(key);
       }
-
       public Builder clearPlatformConfigs() {
+        bitField0_ = (bitField0_ & ~0x00000001);
         internalGetMutablePlatformConfigs().getMutableMap()
             .clear();
         return this;
@@ -1435,10 +1387,9 @@ public final class PlatformConfigOuterClass {
        *
        * <code>map&lt;string, .tensorflow.serving.PlatformConfig&gt; platform_configs = 1;</code>
        */
-
       public Builder removePlatformConfigs(
           java.lang.String key) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
+        if (key == null) { throw new NullPointerException("map key"); }
         internalGetMutablePlatformConfigs().getMutableMap()
             .remove(key);
         return this;
@@ -1448,7 +1399,8 @@ public final class PlatformConfigOuterClass {
        */
       @java.lang.Deprecated
       public java.util.Map<java.lang.String, tensorflow.serving.PlatformConfigOuterClass.PlatformConfig>
-      getMutablePlatformConfigs() {
+          getMutablePlatformConfigs() {
+        bitField0_ |= 0x00000001;
         return internalGetMutablePlatformConfigs().getMutableMap();
       }
       /**
@@ -1462,10 +1414,11 @@ public final class PlatformConfigOuterClass {
       public Builder putPlatformConfigs(
           java.lang.String key,
           tensorflow.serving.PlatformConfigOuterClass.PlatformConfig value) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
-        if (value == null) { throw new java.lang.NullPointerException(); }
+        if (key == null) { throw new NullPointerException("map key"); }
+        if (value == null) { throw new NullPointerException("map value"); }
         internalGetMutablePlatformConfigs().getMutableMap()
             .put(key, value);
+        bitField0_ |= 0x00000001;
         return this;
       }
       /**
@@ -1476,11 +1429,11 @@ public final class PlatformConfigOuterClass {
        *
        * <code>map&lt;string, .tensorflow.serving.PlatformConfig&gt; platform_configs = 1;</code>
        */
-
       public Builder putAllPlatformConfigs(
           java.util.Map<java.lang.String, tensorflow.serving.PlatformConfigOuterClass.PlatformConfig> values) {
         internalGetMutablePlatformConfigs().getMutableMap()
             .putAll(values);
+        bitField0_ |= 0x00000001;
         return this;
       }
       @java.lang.Override
@@ -1516,7 +1469,18 @@ public final class PlatformConfigOuterClass {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new PlatformConfigMap(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 

@@ -22,14 +22,14 @@ repositories {
 
 dependencies {
     implementation("javax.annotation:javax.annotation-api:1.3.2")
-    implementation("com.google.protobuf:protobuf-java:3.12.2")
+    implementation("com.google.protobuf:protobuf-java:3.21.10")
     implementation("org.tensorflow:proto:1.15.0")
-    implementation("io.grpc:grpc-netty-shaded:1.30.2")
-    implementation("io.grpc:grpc-protobuf:1.30.2")
-    implementation("io.grpc:grpc-stub:1.30.2")
+    implementation("io.grpc:grpc-netty-shaded:1.51.0")
+    implementation("io.grpc:grpc-protobuf:1.51.0")
+    implementation("io.grpc:grpc-stub:1.51.0")
 
     // This dependency is used by the application.
-    implementation("com.google.guava:guava:29.0-jre")
+    implementation("com.google.guava:guava:31.1-jre")
 
     // Use JUnit test framework
     testImplementation("junit:junit:4.13")
@@ -37,6 +37,6 @@ dependencies {
 
 application {
     // Define the main class for the application.
-    mainClassName = "com.github.alex.App"
+    mainClassName = "com.github.gfhe.App"
 }
 

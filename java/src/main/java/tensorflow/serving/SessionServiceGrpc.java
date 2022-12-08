@@ -1,19 +1,6 @@
 package tensorflow.serving;
 
 import static io.grpc.MethodDescriptor.generateFullMethodName;
-import static io.grpc.stub.ClientCalls.asyncBidiStreamingCall;
-import static io.grpc.stub.ClientCalls.asyncClientStreamingCall;
-import static io.grpc.stub.ClientCalls.asyncServerStreamingCall;
-import static io.grpc.stub.ClientCalls.asyncUnaryCall;
-import static io.grpc.stub.ClientCalls.blockingServerStreamingCall;
-import static io.grpc.stub.ClientCalls.blockingUnaryCall;
-import static io.grpc.stub.ClientCalls.futureUnaryCall;
-import static io.grpc.stub.ServerCalls.asyncBidiStreamingCall;
-import static io.grpc.stub.ServerCalls.asyncClientStreamingCall;
-import static io.grpc.stub.ServerCalls.asyncServerStreamingCall;
-import static io.grpc.stub.ServerCalls.asyncUnaryCall;
-import static io.grpc.stub.ServerCalls.asyncUnimplementedStreamingCall;
-import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
 
 /**
  * <pre>
@@ -24,8 +11,9 @@ import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
  * </pre>
  */
 @javax.annotation.Generated(
-    value = "by gRPC proto compiler (version 1.30.2)",
+    value = "by gRPC proto compiler (version 1.51.0)",
     comments = "Source: tensorflow_serving/apis/session_service.proto")
+@io.grpc.stub.annotations.GrpcGenerated
 public final class SessionServiceGrpc {
 
   private SessionServiceGrpc() {}
@@ -125,14 +113,14 @@ public final class SessionServiceGrpc {
      */
     public void sessionRun(tensorflow.serving.SessionServiceOuterClass.SessionRunRequest request,
         io.grpc.stub.StreamObserver<tensorflow.serving.SessionServiceOuterClass.SessionRunResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(getSessionRunMethod(), responseObserver);
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getSessionRunMethod(), responseObserver);
     }
 
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
             getSessionRunMethod(),
-            asyncUnaryCall(
+            io.grpc.stub.ServerCalls.asyncUnaryCall(
               new MethodHandlers<
                 tensorflow.serving.SessionServiceOuterClass.SessionRunRequest,
                 tensorflow.serving.SessionServiceOuterClass.SessionRunResponse>(
@@ -168,7 +156,7 @@ public final class SessionServiceGrpc {
      */
     public void sessionRun(tensorflow.serving.SessionServiceOuterClass.SessionRunRequest request,
         io.grpc.stub.StreamObserver<tensorflow.serving.SessionServiceOuterClass.SessionRunResponse> responseObserver) {
-      asyncUnaryCall(
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getSessionRunMethod(), getCallOptions()), request, responseObserver);
     }
   }
@@ -199,7 +187,7 @@ public final class SessionServiceGrpc {
      * </pre>
      */
     public tensorflow.serving.SessionServiceOuterClass.SessionRunResponse sessionRun(tensorflow.serving.SessionServiceOuterClass.SessionRunRequest request) {
-      return blockingUnaryCall(
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getSessionRunMethod(), getCallOptions(), request);
     }
   }
@@ -231,7 +219,7 @@ public final class SessionServiceGrpc {
      */
     public com.google.common.util.concurrent.ListenableFuture<tensorflow.serving.SessionServiceOuterClass.SessionRunResponse> sessionRun(
         tensorflow.serving.SessionServiceOuterClass.SessionRunRequest request) {
-      return futureUnaryCall(
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getSessionRunMethod(), getCallOptions()), request);
     }
   }
