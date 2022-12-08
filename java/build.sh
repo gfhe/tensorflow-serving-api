@@ -1,4 +1,5 @@
 #! /bin/bash
+
 main_dir=../
 cwd=$PWD
 protoc_version=21.10
@@ -35,5 +36,8 @@ protoc -I=serving -I=tensorflow --plugin=/usr/local/protoc/bin/protoc-gen-grpc-j
 protoc -I=serving -I=tensorflow --plugin=/usr/local/protoc/bin/protoc-gen-grpc-java --grpc-java_out=java --java_out=java serving/tensorflow_serving/sources/storage_path/*.proto
 echo "✅ proto compile"
 
-cd $cwd; rm -rf src/main/java/tensorflow; mv tensorflow src/main/java
+cd $cwd;
+rm -rf src/main/java/tensorflow
+mv tensorflow src/main/java
+
 gradle build
